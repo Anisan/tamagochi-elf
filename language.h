@@ -2,8 +2,8 @@
 #define _LANGUAGE_H_
 
 //Оставляем только один дефайн иначе будет кака
-#define LANG_RU
-//#define LANG_EN
+//#define LANG_RU
+#define LANG_EN
 
 #ifdef LANG_RU
 
@@ -181,26 +181,11 @@ static const char * const SpeakMessage[17]=
 
 //++++++++++++++++++++++++++++++++++++++++
 
-static const int mess_mask=17-1;
-static const char * const SpeakMessage[17]=
+static const int mess_mask=2-1;
+static const char * const SpeakMessage[2]=
 {
-  "Аффтар жжет, пеши исчо!",
-  "Ф бабруйск животнайе!",
-  "Аццкий сотона!",
-  "Выпей йаду!",
-  "Отъебитесь бляди, йа выучил албанский!",
-  "Блиа!! Ниибаццо жжош!!!",
-  "Бу-га-га!",
-  "Жжошь как агнимьот!!!",
-  "Напирисдачунах!",
-  "Ктулху зохавал твой моск!",
-  "ЙА КРИВЕТКО!",
-  "Нубляващще?!",
-  "Убей сибя апстену!",
-  "Учи албанский!",
-  "Фублянах!",
-  "Шозонах?!",
-  "Яибу!"
+  "Fuck you!",
+  "Bitch!"
 };
 
 

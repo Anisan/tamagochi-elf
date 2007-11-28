@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.2"
+#define __VERSION__ "0.3"
 
 extern const unsigned int REFRESH;
 extern const int cfgShowIn;
