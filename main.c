@@ -18,9 +18,6 @@
 #define TMR_SECOND 216
 unsigned int fShow;
 
-extern const int ACTIVE_KEY;
-extern const int ACTIVE_KEY_STYLE;
-
 // -1 - XTask GUI present
 // 0 - XTask GUI absent
 // 1 - IBUT longpressed, ready for exit
@@ -30,6 +27,7 @@ int mode;
 // 1 - long press ENTER_BUTTON
 // 2 - disable KEY_UP process
 int mode_enter;
+int old_img_status=0;
 
 int my_csm_id;
 CSM_RAM *under_idle;
@@ -57,6 +55,8 @@ const IPC_REQ my_ipc={
   NULL
 };
 
+IMGHDR *smile=0;
+
 TStatusPet StatusPet; 
 int Sleep=0;
 int Behavior=0;
@@ -64,6 +64,7 @@ int Behavior=0;
 #define TOTAL_ICONS=9;
 
 ///----------------------------------
+// загрузка иконок
 int S_ICONS[9+1];
 int M_ICONS[14+1];
 
@@ -84,14 +85,14 @@ void setup_ICONS(void)
   int i=0;
   do
   {
-    if (!S_ICONS[i]) S_ICONS[i]=(int)MakeGlobalString(PIC_PATH,'\\',icons_names[i]);
+    if (!S_ICONS[i]) S_ICONS[i]=(int)MakeGlobalString(PIC_PATH,0,icons_names[i]);
     i++;
   }
   while(i<9);
   i=0;
   do
   {
-    if (!M_ICONS[i]) M_ICONS[i]=(int)MakeGlobalString(PIC_PATH,'\\',icons_menu[i]);
+    if (!M_ICONS[i]) M_ICONS[i]=(int)MakeGlobalString(PIC_PATH,0,icons_menu[i]);
     i++;
   }
   while(i<14);
@@ -153,6 +154,171 @@ int strncmp_nocase(const char *s1,const char *s2,unsigned int n)
   while(!(i=(c=toupper(*s1++))-toupper(*s2++))&&(--n)) if (!c) break;
   return(i);
 }
+//////////////////////////////////////////////////////////////////////
+// image function scale opacity
+#define CTYPE1 10
+#define CTYPE2 3
+
+typedef struct {
+  int x;
+  int y;
+}POINT;
+
+typedef struct {
+  char R;
+  char G;
+  char B;
+  char A;
+}color;
+
+int max(int x, int y)
+{
+  return x > y ? x : y;
+}
+
+int min(int x, int y)
+{
+  return x < y ? x : y;
+}
+
+DrwImg(IMGHDR *img, int x, int y, char *pen, char *brush)
+{
+  RECT rc;
+  DRWOBJ drwobj;
+  StoreXYWHtoRECT(&rc,x,y,img->w,img->h);
+  SetPropTo_Obj5(&drwobj,&rc,0,img);
+  SetColor(&drwobj,pen,brush);
+  DrawObject(&drwobj);
+}
+
+color RGBA(char R, char G, char B, char A)
+{
+  color t={R,G,B,A};
+  return t;
+}
+
+
+color getcolor(IMGHDR *img, int x, int y)
+{
+  color *bm=(color*)img->bitmap;
+  if(x < img->w && x>=0 && y < img->h && y>=0) 
+    return *(bm + x + y*img->w);
+  else
+    return (color){0,0,0,0};
+}
+
+
+void setcolor(IMGHDR *img, int x, int y, color clr)
+{
+  color *bm=(color*)img->bitmap;
+  if(x < img->w && x>=0 && y < img->h && y>=0)
+    *(bm + x + y*img->w)=clr;
+}
+
+void bmfree(IMGHDR *img)
+{
+  int x, y;
+  for(y=0; y<img->h; y++)
+    for(x=0; x<img->w; x++)
+      setcolor(img, x, y, (color){0,0,0,0});
+}
+
+IMGHDR *createIMGHDR(int w, int h, int type)
+{
+  IMGHDR *img=malloc(sizeof(IMGHDR));
+  img->w=w; 
+  img->h=h; 
+  img->bpnum=type;
+  img->bitmap=malloc(h*w*sizeof(color));
+  bmfree(img);
+  return img;
+}
+
+void deleteIMGHDR(IMGHDR *img)
+{
+  mfree(img->bitmap);
+  mfree(img); 
+}
+
+IMGHDR *alpha(IMGHDR *img, char a, int nw, int del)
+{
+  int i;
+  color *r=(color*)img->bitmap;
+  for(i=0;i<img->h*img->w; i++, r++)
+    if(r->A>a)
+      r->A-=a;
+    else
+      r->A=0;
+    return img;
+}
+
+
+IMGHDR *resample(IMGHDR *img, int px, int py, int fast, int del)
+{
+  if (px==100 && py==100) return img;
+  
+  long newx = (img->w*px)/100,
+  newy = (img->h*py)/100;
+  
+  float xScale, yScale, fX, fY;
+  xScale = (float)img->w  / (float)newx;
+  yScale = (float)img->h / (float)newy;
+  
+  IMGHDR *img2=createIMGHDR(newx,newy, CTYPE1);
+  if (fast) {
+    for(long y=0; y<newy; y++){
+      fY = y * yScale;
+      for(long x=0; x<newx; x++){
+        fX = x * xScale;
+        setcolor(img2,  x,  y, getcolor(img, (long)fX,(long)fY));
+      }
+    }
+  } else {
+    long ifX, ifY, ifX1, ifY1, xmax, ymax;
+    float ir1, ir2, ig1, ig2, ib1, ib2, ia1, ia2, dx, dy;
+    char r,g,b,a;
+    color rgb1, rgb2, rgb3, rgb4;
+    xmax = img->w-1;
+    ymax = img->h-1;
+    for(long y=0; y<newy; y++){
+      fY = y * yScale;
+      ifY = (int)fY;
+      ifY1 = min(ymax, ifY+1);
+      dy = fY - ifY;
+      for(long x=0; x<newx; x++){
+        fX = x * xScale;
+        ifX = (int)fX;
+        ifX1 = min(xmax, ifX+1);
+        dx = fX - ifX;
+        rgb1= getcolor(img, ifX,ifY);
+        rgb2= getcolor(img, ifX1,ifY);
+        rgb3= getcolor(img, ifX,ifY1);
+        rgb4= getcolor(img, ifX1,ifY1);
+        
+        ir1 = rgb1.R   * (1 - dy) + rgb3.R   * dy;
+        ig1 = rgb1.G * (1 - dy) + rgb3.G * dy;
+        ib1 = rgb1.B  * (1 - dy) + rgb3.B  * dy;
+        ia1 = rgb1.A  * (1 - dy) + rgb3.A  * dy;
+        ir2 = rgb2.R   * (1 - dy) + rgb4.R   * dy;
+        ig2 = rgb2.G * (1 - dy) + rgb4.G * dy;
+        ib2 = rgb2.B  * (1 - dy) + rgb4.B  * dy;
+        ia2 = rgb2.A  * (1 - dy) + rgb4.A  * dy;
+        
+        r = (char)(ir1 * (1 - dx) + ir2 * dx);
+        g = (char)(ig1 * (1 - dx) + ig2 * dx);
+        b = (char)(ib1 * (1 - dx) + ib2 * dx);
+        a = (char)(ia1 * (1 - dx) + ia2 * dx);
+        
+        setcolor(img2, x,y,RGBA(r,g,b,a));
+      }
+    }
+  }
+  
+  if(del)
+    deleteIMGHDR(img);
+  return img2;
+}
+
 //------------------------------------------------
 extern const unsigned int sndVolume;
 
@@ -249,7 +415,7 @@ void TimerProc2(void)
   {
     ++ Sleep;
     StatusPet.ImageStatus=2;
-     GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
+    GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
     return;
   }
   if (Sleep!=0)Sleep=1;
@@ -428,6 +594,27 @@ void ChangeStatusImage()
   // сон
   if (Sleep!=0) StatusPet.ImageStatus=2; 
   if (StatusPet.StatusDeath==1) StatusPet.ImageStatus=1;
+  
+  if (old_img_status!=StatusPet.ImageStatus)
+  {
+    
+  if(smile)
+    deleteIMGHDR(smile);
+  
+  smile=0;
+  char pic_name[128];
+  snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
+  int SIZE=MINSIZE+StatusPet.Age;
+  if (SIZE>MAXSIZE)SIZE=MAXSIZE;
+  
+  if(strlen(pic_name)) 
+    if(smile=CreateIMGHDRFromPngFile(pic_name, CTYPE2))
+    {
+      smile=resample(smile, SIZE, SIZE, 0, 1);
+      smile=alpha(smile, 255-255*OP/100, 0, 0);
+    }   
+  old_img_status=StatusPet.ImageStatus;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -456,6 +643,8 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
     {
       ShowMSG(1,(int)LG_UPDSETTING);
       InitConfig();
+      old_img_status=99;
+      ChangeStatusImage();
     }
   }
   
@@ -512,11 +701,26 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
         {
           void *canvasdata = ((void **)idata)[DISPLACE_OF_IDLECANVAS / 4];
 #endif
-          char pic_name[128];
-          snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
-          DrawCanvas(canvasdata, POS_X, POS_Y, 
-                     POS_X + GetImgWidth((int)pic_name)-1, POS_Y + GetImgHeight((int)pic_name)-1, 1);
-          DrawImg(POS_X, POS_Y, (int)pic_name);   
+          
+          DrawCanvas(canvasdata, 
+                     POS_X - smile->w/2, 
+                     POS_Y - smile->h/2, 
+                     POS_X + smile->w/2, 
+                     POS_Y + smile->h/2, 
+                     1);
+          
+          if(smile)
+            DrwImg(smile,
+                   POS_X-smile->w/2,
+                   POS_Y-smile->h/2,
+                   GetPaletteAdrByColorIndex(0),
+                   GetPaletteAdrByColorIndex(1));
+          
+         // char pic_name[128];
+         // snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
+         // DrawCanvas(canvasdata, POS_X, POS_Y, 
+         //            POS_X + GetImgWidth((int)pic_name)-1, POS_Y + GetImgHeight((int)pic_name)-1, 1);
+         // DrawImg(POS_X, POS_Y, (int)pic_name);   
           
          // DrawCanvas(canvasdata,POS_X, POS_Y, POS_X+GetImgWidth((int)S_ICONS[StatusPet.ImageStatus])-1,
 	//	    POS_Y+GetImgHeight((int)S_ICONS[StatusPet.ImageStatus])-1,1);

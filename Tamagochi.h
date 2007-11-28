@@ -15,6 +15,13 @@ extern const char ROOM_PATH[64];
 extern const char SOUND_PATH[64];
 
 
+extern const int ACTIVE_KEY;
+extern const int ACTIVE_KEY_STYLE;
+
+extern const unsigned  int OP;
+extern const unsigned  int MINSIZE;
+extern const unsigned  int MAXSIZE;
+
 
 static const char * const SoundName[2]=
 {

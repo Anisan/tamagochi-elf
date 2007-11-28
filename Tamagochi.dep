@@ -482,6 +482,7 @@
       <file>$PROJ_DIR$\func.asm</file>
       <file>$PROJ_DIR$\gui.c</file>
       <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\language.h</file>
       <file>$PROJ_DIR$\RANDOM.H</file>
       <file>$PROJ_DIR$\revision.h</file>
       <file>$PROJ_DIR$\status.c</file>
@@ -559,11 +560,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 4 47</file>
+          <file> 4 48 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 4 47</file>
+          <file> 4 48 43</file>
         </tool>
       </inputs>
     </file>
@@ -591,11 +592,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 2 9 8 0 5 20 3 1 6 38 14 24 44 47</file>
+          <file> 2 9 8 0 5 20 3 1 6 38 14 24 45 48 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 2 9 8 0 5 20 3 1 6 38 14 24 44 47</file>
+          <file> 2 9 8 0 5 20 3 1 6 38 14 24 45 48 43</file>
         </tool>
       </inputs>
     </file>
@@ -614,11 +615,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 2 9 8 0 5 20 3 1 6 4 47 43 38</file>
+          <file> 2 9 8 0 5 20 3 1 6 4 48 44 38 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 2 9 8 0 5 20 3 1 6 4 47 43 38</file>
+          <file> 2 9 8 0 5 20 3 1 6 4 48 44 38 43</file>
         </tool>
       </inputs>
     </file>
@@ -637,11 +638,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 2 9 8 0 5 20 3 1 6 38 14 24 44 47</file>
+          <file> 2 9 8 0 5 20 3 1 6 38 14 24 45 48 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 2 9 8 0 5 20 3 1 6 38 14 24 44 47</file>
+          <file> 2 9 8 0 5 20 3 1 6 38 14 24 45 48 43</file>
         </tool>
       </inputs>
     </file>
@@ -668,10 +669,6 @@
         </tool>
       </inputs>
     </file>
-    <forcedrebuild>
-      <name>[MULTI_TOOL]</name>
-      <tool>XLINK</tool>
-    </forcedrebuild>
   </configuration>
 </project>
 

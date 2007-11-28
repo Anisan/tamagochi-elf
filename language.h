@@ -2,8 +2,8 @@
 #define _LANGUAGE_H_
 
 //Оставляем только один дефайн иначе будет кака
-//#define LANG_RU
-#define LANG_EN
+#define LANG_RU
+//#define LANG_EN
 
 #ifdef LANG_RU
 
@@ -20,6 +20,9 @@
 #define LG_GFGUNLOCK "Разблокирован"
 #define LG_GFGBOTH "На обоих"
 #define LG_GFGPOSITION "Координаты на экране"
+#define LG_GFGMINSIZE "Min Size (%)"
+#define LG_GFGMAXSIZE "Max Size (%)"
+#define LG_GFGOPACITY "Opacity (%)"
 
 #define LG_GFGSETPATH "Настройка путей"
 #define LG_GFGPATHPET "Путь к питомцу"
@@ -119,6 +122,9 @@ static const char * const SpeakMessage[17]=
 #define LG_GFGUNLOCK "Unlock"
 #define LG_GFGBOTH "Both"
 #define LG_GFGPOSITION "Position"
+#define LG_GFGMINSIZE "Min Size (%)"
+#define LG_GFGMAXSIZE "Max Size (%)"
+#define LG_GFGOPACITY "Opacity (%)"
 
 #define LG_GFGSETPATH "Setting path"
 #define LG_GFGPATHPET "Path pet"
@@ -145,8 +151,8 @@ static const char * const SpeakMessage[17]=
 #define LG_PAIN "PAIN!"
 #define LG_SHREW "SHREW!"
 
-#define LG_MSGSLEEP "Нехочу спать!"
-#define LG_MSGNOTSLEEP "У блин разбудили!"
+#define LG_MSGSLEEP "I am sleep!"
+#define LG_MSGNOTSLEEP "I am wakeup!"
 
 
 #define LG_MENU    "Menu"
