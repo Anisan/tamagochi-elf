@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>Tamagochi/Release_ELKA</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>242</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>669</ColumnWidth1><ColumnWidth2>178</ColumnWidth2><ColumnWidth3>44</ColumnWidth3></Build><Debug-Log/></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-19339-31358</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>Tamagochi</ExpandedNode><ExpandedNode>Tamagochi/Output</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-11974-7608</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-1150-23758</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\main.c</Filename><XPos>0</XPos><YPos>408</YPos><SelStart>7550</SelStart><SelEnd>7550</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\gui.c</Filename><XPos>0</XPos><YPos>38</YPos><SelStart>1064</SelStart><SelEnd>1064</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\Tamagochi.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>415</SelStart><SelEnd>415</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\revision.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>28</SelStart><SelEnd>28</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\config_data.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>169</SelStart><SelEnd>169</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\RANDOM.H</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>1389</SelStart><SelEnd>1389</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\status.c</Filename><XPos>0</XPos><YPos>188</YPos><SelStart>2099</SelStart><SelEnd>2099</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\inc\swilib.h</Filename><XPos>0</XPos><YPos>138</YPos><SelStart>3375</SelStart><SelEnd>3375</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\swaper.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\language.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>91</SelStart><SelEnd>91</SelEnd></Tab><ActiveTab>9</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\Tamagochi\func.asm</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-008fe930><key>iaridepm1</key></Toolbar-008fe930></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>585</Bottom><Right>316</Right><x>-2</x><y>-2</y><xscreen>318</xscreen><yscreen>241</yscreen><sizeHorzCX>296919</sizeHorzCX><sizeHorzCY>304293</sizeHorzCY><sizeVertCX>296919</sizeVertCX><sizeVertCY>741162</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>163</Bottom><Right>1073</Right><x>-2</x><y>-2</y><xscreen>1075</xscreen><yscreen>165</yscreen><sizeHorzCX>1003735</sizeHorzCX><sizeHorzCY>208333</sizeHorzCY><sizeVertCX>220355</sizeVertCX><sizeVertCY>214646</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
