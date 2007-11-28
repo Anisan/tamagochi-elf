@@ -24,7 +24,7 @@ void ViewAge()
 void ViewHealth()
 {
   char s[256];
-   snprintf(s,255,"%s:%d",LG_HEALTH,
+   snprintf(s,255,"%s:%d%%",LG_HEALTH,
             (int)StatusPet.Health*100/StatusPet.MaxHealth
             );
    ShowMSG(2, (int)s);
@@ -32,7 +32,7 @@ void ViewHealth()
 void ViewHunger()
 {
   char s[256];
-  snprintf(s,255,"%s:%d",LG_HUNGER,
+  snprintf(s,255,"%s:%d%%",LG_HUNGER,
             (int)StatusPet.Hunger*100/StatusPet.MaxHunger
             );
   ShowMSG(2, (int)s);
@@ -40,7 +40,7 @@ void ViewHunger()
 void ViewHappiness()
 {
   char s[256];
-  snprintf(s,255,"%s:%d",LG_HAPPINESS,
+  snprintf(s,255,"%s:%d%%",LG_HAPPINESS,
             (int)StatusPet.Happiness*100/StatusPet.MaxHappiness
             );
   ShowMSG(2, (int)s);
@@ -48,7 +48,7 @@ void ViewHappiness()
 void ViewDirtiness()
 {
   char s[256];
-  snprintf(s,255,"%s:%d",LG_DIRTINESS,
+  snprintf(s,255,"%s:%d%%",LG_DIRTINESS,
             100-(int)StatusPet.Dirtiness*100/StatusPet.MaxDirtiness
             );
   ShowMSG(2, (int)s);
@@ -56,7 +56,7 @@ void ViewDirtiness()
 void ViewBoredom()
 {
   char s[256];
-  snprintf(s,255,"%s:%d",LG_BOREDOM,
+  snprintf(s,255,"%s:%d%%",LG_BOREDOM,
             (int)StatusPet.Boredom*100/StatusPet.MaxBoredom
             );
   ShowMSG(2, (int)s);
@@ -64,7 +64,7 @@ void ViewBoredom()
 void ViewBehaviour()
 {
   char s[256];
-  snprintf(s,255,"%s:%d",LG_BEHAVIOUR,
+  snprintf(s,255,"%s:%d%%",LG_BEHAVIOUR,
             (int)StatusPet.Behaviour*100/StatusPet.MaxBehaviour
             );
   ShowMSG(2, (int)s);
@@ -150,37 +150,37 @@ static void smenuitemhandler(void *data, int curitem, void *unk)
     break;}
   case 1:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],(int)StatusPet.Health*100/StatusPet.MaxHealth);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)StatusPet.Health*100/StatusPet.MaxHealth);
     SetMenuItemIconArray(data,item,M_ICONS+8);
     SetMenuItemText(data, item, ws, curitem);
     break;
   case 2:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],(int)StatusPet.Hunger*100/StatusPet.MaxHunger);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)StatusPet.Hunger*100/StatusPet.MaxHunger);
     SetMenuItemIconArray(data,item,M_ICONS+9);
     SetMenuItemText(data, item, ws, curitem);
     break;  
   case 3:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],(int)StatusPet.Happiness*100/StatusPet.MaxHappiness);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)StatusPet.Happiness*100/StatusPet.MaxHappiness);
     SetMenuItemIconArray(data,item,M_ICONS+10);
     SetMenuItemText(data, item, ws, curitem);
     break;  
   case 4:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],100-(int)StatusPet.Dirtiness*100/StatusPet.MaxDirtiness);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],100-(int)StatusPet.Dirtiness*100/StatusPet.MaxDirtiness);
     SetMenuItemIconArray(data,item,M_ICONS+11);
     SetMenuItemText(data, item, ws, curitem);
     break;  
   case 5:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],(int)StatusPet.Boredom*100/StatusPet.MaxBoredom);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)StatusPet.Boredom*100/StatusPet.MaxBoredom);
     SetMenuItemIconArray(data,item,M_ICONS+12);
     SetMenuItemText(data, item, ws, curitem);
     break;  
   case 6:
     ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
-    wsprintf(ws,"%t:%d",smenutexts[curitem],(int)StatusPet.Behaviour*100/StatusPet.MaxBehaviour);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)StatusPet.Behaviour*100/StatusPet.MaxBehaviour);
     SetMenuItemIconArray(data,item,M_ICONS+13);
     SetMenuItemText(data, item, ws, curitem);
     break;  

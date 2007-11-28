@@ -28,6 +28,15 @@ __root const CFG_HDR cfghdr1_2={CFG_COORDINATES,LG_GFGPOSITION,0,0};
 __root const unsigned int POS_X=120;
 __root const unsigned int POS_Y=160; 
 
+__root const CFG_HDR cfghdr1_3 = {CFG_UINT, LG_GFGMINSIZE, 0, 500};
+__root const unsigned int MINSIZE = 20;
+
+__root const CFG_HDR cfghdr1_4 = {CFG_UINT, LG_GFGMAXSIZE, 0, 500};
+__root const unsigned int MAXSIZE = 80;
+
+__root const CFG_HDR cfghdr1_5 = {CFG_UINT, LG_GFGOPACITY, 0, 100};
+__root const unsigned int OP = 80;
+
 __root const CFG_HDR cfghdr_m10={CFG_LEVEL,"",0,0};
 
 // -------------------------------------------------------------------------- //
