@@ -70,6 +70,12 @@
 #define LG_BOREDOM  "Скука"
 #define LG_BEHAVIOUR  "Мораль"
     
+#define LG_MSGAGE "Ура! Днюха!"
+#define LG_MSGHEALTH  "Мало жизни! Сдохну скоро!"
+#define LG_MSGHUNGER  "Жрать давай! А то скоро загнусь!"
+#define LG_MSGHAPPINESS  "Жизнь гавно!"
+#define LG_MSGDIRTINESS  "Живу как свинья!"
+#define LG_MSGBOREDOM  "Скука смертная!"
 
 //-------------
 #define LG_SELECT  "Выбор"
@@ -173,6 +179,7 @@ static const char * const SpeakMessage[17]=
 #define LG_BOREDOM  "Boredom"
 #define LG_BEHAVIOUR  "Behavior"
     
+
 
 //-------------
 #define LG_SELECT  "Select"

@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.3"
+#define __VERSION__ "0.4"
 
 extern const unsigned int REFRESH;
 extern const int cfgShowIn;
@@ -23,10 +23,15 @@ extern const unsigned  int MINSIZE;
 extern const unsigned  int MAXSIZE;
 
 
-static const char * const SoundName[2]=
+static const char * const SoundName[6]=
 {
   "global.wav",
-  "hello.wav"
+  "hello.wav",
+  "birthday.wav",
+  "alarm.wav",
+  "alarm.wav",
+  "alarm.wav"
+    
 
 };
 
