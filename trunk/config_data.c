@@ -106,5 +106,6 @@ __root const CFG_HDR cfghdr24={CFG_UINT,LG_GFGKEY,0,99};
 __root const int ACTIVE_KEY=0x11;
 #endif
 #endif
+
 __root const CFG_HDR cfghdr_m50={CFG_LEVEL,"",0,0};
 

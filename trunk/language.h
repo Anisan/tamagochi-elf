@@ -47,6 +47,7 @@
 #define LG_IAMSLEEP "Не мешай спать!"
 #define LG_PAIN "Больна же!"
 #define LG_SHREW "Злюка!"
+#define LG_IAMDIE "Я уже умер!Поздняк метаться!"
 
 #define LG_MSGSLEEP "Нехочу спать!"
 #define LG_MSGNOTSLEEP "У блин разбудили!"
