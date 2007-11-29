@@ -408,6 +408,12 @@ void TimerProc2(void)
     StatusPet.MaxDirtiness=StatusPet.MaxHappiness+2;
     StatusPet.MaxBoredom=StatusPet.MaxBoredom+2;
     StatusPet.MaxBehaviour=StatusPet.MaxBehaviour+2;
+    
+    
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[2]);
+    Play(sound_name);
+    ShowMSG(0,(int)LG_MSGAGE);
   }
 
   // сон - процессы замедл€ютс€
@@ -455,7 +461,7 @@ void TimerProc2(void)
             //кормимс€
             if (Eat)
             if (StatusPet.Hunger>0)
-            if (de.file_size<(StatusPet.Age+1)*1024)
+            if (de.file_size<(StatusPet.Age+1+5)*1024)
             {
               int in = (int)de.file_size/1024;
               if (in==0) in=1;
@@ -597,7 +603,6 @@ void ChangeStatusImage()
   
   if (old_img_status!=StatusPet.ImageStatus)
   {
-    
   if(smile)
     deleteIMGHDR(smile);
   
@@ -615,6 +620,35 @@ void ChangeStatusImage()
     }   
   old_img_status=StatusPet.ImageStatus;
   }
+  
+  
+  if (StatusPet.Dirtiness<=10) ShowMSG(1,(int)LG_MSGDIRTINESS);
+  if (StatusPet.Boredom<=10) ShowMSG(1,(int)LG_MSGBOREDOM);
+  if (StatusPet.Hunger<=10) 
+  {
+    ShowMSG(1,(int)LG_MSGHUNGER);
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[3]);
+    Play(sound_name);
+  }
+  if (StatusPet.Health<=10)
+  {
+    ShowMSG(1,(int)LG_MSGHEALTH);
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[4]);
+    Play(sound_name);
+  }
+  if (StatusPet.Happiness<=10)
+  {
+    ShowMSG(1,(int)LG_MSGHAPPINESS);
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[5]);
+    Play(sound_name);
+  }
+  
+  
+
+      
 }
 
 // ----------------------------------------------------------------------------
@@ -626,6 +660,7 @@ void VerifyStatus()
   if (StatusPet.Health>StatusPet.MaxHealth) StatusPet.Health=StatusPet.MaxHealth;
   if (StatusPet.Health<0) StatusPet.Health=0;
   if (StatusPet.Dirtiness>StatusPet.MaxDirtiness) StatusPet.Dirtiness=StatusPet.MaxDirtiness;
+  if (StatusPet.Dirtiness<0) StatusPet.Dirtiness=0;
   if (StatusPet.Boredom>StatusPet.MaxBoredom) StatusPet.Boredom=StatusPet.MaxBoredom;
   if (StatusPet.Boredom<0) StatusPet.Boredom=0;
   if (StatusPet.Behaviour>StatusPet.MaxBehaviour) StatusPet.Behaviour=StatusPet.MaxBehaviour;
