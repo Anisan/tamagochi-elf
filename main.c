@@ -539,6 +539,11 @@ void GamePlay()
  ShowMSG(2, (int)LG_IAMSLEEP);
  return;
  }
+ if (StatusPet.StatusDeath==1)
+ {
+ ShowMSG(2, (int)LG_IAMDIE);
+ return;
+ }
 
  StatusPet.Happiness = StatusPet.Happiness+10;
  StatusPet.Boredom = StatusPet.Boredom -10;
@@ -553,6 +558,11 @@ void Vaccinate()
  if (Sleep!=0)
  {
  ShowMSG(2, (int)LG_IAMSLEEP);
+ return;
+ }
+  if (StatusPet.StatusDeath==1)
+ {
+ ShowMSG(2, (int)LG_IAMDIE);
  return;
  }
  StatusPet.Happiness = StatusPet.Happiness-10;
@@ -570,6 +580,11 @@ void Discipline()
  ShowMSG(2, (int)LG_IAMSLEEP);
  return;
  }
+  if (StatusPet.StatusDeath==1)
+ {
+ ShowMSG(2, (int)LG_IAMDIE);
+ return;
+ }
  StatusPet.Happiness = StatusPet.Happiness-10;
  StatusPet.Behaviour = StatusPet.Behaviour +10;
  StatusPet.Boredom = StatusPet.Boredom -10;
@@ -580,6 +595,11 @@ void Discipline()
 // ----------------------------------------------------------------------------
 void SleepProc()
 {
+    if (StatusPet.StatusDeath==1)
+ {
+ ShowMSG(2, (int)LG_IAMDIE);
+ return;
+ }
   if(Sleep==0){ Sleep=1;
   ShowMSG(2, (int)LG_MSGSLEEP);}
   else {Sleep=0;
