@@ -254,6 +254,7 @@
       <file>$PROJ_DIR$\status.c</file>
       <file>$PROJ_DIR$\swaper.c</file>
       <file>$PROJ_DIR$\Tamagochi.h</file>
+      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
@@ -381,11 +382,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 10 33 34 9 35 0 31 27 36 32 48 44 38 43</file>
+          <file> 10 33 34 9 35 0 31 27 36 32 49 48 44 38 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 10 33 34 9 35 0 31 27 36 32 48 44 38 43</file>
+          <file> 10 33 34 9 35 0 31 27 36 32 49 48 44 38 43</file>
         </tool>
       </inputs>
     </file>
