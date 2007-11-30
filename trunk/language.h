@@ -2,8 +2,8 @@
 #define _LANGUAGE_H_
 
 //Оставляем только один дефайн иначе будет кака
-#define LANG_RU
-//#define LANG_EN
+//#define LANG_RU
+#define LANG_EN
 
 #ifdef LANG_RU
 
@@ -52,6 +52,7 @@
 #define LG_MSGSLEEP "Нехочу спать!"
 #define LG_MSGNOTSLEEP "У блин разбудили!"
 
+#define LG_ALREADY_STARTED "Уже запущена!"
 
 #define LG_MENU    "Меню"
 #define LG_GAMEPLAY "Игра"
@@ -161,6 +162,7 @@ static const char * const SpeakMessage[17]=
 #define LG_MSGSLEEP "I am sleep!"
 #define LG_MSGNOTSLEEP "I am wakeup!"
 
+#define LG_ALREADY_STARTED "Already started!"
 
 #define LG_MENU    "Menu"
 #define LG_GAMEPLAY "Game"
@@ -180,7 +182,13 @@ static const char * const SpeakMessage[17]=
 #define LG_BOREDOM  "Boredom"
 #define LG_BEHAVIOUR  "Behavior"
     
-
+#define LG_IAMDIE "Death!"
+#define LG_MSGAGE "Birthday!"
+#define LG_MSGHEALTH  "HEALTH!"
+#define LG_MSGHUNGER  "HUNGER!"
+#define LG_MSGHAPPINESS  "Low HAPPINESS!"
+#define LG_MSGDIRTINESS  "DIRTINESS!"
+#define LG_MSGBOREDOM  "BOREDOM!"
 
 //-------------
 #define LG_SELECT  "Select"
@@ -192,6 +200,8 @@ static const char * const SpeakMessage[17]=
 
 #define LG_LOADING "Tamagochi loading!"
 #define LG_UPDSETTING "Setting Tamagochi updated!"
+
+
 
 //++++++++++++++++++++++++++++++++++++++++
 

@@ -3,6 +3,10 @@
 
 #define __VERSION__ "0.4"
 
+#define IPC_TAMAGOCHI_NAME "Tamagochi"
+#define IPC_CHECK_DOUBLERUN 1
+#define IPC_UPDATE_STAT 8
+
 extern const unsigned int REFRESH;
 extern const int cfgShowIn;
 

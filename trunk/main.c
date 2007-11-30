@@ -5,6 +5,7 @@
 
 #include "..\inc\swilib.h"
 #include "..\inc\cfg_items.h"
+#include "..\inc\xtask_ipc.h"
 #include "Tamagochi.h"
 #include "RANDOM.h"
 #include "conf_loader.h"
@@ -30,16 +31,17 @@ int mode_enter;
 int old_img_status=0;
 
 int my_csm_id;
+int maincsm_id;
 CSM_RAM *under_idle;
 
-extern void kill_data(void *p, void (*func_p)(void *));
 
-#define IPC_TAMAGOCHI_NAME "Tamagochi"
-#define IPC_UPDATE_STAT 1
+extern void kill_data(void *p, void (*func_p)(void *));
 
 extern const int SpeedLife;
 
 const char ipc_my_name[]=IPC_TAMAGOCHI_NAME;
+const char ipc_xtask_name[]=IPC_XTASK_NAME;
+IPC_REQ gipc;
 
 CSM_DESC icsmd;
 
@@ -484,13 +486,14 @@ void TimerProc2(void)
   FindClose(&de,&err);
   
   // голод
-  if (StatusPet.Hunger>(int)StatusPet.MaxHunger/2) --StatusPet.Happiness;
+  if (StatusPet.Hunger>(int)2*StatusPet.MaxHunger/3) --StatusPet.Happiness;
   // сытый
   if (StatusPet.Hunger==0) ++StatusPet.Happiness;
   
   // чистота 
   StatusPet.Dirtiness=findgvn;
-  if (StatusPet.Dirtiness>(int)StatusPet.MaxDirtiness) --StatusPet.Happiness;
+  if (StatusPet.Dirtiness>(int)2*StatusPet.MaxDirtiness/3) --StatusPet.Happiness;
+  
   
   ++StatusPet.Boredom; // скука
   if (StatusPet.Boredom>(int)StatusPet.MaxBoredom/2) --StatusPet.Happiness;
@@ -611,7 +614,7 @@ void ChangeStatusImage()
 {
   // Статусные картинки
   StatusPet.ImageStatus=0;
-  if (StatusPet.Behaviour<(int)StatusPet.MaxBehaviour/2) StatusPet.ImageStatus=8;
+  if (StatusPet.Behaviour<(int)StatusPet.MaxBehaviour/3) StatusPet.ImageStatus=8;
   if (StatusPet.Boredom>(int)StatusPet.MaxBoredom/2) StatusPet.ImageStatus=7;
   if (StatusPet.Dirtiness>(int)StatusPet.MaxDirtiness/2) StatusPet.ImageStatus=6;
   if (StatusPet.Hunger>(int)StatusPet.MaxHunger/2) StatusPet.ImageStatus=3;
@@ -641,34 +644,25 @@ void ChangeStatusImage()
   old_img_status=StatusPet.ImageStatus;
   }
   
-  
-  if (StatusPet.Dirtiness<=10) ShowMSG(1,(int)LG_MSGDIRTINESS);
-  if (StatusPet.Boredom<=10) ShowMSG(1,(int)LG_MSGBOREDOM);
-  if (StatusPet.Hunger<=10) 
+  char sound_name[128];
+  if (StatusPet.Dirtiness>=StatusPet.MaxDirtiness-10) ShowMSG(1,(int)LG_MSGDIRTINESS);
+  if (StatusPet.Boredom>=StatusPet.MaxBoredom-10) ShowMSG(1,(int)LG_MSGBOREDOM);
+  if (StatusPet.Hunger>=StatusPet.MaxHunger-10) 
   {
     ShowMSG(1,(int)LG_MSGHUNGER);
-    char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[3]);
-    Play(sound_name);
   }
   if (StatusPet.Health<=10)
   {
     ShowMSG(1,(int)LG_MSGHEALTH);
-    char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[4]);
-    Play(sound_name);
   }
   if (StatusPet.Happiness<=10)
   {
-    ShowMSG(1,(int)LG_MSGHAPPINESS);
-    char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[5]);
-    Play(sound_name);
   }
+  Play(sound_name);
   
-  
-
-      
 }
 
 // ----------------------------------------------------------------------------
@@ -687,9 +681,31 @@ void VerifyStatus()
   if (StatusPet.Behaviour<0) StatusPet.Behaviour=0;
 }
 //-----------------------------------------------------------------------------
+void CheckDoubleRun(void)
+{
+  int csm_id;
+  if ((csm_id=(int)(gipc.data))!=-1)
+  {
+    gipc.name_to=ipc_xtask_name;
+    gipc.name_from=ipc_my_name;
+    gipc.data=(void *)csm_id;
+    LockSched();
+    CloseCSM(maincsm_id);
+    ShowMSG(1,(int)LG_ALREADY_STARTED);
+    UnlockSched();
+  }
+  else
+  {
+    extern const int ENA_HELLO_MSG;
+    if (ENA_HELLO_MSG) ShowMSG(1,(int)LG_LOADING);
+  }
+  
+}
+
 
 int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
 {
+  //MAIN_CSM *csm=(MAIN_CSM*)data;
   void *icsm;
   if(msg->msg == MSG_RECONFIGURE_REQ) 
   {
@@ -712,6 +728,11 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
       {
         switch (msg->submess)
         {
+        case IPC_CHECK_DOUBLERUN:
+       //Если приняли свое собственное сообщение, значит запускаем чекер
+	  if (ipc->name_from==ipc_my_name) SUBPROC((void *)CheckDoubleRun);
+          else ipc->data=(void *)maincsm_id;
+	  break;
         case IPC_UPDATE_STAT:
 #ifdef NEWSGOLD
           if (!getCpuUsedTime_if_ena())
@@ -720,6 +741,7 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
           }
 #endif
           GBS_StartTimerProc(&mytmr, REFRESH*TMR_SECOND/10, TimerProc);
+          break;
         }
       }
     }
@@ -791,7 +813,8 @@ extern int my_keyhook(int submsg, int msg);
 
 static void maincsm_oncreate(CSM_RAM *data)
 {
-   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_UPDATE_STAT,&my_ipc);
+  
+  GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_UPDATE_STAT,&my_ipc);
  
   AddKeybMsgHook((void *)my_keyhook);
 
@@ -839,6 +862,11 @@ static void maincsm_oncreate(CSM_RAM *data)
   snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[1]);
   Play(sound_name);
   
+  gipc.name_to=ipc_my_name;
+  gipc.name_from=ipc_my_name;
+  gipc.data=(void *)-1;
+  GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&gipc);
+ 
 }
 
 static void maincsm_onclose(CSM_RAM *csm)
@@ -1049,8 +1077,6 @@ void DoSplices(void)
 
   LockSched();
   
-    extern const int ENA_HELLO_MSG;
-    if (ENA_HELLO_MSG) ShowMSG(1,(int)LG_LOADING);
          
       CSMROOT *csmr;
       CSM_RAM *save_cmpc;
@@ -1059,7 +1085,7 @@ void DoSplices(void)
       csmr=CSM_root();
       save_cmpc=csmr->csm_q->current_msg_processing_csm;
       csmr->csm_q->current_msg_processing_csm=csmr->csm_q->csm.first;
-      CreateCSM(&MAINCSM.maincsm,&main_csm,0);
+      maincsm_id=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
       csmr->csm_q->current_msg_processing_csm=save_cmpc;
   
   UnlockSched();
