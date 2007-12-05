@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>Tamagochi/Release_NSGOLD</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>242</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>669</ColumnWidth1><ColumnWidth2>178</ColumnWidth2><ColumnWidth3>44</ColumnWidth3></Build><Debug-Log/></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-19339-31358</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>Tamagochi</ExpandedNode><ExpandedNode>Tamagochi/Output</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-11974-7608</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-1150-23758</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\ARM\inc\swilib.h</Filename><XPos>0</XPos><YPos>150</YPos><SelStart>3375</SelStart><SelEnd>3375</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Tamagochi\Tamagochi.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Tamagochi\main.c</Filename><XPos>0</XPos><YPos>23</YPos><SelStart>684</SelStart><SelEnd>693</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Tamagochi\config_data.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>893</SelStart><SelEnd>893</SelEnd></Tab><ActiveTab>3</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-008feb98><key>iaridepm1</key></Toolbar-008feb98></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>585</Bottom><Right>316</Right><x>-2</x><y>-2</y><xscreen>318</xscreen><yscreen>241</yscreen><sizeHorzCX>296919</sizeHorzCX><sizeHorzCY>304293</sizeHorzCY><sizeVertCX>296919</sizeVertCX><sizeVertCY>741162</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>163</Bottom><Right>1073</Right><x>-2</x><y>-2</y><xscreen>1075</xscreen><yscreen>165</yscreen><sizeHorzCX>1003735</sizeHorzCX><sizeHorzCY>208333</sizeHorzCY><sizeVertCX>220355</sizeVertCX><sizeVertCY>214646</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
