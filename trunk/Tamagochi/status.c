@@ -24,8 +24,10 @@ void ViewAge()
 void ViewHealth()
 {
   char s[256];
-   snprintf(s,255,"%s:%d%%",LG_HEALTH,
-            (int)StatusPet.Health*100/StatusPet.MaxHealth
+   snprintf(s,255,"%s:%d%%\n%d/%d",LG_HEALTH,
+            (int)StatusPet.Health*100/StatusPet.MaxHealth,
+            StatusPet.Health,
+            StatusPet.MaxHealth
             );
    ShowMSG(2, (int)s);
 }

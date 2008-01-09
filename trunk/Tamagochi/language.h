@@ -92,8 +92,8 @@
 
 //++++++++++++++++++++++++++++++++++++++++
 
-static const int mess_mask=17-1;
-static const char * const SpeakMessage[17]=
+static const int mess_mask=15;
+static const char * const SpeakMessage[16]=
 {
   "Аффтар жжет, пеши исчо!",
   "Ф бабруйск животнайе!",
@@ -109,7 +109,6 @@ static const char * const SpeakMessage[17]=
   "Нубляващще?!",
   "Убей сибя апстену!",
   "Учи албанский!",
-  "Фублянах!",
   "Шозонах?!",
   "Яибу!"
 };
