@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.4"
+#define __VERSION__ "0.4e"
 
 #define IPC_TAMAGOCHI_NAME "Tamagochi"
 #define IPC_CHECK_DOUBLERUN 1
@@ -27,16 +27,26 @@ extern const unsigned  int MINSIZE;
 extern const unsigned  int MAXSIZE;
 
 
-static const char * const SoundName[6]=
+static const char * const SoundName[18]=
 {
-  "global.wav",
-  "hello.wav",
-  "birthday.wav",
-  "alarm.wav",
-  "alarm.wav",
-  "alarm.wav"
-    
-
+  "global.wav", //tuk-tuk 0
+  "hello.wav", //privet 1
+  "birthday.wav", //den' rozhdeniya 2
+  "alarm.wav", //toropis'! 3
+  "comeon.wav", //nu davaj-davaj 4
+  "illgetyou.wav", //nu pogodi 5
+  "boring.wav", //skuchno 6
+  "byebye.wav", //poka 7
+  "fatality.wav", //ubit 8
+  "firstblood.wav", //pervaya krov' 9
+  "laugh.wav", //haha 10
+  "leaveme.wav", //ostav' menya 11
+  "nooo.wav", //neee 12
+  "ohdeer.wav", //oj-e-e-e-ej 13
+  "sleep.wav", //zevaet 14
+  "ouch.wav", //oj bol'na 15
+  "ow.wav", //au! 16
+  "yessir.wav" //da ser 17
 };
 
 
