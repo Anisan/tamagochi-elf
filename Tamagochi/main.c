@@ -28,7 +28,7 @@ int mode;
 // 1 - long press ENTER_BUTTON
 // 2 - disable KEY_UP process
 int mode_enter;
-int old_img_status=0;
+int old_img_status=999;
 
 int my_csm_id;
 int maincsm_id;
