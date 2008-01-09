@@ -28,7 +28,7 @@ int mode;
 // 1 - long press ENTER_BUTTON
 // 2 - disable KEY_UP process
 int mode_enter;
-int old_img_status=999;
+int old_img_status=0;
 
 int my_csm_id;
 int maincsm_id;
@@ -473,16 +473,14 @@ void TimerProc2(void)
               strcpy(name2,ROOM_PATH);
               strcat(name2,de.file_name);
               strcat(name2,".gvn");
-             
-              fmove(ptr, name2, &err);
-
+              fmove(ptr, name2, &err); 
             }
           }
         }
       }
     }
     while(FindNextFile(&de,&err));
-  }
+  }  
   FindClose(&de,&err);
   
   // דמכמה
@@ -507,6 +505,9 @@ void TimerProc2(void)
   if ((StatusPet.Health==0)||(StatusPet.Hunger>=StatusPet.MaxHunger)||(StatusPet.Happiness==0))
   {
     StatusPet.StatusDeath=1;
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[7]);
+    Play(sound_name);
   }
   
   ChangeStatusImage();
@@ -539,11 +540,17 @@ void GamePlay()
 {
  if (Sleep!=0)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMSLEEP);
  return;
  }
  if (StatusPet.StatusDeath==1)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[8]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMDIE);
  return;
  }
@@ -551,6 +558,9 @@ void GamePlay()
  StatusPet.Happiness = StatusPet.Happiness+10;
  StatusPet.Boredom = StatusPet.Boredom -10;
  StatusPet.Hunger = StatusPet.Hunger +10;
+ char sound_name[128];
+ snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[10]);
+ Play(sound_name);
  ShowMSG(2, (int)LG_COOL);
  ChangeStatusImage();
  VerifyStatus();
@@ -560,17 +570,27 @@ void Vaccinate()
 {
  if (Sleep!=0)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMSLEEP);
  return;
  }
-  if (StatusPet.StatusDeath==1)
+ if (StatusPet.StatusDeath==1)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[8]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMDIE);
  return;
  }
+ 
  StatusPet.Happiness = StatusPet.Happiness-10;
  StatusPet.Health = StatusPet.Health +10;
  StatusPet.Boredom = StatusPet.Boredom -10;
+ char sound_name[128];
+ snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[15]);
+ Play(sound_name);
  ShowMSG(2, (int)LG_PAIN);
  ChangeStatusImage();
  VerifyStatus();
@@ -580,17 +600,27 @@ void Discipline()
 {
  if (Sleep!=0)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMSLEEP);
  return;
  }
-  if (StatusPet.StatusDeath==1)
+ if (StatusPet.StatusDeath==1)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[8]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMDIE);
  return;
  }
+ 
  StatusPet.Happiness = StatusPet.Happiness-10;
  StatusPet.Behaviour = StatusPet.Behaviour +10;
  StatusPet.Boredom = StatusPet.Boredom -10;
+ char sound_name[128];
+ snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[17]);
+ Play(sound_name);
  ShowMSG(2, (int)LG_SHREW);
  ChangeStatusImage();
  VerifyStatus();
@@ -600,12 +630,21 @@ void SleepProc()
 {
     if (StatusPet.StatusDeath==1)
  {
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[8]);
+  Play(sound_name);
  ShowMSG(2, (int)LG_IAMDIE);
  return;
  }
   if(Sleep==0){ Sleep=1;
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[14]);
+  Play(sound_name);
   ShowMSG(2, (int)LG_MSGSLEEP);}
   else {Sleep=0;
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[5]);
+  Play(sound_name);
   ShowMSG(2, (int)LG_MSGNOTSLEEP);}
   ChangeStatusImage();
 }
@@ -645,12 +684,21 @@ void ChangeStatusImage()
   }
   
   char sound_name[128];
-  if (StatusPet.Dirtiness>=StatusPet.MaxDirtiness-10) ShowMSG(1,(int)LG_MSGDIRTINESS);
-  if (StatusPet.Boredom>=StatusPet.MaxBoredom-10) ShowMSG(1,(int)LG_MSGBOREDOM);
+  {
+  if (StatusPet.Dirtiness>=StatusPet.MaxDirtiness-10) 
+   { 
+     ShowMSG(1,(int)LG_MSGDIRTINESS);
+     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[13]); 
+   }
+  if (StatusPet.Boredom>=StatusPet.MaxBoredom-10) 
+  { 
+    ShowMSG(1,(int)LG_MSGBOREDOM);
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[6]);
+  }
   if (StatusPet.Hunger>=StatusPet.MaxHunger-10) 
   {
     ShowMSG(1,(int)LG_MSGHUNGER);
-    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[3]);
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[5]);
   }
   if (StatusPet.Health<=10)
   {
@@ -658,8 +706,7 @@ void ChangeStatusImage()
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[4]);
   }
   if (StatusPet.Happiness<=10)
-  {
-    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[5]);
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[12]);
   }
   Play(sound_name);
   
@@ -792,16 +839,7 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
                    POS_Y-smile->h/2,
                    GetPaletteAdrByColorIndex(0),
                    GetPaletteAdrByColorIndex(1));
-          
-         // char pic_name[128];
-         // snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
-         // DrawCanvas(canvasdata, POS_X, POS_Y, 
-         //            POS_X + GetImgWidth((int)pic_name)-1, POS_Y + GetImgHeight((int)pic_name)-1, 1);
-         // DrawImg(POS_X, POS_Y, (int)pic_name);   
-          
-         // DrawCanvas(canvasdata,POS_X, POS_Y, POS_X+GetImgWidth((int)S_ICONS[StatusPet.ImageStatus])-1,
-	//	    POS_Y+GetImgHeight((int)S_ICONS[StatusPet.ImageStatus])-1,1);
-	  //DrawImg(POS_X, POS_Y,S_ICONS[StatusPet.ImageStatus]);
+         
         }
       }
     }
@@ -1055,13 +1093,7 @@ int my_keyhook(int submsg, int msg)
     }
   }
   return KEYHOOK_NEXT;
-  /*if (msg==KEY_UP)
-   if (submsg==ACTIVE_KEY)
-   { 
-    //ShowMSG(1,(int)"Êוף pressed!"); 
-    ShowMenu();
-   } 
-  return KEYHOOK_NEXT;*/
+  
 }
 
 //---------------
