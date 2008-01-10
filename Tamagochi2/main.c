@@ -17,6 +17,8 @@
 #endif
 
 #define TMR_SECOND 216
+#define IN_TICKS(sec) (sec * TMR_SECOND)
+
 unsigned int fShow;
 
 // -1 - XTask GUI present
@@ -368,6 +370,94 @@ void Play(const char *fname)
   }
 }
 
+//------------------------------------------------
+GBSTMR tmr_vibra;
+volatile int vibra_count;
+
+void start_vibra(void)
+{
+  extern const int VIBR_TYPE;
+  extern const int Is_Vibra_Enabled;
+  void stop_vibra(void);
+  if((Is_Vibra_Enabled)&&(!IsCalling()))
+  {
+    extern const unsigned int vibraPower;
+    SetVibration(vibraPower);
+    if(VIBR_TYPE)
+      GBS_StartTimerProc(&tmr_vibra,TMR_SECOND>>2,stop_vibra);
+    else
+      GBS_StartTimerProc(&tmr_vibra,TMR_SECOND>>1,stop_vibra);
+  }
+}
+
+void stop_vibra(void)
+{
+  extern const int VIBR_TYPE;
+  SetVibration(0);
+  if (--vibra_count)
+  {
+    if(VIBR_TYPE)
+      GBS_StartTimerProc(&tmr_vibra,TMR_SECOND>>5,start_vibra);
+    else
+      GBS_StartTimerProc(&tmr_vibra,TMR_SECOND>>1,start_vibra);
+  }
+}
+//------------------------------------------------
+int count = 0;
+//int cycl_cnt = 0;
+
+GBSTMR tmr_light;
+
+void LightOff(void);
+void Check(void);
+
+//SetIllumination(unsigned char dev,unsigned long param1,unsigned short bright,unsigned long delay);
+//0 - дисплей, 1 - клавиатура, 2 - динамический свет (x65)
+void LightOn()
+{
+	if (cfgDispl)
+		SetIllumination(0, 1, cfgBright, 0);
+	if (cfgKbd)
+		SetIllumination(1, 1, cfgBright, 0);   
+#ifndef NEWSGOLD
+	if (cfgDyn)
+		SetIllumination(2, 1, cfgBright, 0);
+#else
+	if (cfgLighter)
+		SetIllumination(4, 1, cfgBright, 0);
+#endif
+ 
+	GBS_StartTimerProc(&tmr_light, IN_TICKS(cfgPeriod) / 20, LightOff);
+}
+
+void LightOff()
+{
+	if (cfgDispl)
+		SetIllumination(0, 1, 0, 0);
+	if (cfgKbd)
+		SetIllumination(1, 1, 0, 0);   
+#ifndef NEWSGOLD
+	if (cfgDyn)
+		SetIllumination(2, 1, 0, 0);
+#else
+	if (cfgLighter)
+		SetIllumination(4, 1, 0, 0);
+#endif
+  
+	if (--count)
+		GBS_StartTimerProc(&tmr_light, IN_TICKS(cfgPeriod) / 20, LightOn);
+}
+
+void Light()
+{
+	if (!(IsUnlocked() && cfgLockOnly))
+	{
+	count = cfgMaxEv;
+	LightOn();
+	}
+}
+//------------------------------------------------
+
 extern void ChangeStatusImage();
 extern void VerifyStatus();
 
@@ -415,6 +505,9 @@ void TimerProc2(void)
     char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[2]);
     Play(sound_name);
+    vibra_count=3;
+    start_vibra();
+    Light();
     ShowMSG(0,(int)LG_MSGAGE);
   }
 
@@ -505,9 +598,18 @@ void TimerProc2(void)
   if ((StatusPet.Health==0)||(StatusPet.Hunger>=StatusPet.MaxHunger)||(StatusPet.Happiness==0))
   {
     StatusPet.StatusDeath=1;
+<<<<<<< .mine
     char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[7]);
     Play(sound_name);
+    vibra_count=3;
+    start_vibra();
+    Light();
+=======
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[7]);
+    Play(sound_name);
+>>>>>>> .r21
   }
   
   ChangeStatusImage();
@@ -520,6 +622,12 @@ void TimerProc2(void)
   char sound_name[128];
   snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[0]);
   Play(sound_name);
+  if(VIBR_TYPE)
+      vibra_count=2;
+    else
+      vibra_count=1;
+  start_vibra();
+  Light();
   Behavior=0;
   ShowMSG(2, (int)SpeakMessage[Random()&mess_mask]); 
   }
@@ -540,10 +648,17 @@ void GamePlay()
 {
  if (Sleep!=0)
  {
+<<<<<<< .mine
+  char sound_name[128];
+  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
+  Play(sound_name);
+  ShowMSG(2, (int)LG_IAMSLEEP);
+=======
   char sound_name[128];
   snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
   Play(sound_name);
  ShowMSG(2, (int)LG_IAMSLEEP);
+>>>>>>> .r21
  return;
  }
  if (StatusPet.StatusDeath==1)
@@ -680,6 +795,12 @@ void ChangeStatusImage()
       smile=resample(smile, SIZE, SIZE, 0, 1);
       smile=alpha(smile, 255-255*OP/100, 0, 0);
     }   
+  if(VIBR_TYPE)
+      vibra_count=2;
+    else
+      vibra_count=1;
+  start_vibra();
+  Light();
   old_img_status=StatusPet.ImageStatus;
   }
   
@@ -709,7 +830,7 @@ void ChangeStatusImage()
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[12]);
   }
   Play(sound_name);
-  
+ 
 }
 
 // ----------------------------------------------------------------------------
@@ -899,7 +1020,12 @@ static void maincsm_oncreate(CSM_RAM *data)
   char sound_name[128];
   snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[1]);
   Play(sound_name);
-  
+  if(VIBR_TYPE)
+      vibra_count=2;
+    else
+      vibra_count=1;
+  start_vibra();
+  Light();
   gipc.name_to=ipc_my_name;
   gipc.name_from=ipc_my_name;
   gipc.data=(void *)-1;

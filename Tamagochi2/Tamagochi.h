@@ -26,8 +26,26 @@ extern const unsigned  int OP;
 extern const unsigned  int MINSIZE;
 extern const unsigned  int MAXSIZE;
 
+extern const int VIBR_TYPE;
+
+<<<<<<< .mine
+extern const int cfgLockOnly;
+extern const unsigned int cfgPeriod;
+extern const unsigned int cfgBright;
+extern const unsigned int cfgMaxEv;
+extern const int cfgKbd;
+extern const int cfgDispl;
+#ifndef NEWSGOLD
+extern const int cfgDyn;
+#else
+extern const int cfgLighter;
+#endif
+
 
 static const char * const SoundName[18]=
+=======
+static const char * const SoundName[18]=
+>>>>>>> .r21
 {
   "global.wav", //tuk-tuk 0
   "hello.wav", //privet 1
