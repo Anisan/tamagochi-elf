@@ -526,7 +526,7 @@ void TimerProc2(void)
 // усталость =0 подъем
   if ((Fatigue>=100))
     SleepProc();
-  if ((Sleep!=0)||(Fatigue<=0))
+  if ((Sleep!=0)&&(Fatigue<=0))
     SleepProc();
     
   // сон - процессы замедл€ютс€
