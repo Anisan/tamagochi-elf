@@ -2,10 +2,10 @@
 #define _LANGUAGE_H_
 
 //Оставляем только один дефайн иначе будет кака
-//#define LANG_RU
-#define LANG_EN
+#define LANG_RU
+//#define LANG_EN
 
-<<<<<<< .mine
+
 #ifdef LANG_RU
 
 #define LG_GFGHELLO "Приветствие"
@@ -69,7 +69,7 @@
 #define LG_MSGSLEEP "Нехочу спать!"
 #define LG_MSGNOTSLEEP "У блин разбудили!"
 
-#define LG_ALREADY_STARTED "Уже запущена!"
+#define LG_ALREADY_STARTED "Уже запущен!"
 
 #define LG_MENU    "Меню"
 #define LG_GAMEPLAY "Игра"
@@ -88,6 +88,7 @@
 #define LG_DIRTINESS  "Чистота"
 #define LG_BOREDOM  "Скука"
 #define LG_BEHAVIOUR  "Мораль"
+#define LG_FATIGUE "Усталость"
     
 #define LG_MSGAGE "Ура! Днюха!"
 #define LG_MSGHEALTH  "Мало жизни! Сдохну скоро!"
@@ -133,8 +134,6 @@ static const char * const SpeakMessage[16]=
 #endif
 
 
-=======
->>>>>>> .r21
 #ifdef LANG_EN
 
 #define LG_GFGHELLO "Hello message"
@@ -164,8 +163,27 @@ static const char * const SpeakMessage[16]=
 #define LG_GFGMEDIUM "Medium"
 #define LG_GFGSLOW "Slow"
 
+
 #define LG_GFGSETALARM "Notify"
-#define LG_GFGVOLUME "Volume sound"
+#define LG_GFGSNDENABLE "Enable sound"
+#define LG_GFGVOLUME "Volume"
+#define LG_GFGVBRENABLE "Vibra enable"
+#define LG_GFGVBRSETUP "Vibra setup"
+#define LG_GFGVBRPOWER "Vibra power"
+#define LG_GFGVBRTYPE "Vibra type"
+#define LG_GFGVBRTYPE1 "Single"
+#define LG_GFGVBRTYPE2 "Double"
+
+#define LG_GFGBLINKENABLE "Blink enable"
+#define LG_GFGBLINKSETUP "Blink setup"
+#define LG_GFGBLINKLOCKED "Only locked"
+#define LG_GFGBLINKPERIOD "Blink period, 1/10 sec"
+#define LG_GFGBLINKCOUNT "Blink сount"
+#define LG_GFGBLINKBRIGHT "Brightness"
+#define LG_GFGBLINKKBRD "Blink keyboard"
+#define LG_GFGBLINKDISPL "Blink display"
+#define LG_GFGBLINKDYN "Blink dynlights"
+#define LG_GFGBLINKLIGHT "Blink lighter"
 
 #define LG_GFGSETKEY "Activation menu"
 #define LG_GFGMNUENA "Activation style"
@@ -220,15 +238,11 @@ static const char * const SpeakMessage[16]=
 #define LG_UPDSETTING "Tamagochi settings updated!"
 
 //++++++++++++++++++++++++++++++++++++++++
-<<<<<<< .mine
+
 // count message = 2,4,8,16,32,64,...
 static const int mess_mask=32-1;
 static const char * const SpeakMessage[37]=
-=======
 
-static const int mess_mask=37-1;
-static const char * const SpeakMessage[37]=
->>>>>>> .r21
 {
   "Filesystem error!",
   "I know bad words!",

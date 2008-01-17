@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.4e"
+#define __VERSION__ "0.6"
 
 #define IPC_TAMAGOCHI_NAME "Tamagochi"
 #define IPC_CHECK_DOUBLERUN 1
@@ -28,7 +28,7 @@ extern const unsigned  int MAXSIZE;
 
 extern const int VIBR_TYPE;
 
-<<<<<<< .mine
+
 extern const int cfgLockOnly;
 extern const unsigned int cfgPeriod;
 extern const unsigned int cfgBright;
@@ -43,9 +43,7 @@ extern const int cfgLighter;
 
 
 static const char * const SoundName[18]=
-=======
-static const char * const SoundName[18]=
->>>>>>> .r21
+
 {
   "global.wav", //tuk-tuk 0
   "hello.wav", //privet 1
@@ -81,7 +79,7 @@ static const char * const icons_names[9]=
   "Behaviour.png"
 };
 
-static const char * const icons_menu[14]=
+static const char * const icons_menu[15]=
 {
   "game.png",
   "vaccinate.png",
@@ -96,8 +94,8 @@ static const char * const icons_menu[14]=
   "sm_Happiness.png",
   "sm_Dirtiness.png",
   "sm_Boredom.png",
-  "sm_Behaviour.png"
-    
+  "sm_Behaviour.png",
+  "sm_dream.png"  
 };
 
 
@@ -119,5 +117,6 @@ typedef struct{
   int StatusDeath;  //статус смерти
   int ImageStatus;  //индекс статус-картинки на главный экран
 } TStatusPet;
+
 
 #endif

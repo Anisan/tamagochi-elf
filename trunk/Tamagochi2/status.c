@@ -11,7 +11,7 @@ int StatusMenu_ID;
 
 extern int M_ICONS[];
 extern TStatusPet StatusPet;
-
+extern int Fatigue; //усталость
 void ViewAge()
 {
   char s[256];
@@ -72,6 +72,15 @@ void ViewBehaviour()
   ShowMSG(2, (int)s);
 }
 
+void ViewFatigue()
+{
+  char s[256];
+  snprintf(s,255,"%s:%d%%",LG_FATIGUE,
+            (int)Fatigue
+            );
+  ShowMSG(2, (int)s);
+}
+
 
 ///-----------------------
 
@@ -79,7 +88,7 @@ static const HEADER_DESC smenuhdr={0,0,131,21,NULL,(int)LG_STATUS,LGP_NULL};
 
 static const int smenusoftkeys[]={0,1,2};
 
-static const char * const smenutexts[7]=
+static const char * const smenutexts[8]=
 {
   LG_AGE,
   LG_HEALTH,
@@ -87,12 +96,13 @@ static const char * const smenutexts[7]=
   LG_HAPPINESS,
   LG_DIRTINESS,
   LG_BOREDOM,
-  LG_BEHAVIOUR
+  LG_BEHAVIOUR,
+  LG_FATIGUE
 };
 
 
 
-static const void *smenuprocs[7]=
+static const void *smenuprocs[8]=
 {
   (void *)ViewAge,
   (void *)ViewHealth,
@@ -100,7 +110,8 @@ static const void *smenuprocs[7]=
   (void *)ViewHappiness,
   (void *)ViewDirtiness,
   (void *)ViewBoredom,
-  (void *)ViewBehaviour
+  (void *)ViewBehaviour,
+  (void *)ViewFatigue
  
 };
 
@@ -186,7 +197,14 @@ static void smenuitemhandler(void *data, int curitem, void *unk)
     SetMenuItemIconArray(data,item,M_ICONS+13);
     SetMenuItemText(data, item, ws, curitem);
     break;  
+  case 7:
+    ws=AllocMenuWS(data,strlen(smenutexts[curitem])+5);
+    wsprintf(ws,"%t:%d%%",smenutexts[curitem],(int)Fatigue);
+    SetMenuItemIconArray(data,item,M_ICONS+14);
+    SetMenuItemText(data, item, ws, curitem);
+    break;  
   }
+
 }
 
 static const MENU_DESC smenu=
@@ -204,6 +222,6 @@ static const MENU_DESC smenu=
 void ShowStatus(void)
 {
   patch_header(&smenuhdr);
-  StatusMenu_ID=CreateMenu(0,0,&smenu,&smenuhdr,0,7,0,0);
+  StatusMenu_ID=CreateMenu(0,0,&smenu,&smenuhdr,0,8,0,0);
   
 }
