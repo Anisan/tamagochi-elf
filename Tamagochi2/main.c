@@ -62,6 +62,7 @@ const IPC_REQ my_ipc={
 IMGHDR *smile=0;
 
 TStatusPet StatusPet; 
+int Fatigue=0; //усталость
 int Sleep=0;
 int Behavior=0;
 
@@ -70,7 +71,7 @@ int Behavior=0;
 ///----------------------------------
 // загрузка иконок
 int S_ICONS[9+1];
-int M_ICONS[14+1];
+int M_ICONS[15+1];
 
 char *MakeGlobalString(const char *first, int breakchar, const char *last)
 {
@@ -99,7 +100,7 @@ void setup_ICONS(void)
     if (!M_ICONS[i]) M_ICONS[i]=(int)MakeGlobalString(PIC_PATH,0,icons_menu[i]);
     i++;
   }
-  while(i<14);
+  while(i<15);
   return;
 }
 
@@ -120,7 +121,7 @@ void free_ICONS(void)
     M_ICONS[i]=0;
     i++;
   }
-  while(i<14);
+  while(i<15);
   
 
   return;
@@ -460,6 +461,7 @@ void Light()
 
 extern void ChangeStatusImage();
 extern void VerifyStatus();
+static void UpdateCSMname(void);
 
 //------------------------------------------------
 void TimerProc(void)
@@ -483,12 +485,14 @@ void TimerSave(void)
   GBS_StartTimerProc(&savetmr,TMR_SECOND*60*5,TimerSave);
 }
 
+void SleepProc();
+
 //главна€ процедура жизненного цикла питомца
 void TimerProc2(void)
 {
   if (StatusPet.StatusDeath==1) return ;
   
-  ++Behavior;
+  if (Sleep==0) ++Fatigue; else --Fatigue;
   ++StatusPet.TimeAge;
   if (StatusPet.TimeAge>=StatusPet.Age*10+100)
   {
@@ -501,6 +505,12 @@ void TimerProc2(void)
     StatusPet.MaxBoredom=StatusPet.MaxBoredom+2;
     StatusPet.MaxBehaviour=StatusPet.MaxBehaviour+2;
     
+    StatusPet.Health=StatusPet.MaxHealth;
+    StatusPet.Hunger=0;
+    StatusPet.Happiness=StatusPet.MaxHappiness;
+    StatusPet.Boredom=0;
+    StatusPet.Behaviour=0;
+    
     
     char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[2]);
@@ -509,8 +519,16 @@ void TimerProc2(void)
     start_vibra();
     Light();
     ShowMSG(0,(int)LG_MSGAGE);
+    
+    UpdateCSMname();
   }
-
+// усталость =100 сон
+// усталость =0 подъем
+  if ((Fatigue>=100))
+    SleepProc();
+  if ((Sleep!=0)||(Fatigue<=0))
+    SleepProc();
+    
   // сон - процессы замедл€ютс€
   if ((Sleep!=0)&&(Sleep!=3))
   {
@@ -519,9 +537,15 @@ void TimerProc2(void)
     GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
     return;
   }
+  
   if (Sleep!=0)Sleep=1;
+//во врем€ сна
+  if (Sleep==0) ++StatusPet.Boredom; // скука
+  if (Sleep!=0) ++StatusPet.Happiness;
+  if (Sleep==0) --StatusPet.Behaviour; // дисциплина
+  if (Sleep==0) ++StatusPet.Boredom; // скука
   
-  
+
   // питание
   ++StatusPet.Hunger;
   // проверка наличи€ жратвы и наличие мусора
@@ -586,10 +610,8 @@ void TimerProc2(void)
   if (StatusPet.Dirtiness>(int)2*StatusPet.MaxDirtiness/3) --StatusPet.Happiness;
   
   
-  ++StatusPet.Boredom; // скука
   if (StatusPet.Boredom>(int)StatusPet.MaxBoredom/2) --StatusPet.Happiness;
   
-  --StatusPet.Behaviour; // дисциплина
   
   // проверки максимальных - минимальных значений
   VerifyStatus();
@@ -598,18 +620,12 @@ void TimerProc2(void)
   if ((StatusPet.Health==0)||(StatusPet.Hunger>=StatusPet.MaxHunger)||(StatusPet.Happiness==0))
   {
     StatusPet.StatusDeath=1;
-<<<<<<< .mine
     char sound_name[128];
     snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[7]);
     Play(sound_name);
     vibra_count=3;
     start_vibra();
     Light();
-=======
-    char sound_name[128];
-    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[7]);
-    Play(sound_name);
->>>>>>> .r21
   }
   
   ChangeStatusImage();
@@ -648,17 +664,10 @@ void GamePlay()
 {
  if (Sleep!=0)
  {
-<<<<<<< .mine
   char sound_name[128];
   snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
   Play(sound_name);
   ShowMSG(2, (int)LG_IAMSLEEP);
-=======
-  char sound_name[128];
-  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[11]);
-  Play(sound_name);
- ShowMSG(2, (int)LG_IAMSLEEP);
->>>>>>> .r21
  return;
  }
  if (StatusPet.StatusDeath==1)
@@ -673,6 +682,7 @@ void GamePlay()
  StatusPet.Happiness = StatusPet.Happiness+10;
  StatusPet.Boredom = StatusPet.Boredom -10;
  StatusPet.Hunger = StatusPet.Hunger +10;
+ Fatigue=Fatigue+10;
  char sound_name[128];
  snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[10]);
  Play(sound_name);
@@ -837,6 +847,8 @@ void ChangeStatusImage()
 void VerifyStatus()
 {
 // проверки максимальных - минимальных значений
+  if (StatusPet.Hunger>StatusPet.MaxHunger) StatusPet.Hunger=StatusPet.MaxHunger;
+  if (StatusPet.Hunger<0) StatusPet.Hunger=0;
   if (StatusPet.Happiness>StatusPet.MaxHappiness) StatusPet.Happiness=StatusPet.MaxHappiness;
   if (StatusPet.Happiness<0) StatusPet.Happiness=0;
   if (StatusPet.Health>StatusPet.MaxHealth) StatusPet.Health=StatusPet.MaxHealth;
@@ -1015,6 +1027,8 @@ static void maincsm_oncreate(CSM_RAM *data)
   //запуск жизненного цикла
   GBS_StartTimerProc(&mytmr2,TMR_SECOND,TimerProc2);
   GBS_StartTimerProc(&savetmr,TMR_SECOND*60*5,TimerSave);
+
+  UpdateCSMname();
   ChangeStatusImage();
   
   char sound_name[128];
@@ -1226,7 +1240,7 @@ int my_keyhook(int submsg, int msg)
 
 static void UpdateCSMname(void)
 {
-  wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"Tamagochi");
+  wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"%t - %d age",IPC_TAMAGOCHI_NAME,StatusPet.Age);
 }
 // ----------------------------------------------------------------------------
 
