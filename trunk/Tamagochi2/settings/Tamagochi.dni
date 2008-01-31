@@ -5,7 +5,7 @@ Category=_ 0
 [Disassemble mode]
 mode=0
 [Breakpoints]
-Bp0=_ "Code" "{$PROJ_DIR$\main.c}.460.51@1" 1 0 0 0 "" 0 ""
+Bp0=_ "Code" "{$PROJ_DIR$\main.c}.494.51@1" 1 0 0 0 "" 0 ""
 Count=1
 [Interrupts]
 Enabled=1

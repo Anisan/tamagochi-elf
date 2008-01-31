@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.6"
+#define __VERSION__ "0.7"
 
 #define IPC_TAMAGOCHI_NAME "Tamagochi"
 #define IPC_CHECK_DOUBLERUN 1
@@ -17,6 +17,7 @@ extern const char PET_PATH[64];
 extern const char PIC_PATH[64];
 extern const char ROOM_PATH[64];
 extern const char SOUND_PATH[64];
+extern const char GAMELIST_PATH[64];
 
 
 extern const int ACTIVE_KEY;
@@ -64,6 +65,7 @@ static const char * const SoundName[18]=
   "ow.wav", //au! 16
   "yessir.wav" //da ser 17
 };
+
 
 
 static const char * const icons_names[9]=

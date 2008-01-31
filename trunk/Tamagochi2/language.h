@@ -24,10 +24,11 @@
 #define LG_GFGOPACITY "Прозрачность (%)"
 
 #define LG_GFGSETPATH "Настройка путей"
-#define LG_GFGPATHPET "Путь к питомцу"
+#define LG_GFGPATHPET "Путь к Pet.cfg"
 #define LG_GFGPATHROOM "Путь к комнате"
 #define LG_GFGPATHIMG "Путь к картинкам"
 #define LG_GFGPATHSOUND "Путь к звукам"
+#define LG_GFGPATHGAMELIST "Путь к Game.list"
 
 #define LG_GFGSETPET "Настройки развития"
 #define LG_GFGSPEED "Скорость"
@@ -156,6 +157,7 @@ static const char * const SpeakMessage[16]=
 #define LG_GFGPATHROOM "Path to room"
 #define LG_GFGPATHIMG "Path to images"
 #define LG_GFGPATHSOUND "Path to sounds"
+#define LG_GFGPATHGAMELIST "Path to Game.list"
 
 #define LG_GFGSETPET "Pet settings"
 #define LG_GFGSPEED "Speed"
@@ -217,6 +219,7 @@ static const char * const SpeakMessage[16]=
 #define LG_DIRTINESS  "Cleanness"
 #define LG_BOREDOM  "Boredom"
 #define LG_BEHAVIOUR  "Behavior"
+#define LG_FATIGUE "Fatigue"
     
 #define LG_IAMDIE "I'm dead!  +/-("
 #define LG_MSGAGE "Birthday moment! ^^"
