@@ -35,7 +35,7 @@ __root const CFG_HDR cfghdr_m11={CFG_LEVEL,LG_GFGSETSCREEN,1,0};
   __root const unsigned int MAXSIZE = 80;
 
   __root const CFG_HDR cfghdr1_5 = {CFG_UINT, LG_GFGOPACITY, 0, 100};
-  __root const unsigned int OP = 80;
+  __root const unsigned int OP = 90;
 
 __root const CFG_HDR cfghdr_m10={CFG_LEVEL,"",0,0};
 
@@ -55,6 +55,10 @@ __root const CFG_HDR cfghdr_m21={CFG_LEVEL,LG_GFGSETPATH,1,0};
   __root const CFG_HDR cfghdr2_4={CFG_STR_UTF8,LG_GFGPATHSOUND,0,63};
   __root const char SOUND_PATH[64]=DEFAULT_DISK ":\\ZBin\\Tamagochi\\Sound\\";
 
+  __root const CFG_HDR cfghdr3_2={CFG_STR_UTF8,LG_GFGPATHGAMELIST,0,63};
+  __root const char GAMELIST_PATH[64]=DEFAULT_DISK ":\\ZBin\\Tamagochi\\Game.list";
+
+  
 __root const CFG_HDR cfghdr_m20={CFG_LEVEL,"",0,0};
 
 // -------------------------------------------------------------------------- //
@@ -141,17 +145,19 @@ __root const CFG_HDR cfghdr24={CFG_UINT,LG_GFGKEY,0,99};
 __root const int ACTIVE_KEY=99;
 #else
 __root const CFG_HDR cfghdr23={CFG_CBOX,LG_GFGMNUENA,0,2};
-__root const int ACTIVE_KEY_STYLE=0;
+__root const int ACTIVE_KEY_STYLE=1;
 __root const CFG_CBOX_ITEM cfgcbox23[2]={"Short press","Long press"};
 
 #ifdef ELKA
 __root const CFG_HDR cfghdr24={CFG_UINT,LG_GFGKEY,0,99};
-__root const int ACTIVE_KEY=0x11;
+__root const int ACTIVE_KEY=13;
 #else
 __root const CFG_HDR cfghdr24={CFG_UINT,LG_GFGKEY,0,99};
 __root const int ACTIVE_KEY=0x11;
 #endif
 #endif
-
 __root const CFG_HDR cfghdr_m50={CFG_LEVEL,"",0,0};
 
+
+__root const CFG_HDR cfghdr3_3={CFG_STR_WIN1251,"UnderIdleCSM_DESC",0,8};
+__root const char UNDER_IDLE_CONSTR[9]="";

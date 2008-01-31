@@ -30,7 +30,7 @@ int mode;
 // 1 - long press ENTER_BUTTON
 // 2 - disable KEY_UP process
 int mode_enter;
-int old_img_status=0;
+int old_img_status=99;
 
 int my_csm_id;
 int maincsm_id;
@@ -45,6 +45,15 @@ const char ipc_my_name[]=IPC_TAMAGOCHI_NAME;
 const char ipc_xtask_name[]=IPC_XTASK_NAME;
 IPC_REQ gipc;
 
+char csm_text[32768];
+
+/*
+static const char * const games_names[2]=
+{
+  "Tetris",
+  "mc"  
+};
+*/
 CSM_DESC icsmd;
 
 GBSTMR start_tmr;
@@ -68,6 +77,31 @@ int Behavior=0;
 
 #define TOTAL_ICONS=9;
 
+ extern const char *successed_config_filename;
+ extern const char UNDER_IDLE_CONSTR[];
+ extern unsigned long  strtoul (const char *nptr,char **endptr,int base);
+
+//=============================
+CSM_RAM *GetUnderIdleCSM(void)
+{
+  CSM_RAM *u;
+  CSM_DESC *UnderIdleDesc;
+  if (strlen((char *)UNDER_IDLE_CONSTR)==8)
+  {
+    UnderIdleDesc=(CSM_DESC *)strtoul((char *)UNDER_IDLE_CONSTR,0,0x10);
+  }
+  else
+  {
+    UnderIdleDesc=((CSM_RAM *)(FindCSMbyID(CSM_root()->idle_id))->prev)->constr;
+    sprintf((char *)UNDER_IDLE_CONSTR,"%08X",UnderIdleDesc);
+    SaveConfigData(successed_config_filename);
+  }
+  LockSched();
+  u=CSM_root()->csm_q->csm.first;
+  while(u && u->constr!=UnderIdleDesc) u=u->next;
+  UnlockSched();
+  return u;
+}
 ///----------------------------------
 // загрузка иконок
 int S_ICONS[9+1];
@@ -470,6 +504,55 @@ void TimerProc(void)
 }
 
 //------------------------------------------------
+void _WriteLog(char *buf)
+{
+  int flog=-1;
+  unsigned int err;
+  flog = fopen("4:\\ZBin\\tamagochi.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
+        if (flog!=-1)
+	{
+		char msg[512];
+
+		TTime t;
+		TDate d;
+		GetDateTime(&d,&t);
+		sprintf(msg, "%02d:%02d:%02d %s\n", t.hour,t.min,t.sec,buf);
+		//  sprintf(msg, "%s\n", buf);
+		fwrite(flog,msg,strlen(msg),&err);
+	}
+  fclose(flog,&err);      
+}
+
+int GameDetected(void)
+{
+  int find=0;
+  CSM_RAM *icsm=under_idle->next; 
+ // _WriteLog("Begin");
+  do
+  {
+      WSHDR *tws=(WSHDR *)(((char *)icsm->constr)+sizeof(CSM_DESC));
+      if((tws->ws_malloc==NAMECSM_MAGIC1)&&(tws->ws_mfree==NAMECSM_MAGIC2))
+	{
+            char s[40];
+            char *p;
+            ws_2str(tws, s, 64);
+            //_WriteLog(s);
+            p=strstr(csm_text,s);
+            if (p)
+            {
+              find=1;
+             // ShowMSG(0,(int)LG_COOL);
+             // _WriteLog("Find");
+            }
+	}
+  }
+  while((icsm=icsm->next));
+  //_WriteLog("End");
+  return(find);
+}
+
+//------------------------------------------------
+
 void TimerSave(void)
 {
   Randomize();
@@ -491,8 +574,15 @@ void SleepProc();
 void TimerProc2(void)
 {
   if (StatusPet.StatusDeath==1) return ;
-  
+
+// усталость =100 сон
+// усталость =0 подъем
+  if ((Fatigue>=100))
+    SleepProc();
+  if ((Sleep!=0)&&(Fatigue<=0))
+    SleepProc();  
   if (Sleep==0) ++Fatigue; else --Fatigue;
+  
   ++StatusPet.TimeAge;
   if (StatusPet.TimeAge>=StatusPet.Age*10+100)
   {
@@ -505,11 +595,11 @@ void TimerProc2(void)
     StatusPet.MaxBoredom=StatusPet.MaxBoredom+2;
     StatusPet.MaxBehaviour=StatusPet.MaxBehaviour+2;
     
-    StatusPet.Health=StatusPet.MaxHealth;
-    StatusPet.Hunger=0;
+    //StatusPet.Health=StatusPet.MaxHealth;
+    //StatusPet.Hunger=0;
     StatusPet.Happiness=StatusPet.MaxHappiness;
     StatusPet.Boredom=0;
-    StatusPet.Behaviour=0;
+    StatusPet.Behaviour=StatusPet.MaxBehaviour;
     
     
     char sound_name[128];
@@ -522,12 +612,7 @@ void TimerProc2(void)
     
     UpdateCSMname();
   }
-// усталость =100 сон
-// усталость =0 подъем
-  if ((Fatigue>=100))
-    SleepProc();
-  if ((Sleep!=0)&&(Fatigue<=0))
-    SleepProc();
+
     
   // сон - процессы замедл€ютс€
   if ((Sleep!=0)&&(Sleep!=3))
@@ -538,19 +623,34 @@ void TimerProc2(void)
     return;
   }
   
+  
   if (Sleep!=0)Sleep=1;
 //во врем€ сна
-  if (Sleep==0) ++StatusPet.Boredom; // скука
   if (Sleep!=0) ++StatusPet.Happiness;
-  if (Sleep==0) --StatusPet.Behaviour; // дисциплина
-  if (Sleep==0) ++StatusPet.Boredom; // скука
+//когда не спит
+  if (Sleep==0)
+  {
+    --StatusPet.Behaviour; // дисциплина
+  // проверка на наличие в процессах игр
   
+    if (GameDetected())
+    {
+      --StatusPet.Boredom; // скука
+      ++StatusPet.Happiness;
+    }
+    else 
+    {
+      //--StatusPet.Happiness;
+      ++StatusPet.Boredom; // скука
+    }
+  }  
 
   // питание
   ++StatusPet.Hunger;
   // проверка наличи€ жратвы и наличие мусора
 
  int Eat=0;
+ 
   if (StatusPet.Hunger>(int)StatusPet.MaxHunger/3) Eat=1;
   
   DIR_ENTRY de;
@@ -558,6 +658,7 @@ void TimerProc2(void)
   char name[256];
   char * ext;
   int findgvn=0;
+  int fEat=0;
   strcpy(name,ROOM_PATH);
   strcat(name,"*.*");
   char *ptr=name+strlen(name)+1; 
@@ -591,12 +692,19 @@ void TimerProc2(void)
               strcat(name2,de.file_name);
               strcat(name2,".gvn");
               fmove(ptr, name2, &err); 
+              fEat=1;
             }
           }
         }
       }
     }
     while(FindNextFile(&de,&err));
+    if (fEat)
+    {
+    char sound_name[128];
+    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[13]);
+    Play(sound_name);
+    }
   }  
   FindClose(&de,&err);
   
@@ -607,11 +715,12 @@ void TimerProc2(void)
   
   // чистота 
   StatusPet.Dirtiness=findgvn;
+  if (StatusPet.Dirtiness>(int)StatusPet.MaxDirtiness/2) --StatusPet.Health;
   if (StatusPet.Dirtiness>(int)2*StatusPet.MaxDirtiness/3) --StatusPet.Happiness;
   
-  
+  if (StatusPet.Behaviour<=(int)StatusPet.MaxBehaviour/10) --StatusPet.Health;
   if (StatusPet.Boredom>(int)StatusPet.MaxBoredom/2) --StatusPet.Happiness;
-  
+  if (StatusPet.Happiness<=(int)StatusPet.MaxHappiness/2) --StatusPet.Health;
   
   // проверки максимальных - минимальных значений
   VerifyStatus();
@@ -859,6 +968,8 @@ void VerifyStatus()
   if (StatusPet.Boredom<0) StatusPet.Boredom=0;
   if (StatusPet.Behaviour>StatusPet.MaxBehaviour) StatusPet.Behaviour=StatusPet.MaxBehaviour;
   if (StatusPet.Behaviour<0) StatusPet.Behaviour=0;
+  if (Fatigue>100)Fatigue=100;
+  if (Fatigue<0)Fatigue=0;
 }
 //-----------------------------------------------------------------------------
 void CheckDoubleRun(void)
@@ -959,6 +1070,7 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
           void *canvasdata = ((void **)idata)[DISPLACE_OF_IDLECANVAS / 4];
 #endif
           
+          if(smile)
           DrawCanvas(canvasdata, 
                      POS_X - smile->w/2, 
                      POS_Y - smile->h/2, 
@@ -1024,6 +1136,16 @@ static void maincsm_oncreate(CSM_RAM *data)
     
    }
   }
+  
+  int sz=0;
+  extern const char GAMELIST_PATH[64];
+  if ((f=fopen(GAMELIST_PATH,A_ReadOnly+A_BIN,P_READ,&ul))!=-1)
+  {
+    sz=fread(f,csm_text,32767,&ul);
+    fclose(f,&ul);
+  }
+  if (sz>=0) csm_text[sz]=0;
+  
   //запуск жизненного цикла
   GBS_StartTimerProc(&mytmr2,TMR_SECOND,TimerProc2);
   GBS_StartTimerProc(&savetmr,TMR_SECOND*60*5,TimerSave);
@@ -1164,7 +1286,7 @@ int my_keyhook(int submsg, int msg)
       case '#':
         if (mode==1)
         {
-          if (IsUnlocked()||ENA_LOCK)
+          if (IsUnlocked())
             ShowMenu();
           else mode=0;
         }
@@ -1219,17 +1341,9 @@ int my_keyhook(int submsg, int msg)
       break;
     case LONG_PRESS:
       mode=1;
-#ifndef NEWSGOLD
-      if (ACTIVE_KEY_STYLE==1)
-      {
-	if (ENA_LONG_PRESS)
-	  return KEYHOOK_NEXT;
-	else 
-	  return KEYHOOK_BREAK;
-      }
-#else
+
       return KEYHOOK_BREAK;
-#endif
+
     }
   }
   return KEYHOOK_NEXT;
@@ -1260,12 +1374,13 @@ void DoSplices(void)
       maincsm_id=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
       csmr->csm_q->current_msg_processing_csm=save_cmpc;
   
+      under_idle=GetUnderIdleCSM();
+      
   UnlockSched();
 }
   
 void main(void)
 {
-  extern const char *successed_config_filename;
   
   InitConfig();
   DoSplices();
