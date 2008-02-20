@@ -1,7 +1,7 @@
 #ifndef _TAMAGOCHI_H_
   #define _TAMAGOCHI_H_
 
-#define __VERSION__ "0.7"
+#define __VERSION__ "0.8"
 
 #define IPC_TAMAGOCHI_NAME "Tamagochi"
 #define IPC_CHECK_DOUBLERUN 1
@@ -12,6 +12,7 @@ extern const int cfgShowIn;
 
 extern const unsigned int POS_X;
 extern const unsigned int POS_Y;
+extern const int Effects_Ena;
 
 extern const char PET_PATH[64];
 extern const char PIC_PATH[64];
@@ -40,6 +41,9 @@ extern const int cfgDispl;
 extern const int cfgDyn;
 #else
 extern const int cfgLighter;
+#endif
+#ifdef ELKA
+extern const int cfgSLI;
 #endif
 
 
@@ -79,6 +83,14 @@ static const char * const icons_names[9]=
   "Dirtiness.png",
   "Boredom.png",
   "Behaviour.png"
+};
+
+static const char * const icons_status[4]=
+{
+  "null.png",
+  "game.png",
+  "moon.png",
+  "music.png"
 };
 
 static const char * const icons_menu[15]=

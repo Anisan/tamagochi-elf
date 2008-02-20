@@ -28,6 +28,9 @@ __root const CFG_HDR cfghdr_m11={CFG_LEVEL,LG_GFGSETSCREEN,1,0};
   __root const unsigned int POS_X=120;
   __root const unsigned int POS_Y=160; 
 
+  __root const CFG_HDR cfghdr1_3_1 = {CFG_CHECKBOX, "Enable Effects", 0, 2};
+  __root const int Effects_Ena = 1;
+  
   __root const CFG_HDR cfghdr1_3 = {CFG_UINT, LG_GFGMINSIZE, 0, 500};
   __root const unsigned int MINSIZE = 20;
 
@@ -58,6 +61,9 @@ __root const CFG_HDR cfghdr_m21={CFG_LEVEL,LG_GFGSETPATH,1,0};
   __root const CFG_HDR cfghdr3_2={CFG_STR_UTF8,LG_GFGPATHGAMELIST,0,63};
   __root const char GAMELIST_PATH[64]=DEFAULT_DISK ":\\ZBin\\Tamagochi\\Game.list";
 
+  __root const CFG_HDR cfghdr3_3={CFG_STR_UTF8,LG_GFGPATHPLAYERLIST,0,63};
+  __root const char PLAYERLIST_PATH[64]=DEFAULT_DISK ":\\ZBin\\Tamagochi\\Player.list";
+
   
 __root const CFG_HDR cfghdr_m20={CFG_LEVEL,"",0,0};
 
@@ -67,7 +73,36 @@ __root const CFG_HDR cfghdr_m31={CFG_LEVEL,LG_GFGSETPET,1,0};
   __root const CFG_HDR cfghdr3_1 = {CFG_CBOX, LG_GFGSPEED, 0, 3};
   __root const int SpeedLife = 1;
   __root const CFG_CBOX_ITEM cfgcbox3_0[3] = {LG_GFGFAST, LG_GFGMEDIUM, LG_GFGSLOW};
+  
 
+  __root const CFG_HDR cfghdr3_1_2 = {CFG_CHECKBOX, LG_MALWARE, 0, 2};
+  __root const int Malware_Ena = 1;
+  	
+          
+   __root const CFG_HDR cfghdr_m311={CFG_LEVEL,"Scan Game",1,0};
+  
+      __root const CFG_HDR cfghdr3_11 = {CFG_CHECKBOX, "Enable", 0, 2};
+      __root const int Scan_Game_Ena = 1;
+
+      __root const CFG_HDR cfghdr3_12={CFG_STR_WIN1251,"UnderIdleCSM_DESC",0,8};
+      __root const char UNDER_IDLE_CONSTR[9]="";
+
+   __root const CFG_HDR cfghdr_m310={CFG_LEVEL,"",0,0};
+   
+   __root const CFG_HDR cfghdr_m321={CFG_LEVEL,"Nightly sleep",1,0};
+  
+      __root const CFG_HDR cfghdr3_31 = {CFG_CHECKBOX, "Enable", 0, 2};
+      __root const int Night_Ena = 1;
+
+      __root const CFG_HDR cfghdr3_32 = {CFG_UINT, "Begin", 0, 23};
+      __root const unsigned int Night_begin = 22;
+
+      __root const CFG_HDR cfghdr3_33 = {CFG_UINT, "End", 0, 23};
+      __root const unsigned int Night_end = 7;
+
+   __root const CFG_HDR cfghdr_m320={CFG_LEVEL,"",0,0};
+   
+   
 __root const CFG_HDR cfghdr_m30={CFG_LEVEL,"",0,0};
 // -------------------------------------------------------------------------- //
 
@@ -130,6 +165,12 @@ __root const CFG_HDR cfghdr_m41={CFG_LEVEL,LG_GFGSETALARM,1,0};
         __root const int cfgLighter = 1;
         __root const CFG_CBOX_ITEM cfgcbox45[2] = {LG_GFGNO,LG_GFGYES};
         #endif
+        
+        #ifdef ELKA
+        __root const CFG_HDR cfghdr4_1_8={CFG_CBOX,"SLI Notify",0,2};
+        __root const int cfgSLI = 1;
+        __root const CFG_CBOX_ITEM cfgcbox46[2]={LG_GFGNO,LG_GFGYES};
+        #endif
 
   __root const CFG_HDR cfghdr_m4_30={CFG_LEVEL,"",0,0};
 
@@ -159,5 +200,4 @@ __root const int ACTIVE_KEY=0x11;
 __root const CFG_HDR cfghdr_m50={CFG_LEVEL,"",0,0};
 
 
-__root const CFG_HDR cfghdr3_3={CFG_STR_WIN1251,"UnderIdleCSM_DESC",0,8};
-__root const char UNDER_IDLE_CONSTR[9]="";
+
