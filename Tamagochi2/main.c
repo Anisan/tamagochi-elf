@@ -16,6 +16,11 @@
 #define USE_ONE_KEY
 #endif
 
+#ifdef ELKA
+#pragma swi_number=54
+__swi __arm void SLI_SetState(unsigned char state);
+#endif
+
 #define TMR_SECOND 216
 #define IN_TICKS(sec) (sec * TMR_SECOND)
 
@@ -30,7 +35,13 @@ int mode;
 // 1 - long press ENTER_BUTTON
 // 2 - disable KEY_UP process
 int mode_enter;
+
+// для отрисовки смайла и статуса
+IMGHDR *Smile=0;
+IMGHDR *StatImg=0;
 int old_img_status=99;
+int old_simg_status=99;
+int simg_status=0;
 
 int my_csm_id;
 int maincsm_id;
@@ -45,7 +56,8 @@ const char ipc_my_name[]=IPC_TAMAGOCHI_NAME;
 const char ipc_xtask_name[]=IPC_XTASK_NAME;
 IPC_REQ gipc;
 
-char csm_text[32768];
+char game_list[32768];
+char player_list[32768];
 
 /*
 static const char * const games_names[2]=
@@ -68,14 +80,10 @@ const IPC_REQ my_ipc={
   NULL
 };
 
-IMGHDR *smile=0;
-
 TStatusPet StatusPet; 
 int Fatigue=0; //усталость
 int Sleep=0;
 int Behavior=0;
-
-#define TOTAL_ICONS=9;
 
  extern const char *successed_config_filename;
  extern const char UNDER_IDLE_CONSTR[];
@@ -461,6 +469,11 @@ void LightOn()
 	if (cfgLighter)
 		SetIllumination(4, 1, cfgBright, 0);
 #endif
+        
+#ifdef ELKA
+        if (cfgSLI)
+                SLI_SetState(1);
+#endif
  
 	GBS_StartTimerProc(&tmr_light, IN_TICKS(cfgPeriod) / 20, LightOff);
 }
@@ -478,7 +491,13 @@ void LightOff()
 	if (cfgLighter)
 		SetIllumination(4, 1, 0, 0);
 #endif
-  
+#ifdef ELKA
+        if (cfgSLI)
+        {
+                SLI_SetState(2);
+                SLI_SetState(0);
+        }
+#endif
 	if (--count)
 		GBS_StartTimerProc(&tmr_light, IN_TICKS(cfgPeriod) / 20, LightOn);
 }
@@ -525,6 +544,7 @@ void _WriteLog(char *buf)
 
 int GameDetected(void)
 {
+  extern const char CsmAdr[9];
   int find=0;
   CSM_RAM *icsm=under_idle->next; 
  // _WriteLog("Begin");
@@ -536,17 +556,40 @@ int GameDetected(void)
             char s[40];
             char *p;
             ws_2str(tws, s, 64);
-            //_WriteLog(s);
-            p=strstr(csm_text,s);
+            p=strstr(game_list,s);
             if (p)
             {
               find=1;
+              simg_status=1;
              // ShowMSG(0,(int)LG_COOL);
              // _WriteLog("Find");
             }
-	}
+            p=strstr(player_list,s);
+            if (p)
+            {
+              find=1;
+              simg_status=3;
+             // ShowMSG(0,(int)LG_COOL);
+             // _WriteLog("Find");
+            }
+      }
+      else
+      {
+        // ищем медиаплеер
+        char s[40];
+        char *p;
+        CSM_DESC *desc=icsm->constr;
+        sprintf(s,"%08X ",desc);
+        p=strstr(player_list,s);
+        if (p)
+        {
+         simg_status=3;
+         find=1;
+        }
+      }
   }
   while((icsm=icsm->next));
+
   //_WriteLog("End");
   return(find);
 }
@@ -573,8 +616,65 @@ void SleepProc();
 //главная процедура жизненного цикла питомца
 void TimerProc2(void)
 {
-  if (StatusPet.StatusDeath==1) return ;
+  
+  extern const int Night_Ena;
+  extern const unsigned int Night_begin;
+  extern const unsigned int Night_end;
 
+  if (StatusPet.StatusDeath==1) 
+  {
+    simg_status=0;
+    ChangeStatusImage();
+    return ;
+  }
+
+  if (Night_Ena)
+  {
+      //проверка ночи
+      TTime t;
+      TDate d;
+      GetDateTime(&d,&t);
+      int fNight=0;
+      if (Night_begin>=Night_end)
+        if ((t.hour>=Night_begin)||(t.hour<Night_end))
+          fNight=1;
+      if (Night_begin<Night_end)
+        if ((t.hour>=Night_begin)&&(t.hour<Night_end)) 
+          fNight=1;
+    
+      if (Sleep!=5)
+      {
+        //не спит
+        if (fNight)
+        { 
+        if (Sleep!=0) SleepProc(); 
+        Sleep=5;
+        StatusPet.ImageStatus=2;
+        simg_status=2;
+        ChangeStatusImage();
+        GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
+        return;
+        }
+      }
+      if (Sleep==5)
+      {
+        //спит
+        if (!fNight)
+        {  
+         SleepProc(); 
+         simg_status=0;
+        }
+        else
+        {
+         StatusPet.ImageStatus=2;
+         simg_status=2;
+         ChangeStatusImage();
+         GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
+         return; 
+        }
+      }
+  }
+  
 // усталость =100 сон
 // усталость =0 подъем
   if ((Fatigue>=100))
@@ -599,7 +699,7 @@ void TimerProc2(void)
     //StatusPet.Hunger=0;
     StatusPet.Happiness=StatusPet.MaxHappiness;
     StatusPet.Boredom=0;
-    StatusPet.Behaviour=StatusPet.MaxBehaviour;
+    StatusPet.Behaviour=(int)2*StatusPet.MaxBehaviour/3;
     
     
     char sound_name[128];
@@ -619,6 +719,7 @@ void TimerProc2(void)
   {
     ++ Sleep;
     StatusPet.ImageStatus=2;
+    ChangeStatusImage();
     GBS_StartTimerProc(&mytmr2,TMR_SECOND*60*(SpeedLife+1),TimerProc2);
     return;
   }
@@ -631,28 +732,59 @@ void TimerProc2(void)
   if (Sleep==0)
   {
     --StatusPet.Behaviour; // дисциплина
+      // пакость = убивает процесс, если совсем дисциплина на нуле,
+  // и чтобы сильно не ругали дисциплина увеличивается до 30%
+       extern const int Malware_Ena;
+       if ((StatusPet.Behaviour<=0)&&Malware_Ena)
+            {
+                int fkill=1;
+                CSM_RAM *icsm=under_idle->next; 
+                  do
+                  {
+                    int i=((CSM_RAM *)(icsm))->id;
+                    if (fkill)
+                    if (i!=CSM_root()->idle_id) 
+                    {
+                     CloseCSM(i);
+                     StatusPet.Behaviour=(int)StatusPet.MaxBehaviour/3;
+                     fkill=0;
+                     char sound_name[128];
+                    snprintf(sound_name, 127, "%s%s", SOUND_PATH, SoundName[13]);
+                    Play(sound_name);
+                    }  
+                  }
+                  while((icsm=icsm->next));
+            }
   // проверка на наличие в процессах игр
-  
-    if (GameDetected())
-    {
-      --StatusPet.Boredom; // скука
-      ++StatusPet.Happiness;
-    }
-    else 
-    {
-      //--StatusPet.Happiness;
-      ++StatusPet.Boredom; // скука
-    }
+      extern const int Scan_Game_Ena  ;
+      if (Scan_Game_Ena)
+      {
+        if (GameDetected())
+        {
+          --StatusPet.Boredom; // скука
+          ++StatusPet.Happiness;
+        }
+        else 
+        {
+          //--StatusPet.Happiness;
+          ++StatusPet.Boredom; // скука
+          simg_status=0;
+        }
+      }
+      else
+          ++StatusPet.Boredom; // скука
+      
   }  
 
   // питание
   ++StatusPet.Hunger;
   // проверка наличия жратвы и наличие мусора
-
- int Eat=0;
- 
+  int Eat=0;
   if (StatusPet.Hunger>(int)StatusPet.MaxHunger/3) Eat=1;
-  
+  // ест только когда не спит
+  if (Sleep!=0) Eat=0;
+   
+   
   DIR_ENTRY de;
   unsigned int err;
   char name[256];
@@ -709,7 +841,11 @@ void TimerProc2(void)
   FindClose(&de,&err);
   
   // голод
-  if (StatusPet.Hunger>(int)2*StatusPet.MaxHunger/3) --StatusPet.Happiness;
+  if (StatusPet.Hunger>(int)2*StatusPet.MaxHunger/3) 
+  {
+    --StatusPet.Happiness;
+    if (Sleep!=0) SleepProc(); 
+  }  
   // сытый
   if (StatusPet.Hunger==0) ++StatusPet.Happiness;
   
@@ -896,23 +1032,52 @@ void ChangeStatusImage()
   // сон
   if (Sleep!=0) StatusPet.ImageStatus=2; 
   if (StatusPet.StatusDeath==1) StatusPet.ImageStatus=1;
+
+  if (old_simg_status!=simg_status)
+  {
+  if(StatImg)
+    deleteIMGHDR(StatImg);
+  
+  StatImg=0;
+  char pic_name[128];
+  snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_status[simg_status]);
+  int SIZE=MINSIZE+StatusPet.Age;
+  if (SIZE>MAXSIZE)SIZE=MAXSIZE;
+  
+  
+    
+  if(strlen(pic_name)) 
+    if(StatImg=CreateIMGHDRFromPngFile(pic_name, CTYPE2))
+    {
+      //StatImg=resample(StatImg, SIZE, SIZE, 0, 1);
+      if (Effects_Ena)
+      if (OP!=100)
+      StatImg=alpha(StatImg, 255-255*OP/100, 0, 0);
+    }   
+  old_simg_status=simg_status;
+  }
+
   
   if (old_img_status!=StatusPet.ImageStatus)
   {
-  if(smile)
-    deleteIMGHDR(smile);
+  if(Smile)
+    deleteIMGHDR(Smile);
   
-  smile=0;
+  Smile=0;
   char pic_name[128];
   snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
   int SIZE=MINSIZE+StatusPet.Age;
   if (SIZE>MAXSIZE)SIZE=MAXSIZE;
   
   if(strlen(pic_name)) 
-    if(smile=CreateIMGHDRFromPngFile(pic_name, CTYPE2))
+    if(Smile=CreateIMGHDRFromPngFile(pic_name, CTYPE2))
     {
-      smile=resample(smile, SIZE, SIZE, 0, 1);
-      smile=alpha(smile, 255-255*OP/100, 0, 0);
+      if (Effects_Ena)
+      {
+      Smile=resample(Smile, SIZE, SIZE, 0, 1);
+      if (OP!=100)
+      Smile=alpha(Smile, 255-255*OP/100, 0, 0);
+      }
     }   
   if(VIBR_TYPE)
       vibra_count=2;
@@ -1069,22 +1234,44 @@ int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
         {
           void *canvasdata = ((void **)idata)[DISPLACE_OF_IDLECANVAS / 4];
 #endif
-          
-          if(smile)
-          DrawCanvas(canvasdata, 
-                     POS_X - smile->w/2, 
-                     POS_Y - smile->h/2, 
-                     POS_X + smile->w/2, 
-                     POS_Y + smile->h/2, 
-                     1);
-          
-          if(smile)
-            DrwImg(smile,
-                   POS_X-smile->w/2,
-                   POS_Y-smile->h/2,
-                   GetPaletteAdrByColorIndex(0),
-                   GetPaletteAdrByColorIndex(1));
          
+          if(Effects_Ena)
+          {
+              if(Smile)
+              DrawCanvas(canvasdata, 
+                         POS_X - Smile->w/2, 
+                         POS_Y - Smile->h/2, 
+                         POS_X + Smile->w/2, 
+                         POS_Y + Smile->h/2, 
+                         1);
+              //отрисовка смайла
+              if(Smile)
+                DrwImg(Smile,
+                       POS_X-Smile->w/2,
+                       POS_Y-Smile->h/2,
+                       GetPaletteAdrByColorIndex(0),
+                       GetPaletteAdrByColorIndex(1));
+              // отрисовка статуса (в нижнем левом углу смайла)
+               if((Smile)&&(StatImg))
+                DrwImg(StatImg,
+                       POS_X+Smile->w/2-StatImg->w,
+                       POS_Y+Smile->h/2-StatImg->h,
+                       GetPaletteAdrByColorIndex(0),
+                       GetPaletteAdrByColorIndex(1));
+          }
+          else
+          {
+            //отрисовка смайла
+            char pic_name[128];
+              snprintf(pic_name, 127, "%s%s", PIC_PATH, icons_names[StatusPet.ImageStatus]);
+              DrawCanvas(canvasdata, POS_X-GetImgWidth((int)pic_name)/2, POS_Y - GetImgHeight((int)pic_name)/2, POS_X+GetImgWidth((int)pic_name)/2, POS_Y + GetImgHeight((int)pic_name)/2, 1);
+              DrawImg( POS_X-GetImgWidth((int)pic_name)/2, POS_Y - GetImgHeight((int)pic_name)/2, (int)pic_name);
+            // отрисовка статуса (в нижнем левом углу смайла)
+            char spic_name[128];
+              snprintf(spic_name, 127, "%s%s", PIC_PATH, icons_status[simg_status]);
+              DrawImg( POS_X+GetImgWidth((int)pic_name)/2-GetImgWidth((int)spic_name), POS_Y + GetImgHeight((int)pic_name)/2-GetImgHeight((int)spic_name), (int)spic_name);
+    
+          }
         }
       }
     }
@@ -1113,21 +1300,22 @@ static void maincsm_oncreate(CSM_RAM *data)
   }
   else
   {
-  StatusPet.Age=0;
-  StatusPet.Health=100;
-  StatusPet.MaxHealth=100;
-  StatusPet.Hunger=0;
-  StatusPet.MaxHunger=100;
-  StatusPet.Happiness=100;
-  StatusPet.MaxHappiness=100;
-  StatusPet.Dirtiness=0; 
-  StatusPet.MaxDirtiness=100; 
-  StatusPet.Boredom=0;
-  StatusPet.MaxBoredom=100;
-  StatusPet.Behaviour=100;
-  StatusPet.MaxBehaviour=100;
-  StatusPet.StatusDeath=0;
-  StatusPet.ImageStatus=0;
+      StatusPet.Age=0;
+      StatusPet.Health=100;
+      StatusPet.MaxHealth=100;
+      StatusPet.Hunger=0;
+      StatusPet.MaxHunger=100;
+      StatusPet.Happiness=100;
+      StatusPet.MaxHappiness=100;
+      StatusPet.Dirtiness=0; 
+      StatusPet.MaxDirtiness=100; 
+      StatusPet.Boredom=0;
+      StatusPet.MaxBoredom=100;
+      StatusPet.Behaviour=100;
+      StatusPet.MaxBehaviour=100;
+      StatusPet.StatusDeath=0;
+      StatusPet.ImageStatus=0;
+      
   
   if ((f=fopen(PET_PATH,A_WriteOnly+A_BIN+A_Create+A_Truncate,P_WRITE,&ul))!=-1)
    {
@@ -1141,10 +1329,18 @@ static void maincsm_oncreate(CSM_RAM *data)
   extern const char GAMELIST_PATH[64];
   if ((f=fopen(GAMELIST_PATH,A_ReadOnly+A_BIN,P_READ,&ul))!=-1)
   {
-    sz=fread(f,csm_text,32767,&ul);
+    sz=fread(f,game_list,32767,&ul);
     fclose(f,&ul);
   }
-  if (sz>=0) csm_text[sz]=0;
+  if (sz>=0) game_list[sz]=0;
+
+  extern const char PLAYERLIST_PATH[64];
+  if ((f=fopen(PLAYERLIST_PATH,A_ReadOnly+A_BIN,P_READ,&ul))!=-1)
+  {
+    sz=fread(f,player_list,32767,&ul);
+    fclose(f,&ul);
+  }
+  if (sz>=0) player_list[sz]=0;
   
   //запуск жизненного цикла
   GBS_StartTimerProc(&mytmr2,TMR_SECOND,TimerProc2);

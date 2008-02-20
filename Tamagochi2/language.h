@@ -2,8 +2,8 @@
 #define _LANGUAGE_H_
 
 //Оставляем только один дефайн иначе будет кака
-#define LANG_RU
-//#define LANG_EN
+//#define LANG_RU
+#define LANG_EN
 
 
 #ifdef LANG_RU
@@ -29,12 +29,14 @@
 #define LG_GFGPATHIMG "Путь к картинкам"
 #define LG_GFGPATHSOUND "Путь к звукам"
 #define LG_GFGPATHGAMELIST "Путь к Game.list"
+#define LG_GFGPATHPLAYERLIST "Путь к Player.list"
 
 #define LG_GFGSETPET "Настройки развития"
 #define LG_GFGSPEED "Скорость"
 #define LG_GFGFAST "Быстро"
 #define LG_GFGMEDIUM "Средне"
 #define LG_GFGSLOW "Медленно"
+#define LG_MALWARE "Разрешить пакости"
 
 #define LG_GFGSETALARM "Оповещение"
 #define LG_GFGSNDENABLE "Включить звуки"
@@ -158,12 +160,14 @@ static const char * const SpeakMessage[16]=
 #define LG_GFGPATHIMG "Path to images"
 #define LG_GFGPATHSOUND "Path to sounds"
 #define LG_GFGPATHGAMELIST "Path to Game.list"
+#define LG_GFGPATHPLAYERLIST "Path to Player.list"
 
 #define LG_GFGSETPET "Pet settings"
 #define LG_GFGSPEED "Speed"
 #define LG_GFGFAST "Fast"
 #define LG_GFGMEDIUM "Medium"
 #define LG_GFGSLOW "Slow"
+#define LG_MALWARE "Enable malware"
 
 
 #define LG_GFGSETALARM "Notify"

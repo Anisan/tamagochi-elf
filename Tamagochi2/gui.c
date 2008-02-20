@@ -33,11 +33,34 @@ static void EditConfig(void)
   GeneralFuncF1(1);
 }
 
+int  CountAbout=0;
+extern TStatusPet StatusPet; 
+extern void TimerProc2(void);
+
 static void AboutDlg()
 {
   char s[256];
   snprintf(s,255,LG_COPYRIGHT,__VERSION__,__SVN_REVISION__);
   ShowMSG(2, (int)s);
+  if (StatusPet.StatusDeath==1) 
+  {
+    ++CountAbout;
+    if (CountAbout>=10)
+    {
+      CountAbout=0;
+      StatusPet.Health=StatusPet.MaxHealth;
+      StatusPet.Hunger=0;
+      StatusPet.Happiness=StatusPet.MaxHappiness;
+      StatusPet.Boredom=0;
+      StatusPet.Behaviour=StatusPet.MaxBehaviour;
+      StatusPet.StatusDeath=0;
+      StatusPet.ImageStatus=0;
+      char s[256];
+      snprintf(s,255,"IDDQD");
+      ShowMSG(2, (int)s);
+      TimerProc2();
+    }
+  }
 }
 
 ///-----------------------
