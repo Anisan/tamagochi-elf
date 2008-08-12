@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>Menu/Release_ELKA</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>179</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-29742-18451</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>Menu</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-2537-22236</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.c</Filename><XPos>0</XPos><YPos>666</YPos><SelStart>13618</SelStart><SelEnd>13618</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\conf_loader.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\inc\swilib.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>185</SelStart><SelEnd>185</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\config_data.c</Filename><XPos>0</XPos><YPos>30</YPos><SelStart>1697</SelStart><SelEnd>1697</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\local_ipc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>27</SelStart><SelEnd>27</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\conf_loader.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.h</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>792</SelStart><SelEnd>798</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\encode.c</Filename><XPos>0</XPos><YPos>87</YPos><SelStart>3154</SelStart><SelEnd>3193</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2073</SelStart><SelEnd>2073</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>209</SelStart><SelEnd>209</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-0036eab8><key>iaridepm1</key></Toolbar-0036eab8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>606</Bottom><Right>253</Right><x>-2</x><y>-2</y><xscreen>167</xscreen><yscreen>173</yscreen><sizeHorzCX>157994</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>241249</sizeVertCX><sizeVertCY>740560</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>171</Bottom><Right>1059</Right><x>-2</x><y>-2</y><xscreen>1061</xscreen><yscreen>173</yscreen><sizeHorzCX>1003784</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>157994</sizeVertCX><sizeVertCY>210719</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
