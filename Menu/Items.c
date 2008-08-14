@@ -4,13 +4,16 @@
 
 ITEM *Itemtop;
 
-extern void _WriteLog(char *buf);
+
+
+//extern void _WriteLog(char *buf);
 
 void AddToItem(char *name,char *description,char *iconsmall,char *iconbig, char *run)
 {
 
 ITEM *bmk=malloc(sizeof(ITEM));
- bmk->next=0;
+ bmk->next=NULL;
+ bmk->IconAnim=NULL;
  sprintf(bmk->Text,name);
  sprintf(bmk->Description,description);
  sprintf(bmk->Run,run);
@@ -24,46 +27,50 @@ ITEM *bmk=malloc(sizeof(ITEM));
       snprintf(icon, 127, "%s%s", IMGMENU_PATH,iconsmall);
       sprintf(bmk->IconSmall,icon);
      }
+    else
+     sprintf(bmk->IconSmall,iconsmall); 
 
  int find=0;
  char tmp[128];
+ char tmp2[128];
 
  sprintf(tmp,iconbig);
     
     int cs=0;
       for (int j=0;j<strlen(tmp);j++)
       {
-        if ((tmp[j]!=';')&&(j!=strlen(tmp)))
+        if ((tmp[j]!=';')&&(j!=strlen(tmp)-1))
             icon[cs++]=tmp[j];
           else 
           {
+            if (j==strlen(tmp)-1) icon[cs++]=tmp[j];
             icon[cs++]=0;
-            char tmp2[128];
+            
             sprintf(tmp2,"%s",icon);
             s=tmp2;
+                       
             if ((s[2]!='\\')&&((s[(strlen(s))-3]=='.')||//Проверяем строку на наличие символов '\\' и '.'
              (s[(strlen(s))-4]=='.')||(s[(strlen(s))-5]=='.')))
-                snprintf(icon, 127, "%s%s", IMGMENU_PATH,icon);
-            _WriteLog(icon);
+                snprintf(icon, 127, "%s%s", IMGMENU_PATH,tmp2);
             
             if (find==0) 
-              sprintf(bmk->IconBig,"%s",icon); 
+              sprintf(bmk->IconBig,icon); 
              else
              {
                LIST *Anim=malloc(sizeof(LIST));
-               Anim->next=0;
-               sprintf(Anim->Icon,"%s",icon); 
+               Anim->next=NULL;
+               sprintf(Anim->item,icon); 
            
                 if(!bmk->IconAnim)
                   bmk->IconAnim=Anim; 
                  else
                   {
-                    LIST *List=bmk->IconAnim;
+                    LIST *List=(LIST *)bmk->IconAnim;
                     while(List->next)
                        List=List->next;
-                    List->next=Anim;   
+                    List->next=Anim; 
                  }
-             }
+              }
               
             find=j;
             cs=0;
@@ -87,7 +94,7 @@ void FreeItemsList()
 {  
   LockSched();
   ITEM *bmk=(ITEM *)Itemtop;
-  Itemtop=0;
+  Itemtop=NULL;
   UnlockSched();
   while(bmk)
   {
@@ -101,17 +108,14 @@ void FreeItemsList()
         mfree(Anim_prev);
       }
     }
-    
     ITEM *bmk_prev=bmk;
     bmk=bmk->next;
     mfree(bmk_prev);
   }
-   
 }
 
 ITEM *GetItem(int curitem)
 {
-
   ITEM *bmk;
   bmk=Itemtop;
   int i=0;
@@ -124,7 +128,6 @@ ITEM *GetItem(int curitem)
     else return 0;
   }
   return 0;
-  
 }
 
 char *IconAnim(int curitem, int pic)
@@ -139,13 +142,16 @@ char *IconAnim(int curitem, int pic)
       if(!bmk->IconAnim) return 0;
       LIST *Anim=bmk->IconAnim;
       int j=0;
-      while(Anim=Anim->next) 
+      while(Anim) 
       {
         if (j==pic)
-          return Anim->Icon; 
+          return Anim->item; 
         
         j++;
+        if(Anim->next) Anim=Anim->next;  
+        else return 0;
       }
+      return 0;
     }
     i++;
     if(bmk->next) bmk=bmk->next;  
@@ -175,7 +181,7 @@ int TotalAnim(int curitem)
     {
       if(!bmk->IconAnim) return 0;
       LIST *Anim=bmk->IconAnim;
-      int j=0;
+      int j=1;
       while(Anim=Anim->next) j++;
       return j;
     }

@@ -20,6 +20,7 @@ extern ITEM *GetItem(int curitem);
 extern void FreeItemsList();
 extern int TotalAnim(int curitem);
 extern char *IconAnim(int curitem, int pic);
+extern int TotalItems();
 
 const char ipc_my_name[]=IPC_TEXTINFO_NAME;
 const IPC_REQ gipc={
@@ -37,6 +38,12 @@ void TimerProc(void)
 
 int CellX;
 int CellY;
+int pic_n=0;
+int pos=0;
+
+// список вложенных меню
+LIST *MenuTop;
+
 
 typedef struct
 {
@@ -58,19 +65,10 @@ typedef struct
 
 
 int(*MsgBox)(int _1, int, MSG_BOX*, int lgp_id);
-void(*AddHeader)(GUI*,HEADER_DESC*,void* malloc_adr);
+
 int m; //коэффициент для формулы = isnewSGold
 
 #pragma inline
-void patch_header(const HEADER_DESC* headc)
-{
-  HEADER_DESC *head=(HEADER_DESC *)headc;
-  head->rc.x=0;
-  head->rc.y=UNI_YDISP;
-  head->rc.x2=ScreenW()-1;
-  head->rc.y2=HeaderH()+UNI_YDISP;
-}
-
 void ElfKiller()
 {
   extern void kill_data(void *p, void (*func_p)(void *));
@@ -104,14 +102,12 @@ void _WriteLog(char *buf)
 }
 
 //----------------MMenu----------------
-int MHico;
-HEADER_DESC MHeader={0, 0, 0, 0, &MHico, 0, LGP_NULL};
 int MSoftKeys[]={0,1,2};
 
 SOFTKEY_DESC Msk[]=
 {
   {0x0018,0x0000,(int)TextLeft},
-  {0x0001,0x0000,(int)TextRight},
+  {0x0000,0x0000,(int)TextRight},
   {0x003D,0x0000,(int)LGP_DOIT_PIC}
 };
 
@@ -122,9 +118,7 @@ SOFTKEYSTAB Mskt=
 
 GBSTMR tmr;
 
-int pic_n=0;
-int pos=4;
-int ItemsCount=0;
+
 #define TIME 262/5
 
 #pragma inline=forced
@@ -152,131 +146,107 @@ int strcmp_nocase(const char *s1,const char *s2)
 
 extern int LoadItems(const char *);
 
-//Взято с китайского свн sieelf.googlecode.com (r)BingK
-#define FUNC_PT_START	0xA085DEA4
-#define FUNC_PT_END	0xA0865BA3
-#define FUNC_PT_PSIZE	0x80
-#define FUNC_PT_OFFSET	0x10
-#define MAX_FUNC	0xFA
 
-#ifdef NEWSGOLD
-unsigned int GetFunctionPointByName(char *name)
+int isFile(char *fname)
 {
-  char *p=(char *)FUNC_PT_START;
-  int len=strlen(name);
-  if(len==0)
-     return 0;
-  while((char *)FUNC_PT_END-p>0)
-   {
-     if(!strncmpNoCase(p, name, len))
-	return (*(unsigned int *)(p+FUNC_PT_OFFSET));
-     p+=FUNC_PT_PSIZE;
-   }
-  return 0;
+  return (strstr(fname,".")!=0);
 }
-#endif
 
-
-void run_address(unsigned int address) 
+int isSub(char *fname)
 {
-  void (*runaddr)(void);
-  runaddr=(void (*)())address;
-  if (runaddr) 
+  return (strstr(fname,".cfg")!=0);
+}
+
+int strh2int(char* str)
+{
+  int n,c=0;
+  if (*(str+strlen(str)-1)=='h') *(str+strlen(str)-1)='\0';
+  while ((*str!='h')&&(*str))
   {
-    runaddr();
+    if ((*str>='a')&&(*str <='f')) n=*str-('A'-('9'+1))-('a'-'A');
+    else if ((*str>='A')&&(*str<='F')) n=*str-('A'-('9'+1));
+    else if ((*str>='0')&&(*str<='9')) n=*str;
+    c=c*16+(n-'0');
+    str++;
   }
+  return c;
 }
 
-void run_shortcut(char *shortcut) 
+int str2int(const char *str)
 {
-#ifdef NEWSGOLD
-   run_address(GetFunctionPointByName(shortcut));
-#else
-   run_address((unsigned int)GetFunctionPointer(shortcut));
-#endif
+  int n,c=0;
+  while(*str!='\0')
+  {
+    n=*str;
+    c=c*10+(n-'0');
+    str++;
+  }
+  return c;
 }
 
-int chr2num(char chr)
+void RunEntry(char *entry)
 {
-  if(chr>='0'&&chr<='9')
-     return (chr-('0'-0));
-  if(chr>='A'&&chr<='Z')
-     return (chr-('A'-0xA));
-  if(chr>='a'&&chr<='z')
-     return (chr-('a'-0xA));
-  return 0;
+  typedef int (*func)(void);
+  func ff;
+  ff=(func)strh2int(entry);
+  if (ff!=NULL) SUBPROC((void *)(*ff));
+}
+
+void RunShort(char *fname)
+{
+  typedef void (*voidfunc)(); 
+  voidfunc pp=(voidfunc)GetFunctionPointer(fname); 
+  if(pp!=0) 
+    SUBPROC((void*)pp);
+  else
+    ShowMSG(1,(int)"NULL pointer function!");
+}
+
+char *nill="";
+void RunFile(char *fname)
+{
+  WSHDR *ws=AllocWS(256);
+  str_2ws(ws,fname,strlen(fname)+1);
+  ExecuteFile(ws,0,nill);
+  FreeWS(ws);
 }
 
 
-int RunBM2(const char *s)
+void RunSub(char *sub_name)
 {
-// const char *s=items[bm].Run;
- if((s)&&strlen(s))
- {
-   // подменю
-   if ((s[(strlen(s))-4]=='.')&&(s[(strlen(s))-3]=='c')&&
-     (s[(strlen(s))-2]=='f')&&(s[(strlen(s))-1]=='g'))
-   {
       LockSched();
-      LoadItems(s);
+      LoadItems(sub_name);
       pos=0;
+      LIST *sub=malloc(sizeof(LIST));
+      sub->next=NULL;
+      sprintf(sub->item,sub_name); 
+      if(!MenuTop)
+          MenuTop=sub; 
+       else
+        {
+         sub->next=MenuTop;
+         MenuTop=sub;
+        }
       UnlockSched();
-      return(1);
-   }
+}
+
+
+int Run(const char *s)
+{
+  char *file=malloc(strlen(s)+1);
+  strcpy(file,s);
   
-   // запуск эльфов и октрытие файлов
-  if ((s[2]=='\\')&&((s[(strlen(s))-3]=='.')||//Проверяем строку на наличие символов '\\' и '.'
-     (s[(strlen(s))-4]=='.')||(s[(strlen(s))-5]=='.')))
-       {
-        WSHDR *ws;
-        ws=AllocWS(256);
-        str_2ws(ws,s,256);
-        if(ExecuteFile(ws,0,0))
-        {
-          FreeWS(ws);
-          return(1);
-        }
-        else
-        {
-          FreeWS(ws);
-          return 0;
-        }
-       }
-    
-    if ((s[2]!='\\')&&(s[(strlen(s))-3]!='.')&&
-       (s[(strlen(s))-4]!='.')&&(s[(strlen(s))-5]!='.')&&
-       ((s[0]=='a')||(s[0]=='A'))&&(s[1]=='0'))  
-        {
-          int i;
-          unsigned int addr=0;
-          char *p=(char*)s;
-          for(i=0;i<strlen(s);i++)
-          {
-             addr=chr2num(p[i])+addr*0x10;
-          }
-          run_address(addr);
-          return 1;
-        }
-    else
-    {
-          char ShortCut[32];
-          char *p=(char*)s;
-          int i=0;
-          int j=0;
-          for(;j<strlen(s);j++)
-          {
-            if(p[j]>='A')
-            {
-              ShortCut[i]=p[j];
-              i++;
-            }
-          }
-          ShortCut[i]=0;
-          run_shortcut(ShortCut);     
-          return 1;
-    }  
-  }
- return(0);
+  if (isSub(file)) RunSub(file);
+  else
+  if (isFile(file)) RunFile(file);
+  else
+  if (strstr(file,"_")!=0)  
+     RunShort(file); 
+    else 
+     RunEntry(file);
+
+  mfree(file);  
+  return(0);
 }
 // ----------------------------------------------
 
@@ -308,13 +278,6 @@ int CalcPic(char* picture)
   return pic;
 }
 
-void UpdateHeader(GUI* gui)
-{
-  ITEM *Item=GetItem(pos);
-  MHeader.lgp_id=(int)Item->Text;
-  MHico=CalcPic(Item->IconSmall); //Значек заголовка
-  ((int*)GetDataOfItemByID(gui, 2))[13]=(int)Item->Text; //Текст заголовка
-}
 
 
 char transparent[]={0x00,0x00,0x00,0x00};
@@ -324,45 +287,182 @@ void (*OOnRedraw)(GUI *data);
 void NOnRedraw(GUI *data)
 {
   OOnRedraw(data); //Сначала старый OnRedraw
-  
+
+  int TI=TotalItems();
   int delta=0;
-  if (pos>(Columns*Rows-1))
-  {
-   delta=(pos-(Columns*Rows-1))/Columns;
-   if ((pos-(Columns*Rows-1))%Columns!=0)
-   ++delta;
-  }
-
-  int setka=Columns*Rows;
-  if ((ItemsCount-delta*Columns)<(Columns*Rows))
-    setka=ItemsCount-delta*Columns;
   
-  for(int i=0;i<setka;i++)
+  switch (styleMenu)
   {
-    
-/* --==Формула==-- */
-    int x=menuRect.x+OffsetX+CellX*(i%Columns);
-    int y=menuRect.y+OffsetY+CellY*(i/Columns);
+    // отрисовка сетки
+  case 0: 
+    {
       
-    if((i+delta*Columns)==pos)
-    DrawImg(x,y,CalcPic((char*)CURSOR_PATH));
+      if (pos>(Columns*Rows-1))
+      {
+       delta=(pos-(Columns*Rows-1))/Columns;
+       if ((pos-(Columns*Rows-1))%Columns!=0)
+       ++delta;
+      }
     
-    ITEM *Item=GetItem(i+delta*Columns);
       
-    if ((pic_n==0)||(!Animation)||((i+delta*Columns)!=pos))
-      DrawImg(x,y,CalcPic(Item->IconBig));
-     else
-      DrawImg(x,y,CalcPic(IconAnim(pos,pic_n)));
-
+      int setka=Columns*Rows;
+      if ((TI-delta*Columns)<(Columns*Rows))
+        setka=TI-delta*Columns;
+      
+      for(int i=0;i<setka;i++)
+      {
+        
+        int cursor=CalcPic((char*)CURSOR_PATH);
+        int icon;
+        int x=0;
+        int y=0;
+        int cx=0;
+        int cy=0;
+    
+       ITEM *Item=GetItem(i+delta*Columns);
+        if ((!Animation)||((i+delta*Columns)!=pos))
+          icon=CalcPic(Item->IconBig);
+         else
+          if (TotalAnim(pos)==0) 
+          icon=CalcPic(Item->IconBig);
+          else
+          icon=CalcPic(IconAnim(pos,pic_n));
+    
+        
+    /* --==Формула==-- */
+        if (position_type==0)
+        {
+        x=menuRect.x+(CellX-GetImgWidth(icon))/2+CellX*(i%Columns);
+        y=menuRect.y+(CellY-GetImgHeight(icon))/2+CellY*(i/Columns);
+        cx=menuRect.x+(CellX-GetImgWidth(cursor))/2+CellX*(i%Columns);
+        cy=menuRect.y+(CellY-GetImgHeight(cursor))/2+CellY*(i/Columns);
+        }
+        else
+        {
+        x=menuRect.x+OffsetX+CellX*(i%Columns);
+        y=menuRect.y+OffsetY+CellY*(i/Columns);
+        cx=x;
+        cy=y;
+        }
+        
+        if(((i+delta*Columns)==pos)&&cursorShow)
+        DrawImg(cx,cy,cursor);
+        
+        DrawImg(x,y,icon);
+    
+      }
+      
+      // scrollbar
+      int rowScroll=TI/Columns;
+      if (TI>rowScroll*Columns) ++rowScroll;
+      if ((scrollShow==1)||((rowScroll>Rows)&&(scrollShow==0)))
+      {
+        int posScroll=(pos)/Columns;
+        //if (pos>posScroll*Columns) ++posScroll;
+        int sh=(menuRect.y2-menuRect.y)/rowScroll;
+        DrawLine(menuRect.x2-1,menuRect.y,menuRect.x2-1,menuRect.y2, LINE_DOTTED,scrollColor);
+        DrawRectangle(menuRect.x2,menuRect.y+sh*posScroll,menuRect.x2-2,menuRect.y+sh*posScroll+sh,
+                      0,0,scrollColor);
+      }
+   
+      
+      break;
+    }
+  // отрисовка списка
+  case 1:
+    {
+      if (pos>(Rows-1))
+       delta=(pos-(Rows-1));
+      
+      for(int i=0;i<Rows;i++)
+      {
+        
+        int cursor=CalcPic((char*)CURSOR_PATH);
+        int icon;
+        int x=0;
+        int y=0;
+        int cx=0;
+        int cy=0;
+    
+       ITEM *Item=GetItem(i+delta);
+        if ((!Animation)||((i+delta)!=pos))
+          icon=CalcPic(Item->IconBig);
+         else
+          if (TotalAnim(pos)==0) 
+          icon=CalcPic(Item->IconBig);
+          else
+          icon=CalcPic(IconAnim(pos,pic_n));
+    
+        
+    /* --==Формула==-- */
+        if (position_type==0)
+        {
+        x=menuRect.x+(CellY-GetImgHeight(icon))/2;
+        y=menuRect.y+(CellY-GetImgHeight(icon))/2+CellY*i;
+        cx=menuRect.x+(CellY-GetImgHeight(cursor))/2;
+        cy=menuRect.y+(CellY-GetImgHeight(cursor))/2+CellY*i;
+        }
+        else
+        {
+        x=menuRect.x+OffsetX;
+        y=menuRect.y+OffsetY+CellY*i;
+        cx=x;
+        cy=y;
+        }
+        
+        if(((i+delta)==pos)&&cursorShow)
+        DrawImg(cx,cy,cursor);
+        
+        DrawImg(x,y,icon);
+        
+        WSHDR *ws=AllocWS(128);
+        ascii2ws(ws,Item->Text);
+        DrawString(ws,2*x+GetImgWidth(icon),
+                   menuRect.y+CellY*i+((CellY/2-GetFontYSIZE(listNameFont))/2),
+                   menuRect.x2,menuRect.y+CellY*i+CellY/2,listNameFont,listNameStyle,listNameColor,0);
+        ascii2ws(ws,Item->Description);
+        DrawString(ws,2*x+GetImgWidth(icon),
+                   menuRect.y+CellY*i+CellY/2+((CellY/2-GetFontYSIZE(listDescFont))/2),
+                   menuRect.x2,menuRect.y+CellY*i+CellY,
+                   listDescFont,listDescStyle,listDescColor,0);
+      }
+      // scrollbar
+      if ((scrollShow==1)||((TI>Rows)&&(scrollShow==0)))
+      {
+        int sh=(menuRect.y2-menuRect.y)/TI;
+        DrawLine(menuRect.x2-1,menuRect.y,menuRect.x2-1,menuRect.y2, LINE_DOTTED,scrollColor);
+        DrawRectangle(menuRect.x2,menuRect.y+sh*pos,menuRect.x2-2,menuRect.y+sh*pos+sh,
+                      0,0,scrollColor);
+      }
+   
+      break;
+    }
   }
-
+  
+ 
+  
   ITEM *Item=GetItem(pos);
   if (descShow)
     {
       WSHDR *ws=AllocWS(128);
       ascii2ws(ws,Item->Description);
-      DrawString(ws,descRect.x,descRect.y,descRect.x2,descRect.y2,font,TEXT_ALIGNMIDDLE,deskColor,0);
+      DrawString(ws,descRect.x,
+                 descRect.y+((descRect.y2-descRect.y-GetFontYSIZE(descFont))/2),
+                 descRect.x2,descRect.y2,descFont,descStyle,deskColor,0);
     }
+  if (headShow)
+    {
+      int headIcon=CalcPic(Item->IconSmall);
+      int hi=(headRect.y2-headRect.y-GetImgHeight(headIcon))/2;
+      DrawImg(headRect.x+hi,headRect.y+hi,headIcon);
+
+      WSHDR *ws=AllocWS(128);
+      ascii2ws(ws,Item->Text);
+      DrawString(ws,headRect.x+2*hi+2+GetImgWidth(headIcon),
+                 headRect.y+((headRect.y2-headRect.y-GetFontYSIZE(headFont))/2),
+                 headRect.x2,headRect.y2,headFont,headStyle,headColor,0);
+    }
+  //_WriteLog("end draw");
 }
 
 const void * NGuiMeths[11];
@@ -371,9 +471,8 @@ void MGHook(GUI *gui, int cmd)
 {
   switch(cmd)
   {
-  case 1://Создание: подмена onRedraw + добавление хедера
+  case 1://Создание: подмена onRedraw
     {
-      AddHeader(gui,&MHeader,malloc_adr());
       memcpy(NGuiMeths,gui->methods,11*sizeof(void*));
       gui->methods=(void*)NGuiMeths;
       OOnRedraw=(void(*)(GUI*))NGuiMeths[0];//(gui->methods[0]);
@@ -381,11 +480,9 @@ void MGHook(GUI *gui, int cmd)
     }
     break;
   case 5://Получение фокуса (?)
-    UpdateHeader(gui);
     TmrReset();
     break;
   case 6://Потеря фокуса
-    UpdateHeader(gui);
     GBS_DelTimer(&tmr);//Экономим ресурсы (типо)
     break;
   }
@@ -403,7 +500,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v0.4\n(c)Eraser\n%s at %s",__DATE__,__TIME__);
+        sprintf(s,"Menu v0.6\n(c)Eraser\n%s at %s",__DATE__,__TIME__);
         ShowMSG(2,(int)s);
       }
      if (key=='#')
@@ -416,13 +513,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
         ExecuteFile(ws,0,0);
         FreeWS(ws);
       }
-     if (key=='0')
-      {
-        // редактирование меню
-        char s[256];
-        sprintf(s,"Info");
-        ShowMSG(2,(int)s);
-      }
+     
      
   }
   
@@ -441,16 +532,41 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       pos++;
       break;
     case UP_BUTTON:
+      if (styleMenu==0)
       pos-=Columns;
+      else
+        pos--;
       break;
     case DOWN_BUTTON:
+      if (styleMenu==0)
       pos+=Columns;
+      else
+        pos++;
       break;
     case RIGHT_SOFT:
-      GBS_DelTimer(&tmr);
-      return(0);
+      if (!MenuTop)
+      {
+        GBS_DelTimer(&tmr);
+        return 1;
+      }
+      else
+      {
+        LIST *List=(LIST *)MenuTop->next;
+        mfree(MenuTop);
+        MenuTop=List;
+        LockSched();
+        if (MenuTop)
+        LoadItems(MenuTop->item);
+        else
+        LoadItems(MENU_PATH);
+        pos=0;
+        UnlockSched();
+      }
+      
+      break;
+      //return(0);
     case LEFT_SOFT:
-      RunBM2(RunLeft);
+      Run(RunLeft);
       return(0);
 /*      
     case '*':
@@ -473,19 +589,18 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
     }
       
     if(pos<0)
-      pos=ItemsCount-1;
-    if(pos>ItemsCount-1)
+      pos=TotalItems()-1;
+    if(pos>TotalItems()-1)
       pos=0;
 
   //end:
-    UpdateHeader(gui);
     TmrReset();
     RefreshGUI();
     return(0);
   run:
     {
     ITEM *Item=GetItem(pos);
-    RunBM2(Item->Run);
+    Run(Item->Run);
     }
     return(0);
   }
@@ -523,9 +638,7 @@ typedef struct
 void MOnCreate(CSM_RAM *data)
 {
   MAIN_CSM *csm=(MAIN_CSM*)data;
-//  MHico=*items[pos].point.IconSmall;
   csm->gui_id=MsgBox(0,0,&MMenu,LGP_NULL);
-  
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_UPDATE_STAT,&gipc);
 }
 
@@ -551,7 +664,7 @@ int MOnMsg(CSM_RAM *data, GBS_MSG *msg)
       UnlockSched();
     }
   }
-  
+    
   if (msg->msg==MSG_IPC)
   {
     IPC_REQ *ipc;
@@ -567,6 +680,7 @@ int MOnMsg(CSM_RAM *data, GBS_MSG *msg)
       }
     }
   }
+  
 
   return(1);
 }
@@ -661,14 +775,14 @@ void newIcsmOnClose(CSM_RAM *data)
   seqkill(data,oldIcsmOnClose,&ELF_BEGIN,SEQKILLER_ADR());
   SUBPROC((void *)ElfKiller);
 }
-
-unsigned int GetBLAddr(unsigned int adr)
+__thumb unsigned int GetBLAddr(unsigned int adr)
 {
   short _1_11=((short*)adr)[0];
   int _1=(_1_11&0x7FF)<<11|(_1_11&0x0400?0xFFC00000:0);
   short _2=((short*)adr)[1]&0x7FF;
   return(unsigned int)(adr+_1*2+_2*2+4+(_1_11>>12&1));
 }
+
 
 int LoadItems(const char *menu_path)
 {
@@ -679,10 +793,8 @@ int LoadItems(const char *menu_path)
   int i;
   int fsize;
   int c;
-  TMenuPoint *itemsF;
+  
 
-  //FreeLines();
- 
   fn=(char *)menu_path;
   if (GetFileStats(fn,&stat,&ul)==-1) return 0;
   if ((fsize=stat.size)<=0) return 0;
@@ -690,26 +802,24 @@ int LoadItems(const char *menu_path)
 
 //  _WriteLog("Menu.cfg find");
   c=fsize/sizeof(TMenuPoint);
-  char msg[512];
-  sprintf(msg, "%02d %s\n", c,"item");
+//  char msg[512];
+//  sprintf(msg, "%02d %s\n", c,"item");
 //  _WriteLog(msg);
 
-  FreeItemsList();
-  
-//  _WriteLog("Menu read");
   LockSched();
+  FreeItemsList();
+  TMenuPoint *itemsF;
   itemsF=malloc(c*sizeof(TMenuPoint));
   for (i=0;i<c;i++)
   {
-    //itemsF=realloc(itemsF,(i+1)*sizeof(TMenuPoint));
-    fread(f,&itemsF[i], sizeof(TMenuPoint),&ul);
-    AddToItem(itemsF[i].Text,itemsF[i].Description,itemsF[i].IconSmall,itemsF[i].IconBig, itemsF[i].Run);
+   fread(f,&itemsF[i],sizeof(TMenuPoint),&ul);
+   AddToItem(itemsF[i].Text,itemsF[i].Description,itemsF[i].IconSmall,itemsF[i].IconBig, itemsF[i].Run);
   }
   fclose(f,&ul);
+  UnlockSched();
   
   mfree(itemsF);
-  UnlockSched();
-
+//_WriteLog("Menu load");
   return c;
 }
 
@@ -739,25 +849,16 @@ void main()
 {
   unsigned int adr;
 
-  //Нахожу функцию MsgBox
+    //Нахожу функцию MsgBox
   #pragma swi_number=0x8050
   __swi __arm unsigned int MsgBoxOkCancel_adr();
   adr=MsgBoxOkCancel_adr()+7; //Тут лежит инструкция "B MsgBox"
   MsgBox=(int(*)(int,int,MSG_BOX*,int))(adr+(short)((*(short*)adr|0xF800))*2+5);
-
-  //Нахожу функцию AddHeader
-  #pragma swi_number=0x8152
-  __swi __arm unsigned int CreateMenu_adr();
-  AddHeader=(void(*)(GUI*,HEADER_DESC*,void*))GetBLAddr(GetBLAddr(CreateMenu_adr()+33)+123);
+  
+ 
 
   InitSettings();
- 
-  patch_header(&MHeader);
-//  MHeader.lgp_id=(int)items[pos].point.Text;
-
-//---------------
-//  wsprintf((WSHDR*)&MAINCSM.maincsm_name,"%t",CSMText);
-
+  MenuTop=NULL;
   LockSched();
   CSM_RAM *icsm=FindCSMbyID(CSM_root()->idle_id);
   memcpy(&icsmd,icsm->constr,sizeof(icsmd));
@@ -768,4 +869,5 @@ void main()
   icsm->constr=&icsmd;
   AddKeybMsgHook((void *)hook);
   UnlockSched();
+  
 }
