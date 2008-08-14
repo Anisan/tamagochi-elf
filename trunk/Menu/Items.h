@@ -3,7 +3,7 @@
 typedef struct
 {
   void *next;
-  char Icon[128];
+  char item[64];
 }LIST;
 
 typedef struct

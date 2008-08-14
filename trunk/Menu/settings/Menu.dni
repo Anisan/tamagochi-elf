@@ -1,12 +1,9 @@
 [Disassemble mode]
 mode=0
 [Breakpoints]
-Bp0=_ "Code" "{$PROJ_DIR$\config_data.c}.27.53@1" 1 0 0 0 "" 0 ""
-Bp1=_ "Code" "{$PROJ_DIR$\main.c}.361.1@1" 1 0 0 0 "" 0 ""
-Bp2=_ "Code" "{$PROJ_DIR$\main.c}.482.2@1" 1 0 0 0 "" 0 ""
-Bp3=_ "Code" "{$PROJ_DIR$\main.c}.357.1@1" 1 0 0 0 "" 0 ""
-Bp4=_ "Code" "{$PROJ_DIR$\main.c}.284.1@1" 1 0 0 0 "" 0 ""
-Count=5
+Bp0=_ "Code" "{$PROJ_DIR$\config_data.c}.24.1@1" 1 0 0 0 "" 0 ""
+Bp1=_ "Code" "{$PROJ_DIR$\main.c}.608.2@1" 1 0 0 0 "" 0 ""
+Count=2
 [Interrupts]
 Enabled=1
 [MemoryMap]
