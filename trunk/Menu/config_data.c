@@ -89,6 +89,9 @@ __root const CFG_HDR cfghdr_si11={CFG_LEVEL,"Setting interface",1,0};
     __root const CFG_HDR cfghdr0_h1 = {CFG_CHECKBOX, "Show", 0, 2};
     __root const int headShow = 1;
 
+    __root const CFG_HDR cfghdr0_h11 = {CFG_CHECKBOX, "Show icon", 0, 2};
+    __root const int headIconShow = 1;
+
     __root const CFG_HDR cfghdr0_h2={CFG_RECT, "Position Header", 0, 0};
     __root const RECT headRect = {0, 24, 240, 24+24};
     
