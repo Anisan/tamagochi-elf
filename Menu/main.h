@@ -34,6 +34,7 @@ extern const unsigned int descStyle;
 
 
 extern const int headShow;
+extern const int headIconShow;
 extern const RECT headRect;
 extern const char headColor[4];
 extern const unsigned int headFont;
