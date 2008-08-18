@@ -4,6 +4,7 @@ typedef struct
 {
   void *next;
   char item[64];
+  int pos;
 }LIST;
 
 typedef struct

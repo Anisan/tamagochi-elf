@@ -2,15 +2,12 @@
 #include "..\inc\cfg_items.h"
 #include "conf_loader.h"
 
-const char *successed_config_filename="";
-
-
 #pragma segment="CONFIG_C"
-int SaveConfigData(const char *fname)   // result 0 - конфига не создан, 1 - cоздан
+int SaveConfigData(const char *fname)
 {
   int f;
   unsigned int ul;
-  int result=0;
+  int result=-1;
   unsigned int wlen;
   unsigned int len=(char *)__segment_end("CONFIG_C")-(char *)__segment_begin("CONFIG_C");
 
@@ -18,52 +15,55 @@ int SaveConfigData(const char *fname)   // result 0 - конфига не создан, 1 - cоз
   {
     wlen=fwrite(f,__segment_begin("CONFIG_C"),len,&ul);
     fclose(f,&ul);
-    if (wlen==len) result=1;
+    if (wlen==len) result=0;
   }
   return(result);
 }
 
-
-#pragma segment="CONFIG_C"
-int LoadConfigData(const char *fname)  // result 0 - конфига нет и не создан, 1 - нет и создан, 2 - есть
+int LoadConfigData(const char *fname, void* cfg, int len, void* bcfg)
 {
   int f;
   unsigned int ul;
-  char *buf;
-  int result=0;
-  unsigned int rlen, end;
-
-
-  unsigned int len=(char *)__segment_end("CONFIG_C")-(char *)__segment_begin("CONFIG_C");
-
-  if ((buf=malloc(len)))
+  int result=-1;
+  
+  if ((f=fopen(fname,A_ReadOnly+A_BIN,P_READ,&ul))!=-1)
   {
-    if ((f=fopen(fname,A_ReadOnly+A_BIN,P_READ,&ul))!=-1)
+    if (fread(f,cfg,len,&ul)==len)
     {
-      rlen=fread(f,buf,len,&ul);
-      end=lseek(f,0,S_END,&ul,&ul);
       fclose(f,&ul);
-      if (rlen!=end || rlen!=len)  goto L_SAVENEWCFG;
-      memcpy(__segment_begin("CONFIG_C"),buf,len);
-      result=2;
+      result = 0;
     }
     else
     {
-    L_SAVENEWCFG:
-      result=SaveConfigData(fname);
+      fclose(f,&ul);
     }
-    mfree(buf);
   }
-  if (result>0) successed_config_filename=fname;
+
+  if (result == -1)
+  {
+    //extern const CFG_HDR cfghdr0; //first var in CONFIG
+    //void* bcfg=(void*)&cfghdr0;
+    //unsigned int lenbcfg=(int)__segment_end("CONFIG_C")-(int)__segment_begin("CONFIG_C");
+    if ((f=fopen(fname,A_ReadWrite+A_Create+A_Truncate,P_READ+P_WRITE,&ul))!=-1)
+    {
+      if (fwrite(f,bcfg,len,&ul)==len)
+      {
+        memcpy(cfg,bcfg,len);
+        result=0;
+      }
+      fclose(f,&ul);
+    }
+  }
+
   return(result);
 }
 
-int InitConfig() 
+
+int InitConfig(void* cfgstruct, int len, char *path, void* bcfg)
 {
-  int i;
-  if (!(i=LoadConfigData("4:\\ZBin\\etc\\Menu.bcfg")))
-  {
-    i=LoadConfigData("0:\\ZBin\\etc\\Menu.bcfg");
-  }
-  return i;
+  int result;
+  char config_name[128];
+  sprintf(config_name, "%s", path);
+  result = LoadConfigData(config_name,  cfgstruct, len, bcfg);
+  return result;
 }

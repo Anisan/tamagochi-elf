@@ -3,11 +3,80 @@
 #include "local_ipc.h"
 #include "..\inc\xtask_ipc.h"
 #include "main.h"
+#include "..\inc\cfg_items.h"
 #include "Items.h"
 
 
 #define isElka() (isnewSGold()==2)
 #define UNI_YDISP (isElka()?24:0)
+
+const char *config_filename="4:\\Zbin\\etc\\menu.bcfg";
+
+//--------------------------------------------------------------------//
+//                           READ CONFIGS                             //
+//--------------------------------------------------------------------//
+
+//--------------------------------------------------------------------//
+//------------------------  MAIN     CONFIG  -------------------------//
+//--------------------------------------------------------------------//
+
+typedef struct 
+{
+CFG_HDR cfghdr0;
+int ACTIVE_KEY;
+CFG_HDR cfghdr7_2;
+char CSMText[32];
+CFG_HDR cfghdrm_m1;
+int closeMenu;
+//==============================================================
+CFG_HDR cfghdr_l21;
+CFG_HDR cfghdr10_1;
+int Animation;
+CFG_HDR cfghdr10_2;
+unsigned int SpeedAnim;
+CFG_HDR cfghdr_l20;
+//==============================================================
+CFG_HDR cfghdr_l11;
+CFG_HDR cfghdr2_2;
+char MENU_PATH[64];
+CFG_HDR cfghdr2_3;
+char CURSOR_PATH[64];
+CFG_HDR cfghdr2_4;
+char IMGMENU_PATH[64];
+CFG_HDR cfghdr_l10;
+  //==============================================================
+CFG_HDR cfghdr_j11;
+CFG_HDR cfghdr3_1;
+char TextRight[16];
+CFG_HDR cfghdr3_2;
+char TextLeft[16];
+CFG_HDR cfghdr3_3;
+char RunLeft[16]; //A06E835B MY_MENU
+CFG_HDR cfghdr_j10;
+}mainConfig;
+
+
+
+
+
+///////////////////////////////////////////
+// MAIN VALUE
+int ACTIVE_KEY;
+char CSMText[32];
+int closeMenu;
+//==============================================================
+int Animation;
+unsigned int SpeedAnim;
+//==============================================================
+char MENU_PATH[64];
+char CURSOR_PATH[64];
+char IMGMENU_PATH[64];
+  //==============================================================
+char TextRight[16];
+char TextLeft[16];
+char RunLeft[16]; //A06E835B MY_MENU
+
+
 
 GBSTMR mytmr;
 
@@ -25,8 +94,6 @@ void TimerProc(void)
 {
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_UPDATE_STAT,&gipc);
 }
-
-
 
 int m; //коэффициент для формулы = isnewSGold
 
@@ -113,8 +180,8 @@ int MOnMsg(CSM_RAM *data, GBS_MSG *msg)
   
   if (msg->msg==MSG_RECONFIGURE_REQ)
   {
-    extern const char *successed_config_filename;
-    if (strcmp_nocase(successed_config_filename,(char *)msg->data0)==0)
+    extern const char *config_filename;
+    if (strcmp_nocase(config_filename,(char *)msg->data0)==0)
     {
       ShowMSG(1,(int)"Menu config updated!");
       LockSched();
@@ -215,10 +282,46 @@ void UpdateCSMname(void)
   wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"MenuDaemon");
 }
 
+void InitSettings()
+{
+// загрузка настроек
+ int mainConfigSize = sizeof(mainConfig);
+ mainConfig* mainConf = (mainConfig*)malloc(mainConfigSize);
+ extern const CFG_HDR cfghdr0;
+ int newCfgFile = InitConfig(mainConf, mainConfigSize, "4:\\Zbin\\etc\\Menu.bcfg",(void*)&cfghdr0);
+ if(newCfgFile!=-1)//Если конфиг есть
+{
+  ACTIVE_KEY=mainConf->ACTIVE_KEY;
+  sprintf(CSMText,"%s",mainConf->CSMText);
+  closeMenu=mainConf->closeMenu;
+  Animation=mainConf->Animation;
+  SpeedAnim=mainConf->SpeedAnim;
+//==============================================================
+  sprintf(MENU_PATH,"%s",mainConf->MENU_PATH);
+  sprintf(CURSOR_PATH,"%s",mainConf->CURSOR_PATH);
+  sprintf(IMGMENU_PATH,"%s",mainConf->IMGMENU_PATH);
+  //==============================================================
+  sprintf(TextRight,"%s",mainConf->TextRight);
+  sprintf(TextLeft,"%s",mainConf->TextLeft);
+  sprintf(RunLeft,"%s",mainConf->RunLeft);
+    
+  mfree(mainConf);
+}
+else
+  {
+     LockSched();
+     ShowMSG(1,(int)"Can't open configs!");
+     UnlockSched();
+     void ElfKiller(void);
+     SUBPROC((void *)ElfKiller);
+  }
+}
+
+
 void main()
 {
 
-  InitConfig();
+  InitSettings();
  
   CSM_RAM *save_cmpc;
   MAIN_CSM main_csm;
