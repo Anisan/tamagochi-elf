@@ -4,7 +4,7 @@
 
 ITEM *Itemtop;
 
-
+extern char IMGMENU_PATH[64];
 
 //extern void _WriteLog(char *buf);
 

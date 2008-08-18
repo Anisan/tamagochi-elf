@@ -1,13 +1,27 @@
 #include "..\inc\swilib.h"
+#include "..\inc\cfg_items.h"
 #include "conf_loader.h"
 #include "main.h"
 #include "Items.h"
+#include "revision.h"
 
 #define TMR_SECOND 216
 
 extern int strncmpNoCase(const char *s1,const char *s2,unsigned int n);
 extern int strcmp_nocase(const char *s1,const char *s2);
 
+extern int closeMenu;
+//==============================================================
+extern int Animation;
+extern unsigned int SpeedAnim;
+//==============================================================
+extern char MENU_PATH[64];
+extern char CURSOR_PATH[64];
+extern char IMGMENU_PATH[64];
+  //==============================================================
+extern char TextRight[16];
+extern char TextLeft[16];
+extern char RunLeft[16]; //A06E835B MY_MENU
 
 extern void ascii2ws(WSHDR* ws, const char* s);
 
@@ -17,6 +31,136 @@ extern void FreeItemsList();
 extern int TotalAnim(int curitem);
 extern char *IconAnim(int curitem, int pic);
 extern int TotalItems();
+
+//--------------------------------------------------------------------//
+//                           READ CONFIGS                             //
+//--------------------------------------------------------------------//
+
+//--------------------------------------------------------------------//
+//------------------------  Menu     CONFIG  -------------------------//
+//--------------------------------------------------------------------//
+
+typedef struct 
+{
+ //menu
+CFG_HDR cfghdr_m11;
+CFG_HDR cfghdr1_4;
+unsigned int Rows;
+CFG_HDR cfghdr1_5;
+unsigned int Columns;
+CFG_HDR cfghdr1_3;
+unsigned int Start;
+CFG_HDR cfghdr1_10;
+int cursorShow;
+CFG_HDR cfghdr1_6;
+RECT menuRect;
+CFG_HDR cfghdr1_7;
+int styleMenu;
+CFG_CBOX_ITEM cfgcbox0[2];
+CFG_HDR cfghdr_f11;
+  CFG_HDR cfghdrfl_h0;
+  unsigned int listNameFont;
+  CFG_HDR cfghdrfl_h1;
+  unsigned int listNameStyle;
+  CFG_HDR cfghdrfl_h2;
+  char listNameColor[4];
+  CFG_HDR cfghdrfl_8;
+  int descListShow;
+  CFG_CBOX_ITEM cfgcboxl0[3];
+  CFG_HDR cfghdrfl_h3;
+  unsigned int listDescFont;
+  CFG_HDR cfghdrfl_h4;
+  unsigned int listDescStyle;
+  CFG_HDR cfghdrfl_h5;
+  char listDescColor[4];
+CFG_HDR cfghdr_f10;
+CFG_HDR cfghdr_pi11;
+  CFG_HDR cfghdr1_8;
+  int position_type;
+  CFG_CBOX_ITEM cfgcboxpi0[2];
+  CFG_HDR cfghdr1_9;
+  unsigned int OffsetX;
+  CFG_HDR cfghdr1pi_10;
+  unsigned int OffsetY;
+CFG_HDR cfghdr_pi10;
+CFG_HDR cfghdr_m10;
+  //header
+CFG_HDR cfghdr_h11;
+  CFG_HDR cfghdr0_h1;
+  int headShow;
+  CFG_HDR cfghdr0_h11;
+  int headIconShow;
+  CFG_HDR cfghdr0_h2;
+  RECT headRect;
+  CFG_HDR cfghdr0_h3;
+  unsigned int headFont;
+  CFG_HDR cfghdr0_h4;
+  unsigned int headStyle;
+  CFG_HDR cfghdr0_h5;
+  char headColor[4];
+CFG_HDR cfghdr_h10;
+  //description
+CFG_HDR cfghdr_k11;
+  CFG_HDR cfghdr0_1 ;
+  int descShow;
+  CFG_HDR cfghdr0_2;
+  RECT descRect;
+  CFG_HDR cfghdr0_3;
+  unsigned int descFont;
+  CFG_HDR cfghdr0_4;
+  unsigned int descStyle;
+  CFG_HDR cfghdr0_5;
+  char deskColor[4];
+CFG_HDR cfghdr_k10;
+    //description
+CFG_HDR cfghdr_s11;
+  CFG_HDR cfghdrs1_8;
+  int scrollShow;
+  CFG_CBOX_ITEM cfgcboxs0[3];
+  CFG_HDR cfghdrs0_5;
+  char scrollColor[4];
+CFG_HDR cfghdr_s10;
+}menuConfig;
+
+
+
+
+
+///////////////////////////////////////////
+// Menu VALUE
+unsigned int Rows;
+unsigned int Columns;
+unsigned int Start;
+int cursorShow;
+RECT menuRect;
+int styleMenu;
+  unsigned int listNameFont;
+  unsigned int listNameStyle;
+  char listNameColor[4];
+  int descListShow;
+  unsigned int listDescFont;
+  unsigned int listDescStyle;
+  char listDescColor[4];
+  int position_type;
+  unsigned int OffsetX;
+  unsigned int OffsetY;
+  //header
+  int headShow;
+  int headIconShow;
+  RECT headRect;
+  unsigned int headFont;
+  unsigned int headStyle;
+  char headColor[4];
+  //description
+  int descShow;
+  RECT descRect;
+  unsigned int descFont;
+  unsigned int descStyle;
+  char descColor[4];
+    //SCROLL
+  int scrollShow;
+  char scrollColor[4];
+///////////////////////////////////////////////
 
 typedef struct
 {
@@ -138,10 +282,9 @@ void RunFile(char *fname)
 void RunSub(char *sub_name)
 {
       LockSched();
-      LoadItems(sub_name);
-      pos=0;
       LIST *sub=malloc(sizeof(LIST));
       sub->next=NULL;
+      sub->pos=pos;
       sprintf(sub->item,sub_name); 
       if(!MenuTop)
           MenuTop=sub; 
@@ -150,6 +293,8 @@ void RunSub(char *sub_name)
          sub->next=MenuTop;
          MenuTop=sub;
         }
+      LoadItems(sub_name);
+      //pos=0;
       UnlockSched();
 }
 
@@ -158,8 +303,8 @@ int Run(const char *s)
 {
   char *file=malloc(strlen(s)+1);
   strcpy(file,s);
-  
-  if (isSub(file)) RunSub(file);
+  int fsub=isSub(file);
+  if (fsub) RunSub(file);
   else
   if (isFile(file)) RunFile(file);
   else
@@ -169,6 +314,9 @@ int Run(const char *s)
      RunEntry(file);
 
   mfree(file);  
+  if ((closeMenu)&&(!fsub))
+  return(1);
+  else
   return(0);
 }
 // ----------------------------------------------
@@ -372,6 +520,7 @@ void NOnRedraw(GUI *data)
                    menuRect.y+CellY*i+((CellY/2-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*i+CellY/2,listNameFont,listNameStyle,listNameColor,0);
         ascii2ws(ws,Item->Description);
+        if (descListShow==0)
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*i+CellY/2+((CellY/2-GetFontYSIZE(listDescFont))/2),
                    menuRect.x2,menuRect.y+CellY*i+CellY,
@@ -414,6 +563,7 @@ void NOnRedraw(GUI *data)
                    menuRect.y+CellY*posi+((CellY/2-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*posi+CellY/2,listNameFont,listNameStyle,listNameColor,0);
         ascii2ws(ws,Item->Description);
+        if (descListShow!=2)
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*posi+CellY/2+((CellY/2-GetFontYSIZE(listDescFont))/2),
                    menuRect.x2,menuRect.y+CellY*posi+CellY,
@@ -442,7 +592,7 @@ void NOnRedraw(GUI *data)
       ascii2ws(ws,Item->Description);
       DrawString(ws,descRect.x,
                  descRect.y+((descRect.y2-descRect.y-GetFontYSIZE(descFont))/2),
-                 descRect.x2,descRect.y2,descFont,descStyle,deskColor,0);
+                 descRect.x2,descRect.y2,descFont,descStyle,descColor,0);
     }
   if (headShow)
     {
@@ -499,7 +649,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v0.7\n(c)Eraser\n%s at %s",__DATE__,__TIME__);
+        sprintf(s,"Menu v1.0 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
         ShowMSG(2,(int)s);
       }
      if (key=='#')
@@ -507,8 +657,23 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
         // редактирование настроек
         WSHDR *ws;
         ws=AllocWS(150);
-        extern const char *successed_config_filename;
-        str_2ws(ws,successed_config_filename,128);
+        extern const char *config_filename;
+        str_2ws(ws,config_filename,128);
+        ExecuteFile(ws,0,0);
+        FreeWS(ws);
+      }
+     if (key=='0')
+      {
+        // редактирование настроек
+        WSHDR *ws;
+        ws=AllocWS(150);
+        char config_name[128];
+        if (MenuTop)
+        sprintf(config_name, "%s.bcfg", MenuTop->item);
+        else
+        sprintf(config_name, "%s.bcfg",MENU_PATH);
+        
+        str_2ws(ws,config_name,128);
         ExecuteFile(ws,0,0);
         FreeWS(ws);
       }
@@ -551,6 +716,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       else
       {
         LIST *List=(LIST *)MenuTop->next;
+        int post=List->pos;
         mfree(MenuTop);
         MenuTop=List;
         LockSched();
@@ -558,7 +724,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
         LoadItems(MenuTop->item);
         else
         LoadItems(MENU_PATH);
-        pos=0;
+        pos=post;
         UnlockSched();
       }
       
@@ -566,7 +732,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       //return(0);
     case LEFT_SOFT:
       Run(RunLeft);
-      return(0);
+      return(closeMenu);
 /*      
     case '*':
       pos=9;
@@ -599,9 +765,9 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
   run:
     {
     ITEM *Item=GetItem(pos);
-    Run(Item->Run);
+    return Run(Item->Run);
     }
-    return(0);
+   
   }
   return(0);
 }
@@ -660,6 +826,86 @@ int LoadItems(const char *menu_path)
   UnlockSched();
   
   mfree(itemsF);
+  
+  // загрузка настроек
+ int menuConfigSize = sizeof(menuConfig);
+ menuConfig* menuConf = (menuConfig*)malloc(menuConfigSize);
+ extern const CFG_HDR cfghdr_m11;
+ char config_name[128];
+  sprintf(config_name, "%s.bcfg", fn);
+ int newCfgFile = InitConfig(menuConf, menuConfigSize, config_name,(void*)&cfghdr_m11);
+ if(newCfgFile!=-1)//Если конфиг есть
+{
+
+  Rows=menuConf->Rows;
+  Columns=menuConf->Columns;
+Start=menuConf->Start;
+cursorShow=menuConf->cursorShow;
+menuRect=menuConf->menuRect;
+styleMenu=menuConf->styleMenu;
+listNameFont=menuConf->listNameFont;
+listNameStyle=menuConf->listNameStyle;
+ listNameColor[0]=menuConf->listNameColor[0];
+ listNameColor[1]=menuConf->listNameColor[1];
+ listNameColor[2]=menuConf->listNameColor[2];
+ listNameColor[3]=menuConf->listNameColor[3];
+descListShow=menuConf->descListShow;
+listDescFont=menuConf->listDescFont;
+listDescStyle=menuConf->listDescStyle;
+ listDescColor[0]=menuConf->listDescColor[0];
+ listDescColor[1]=menuConf->listDescColor[1];
+ listDescColor[2]=menuConf->listDescColor[2];
+ listDescColor[3]=menuConf->listDescColor[3];
+position_type=menuConf->position_type;
+OffsetX=menuConf->OffsetX;
+OffsetY=menuConf->OffsetY;
+  //header
+headShow=menuConf->headShow;
+headIconShow=menuConf->headIconShow;
+headRect=menuConf->headRect;
+headFont=menuConf->headFont;
+headStyle=menuConf->headStyle;
+ headColor[0]=menuConf->headColor[0];
+ headColor[1]=menuConf->headColor[1];
+ headColor[2]=menuConf->headColor[2];
+ headColor[3]=menuConf->headColor[3];
+
+  //description
+descShow=menuConf->descShow;
+descRect=menuConf->descRect;
+descFont=menuConf->descFont;
+descStyle=menuConf->descStyle;
+ descColor[0]=menuConf->deskColor[0];
+ descColor[1]=menuConf->deskColor[1];
+ descColor[2]=menuConf->deskColor[2];
+ descColor[3]=menuConf->deskColor[3];
+
+    //SCROLL
+scrollShow=menuConf->scrollShow;
+ scrollColor[0]=menuConf->scrollColor[0];
+ scrollColor[1]=menuConf->scrollColor[1];
+ scrollColor[2]=menuConf->scrollColor[2];
+ scrollColor[3]=menuConf->scrollColor[3];
+
+  
+  mfree(menuConf);
+  
+  int w = menuRect.x2 - menuRect.x;
+  int h = menuRect.y2 - menuRect.y;
+  
+  CellX=w/Columns;
+  CellY=h/Rows;
+  
+  pos=Start;
+}
+else
+  {
+     LockSched();
+     ShowMSG(1,(int)"Can't open configs!");
+     UnlockSched();
+    // void ElfKiller(void);
+    // SUBPROC((void *)ElfKiller);
+  }
 //_WriteLog("Menu load");
   return c;
 }
@@ -746,27 +992,6 @@ const struct
   }
 };
 
-
-
-
-extern void TmrReset();
-
-void InitSettings()
-{
-// загрузка настроек
-  InitConfig();
- 
-  int w = menuRect.x2 - menuRect.x;
-  int h = menuRect.y2 - menuRect.y;
-  
-  CellX=w/Columns;
-  CellY=h/Rows;
-  
-  pos=Start;
-  TmrReset();
-  wsprintf((WSHDR*)&MENUCSM.maincsm_name,"%t",CSMText);
-}
-
 void ShowMenu(void)
 {
   unsigned int adr;
@@ -778,7 +1003,6 @@ void ShowMenu(void)
   MsgBox=(int(*)(int,int,MSG_BOX*,int))(adr+(short)((*(short*)adr|0xF800))*2+5);
   
   MAIN_CSM main_csm;
-  InitSettings();
   if (my_csm_id)
     CloseCSM(my_csm_id);
   my_csm_id=CreateCSM(&MENUCSM.maincsm,&main_csm,2);
