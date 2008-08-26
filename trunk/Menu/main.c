@@ -10,6 +10,8 @@
 #define isElka() (isnewSGold()==2)
 #define UNI_YDISP (isElka()?24:0)
 
+const char percent_t[]="%s";
+
 const char *config_filename="4:\\Zbin\\etc\\menu.bcfg";
 
 //--------------------------------------------------------------------//
@@ -39,8 +41,6 @@ CFG_HDR cfghdr_l20;
 CFG_HDR cfghdr_l11;
 CFG_HDR cfghdr2_2;
 char MENU_PATH[64];
-CFG_HDR cfghdr2_3;
-char CURSOR_PATH[64];
 CFG_HDR cfghdr2_4;
 char IMGMENU_PATH[64];
 CFG_HDR cfghdr_l10;
@@ -56,9 +56,6 @@ CFG_HDR cfghdr_j10;
 }mainConfig;
 
 
-
-
-
 ///////////////////////////////////////////
 // MAIN VALUE
 int ACTIVE_KEY;
@@ -69,17 +66,14 @@ int Animation;
 unsigned int SpeedAnim;
 //==============================================================
 char MENU_PATH[64];
-char CURSOR_PATH[64];
 char IMGMENU_PATH[64];
   //==============================================================
 char TextRight[16];
 char TextLeft[16];
-char RunLeft[16]; //A06E835B MY_MENU
-
+char RunLeft[16];// MY_MENU
 
 
 GBSTMR mytmr;
-
 
 const char ipc_my_name[]=IPC_TEXTINFO_NAME;
 const IPC_REQ gipc={
@@ -95,7 +89,13 @@ void TimerProc(void)
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_UPDATE_STAT,&gipc);
 }
 
-int m; //коэффициент для формулы = isnewSGold
+#pragma inline
+void ElfKiller()
+{
+  extern void kill_data(void *p, void (*func_p)(void *));
+  extern void *ELF_BEGIN;
+  kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+}
 
 #pragma inline=forced
 int toupper(int c)
@@ -118,14 +118,6 @@ int strcmp_nocase(const char *s1,const char *s2)
   int c;
   while(!(i=(c=toupper(*s1++))-toupper(*s2++))) if (!c) break;
   return(i);
-}
-
-#pragma inline
-void ElfKiller()
-{
-  extern void kill_data(void *p, void (*func_p)(void *));
-  extern void *ELF_BEGIN;
-  kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
 }
 
 void _WriteLog(char *buf)
@@ -291,19 +283,17 @@ void InitSettings()
  int newCfgFile = InitConfig(mainConf, mainConfigSize, "4:\\Zbin\\etc\\Menu.bcfg",(void*)&cfghdr0);
  if(newCfgFile!=-1)//Если конфиг есть
 {
+
   ACTIVE_KEY=mainConf->ACTIVE_KEY;
-  sprintf(CSMText,"%s",mainConf->CSMText);
   closeMenu=mainConf->closeMenu;
   Animation=mainConf->Animation;
   SpeedAnim=mainConf->SpeedAnim;
-//==============================================================
-  sprintf(MENU_PATH,"%s",mainConf->MENU_PATH);
-  sprintf(CURSOR_PATH,"%s",mainConf->CURSOR_PATH);
-  sprintf(IMGMENU_PATH,"%s",mainConf->IMGMENU_PATH);
-  //==============================================================
-  sprintf(TextRight,"%s",mainConf->TextRight);
-  sprintf(TextLeft,"%s",mainConf->TextLeft);
-  sprintf(RunLeft,"%s",mainConf->RunLeft);
+  sprintf(CSMText,percent_t,mainConf->CSMText);
+  sprintf(MENU_PATH,percent_t,mainConf->MENU_PATH);
+  sprintf(IMGMENU_PATH,percent_t,mainConf->IMGMENU_PATH);
+  sprintf(TextRight,percent_t,mainConf->TextRight);
+  sprintf(TextLeft,percent_t,mainConf->TextLeft);
+  sprintf(RunLeft,percent_t,mainConf->RunLeft);
     
   mfree(mainConf);
 }

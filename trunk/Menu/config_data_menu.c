@@ -1,6 +1,7 @@
 #include "..\inc\swilib.h"
 #include "..\inc\cfg_items.h"
 
+
 //==============================================================
  //menu
   __root const CFG_HDR cfghdr_m11={CFG_LEVEL,"Menu",1,0};
@@ -16,6 +17,9 @@
 
   __root const CFG_HDR cfghdr1_10 = {CFG_CHECKBOX, "Show cursor", 0, 2};
   __root const int _cursorShow = 1;
+  
+  __root const CFG_HDR cfghdr2_3={CFG_STR_UTF8,"Path cursor",0,63};
+  __root const char _CURSOR_PATH[64]="4:\\ZBin\\Menu\\cursor.png";
   
   __root const CFG_HDR cfghdr1_6={CFG_RECT, "Position menu", 0, 0};
   __root const RECT _menuRect = {0, 48, 240, 320-32-16};

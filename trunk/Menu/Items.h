@@ -1,4 +1,5 @@
-
+#ifndef _ITEMS_H_
+  #define _ITEMS_H_
 
 typedef struct
 {
@@ -19,3 +20,11 @@ typedef struct
 }ITEM;
 
 
+void AddToItem(char *name,char *description,char *iconsmall,char *iconbig, char *run);
+ITEM *GetItem(int curitem);
+void FreeItemsList();
+int TotalAnim(int curitem);
+char *IconAnim(int curitem, int pic);
+int TotalItems();
+
+#endif
