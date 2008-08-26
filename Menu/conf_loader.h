@@ -9,8 +9,6 @@
 // Вызвать обязательно перед обращением к переменным конфигурации
 //void InitConfig();
 int InitConfig(void* cfgstruct, int len, char *path, void* bcfg);
-
-
 int SaveConfigData(const char *fname);
 
 #endif

@@ -1,12 +1,11 @@
 #include "..\inc\swilib.h"
 #include "Items.h"
-#include "main.h"
-
-ITEM *Itemtop;
+//#include "main.h"
 
 extern char IMGMENU_PATH[64];
+extern const char percent_t[];
 
-//extern void _WriteLog(char *buf);
+ITEM *Itemtop;
 
 void AddToItem(char *name,char *description,char *iconsmall,char *iconbig, char *run)
 {
@@ -46,7 +45,7 @@ ITEM *bmk=malloc(sizeof(ITEM));
             if (j==strlen(tmp)-1) icon[cs++]=tmp[j];
             icon[cs++]=0;
             
-            sprintf(tmp2,"%s",icon);
+            sprintf(tmp2,percent_t,icon);
             s=tmp2;
                        
             if ((s[2]!='\\')&&((s[(strlen(s))-3]=='.')||//Проверяем строку на наличие символов '\\' и '.'

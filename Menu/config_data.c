@@ -1,6 +1,5 @@
 #include "..\inc\swilib.h"
 #include "..\inc\cfg_items.h"
-#include "main.h"
 
 //Конфигурация
 
@@ -39,9 +38,6 @@ __root const CFG_HDR cfghdr_l11={CFG_LEVEL,"Paths",1,0};
   __root const CFG_HDR cfghdr2_2={CFG_STR_UTF8,"Path menu cfg",0,63};
   __root const char _MENU_PATH[64]=DEFAULT_DISK ":\\ZBin\\Menu\\Menu.cfg";
   
-  __root const CFG_HDR cfghdr2_3={CFG_STR_UTF8,"Path cursor",0,63};
-  __root const char _CURSOR_PATH[64]=DEFAULT_DISK ":\\ZBin\\Menu\\cursor.png";
-
   __root const CFG_HDR cfghdr2_4={CFG_STR_UTF8,"Path img menu",0,63};
   __root const char _IMGMENU_PATH[64]=DEFAULT_DISK ":\\ZBin\\Menu\\img\\";
 

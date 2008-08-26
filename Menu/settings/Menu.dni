@@ -1,8 +1,8 @@
 [Disassemble mode]
 mode=0
 [Breakpoints]
-Bp0=_ "Code" "{$PROJ_DIR$\config_data.c}.24.1@1" 1 0 0 0 "" 0 ""
-Bp1=_ "Code" "{$PROJ_DIR$\main.c}.150.1@1" 1 0 0 0 "" 0 ""
+Bp0=_ "Code" "{$PROJ_DIR$\config_data.c}.23.1@1" 1 0 0 0 "" 0 ""
+Bp1=_ "Code" "{$PROJ_DIR$\main.c}.142.1@1" 1 0 0 0 "" 0 ""
 Count=2
 [Interrupts]
 Enabled=1

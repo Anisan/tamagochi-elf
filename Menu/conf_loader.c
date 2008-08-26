@@ -2,6 +2,9 @@
 #include "..\inc\cfg_items.h"
 #include "conf_loader.h"
 
+extern const char percent_t[];
+
+
 #pragma segment="CONFIG_C"
 int SaveConfigData(const char *fname)
 {
@@ -41,9 +44,6 @@ int LoadConfigData(const char *fname, void* cfg, int len, void* bcfg)
 
   if (result == -1)
   {
-    //extern const CFG_HDR cfghdr0; //first var in CONFIG
-    //void* bcfg=(void*)&cfghdr0;
-    //unsigned int lenbcfg=(int)__segment_end("CONFIG_C")-(int)__segment_begin("CONFIG_C");
     if ((f=fopen(fname,A_ReadWrite+A_Create+A_Truncate,P_READ+P_WRITE,&ul))!=-1)
     {
       if (fwrite(f,bcfg,len,&ul)==len)
@@ -63,7 +63,7 @@ int InitConfig(void* cfgstruct, int len, char *path, void* bcfg)
 {
   int result;
   char config_name[128];
-  sprintf(config_name, "%s", path);
+  sprintf(config_name, percent_t, path);
   result = LoadConfigData(config_name,  cfgstruct, len, bcfg);
   return result;
 }

@@ -1,36 +1,41 @@
 #include "..\inc\swilib.h"
 #include "..\inc\cfg_items.h"
 #include "conf_loader.h"
-#include "main.h"
 #include "Items.h"
+#include "main.h"
 #include "revision.h"
+
 
 #define TMR_SECOND 216
 
-extern int strncmpNoCase(const char *s1,const char *s2,unsigned int n);
-extern int strcmp_nocase(const char *s1,const char *s2);
+extern const char percent_t[];
 
+extern void _WriteLog(char *buf);
+
+//extern int ACTIVE_KEY;
+extern char CSMText[32];
 extern int closeMenu;
 //==============================================================
 extern int Animation;
 extern unsigned int SpeedAnim;
 //==============================================================
 extern char MENU_PATH[64];
-extern char CURSOR_PATH[64];
-extern char IMGMENU_PATH[64];
+//extern char IMGMENU_PATH[64];
   //==============================================================
 extern char TextRight[16];
 extern char TextLeft[16];
-extern char RunLeft[16]; //A06E835B MY_MENU
+extern char RunLeft[16];
+
+// для чтения файла меню
+typedef struct{
+  char Text[32];
+  char Description[128];
+  char IconBig[128];
+  char IconSmall[128];
+  char Run[128];
+} TMenuPoint;
 
 extern void ascii2ws(WSHDR* ws, const char* s);
-
-extern void AddToItem(char *name,char *description,char *iconsmall,char *iconbig, char *run);
-extern ITEM *GetItem(int curitem);
-extern void FreeItemsList();
-extern int TotalAnim(int curitem);
-extern char *IconAnim(int curitem, int pic);
-extern int TotalItems();
 
 //--------------------------------------------------------------------//
 //                           READ CONFIGS                             //
@@ -52,6 +57,8 @@ CFG_HDR cfghdr1_3;
 unsigned int Start;
 CFG_HDR cfghdr1_10;
 int cursorShow;
+CFG_HDR cfghdr2_3;
+char CURSOR_PATH[64];
 CFG_HDR cfghdr1_6;
 RECT menuRect;
 CFG_HDR cfghdr1_7;
@@ -132,6 +139,7 @@ unsigned int Rows;
 unsigned int Columns;
 unsigned int Start;
 int cursorShow;
+char CURSOR_PATH[64];
 RECT menuRect;
 int styleMenu;
   unsigned int listNameFont;
@@ -219,6 +227,11 @@ int isFile(char *fname)
   return (strstr(fname,".")!=0);
 }
 
+int isDir(char *fname)
+{
+  return (strstr(fname,":")!=0);
+}
+
 int isSub(char *fname)
 {
   return (strstr(fname,".cfg")!=0);
@@ -278,6 +291,17 @@ void RunFile(char *fname)
   FreeWS(ws);
 }
 
+void RunDir(char *dirname)
+{
+  //_WriteLog("dir malloc");
+  NativeExplorerData *NatData=malloc(sizeof(NativeExplorerData));
+  //_WriteLog("dir set dir");
+  str_2ws(NatData->full_filename,dirname,strlen(dirname)+1);
+  //_WriteLog("dir start natexp");
+  StartNativeExplorer(NatData);
+  mfree(NatData);
+}
+
 
 void RunSub(char *sub_name)
 {
@@ -308,6 +332,8 @@ int Run(const char *s)
   else
   if (isFile(file)) RunFile(file);
   else
+  if (isDir(file)) RunDir(file);
+  else  
   if (strstr(file,"_")!=0)  
      RunShort(file); 
     else 
@@ -485,7 +511,9 @@ void NOnRedraw(GUI *data)
       }
       
       int posi=0;
-      for(int i=0;i<Rows;i++)
+      int list=Rows;
+      if (Rows>TI) list=TI;
+      for(int i=0;i<list;i++)
       if ((i+delta)!=pos) 
       {
        ITEM *Item=GetItem(i+delta);
@@ -515,16 +543,26 @@ void NOnRedraw(GUI *data)
         DrawImg(x,y,icon);
         
         WSHDR *ws=AllocWS(128);
+        if (descListShow==0)
+        {
         ascii2ws(ws,Item->Text);
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*i+((CellY/2-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*i+CellY/2,listNameFont,listNameStyle,listNameColor,0);
         ascii2ws(ws,Item->Description);
-        if (descListShow==0)
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*i+CellY/2+((CellY/2-GetFontYSIZE(listDescFont))/2),
                    menuRect.x2,menuRect.y+CellY*i+CellY,
                    listDescFont,listDescStyle,listDescColor,0);
+        }
+        else
+        {
+        ascii2ws(ws,Item->Text);
+        DrawString(ws,2*x+GetImgWidth(icon),
+                   menuRect.y+CellY*i+((CellY-GetFontYSIZE(listNameFont))/2),
+                   menuRect.x2,menuRect.y+CellY*i+CellY,listNameFont,listNameStyle,listNameColor,0);
+        }
+        
       }
       else posi=i;
       
@@ -638,7 +676,8 @@ void MGHook(GUI *gui, int cmd)
 }
 
 
-
+extern void ShowEditor();
+extern char path_menu[128];
 
 int MOnKey(GUI *gui, GUI_MSG *msg)
 {
@@ -649,22 +688,13 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v1.0 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
+        sprintf(s,"Menu v1.1 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
         ShowMSG(2,(int)s);
+        return(0);
       }
      if (key=='#')
       {
-        // редактирование настроек
-        WSHDR *ws;
-        ws=AllocWS(150);
-        extern const char *config_filename;
-        str_2ws(ws,config_filename,128);
-        ExecuteFile(ws,0,0);
-        FreeWS(ws);
-      }
-     if (key=='0')
-      {
-        // редактирование настроек
+         // редактирование настроек
         WSHDR *ws;
         ws=AllocWS(150);
         char config_name[128];
@@ -676,12 +706,27 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
         str_2ws(ws,config_name,128);
         ExecuteFile(ws,0,0);
         FreeWS(ws);
+        return(0);
+      }
+     if (key=='0')
+      {
+        // редактирование пунктов
+        //WSHDR *ws;
+        //ws=AllocWS(150);
+        char config_name[128];
+        if (MenuTop)
+        sprintf(config_name, percent_t, MenuTop->item);
+        else
+        sprintf(config_name, percent_t,MENU_PATH);
+        sprintf(path_menu,percent_t,config_name);
+        ShowEditor();
+        return(0);
       }
      
      
   }
   
-  if(msg->gbsmsg->msg==KEY_DOWN)
+  if(msg->gbsmsg->msg==KEY_UP)
   {
            
     
@@ -716,7 +761,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       else
       {
         LIST *List=(LIST *)MenuTop->next;
-        int post=List->pos;
+        int post=MenuTop->pos;
         mfree(MenuTop);
         MenuTop=List;
         LockSched();
@@ -733,7 +778,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
     case LEFT_SOFT:
       Run(RunLeft);
       return(closeMenu);
-/*      
+      
     case '*':
       pos=9;
       goto run;
@@ -744,13 +789,13 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       pos=11;
       goto run;
    default:
-      if(key>='1' && key<='9')
+      if((key>='1') && (key<='9'))
       {
         pos=key-1-'0';
         goto run;
       }
       else
-        return(0);*/
+        return(0);
     }
       
     if(pos<0)
@@ -764,6 +809,12 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
     return(0);
   run:
     {
+    if (pos>= TotalItems()) 
+    {
+      if(pos>TotalItems()-1)
+      pos=0;
+      return(0);  
+    }
     ITEM *Item=GetItem(pos);
     return Run(Item->Run);
     }
@@ -841,6 +892,8 @@ int LoadItems(const char *menu_path)
   Columns=menuConf->Columns;
 Start=menuConf->Start;
 cursorShow=menuConf->cursorShow;
+sprintf(CURSOR_PATH,percent_t,menuConf->CURSOR_PATH);
+
 menuRect=menuConf->menuRect;
 styleMenu=menuConf->styleMenu;
 listNameFont=menuConf->listNameFont;
@@ -938,9 +991,41 @@ void maincsm_onclose(CSM_RAM *csm)
   my_csm_id=0;
 }
 
+extern const int MSG_RECONFIGURE_MENU;
+
 int maincsm_onmessage(CSM_RAM *data, GBS_MSG *msg)
 {
   MAIN_CSM *csm=(MAIN_CSM*)data;
+  if (msg->msg==MSG_RECONFIGURE_REQ)
+  {
+        char config_name[128];
+        if (MenuTop)
+        sprintf(config_name, "%s.bcfg", MenuTop->item);
+        else
+        sprintf(config_name, "%s.bcfg",MENU_PATH);
+        
+     if (strcmp_nocase(config_name,(char *)msg->data0)==0)
+    {
+      ShowMSG(1,(int)"Menu config updated!");
+        LockSched();
+        if (MenuTop)
+        LoadItems(MenuTop->item);
+        else
+        LoadItems(MENU_PATH);
+        UnlockSched();
+    }
+  }
+    if (msg->msg==MSG_RECONFIGURE_MENU)
+  {
+      ShowMSG(1,(int)"Menu updated!");
+        LockSched();
+        if (MenuTop)
+        LoadItems(MenuTop->item);
+        else
+        LoadItems(MENU_PATH);
+        UnlockSched();
+    
+  }
   if (msg->msg==MSG_CSM_DESTROYED)
   {
     RefreshGUI();
@@ -992,6 +1077,11 @@ const struct
   }
 };
 
+static void UpdateCSMMenu(void)
+{
+  wsprintf((WSHDR *)(&MENUCSM.maincsm_name),CSMText);
+}
+
 void ShowMenu(void)
 {
   unsigned int adr;
@@ -1005,5 +1095,6 @@ void ShowMenu(void)
   MAIN_CSM main_csm;
   if (my_csm_id)
     CloseCSM(my_csm_id);
+  UpdateCSMMenu();
   my_csm_id=CreateCSM(&MENUCSM.maincsm,&main_csm,2);
 }
