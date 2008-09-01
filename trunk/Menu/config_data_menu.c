@@ -24,10 +24,11 @@
   __root const CFG_HDR cfghdr1_6={CFG_RECT, "Position menu", 0, 0};
   __root const RECT _menuRect = {0, 48, 240, 320-32-16};
   
-  __root const CFG_HDR cfghdr1_7={CFG_CBOX, "Style menu", 0, 2};
+  __root const CFG_HDR cfghdr1_7={CFG_CBOX, "Style menu", 0, 3};
   __root const int _styleMenu = 0;
-  __root const CFG_CBOX_ITEM cfgcbox0[2] = {"Matrix", "List"};
+  __root const CFG_CBOX_ITEM cfgcbox0[3] = {"Matrix", "List","Circle"};
 
+  ////////////////////////////////////
   __root const CFG_HDR cfghdr_f11={CFG_LEVEL,"Settings list",1,0};
 
     __root const CFG_HDR cfghdrfl_h0={CFG_UINT,"Name font",0,65535};
@@ -53,7 +54,17 @@
     __root const char _listDescColor[4]={0xFF,0xFF,0xFF,0x64};
   
   __root const CFG_HDR cfghdr_f10={CFG_LEVEL,"",0,0};
+  
+  //////////////////
+  __root const CFG_HDR cfghdr_crc11={CFG_LEVEL,"Settings circle",1,0};
 
+  __root const CFG_HDR cfghdrcrc_5 = {CFG_UINT, "Radius", 0, 240};
+  __root const unsigned int _Radius = 100;
+
+ 
+  __root const CFG_HDR cfghdr_crc10={CFG_LEVEL,"",0,0};
+
+  //////////////////////////
   __root const CFG_HDR cfghdr_pi11={CFG_LEVEL,"Position icon",1,0};
 
     __root const CFG_HDR cfghdr1_8={CFG_CBOX, "Type", 0, 2};

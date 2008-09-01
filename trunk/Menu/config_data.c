@@ -45,14 +45,14 @@ __root const CFG_HDR cfghdr_l10={CFG_LEVEL,"",0,0};
   //==============================================================
 __root const CFG_HDR cfghdr_j11={CFG_LEVEL,"Softkey",1,0};
 
-  __root const CFG_HDR cfghdr3_1={CFG_STR_WIN1251,"Text right soft ",0,15};
-  __root const char _TextRight[16]="Назад";
+  __root const CFG_HDR cfghdr3_1={CFG_STR_WIN1251,"Text right soft ",0,31};
+  __root const char _TextRight[32]="Назад";
   
-  __root const CFG_HDR cfghdr3_2={CFG_STR_WIN1251,"Text left soft",0,15};
-  __root const char _TextLeft[16]="Мое меню";
+  __root const CFG_HDR cfghdr3_2={CFG_STR_WIN1251,"Text left soft",0,31};
+  __root const char _TextLeft[32]="Мое меню";
 
-  __root const CFG_HDR cfghdr3_3={CFG_STR_WIN1251,"Run left soft",0,15};
-  __root const char _RunLeft[16]="A06E835B"; //A06E835B MY_MENU
+  __root const CFG_HDR cfghdr3_3={CFG_STR_WIN1251,"Run left soft",0,63};
+  __root const char _RunLeft[64]="A06E835B"; //A06E835B MY_MENU
 
 __root const CFG_HDR cfghdr_j10={CFG_LEVEL,"",0,0};
   //====================================================

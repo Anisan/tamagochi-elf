@@ -3,10 +3,12 @@
 #include "conf_loader.h"
 #include "Items.h"
 #include "main.h"
+#include "math.h"
 #include "revision.h"
 
 
 #define TMR_SECOND 216
+#define PI 3.1415926535
 
 extern const char percent_t[];
 
@@ -22,9 +24,9 @@ extern unsigned int SpeedAnim;
 extern char MENU_PATH[64];
 //extern char IMGMENU_PATH[64];
   //==============================================================
-extern char TextRight[16];
-extern char TextLeft[16];
-extern char RunLeft[16];
+extern char TextRight[32];
+extern char TextLeft[32];
+extern char RunLeft[64];
 
 // для чтения файла меню
 typedef struct{
@@ -63,7 +65,7 @@ CFG_HDR cfghdr1_6;
 RECT menuRect;
 CFG_HDR cfghdr1_7;
 int styleMenu;
-CFG_CBOX_ITEM cfgcbox0[2];
+CFG_CBOX_ITEM cfgcbox0[3];
 CFG_HDR cfghdr_f11;
   CFG_HDR cfghdrfl_h0;
   unsigned int listNameFont;
@@ -81,6 +83,10 @@ CFG_HDR cfghdr_f11;
   CFG_HDR cfghdrfl_h5;
   char listDescColor[4];
 CFG_HDR cfghdr_f10;
+CFG_HDR cfghdr_crc11;
+CFG_HDR cfghdrcrc_5;
+unsigned int Radius;
+CFG_HDR cfghdr_crc10;
 CFG_HDR cfghdr_pi11;
   CFG_HDR cfghdr1_8;
   int position_type;
@@ -149,6 +155,7 @@ int styleMenu;
   unsigned int listDescFont;
   unsigned int listDescStyle;
   char listDescColor[4];
+  unsigned int Radius;
   int position_type;
   unsigned int OffsetX;
   unsigned int OffsetY;
@@ -293,13 +300,26 @@ void RunFile(char *fname)
 
 void RunDir(char *dirname)
 {
-  //_WriteLog("dir malloc");
-  NativeExplorerData *NatData=malloc(sizeof(NativeExplorerData));
-  //_WriteLog("dir set dir");
-  str_2ws(NatData->full_filename,dirname,strlen(dirname)+1);
-  //_WriteLog("dir start natexp");
-  StartNativeExplorer(NatData);
-  mfree(NatData);
+
+NativeExplorerData *NatData=malloc(sizeof(NativeExplorerData));
+zeromem(NatData,sizeof(NativeExplorerData));  
+NatData->mode=0;
+NatData->dir_enum=0x26;
+NatData->is_exact_dir=1;
+
+  NatData->file_name=AllocWS(256);
+  NatData->path_to_file=AllocWS(256);
+  str_2ws(NatData->path_to_file,dirname,strlen(dirname)+1);
+  NatData->full_filename=AllocWS(256);
+  //str_2ws(NatData->full_filename,dirname,strlen(dirname)+1);
+    
+StartNativeExplorer(NatData);
+  
+FreeWS(NatData->file_name);
+FreeWS(NatData->path_to_file);
+FreeWS(NatData->full_filename);
+mfree(NatData);
+
 }
 
 
@@ -394,6 +414,16 @@ void NOnRedraw(GUI *data)
   int y=0;
   int cx=0;
   int cy=0;
+  
+  if (TI==0)
+  {
+      WSHDR *ws=AllocWS(128);
+      ascii2ws(ws,"Empty");
+      DrawString(ws,menuRect.x,
+                 menuRect.y+((menuRect.y2-headRect.y-GetFontYSIZE(headFont))/2),
+                 menuRect.x2,menuRect.y2,headFont,2,headColor,0);
+    return;
+  }
   
   switch (styleMenu)
   {
@@ -566,7 +596,7 @@ void NOnRedraw(GUI *data)
       }
       else posi=i;
       
-             ITEM *Item=GetItem(posi+delta);
+        ITEM *Item=GetItem(posi+delta);
         if ((!Animation)||((posi+delta)!=pos))
           icon=CalcPic(Item->IconBig);
          else
@@ -597,15 +627,25 @@ void NOnRedraw(GUI *data)
         
         WSHDR *ws=AllocWS(128);
         ascii2ws(ws,Item->Text);
+        if (descListShow!=2)
+        {
+        ascii2ws(ws,Item->Text);
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*posi+((CellY/2-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*posi+CellY/2,listNameFont,listNameStyle,listNameColor,0);
         ascii2ws(ws,Item->Description);
-        if (descListShow!=2)
         DrawString(ws,2*x+GetImgWidth(icon),
                    menuRect.y+CellY*posi+CellY/2+((CellY/2-GetFontYSIZE(listDescFont))/2),
                    menuRect.x2,menuRect.y+CellY*posi+CellY,
                    listDescFont,listDescStyle,listDescColor,0);
+        }
+        else
+        {
+        ascii2ws(ws,Item->Text);
+        DrawString(ws,2*x+GetImgWidth(icon),
+                   menuRect.y+CellY*posi+((CellY-GetFontYSIZE(listNameFont))/2),
+                   menuRect.x2,menuRect.y+CellY*posi+CellY,listNameFont,listNameStyle,listNameColor,0);
+        }
 
       
       // scrollbar
@@ -619,8 +659,68 @@ void NOnRedraw(GUI *data)
    
       break;
     }
+    // отрисовка круга  
+    case 2:
+    {
+      int posi=0;
+      float rad=2*PI/TI;
+      int centerX=(menuRect.x2-menuRect.x)/2;
+      int centerY=(menuRect.y2-menuRect.y)/2;
+      float ugol=-PI/2;
+      cx=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(cursor)/2;
+      cy=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(cursor)/2;
+
+      for(int i=0;i<TI;i++)
+      if (i!=pos) 
+      {
+       ITEM *Item=GetItem(i);
+        if ((!Animation)||((i)!=pos))
+          icon=CalcPic(Item->IconBig);
+         else
+          if (TotalAnim(pos)==0) 
+          icon=CalcPic(Item->IconBig);
+          else
+          icon=CalcPic(IconAnim(pos,pic_n));
+    /* --==Формула==-- */
+        
+        ugol=(i*rad)-PI/2-pos*rad;
+        x=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(icon)/2;
+        y=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(icon)/2;
+        DrawImg(x,y,icon);
+      }
+      else
+      posi=i;
+        ITEM *Item=GetItem(posi);
+        if (!Animation)
+          icon=CalcPic(Item->IconBig);
+         else
+          if (TotalAnim(pos)==0) 
+          icon=CalcPic(Item->IconBig);
+          else
+          icon=CalcPic(IconAnim(pos,pic_n));
+    /* --==Формула==-- */
+        
+        ugol=(posi*rad)-PI/2-pos*rad;
+        x=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(icon)/2;
+        y=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(icon)/2;
+        
+       if(cursorShow)
+        DrawImg(cx,cy,cursor);
+
+        DrawImg(x,y,icon);
+      
+      // scrollbar
+      if ((scrollShow==1)||((TI>Rows)&&(scrollShow==0)))
+      {
+        int sh=(menuRect.y2-menuRect.y)/TI;
+        DrawLine(menuRect.x2-1,menuRect.y,menuRect.x2-1,menuRect.y2, LINE_DOTTED,scrollColor);
+        DrawRectangle(menuRect.x2,menuRect.y+sh*pos,menuRect.x2-2,menuRect.y+sh*pos+sh,
+                      0,0,scrollColor);
+      }
+   
+      break;
+    }
   }
-  
  
   
   ITEM *Item=GetItem(pos);
@@ -688,7 +788,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v1.1 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
+        sprintf(s,"Menu v1.3 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
         ShowMSG(2,(int)s);
         return(0);
       }
@@ -711,8 +811,6 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='0')
       {
         // редактирование пунктов
-        //WSHDR *ws;
-        //ws=AllocWS(150);
         char config_name[128];
         if (MenuTop)
         sprintf(config_name, percent_t, MenuTop->item);
@@ -722,14 +820,10 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
         ShowEditor();
         return(0);
       }
-     
-     
   }
   
   if(msg->gbsmsg->msg==KEY_UP)
   {
-           
-    
     switch(key)
     {
     case ENTER_BUTTON:
@@ -809,9 +903,11 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
     return(0);
   run:
     {
-    if (pos>= TotalItems()) 
+    int ti=TotalItems();
+    if (ti==0) return 0;
+    if (pos>=ti) 
     {
-      if(pos>TotalItems()-1)
+      if(pos>ti-1)
       pos=0;
       return(0);  
     }
@@ -852,6 +948,7 @@ int LoadItems(const char *menu_path)
   int fsize;
   int c;
   
+  FreeItemsList();
 
   fn=(char *)menu_path;
   if (GetFileStats(fn,&stat,&ul)==-1) return 0;
@@ -865,7 +962,6 @@ int LoadItems(const char *menu_path)
 //  _WriteLog(msg);
 
   LockSched();
-  FreeItemsList();
   TMenuPoint *itemsF;
   itemsF=malloc(c*sizeof(TMenuPoint));
   for (i=0;i<c;i++)
@@ -909,6 +1005,7 @@ listDescStyle=menuConf->listDescStyle;
  listDescColor[1]=menuConf->listDescColor[1];
  listDescColor[2]=menuConf->listDescColor[2];
  listDescColor[3]=menuConf->listDescColor[3];
+Radius=menuConf->Radius;
 position_type=menuConf->position_type;
 OffsetX=menuConf->OffsetX;
 OffsetY=menuConf->OffsetY;
@@ -954,12 +1051,9 @@ scrollShow=menuConf->scrollShow;
 else
   {
      LockSched();
-     ShowMSG(1,(int)"Can't open configs!");
+     ShowMSG(1,(int)"Can't open config menu!");
      UnlockSched();
-    // void ElfKiller(void);
-    // SUBPROC((void *)ElfKiller);
   }
-//_WriteLog("Menu load");
   return c;
 }
 
@@ -1079,7 +1173,10 @@ const struct
 
 static void UpdateCSMMenu(void)
 {
-  wsprintf((WSHDR *)(&MENUCSM.maincsm_name),CSMText);
+  WSHDR *ws=AllocWS(256);
+  ascii2ws(ws,CSMText);
+  wsprintf((WSHDR *)(&MENUCSM.maincsm_name),"%w",ws);
+  FreeWS(ws);
 }
 
 void ShowMenu(void)
