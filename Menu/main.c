@@ -47,11 +47,11 @@ CFG_HDR cfghdr_l10;
   //==============================================================
 CFG_HDR cfghdr_j11;
 CFG_HDR cfghdr3_1;
-char TextRight[16];
+char TextRight[32];
 CFG_HDR cfghdr3_2;
-char TextLeft[16];
+char TextLeft[32];
 CFG_HDR cfghdr3_3;
-char RunLeft[16]; //A06E835B MY_MENU
+char RunLeft[64]; //A06E835B MY_MENU
 CFG_HDR cfghdr_j10;
 }mainConfig;
 
@@ -68,9 +68,9 @@ unsigned int SpeedAnim;
 char MENU_PATH[64];
 char IMGMENU_PATH[64];
   //==============================================================
-char TextRight[16];
-char TextLeft[16];
-char RunLeft[16];// MY_MENU
+char TextRight[32];
+char TextLeft[32];
+char RunLeft[64];// MY_MENU
 
 
 GBSTMR mytmr;
