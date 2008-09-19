@@ -60,7 +60,19 @@
 
   __root const CFG_HDR cfghdrcrc_5 = {CFG_UINT, "Radius", 0, 240};
   __root const unsigned int _Radius = 100;
+  
+  __root const CFG_HDR cfghcrc_9={CFG_CBOX, "Position cursor", 0, 4};
+  __root const int _position_cursor = 0;
+  __root const CFG_CBOX_ITEM cfgcboxcrc_0[4] = {"Up", "Down", "Left", "Right"};
+  
+  __root const CFG_HDR cfghdrcrc_6 = {CFG_CHECKBOX, "Enable animation", 0, 2};
+  __root const int _AnimationCirc = 1;
+    
+  __root const CFG_HDR cfghdrcrc_7 = {CFG_UINT, "Speed animation (1/100s)", 0, 6000};
+  __root const unsigned int _SpeedAnimCirc = 2;
 
+  __root const CFG_HDR cfghdrcrc_8 = {CFG_UINT, "Step animation", 0, 90};
+  __root const unsigned int _GradAnimCirc = 5;
  
   __root const CFG_HDR cfghdr_crc10={CFG_LEVEL,"",0,0};
 

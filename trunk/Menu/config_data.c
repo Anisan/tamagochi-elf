@@ -9,15 +9,13 @@
 #define DEFAULT_DISK "0"
 #endif
 
-
-
  __root const CFG_HDR cfghdr0={CFG_UINT,"Hotkey (dec)",0,99};
  __root const int _ACTIVE_KEY=26;
  
  __root const CFG_HDR cfghdr7_2={CFG_STR_WIN1251,"CSM name",0,31};
  __root const char _CSMText[32]="Главное меню";
  
- __root const CFG_HDR cfghdrm_m1 = {CFG_CHECKBOX, "Closed menu after choice", 0, 2};
+ __root const CFG_HDR cfghdrm_m1 = {CFG_CHECKBOX, "Close menu after choice", 0, 2};
  __root const int _closeMenu = 0;
 
 
@@ -27,8 +25,8 @@ __root const CFG_HDR cfghdr_l21={CFG_LEVEL,"Animation",1,0};
   __root const CFG_HDR cfghdr10_1 = {CFG_CHECKBOX, "Enable", 0, 2};
   __root const int _Animation = 1;
     
-  __root const CFG_HDR cfghdr10_2 = {CFG_UINT, "Speed 1/10s", 0, 600};
-  __root const unsigned int _SpeedAnim = 2;
+  __root const CFG_HDR cfghdr10_2 = {CFG_UINT, "Speed 1/100s", 0, 6000};
+  __root const unsigned int _SpeedAnim = 20;
 
 __root const CFG_HDR _cfghdr_l20={CFG_LEVEL,"",0,0};
   
