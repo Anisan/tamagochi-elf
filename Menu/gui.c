@@ -86,6 +86,15 @@ CFG_HDR cfghdr_f10;
 CFG_HDR cfghdr_crc11;
 CFG_HDR cfghdrcrc_5;
 unsigned int Radius;
+CFG_HDR cfghcrc_9;
+int _position_cursor;
+CFG_CBOX_ITEM cfgcboxcrc_0[4];
+CFG_HDR cfghdrcrc_6;
+int _AnimationCirc;
+CFG_HDR cfghdrcrc_7;
+unsigned int _SpeedAnimCirc;
+CFG_HDR cfghdrcrc_8;
+unsigned int _GradAnimCirc;
 CFG_HDR cfghdr_crc10;
 CFG_HDR cfghdr_pi11;
   CFG_HDR cfghdr1_8;
@@ -156,6 +165,10 @@ int styleMenu;
   unsigned int listDescStyle;
   char listDescColor[4];
   unsigned int Radius;
+  int position_cursor;
+  int AnimationCirc;
+  unsigned int SpeedAnimCirc;
+  unsigned int GradAnimCirc;
   int position_type;
   unsigned int OffsetX;
   unsigned int OffsetY;
@@ -176,6 +189,7 @@ int styleMenu;
   int scrollShow;
   char scrollColor[4];
 ///////////////////////////////////////////////
+float curpos=0;
 
 typedef struct
 {
@@ -213,6 +227,7 @@ SOFTKEYSTAB Mskt=
 };
 
 extern GBSTMR tmr;
+GBSTMR tmrcrc;
 
 int CellX;
 int CellY;
@@ -374,7 +389,7 @@ void PickNumTmr()
   if(pic_n>=TotalAnim(pos))
     pic_n=0;
   DirectRedrawGUI();
-  GBS_StartTimerProc(&tmr, SpeedAnim*TMR_SECOND/10, PickNumTmr);
+  GBS_StartTimerProc(&tmr, SpeedAnim*TMR_SECOND/100, PickNumTmr);
 }
 
 
@@ -382,7 +397,51 @@ void TmrReset()
 {
   GBS_DelTimer(&tmr);
   pic_n=0;
-  GBS_StartTimerProc(&tmr, SpeedAnim*TMR_SECOND/10, PickNumTmr);
+  GBS_StartTimerProc(&tmr, SpeedAnim*TMR_SECOND/100, PickNumTmr);
+}
+
+void CircleTmr()
+{
+  
+  int TI=TotalItems();
+  float rad=2*PI/TI;
+  
+   // нет анимации
+  if (!AnimationCirc) curpos=pos*rad;
+  else
+  {
+    // анимация
+    float grad=2*PI/360*GradAnimCirc;
+    
+    // скачок в начале круга и в конце
+    if ((curpos==(TI-1)*rad)&&(pos==0))
+      curpos=-rad;
+    if ((curpos==0)&&(pos==TI-1))
+      curpos=2*PI;
+    // сдвиг  
+    if (curpos>pos*rad)
+      curpos-=grad;
+    if (curpos<pos*rad)
+      curpos+=grad;
+    
+    //точное позиционирование
+    if (curpos-pos*rad>0)
+    {
+      if (curpos-pos*rad<grad) curpos=pos*rad;
+    }
+    else
+      if (pos*rad-curpos<grad) curpos=pos*rad;
+  }
+  if((styleMenu==2))
+  DirectRedrawGUI();
+  GBS_StartTimerProc(&tmrcrc, SpeedAnimCirc*TMR_SECOND/100, CircleTmr);
+}
+
+void CircleTmrReset()
+{
+  GBS_DelTimer(&tmrcrc);
+  //if (AnimationCirc)
+  GBS_StartTimerProc(&tmrcrc, SpeedAnimCirc*TMR_SECOND/100, CircleTmr);
 }
 
 extern unsigned long  strtoul (const char *nptr,char **endptr,int base);
@@ -422,6 +481,7 @@ void NOnRedraw(GUI *data)
       DrawString(ws,menuRect.x,
                  menuRect.y+((menuRect.y2-headRect.y-GetFontYSIZE(headFont))/2),
                  menuRect.x2,menuRect.y2,headFont,2,headColor,0);
+      FreeWS(ws);
     return;
   }
   
@@ -592,6 +652,7 @@ void NOnRedraw(GUI *data)
                    menuRect.y+CellY*i+((CellY-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*i+CellY,listNameFont,listNameStyle,listNameColor,0);
         }
+        FreeWS(ws);
         
       }
       else posi=i;
@@ -646,6 +707,7 @@ void NOnRedraw(GUI *data)
                    menuRect.y+CellY*posi+((CellY-GetFontYSIZE(listNameFont))/2),
                    menuRect.x2,menuRect.y+CellY*posi+CellY,listNameFont,listNameStyle,listNameColor,0);
         }
+        FreeWS(ws);
 
       
       // scrollbar
@@ -662,13 +724,22 @@ void NOnRedraw(GUI *data)
     // отрисовка круга  
     case 2:
     {
+      float ugol_cur=0;
+      switch (position_cursor){
+        case 0:ugol_cur=-PI/2;break;
+        case 1:ugol_cur=PI/2;break;
+        case 2:ugol_cur=-PI;break;
+        case 3:ugol_cur=0;break;
+      }
+        
+      
       int posi=0;
       float rad=2*PI/TI;
       int centerX=(menuRect.x2-menuRect.x)/2;
       int centerY=(menuRect.y2-menuRect.y)/2;
       float ugol=-PI/2;
-      cx=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(cursor)/2;
-      cy=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(cursor)/2;
+      cx=menuRect.x+centerX+Radius*cos(ugol_cur)-GetImgWidth(cursor)/2;
+      cy=menuRect.y+centerY+Radius*sin(ugol_cur)-GetImgHeight(cursor)/2;
 
       for(int i=0;i<TI;i++)
       if (i!=pos) 
@@ -683,13 +754,14 @@ void NOnRedraw(GUI *data)
           icon=CalcPic(IconAnim(pos,pic_n));
     /* --==Формула==-- */
         
-        ugol=(i*rad)-PI/2-pos*rad;
+        ugol=(i*rad)+ugol_cur-curpos;
         x=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(icon)/2;
         y=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(icon)/2;
         DrawImg(x,y,icon);
       }
       else
       posi=i;
+      
         ITEM *Item=GetItem(posi);
         if (!Animation)
           icon=CalcPic(Item->IconBig);
@@ -700,7 +772,7 @@ void NOnRedraw(GUI *data)
           icon=CalcPic(IconAnim(pos,pic_n));
     /* --==Формула==-- */
         
-        ugol=(posi*rad)-PI/2-pos*rad;
+        ugol=(posi*rad)+ugol_cur-curpos;
         x=menuRect.x+centerX+Radius*cos(ugol)-GetImgWidth(icon)/2;
         y=menuRect.y+centerY+Radius*sin(ugol)-GetImgHeight(icon)/2;
         
@@ -731,6 +803,7 @@ void NOnRedraw(GUI *data)
       DrawString(ws,descRect.x,
                  descRect.y+((descRect.y2-descRect.y-GetFontYSIZE(descFont))/2),
                  descRect.x2,descRect.y2,descFont,descStyle,descColor,0);
+      FreeWS(ws);
     }
   if (headShow)
     {
@@ -748,6 +821,7 @@ void NOnRedraw(GUI *data)
       DrawString(ws,headRect.x+of,
                  headRect.y+((headRect.y2-headRect.y-GetFontYSIZE(headFont))/2),
                  headRect.x2,headRect.y2,headFont,headStyle,headColor,0);
+      FreeWS(ws);
     }
   //_WriteLog("end draw");
 }
@@ -768,9 +842,11 @@ void MGHook(GUI *gui, int cmd)
     break;
   case 5://Получение фокуса (?)
     TmrReset();
+    CircleTmrReset();
     break;
   case 6://Потеря фокуса
     GBS_DelTimer(&tmr);//Экономим ресурсы (типо)
+    GBS_DelTimer(&tmrcrc);
     break;
   }
 }
@@ -788,7 +864,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v1.3 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
+        sprintf(s,"Menu v1.4 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
         ShowMSG(2,(int)s);
         return(0);
       }
@@ -850,6 +926,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
       if (!MenuTop)
       {
         GBS_DelTimer(&tmr);
+        GBS_DelTimer(&tmrcrc);
         return 1;
       }
       else
@@ -1006,6 +1083,10 @@ listDescStyle=menuConf->listDescStyle;
  listDescColor[2]=menuConf->listDescColor[2];
  listDescColor[3]=menuConf->listDescColor[3];
 Radius=menuConf->Radius;
+position_cursor=menuConf->_position_cursor;
+AnimationCirc=menuConf->_AnimationCirc;
+SpeedAnimCirc=menuConf->_SpeedAnimCirc;
+GradAnimCirc=menuConf->_GradAnimCirc;
 position_type=menuConf->position_type;
 OffsetX=menuConf->OffsetX;
 OffsetY=menuConf->OffsetY;
@@ -1047,6 +1128,9 @@ scrollShow=menuConf->scrollShow;
   CellY=h/Rows;
   
   pos=Start;
+  int TI=TotalItems();
+  float rad=2*PI/TI;
+  curpos=pos*rad;
 }
 else
   {
@@ -1075,11 +1159,15 @@ void maincsm_oncreate(CSM_RAM *data)
   LoadItems(MENU_PATH);
   pos=Start;
   csm->gui_id=MsgBox(0,0,&MMenu,LGP_NULL);
+  GBS_StartTimerProc(&tmr, SpeedAnim*TMR_SECOND/100, PickNumTmr);
+  GBS_StartTimerProc(&tmrcrc, SpeedAnimCirc*TMR_SECOND/100, CircleTmr);
 }
 
 void maincsm_onclose(CSM_RAM *csm)
 {
   GBS_DelTimer(&tmr);
+  GBS_DelTimer(&tmrcrc);
+  FreeItemsList();
   if (my_csm_id)
     CloseCSM(my_csm_id);
   my_csm_id=0;
