@@ -229,6 +229,7 @@ void SieICQMain::onClose()
 SieICQMain::SieICQMain()
 { 
   status = new LogWidget();
+  CList = new ContactList();
   lgp = new LangPack;
   icp = new IconPack;
   Client = new ICQClient;
@@ -249,6 +250,8 @@ void Killer(void)
 SieICQMain::~SieICQMain()
 {
 //  GBS_DelTimer(&VibraTimer);
+//  delete status;
+//  delete CList;
   delete lgp;
   delete icp;
   delete Client;
