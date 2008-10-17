@@ -17,7 +17,7 @@
     <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>703</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build><SourceBrowser/></Static>
     <Windows>
       
-    <Wnd2>
+    <Wnd0>
         <Tabs>
           <Tab>
             <Identity>TabID-29742-18451</Identity>
@@ -29,20 +29,20 @@
           </Tab>
         <Tab><Identity>TabID-29769-11864</Identity><TabName>Source Browser</TabName><Factory>SourceBrowser</Factory><Session><TypeFilter>2147483647</TypeFilter><FileFilter>1</FileFilter></Session></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-2537-22236</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-2537-22236</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.c</Filename><XPos>0</XPos><YPos>256</YPos><SelStart>5538</SelStart><SelEnd>5543</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\conf_loader.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>114</SelStart><SelEnd>114</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\config_data.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>153</SelStart><SelEnd>153</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\gui.c</Filename><XPos>0</XPos><YPos>1126</YPos><SelStart>26756</SelStart><SelEnd>26756</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\config_data_menu.c</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>2438</SelStart><SelEnd>2628</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\editor.c</Filename><XPos>0</XPos><YPos>173</YPos><SelStart>3689</SelStart><SelEnd>3689</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\visual.c</Filename><XPos>0</XPos><YPos>93</YPos><SelStart>139</SelStart><SelEnd>139</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>36</SelStart><SelEnd>36</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.c</Filename><XPos>0</XPos><YPos>126</YPos><SelStart>3275</SelStart><SelEnd>3287</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.c</Filename><XPos>0</XPos><YPos>256</YPos><SelStart>5538</SelStart><SelEnd>5543</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\conf_loader.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>114</SelStart><SelEnd>114</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\config_data.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>153</SelStart><SelEnd>153</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\gui.c</Filename><XPos>0</XPos><YPos>856</YPos><SelStart>20967</SelStart><SelEnd>20967</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\config_data_menu.c</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>2438</SelStart><SelEnd>2628</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\editor.c</Filename><XPos>0</XPos><YPos>173</YPos><SelStart>3689</SelStart><SelEnd>3689</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\visual.c</Filename><XPos>0</XPos><YPos>93</YPos><SelStart>139</SelStart><SelEnd>139</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>36</SelStart><SelEnd>36</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.c</Filename><XPos>0</XPos><YPos>126</YPos><SelStart>3275</SelStart><SelEnd>3287</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\Menu\Items.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-0036eab0><key>iaridepm1</key></Toolbar-0036eab0></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>606</Bottom><Right>253</Right><x>-2</x><y>-2</y><xscreen>167</xscreen><yscreen>173</yscreen><sizeHorzCX>157994</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>241249</sizeVertCX><sizeVertCY>740560</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>171</Bottom><Right>1059</Right><x>-2</x><y>-2</y><xscreen>1061</xscreen><yscreen>173</yscreen><sizeHorzCX>1003784</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>157994</sizeVertCX><sizeVertCY>210719</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0036ea48><key>iaridepm1</key></Toolbar-0036ea48></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>606</Bottom><Right>253</Right><x>-2</x><y>-2</y><xscreen>167</xscreen><yscreen>173</yscreen><sizeHorzCX>157994</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>241249</sizeVertCX><sizeVertCY>740560</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>171</Bottom><Right>1059</Right><x>-2</x><y>-2</y><xscreen>1061</xscreen><yscreen>173</yscreen><sizeHorzCX>1003784</sizeHorzCX><sizeHorzCY>210719</sizeHorzCY><sizeVertCX>157994</sizeVertCX><sizeVertCY>210719</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

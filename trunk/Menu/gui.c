@@ -864,7 +864,7 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
      if (key=='*')
       {
         char s[256];
-        sprintf(s,"Menu v1.4 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
+        sprintf(s,"Menu v1.5 rev.%d\n(c)Eraser\n%s at %s",ELF_REVISION,__DATE__,__TIME__);
         ShowMSG(2,(int)s);
         return(0);
       }
@@ -905,22 +905,58 @@ int MOnKey(GUI *gui, GUI_MSG *msg)
     case ENTER_BUTTON:
       goto run;
     case LEFT_BUTTON:
-      pos--;
-      break;
-    case RIGHT_BUTTON:
-      pos++;
-      break;
-    case UP_BUTTON:
-      if (styleMenu==0)
-      pos-=Columns;
+      if (styleMenu==2)
+      {
+        switch (position_cursor){
+        case 0:pos--;break;
+        case 1:pos++;break;
+        case 2:pos--;break;
+        case 3:pos--;break;
+       }
+      }
       else
         pos--;
       break;
-    case DOWN_BUTTON:
-      if (styleMenu==0)
-      pos+=Columns;
+    case RIGHT_BUTTON:
+      if (styleMenu==2)
+      {
+        switch (position_cursor){
+        case 0:pos++;break;
+        case 1:pos--;break;
+        case 2:pos++;break;
+        case 3:pos++;break;
+       }
+      }
       else
-        pos++;
+      pos++;
+      break;
+    case UP_BUTTON:
+      switch (styleMenu)
+      {
+        case 0:pos-=Columns;break;
+        case 1:pos--;break;
+        case 2:
+          switch (position_cursor){
+            case 0:pos++;break;
+            case 1:pos--;break;
+            case 2:pos++;break;
+            case 3:pos--;break;
+           };break;
+      }
+      break;
+    case DOWN_BUTTON:
+      switch (styleMenu)
+      {
+        case 0:pos+=Columns;break;
+        case 1:pos++;break;
+        case 2:
+          switch (position_cursor){
+            case 0:pos--;break;
+            case 1:pos++;break;
+            case 2:pos--;break;
+            case 3:pos++;break;
+           };break;
+      }
       break;
     case RIGHT_SOFT:
       if (!MenuTop)
