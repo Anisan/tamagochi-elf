@@ -1,0 +1,3615 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>222842487</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\Obj\dns.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\http.r79</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\csm.r79</file>
+      <file>$PROJ_DIR$\Debug\Exe\SieGet.d79</file>
+      <file>$PROJ_DIR$\Debug\Obj\gui.r79</file>
+      <file>$PROJ_DIR$\Debug\Exe\SieICQ.d79</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\bookmarks.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\rect_patcher.pbi</file>
+      <file>$PROJ_DIR$\url_utils.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\bookmarks.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\mem.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\log_widget.r79</file>
+      <file>$PROJ_DIR$\info.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\SieICQ.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\inet.r79</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\dns.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\log.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\notify.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\daemon.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\file_works.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\log_widget.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\iconpack.pbi</file>
+      <file>$PROJ_DIR$\notify.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\url_utils.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\_cpp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\gui.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\langpack.pbi</file>
+      <file>$PROJ_DIR$\inet.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\_cpp2.r79</file>
+      <file>$PROJ_DIR$\bookmarks.cpp</file>
+      <file>$PROJ_DIR$\http.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\_cpp.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\files_menu.r79</file>
+      <file>$PROJ_DIR$\http_headers.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\inet.pbi</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\notify.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\list.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\dialog.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\files_menu.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\http.pbi</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\list.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\mem.pbi</file>
+      <file>$PROJ_DIR$\list.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\SieGet.pbd</file>
+      <file>$PROJ_DIR$\url_input.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\langpack.r79</file>
+      <file>$PROJ_DIR$\daemon.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\daemon.pbi</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\http_headers.r79</file>
+      <file>$PROJ_DIR$\dialog.cpp</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\info.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\url_input.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\url.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\socket.pbi</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\files_menu.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\url.pbi</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\_cpp2.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\csm.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\url.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\file_works.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\info.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\http_headers.pbi</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\url_utils.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\iconpack.r79</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\..\c++\_cpp.C</file>
+      <file>$PROJ_DIR$\csm.cpp</file>
+      <file>$PROJ_DIR$\..\c++\_cpp2.cpp</file>
+      <file>$PROJ_DIR$\csm.h</file>
+      <file>$PROJ_DIR$\gui.cpp</file>
+      <file>$PROJ_DIR$\log_widget.cpp</file>
+      <file>$PROJ_DIR$\rect_patcher.cpp</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\dns.cpp</file>
+      <file>$PROJ_DIR$\socket.cpp</file>
+      <file>$PROJ_DIR$\socket.h</file>
+      <file>$PROJ_DIR$\file_works.cpp</file>
+      <file>$PROJ_DIR$\iconpack.cpp</file>
+      <file>$PROJ_DIR$\langpack.cpp</file>
+      <file>$PROJ_DIR$\log.cpp</file>
+      <file>$PROJ_DIR$\main.cpp</file>
+      <file>$PROJ_DIR$\mem.cpp</file>
+      <file>$PROJ_DIR$\string_util.cpp</file>
+      <file>$PROJ_DIR$\Debug\Obj\socket.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\log.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\rect_patcher.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\dialog.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\url_input.pbi</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 4 6</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_utils.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\info.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 64</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 79</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\SieICQ.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 29 72 8 76 109 73 59 47 0 78 48 30 49 80 26 41 79 33 51 107 25 44 52 22 9 67 12 70 111 83</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\notify.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\inet.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\bookmarks.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http_headers.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 80</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\list.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\SieGet.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 29 72 8 76 109 73 59 47 0 78 48 30 49 80 26 41 79 33 51 107 25 44 52 22 9 67 12 70 111 83</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_input.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 111</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\daemon.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dialog.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 110</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\files_menu.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 66</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 70</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43 60 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43 60 86</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 109</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\csm.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 73</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 91</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp2.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 72</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 71 56 19 7 81 2 63 68 82 50 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log_widget.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rect_patcher.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 108</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dns.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\socket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 106</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 98</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\file_works.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 84</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 107</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 75</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 86</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mem.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 74</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Release\Obj\mem.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\info.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\notify.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\log.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\daemon.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\dns.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\http_headers.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\url_utils.cpp</file>
+      <file>$PROJ_DIR$\Release\Obj\list.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\url_utils.pbi</file>
+      <file>$PROJ_DIR$\url_input.h</file>
+      <file>$PROJ_DIR$\bookmarks.h</file>
+      <file>$PROJ_DIR$\Release\Obj\log_widget.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\notify.r79</file>
+      <file>$PROJ_DIR$\internal_ipc.h</file>
+      <file>$PROJ_DIR$\Release\Obj\_cpp.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\iconpack.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\mem.pbi</file>
+      <file>$PROJ_DIR$\info.h</file>
+      <file>$PROJ_DIR$\daemon.h</file>
+      <file>$PROJ_DIR$\Release\Obj\http.r79</file>
+      <file>$PROJ_DIR$\..\inc\sieget_ipc.h</file>
+      <file>$PROJ_DIR$\Release\Obj\func.r79</file>
+      <file>$PROJ_DIR$\files_menu.h</file>
+      <file>$PROJ_DIR$\Release\Obj\langpack.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\http_headers.pbi</file>
+      <file>$PROJ_DIR$\Release\Exe\SieGet.elf</file>
+      <file>$PROJ_DIR$\Release\Obj\log.r79</file>
+      <file>$PROJ_DIR$\notify.h</file>
+      <file>$PROJ_DIR$\http.h</file>
+      <file>$PROJ_DIR$\Release\Obj\inet.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\files_menu.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\dialog.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\info.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\iconpack.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\csm.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\file_works.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\list.r79</file>
+      <file>$PROJ_DIR$\dialog.h</file>
+      <file>$PROJ_DIR$\Release\Obj\bookmarks.pbi</file>
+      <file>$PROJ_DIR$\url_utils.h</file>
+      <file>$PROJ_DIR$\Release\Obj\dns.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\main.r79</file>
+      <file>$PROJ_DIR$\info.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\Release\Obj\gui.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\socket.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release\Obj\url_input.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\files_menu.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\gui.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\socket.r79</file>
+      <file>$PROJ_DIR$\list.h</file>
+      <file>$PROJ_DIR$\Release\Obj\langpack.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\dialog.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\bookmarks.r79</file>
+      <file>$PROJ_DIR$\url.h</file>
+      <file>$PROJ_DIR$\Release\Obj\daemon.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\_cpp2.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\csm.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\url.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\log_widget.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\rect_patcher.r79</file>
+      <file>$PROJ_DIR$\notify.cpp</file>
+      <file>$PROJ_DIR$\inet.cpp</file>
+      <file>$PROJ_DIR$\Release\Obj\url_utils.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\url.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\inet.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\_cpp2.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\_cpp.pbi</file>
+      <file>$PROJ_DIR$\bookmarks.cpp</file>
+      <file>$PROJ_DIR$\http.cpp</file>
+      <file>$PROJ_DIR$\http_headers.cpp</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\list.cpp</file>
+      <file>$PROJ_DIR$\url_input.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\daemon.cpp</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\dialog.cpp</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\Release\Obj\file_works.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\inet.h</file>
+      <file>$PROJ_DIR$\Release\Obj\url_input.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Release\Obj\http.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\rect_patcher.pbi</file>
+      <file>$PROJ_DIR$\http_headers.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\files_menu.cpp</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\url.cpp</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\config_data.h</file>
+      <file>$PROJ_DIR$\..\c++\_cpp.C</file>
+      <file>$PROJ_DIR$\csm.cpp</file>
+      <file>$PROJ_DIR$\..\c++\_cpp2.cpp</file>
+      <file>$PROJ_DIR$\csm.h</file>
+      <file>$PROJ_DIR$\gui.cpp</file>
+      <file>$PROJ_DIR$\gui.h</file>
+      <file>$PROJ_DIR$\log_widget.cpp</file>
+      <file>$PROJ_DIR$\log_widget.h</file>
+      <file>$PROJ_DIR$\rect_patcher.cpp</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
+      <file>$PROJ_DIR$\macros.h</file>
+      <file>$PROJ_DIR$\dns.cpp</file>
+      <file>$PROJ_DIR$\dns.h</file>
+      <file>$PROJ_DIR$\socket.cpp</file>
+      <file>$PROJ_DIR$\socket.h</file>
+      <file>$PROJ_DIR$\file_works.cpp</file>
+      <file>$PROJ_DIR$\file_works.h</file>
+      <file>$PROJ_DIR$\iconpack.cpp</file>
+      <file>$PROJ_DIR$\iconpack.h</file>
+      <file>$PROJ_DIR$\langpack.cpp</file>
+      <file>$PROJ_DIR$\langpack.h</file>
+      <file>$PROJ_DIR$\log.cpp</file>
+      <file>$PROJ_DIR$\log.h</file>
+      <file>$PROJ_DIR$\main.cpp</file>
+      <file>$PROJ_DIR$\mem.cpp</file>
+      <file>$PROJ_DIR$\mem.h</file>
+      <file>$PROJ_DIR$\string_util.cpp</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 31</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_utils.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 73</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release\Exe\SieGet.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 55 20 66 63 8 54 42 65 39 6 91 36 27 52 25 7 21 35 40 29 44 32 17 49 1 18 70 59 95 68 56 73 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\info.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 93 136 125 133 34 98 64 123 23 114 118 131 129 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\notify.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\inet.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 75</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 125 133 93 136 34 98 64 123 45 112 60 15 131 47 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\bookmarks.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 93 136 125 133 34 98 64 123 16 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 34 98 133 64 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http_headers.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 98 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\list.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 114 93 136 125 133 34 98 64 123 60 15 45 112 131 118 116 23 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_input.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 56</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 94</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 93 136 125 133 34 98 64 123 15 114 24 112 26 19 45 60 131 129 118 28 16 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\daemon.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 24 112 26 19 45 60 93 136 125 133 34 98 64 123 15 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dialog.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 45 112 60 93 136 125 133 34 98 64 123 15 131 24 26 19 129 9</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\files_menu.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 57</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 93 136 125 133 34 98 64 123 28 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 74</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 93 136 125 133 34 98 64 123 114 24 112 26 19 45 60 15 131 129 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 82 101 86 51 10 103 0 90 99 104 83 88 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 54</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 92</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 82 101 86 51 10 103 0 90 99 104 83</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\csm.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 112</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp2.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 66</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 82 101 86 51 10 103 0 90 99 104 83</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 114</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log_widget.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 69</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 118 116 133 114 15 64 24 112 26 19 45 60 93 136 125 34 98 123 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rect_patcher.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 70</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 97</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 27</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dns.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 6</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 123 133 131</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\socket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 59</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 125 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\file_works.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 91</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 129 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 131 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 133 45 112 60 93 136 125 34 98 64 123 15 131 116 114 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 24 112 26 19 45 60 93 136 125 133 34 98 64 123 15 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mem.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 82 101 86 51 10 103 0 90 99 104 83 121 108 138 33 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 95</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 82 101 86 51 10 103 0 90 99 104 83 138</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_ELKA</name>
+    <outputs>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\mem.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\file_works.pbi</file>
+      <file>$PROJ_DIR$\Random.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icqsocket.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\icq.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\file_works.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\_cpp.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\log_widget.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icqsocket.r79</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\Random.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\Random.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\socket.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\_cpp2.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\_cpp2.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\rect_patcher.r79</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\internal_ipc.h</file>
+      <file>$PROJ_DIR$\icq_packet.c</file>
+      <file>$PROJ_DIR$\icqsocket.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\yvals.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\gui.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\log.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\mem.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\sieicqmain.pbi</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\inc\ymath.h</file>
+      <file>$TOOLKIT_DIR$\inc\math.h</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$TOOLKIT_DIR$\inc\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\log.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\langpack.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\iconpack.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\iconpack.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\icq_snac.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\csm.r79</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\langpack.r79</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\_cpp.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\sieicqmain.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\dns.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\gui.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\log_widget.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\dns.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\socket.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\rect_patcher.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\csm.pbi</file>
+      <file>$PROJ_DIR$\icq_snac.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\config_data.h</file>
+      <file>$PROJ_DIR$\..\c++\_cpp.C</file>
+      <file>$PROJ_DIR$\csm.cpp</file>
+      <file>$PROJ_DIR$\..\c++\_cpp2.cpp</file>
+      <file>$PROJ_DIR$\csm.h</file>
+      <file>$PROJ_DIR$\gui.cpp</file>
+      <file>$PROJ_DIR$\gui.h</file>
+      <file>$PROJ_DIR$\log_widget.cpp</file>
+      <file>$PROJ_DIR$\log_widget.h</file>
+      <file>$PROJ_DIR$\rect_patcher.cpp</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\icq.cpp</file>
+      <file>$PROJ_DIR$\icq.h</file>
+      <file>$PROJ_DIR$\icq_packet.cpp</file>
+      <file>$PROJ_DIR$\icq_packet.h</file>
+      <file>$PROJ_DIR$\icqsocket.cpp</file>
+      <file>$PROJ_DIR$\icqsocket.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
+      <file>$PROJ_DIR$\macros.h</file>
+      <file>$PROJ_DIR$\Random.h</file>
+      <file>$PROJ_DIR$\TODO</file>
+      <file>$PROJ_DIR$\dns.cpp</file>
+      <file>$PROJ_DIR$\dns.h</file>
+      <file>$PROJ_DIR$\socket.cpp</file>
+      <file>$PROJ_DIR$\socket.h</file>
+      <file>$PROJ_DIR$\file_works.cpp</file>
+      <file>$PROJ_DIR$\file_works.h</file>
+      <file>$PROJ_DIR$\iconpack.cpp</file>
+      <file>$PROJ_DIR$\iconpack.h</file>
+      <file>$PROJ_DIR$\langpack.cpp</file>
+      <file>$PROJ_DIR$\langpack.h</file>
+      <file>$PROJ_DIR$\log.cpp</file>
+      <file>$PROJ_DIR$\log.h</file>
+      <file>$PROJ_DIR$\main.cpp</file>
+      <file>$PROJ_DIR$\main.h</file>
+      <file>$PROJ_DIR$\mem.cpp</file>
+      <file>$PROJ_DIR$\mem.h</file>
+      <file>$PROJ_DIR$\sieicq_ipc.h</file>
+      <file>$PROJ_DIR$\sieicqmain.cpp</file>
+      <file>$PROJ_DIR$\sieicqmain.h</file>
+      <file>$PROJ_DIR$\string_util.cpp</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Random.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 94 98 119 107 115 105 96 90 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 70</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq_packet.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 96</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icqsocket.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 107 115 105 98 119 90 88 113</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq_snac.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 94 98 119 107 115 105 96 76 90 88</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 94 98 119 107 115 105 96 76 90 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 64 22 6 16 75 67 1 33 54 38 50 3 52 51 71 7 37 74 39 73 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 32 9 21 55 14 57 72 8 69 68 53 19 11 12 59 35 10 34 0 23 65 20 15 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 55</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46 60 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46 60 80</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 60 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\csm.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 75</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 86</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp2.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 88</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log_widget.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 71</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 92 90 88 122 86 120 26 94 98 119 107 115 105 96 111 113</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 92 90 88 122 86 120 26 94 98 119 107 115 105 96 111 113</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rect_patcher.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 74</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 92</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 92</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 94 98 119 107 115 105 96 90 88 102</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 94 98 119 107 115 105 96 90 88 102</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq_packet.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 96</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 96</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icqsocket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 107 115 105 98 119 90 88 113</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 107 115 105 98 119 90 88 113</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 69</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dns.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 72</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 105 115 113</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 105 115 113</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\socket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 73</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 107 115</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 107 115</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\file_works.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 109</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 109</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 111 109</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 111 109</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 59</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 113 109</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 113 109</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 115 90 88 109</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 115 90 88 109</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 122 86 88 120 26 90 94 98 119 107 115 105 96 111 113 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 122 86 88 120 26 90 94 98 119 107 115 105 96 111 113 80</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mem.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 119</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 119</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\sieicqmain.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 40 58 49 44 122 86 88 120 26 90 94 98 119 107 115 105 96 111 113 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 100 45 63 48 31 24 77 13 61 62 78 47 46 101 82 124 43 42 30 41 58 49 44 122 86 88 120 26 90 94 98 119 107 115 105 96 111 113 80</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46 124</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 63 48 31 24 77 13 61 62 78 47 46 124</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\gui.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\info.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\_cpp2.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\csm.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\dialog.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\list.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\file_works.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\SieGet.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\files_menu.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\dialog.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\langpack.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\notify.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\iconpack.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\gui.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\http_headers.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\file_works.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\list.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\log_widget.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url_utils.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\http_headers.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\log.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\files_menu.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\_cpp.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\mem.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\inet.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url_input.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\_cpp.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\rect_patcher.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\socket.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\dns.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\notify.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\dns.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\langpack.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\log.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\bookmarks.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\csm.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\_cpp2.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\socket.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\http.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url_utils.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\bookmarks.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\info.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\mem.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url_input.r79</file>
+      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\url_utils.cpp</file>
+      <file>$PROJ_DIR$\url_input.h</file>
+      <file>$PROJ_DIR$\bookmarks.h</file>
+      <file>$PROJ_DIR$\internal_ipc.h</file>
+      <file>$PROJ_DIR$\info.h</file>
+      <file>$PROJ_DIR$\daemon.h</file>
+      <file>$PROJ_DIR$\..\inc\sieget_ipc.h</file>
+      <file>$PROJ_DIR$\files_menu.h</file>
+      <file>$PROJ_DIR$\notify.h</file>
+      <file>$PROJ_DIR$\http.h</file>
+      <file>$PROJ_DIR$\dialog.h</file>
+      <file>$PROJ_DIR$\url_utils.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\rect_patcher.r79</file>
+      <file>$PROJ_DIR$\info.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\list.h</file>
+      <file>$PROJ_DIR$\url.h</file>
+      <file>$PROJ_DIR$\notify.cpp</file>
+      <file>$PROJ_DIR$\inet.cpp</file>
+      <file>$PROJ_DIR$\bookmarks.cpp</file>
+      <file>$PROJ_DIR$\http.cpp</file>
+      <file>$PROJ_DIR$\http_headers.cpp</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\list.cpp</file>
+      <file>$PROJ_DIR$\url_input.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\log_widget.r79</file>
+      <file>$PROJ_DIR$\daemon.cpp</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\dialog.cpp</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\inet.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\daemon.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\http.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\daemon.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\iconpack.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\url.pbi</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\inet.h</file>
+      <file>$PROJ_DIR$\http_headers.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\files_menu.cpp</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\url.cpp</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\config_data.h</file>
+      <file>$PROJ_DIR$\..\c++\_cpp.C</file>
+      <file>$PROJ_DIR$\csm.cpp</file>
+      <file>$PROJ_DIR$\..\c++\_cpp2.cpp</file>
+      <file>$PROJ_DIR$\csm.h</file>
+      <file>$PROJ_DIR$\gui.cpp</file>
+      <file>$PROJ_DIR$\gui.h</file>
+      <file>$PROJ_DIR$\log_widget.cpp</file>
+      <file>$PROJ_DIR$\log_widget.h</file>
+      <file>$PROJ_DIR$\rect_patcher.cpp</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
+      <file>$PROJ_DIR$\macros.h</file>
+      <file>$PROJ_DIR$\dns.cpp</file>
+      <file>$PROJ_DIR$\dns.h</file>
+      <file>$PROJ_DIR$\socket.cpp</file>
+      <file>$PROJ_DIR$\socket.h</file>
+      <file>$PROJ_DIR$\file_works.cpp</file>
+      <file>$PROJ_DIR$\file_works.h</file>
+      <file>$PROJ_DIR$\iconpack.cpp</file>
+      <file>$PROJ_DIR$\iconpack.h</file>
+      <file>$PROJ_DIR$\langpack.cpp</file>
+      <file>$PROJ_DIR$\langpack.h</file>
+      <file>$PROJ_DIR$\log.cpp</file>
+      <file>$PROJ_DIR$\log.h</file>
+      <file>$PROJ_DIR$\main.cpp</file>
+      <file>$PROJ_DIR$\mem.cpp</file>
+      <file>$PROJ_DIR$\mem.h</file>
+      <file>$PROJ_DIR$\string_util.cpp</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 11</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\SieGet.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 72 33 45 49 4 68 44 91 7 36 10 27 89 1 47 24 17 90 50 40 8 41 85 42 51 16 69 35 9 39 52 48 55</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_utils.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 48</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 67</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\info.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 50</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 97 136 125 133 65 98 74 123 60 114 118 131 129 57</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\notify.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\inet.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 90</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 125 133 97 136 65 98 74 123 66 112 73 57 131 67 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\bookmarks.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 97 136 125 133 65 98 74 123 58 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 92</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 65 98 133 74 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http_headers.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 98 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\list.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 114 97 136 125 133 65 98 74 123 73 57 66 112 131 118 116 60 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_input.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 97 136 125 133 65 98 74 123 57 114 61 112 62 59 66 73 131 129 118 63 58 67</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\daemon.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 91</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 93</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 61 112 62 59 66 73 97 136 125 133 65 98 74 123 57 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dialog.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 66 112 73 97 136 125 133 65 98 74 123 57 131 61 62 59 129 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\files_menu.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 97 136 125 133 65 98 74 123 63 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 97 136 125 133 65 98 74 123 114 61 112 62 59 66 73 57 131 129 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 80 101 84 71 54 103 0 96 99 104 81 87 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 87 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 80 101 84 71 54 103 0 96 99 104 81</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\csm.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 112</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp2.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 80 101 84 71 54 103 0 96 99 104 81</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 114</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log_widget.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 85</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 118 116 133 114 57 74 61 112 62 59 66 73 97 136 125 65 98 123 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rect_patcher.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 69</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 89</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dns.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 123 133 131</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\socket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 125 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\file_works.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 94</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 129 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 131 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 41</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 133 66 112 73 97 136 125 65 98 74 123 57 131 116 114 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 61 112 62 59 66 73 97 136 125 133 65 98 74 123 57 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mem.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 80 101 84 71 54 103 0 96 99 104 81 121 108 138 64 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 80 101 84 71 54 103 0 96 99 104 81 138</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD_X75</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url_input.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\daemon.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\notify.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url_utils.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\daemon.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\files_menu.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\log_widget.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url_input.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\bookmarks.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\rect_patcher.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\http_headers.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\socket.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\dns.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\list.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url_utils.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\inet.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\bookmarks.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\http.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\notify.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\log.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mem.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\inet.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\dns.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\_cpp2.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Exe\SieGet.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\file_works.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\langpack.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\file_works.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\langpack.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\socket.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\iconpack.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\http.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\_cpp.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\http_headers.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\log.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\rect_patcher.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\files_menu.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\list.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\gui.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mem.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\iconpack.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\dialog.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\log_widget.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\dialog.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\csm.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\csm.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\info.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\_cpp2.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\_cpp.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\url.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\gui.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\info.pbi</file>
+      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\url_utils.cpp</file>
+      <file>$PROJ_DIR$\url_input.h</file>
+      <file>$PROJ_DIR$\bookmarks.h</file>
+      <file>$PROJ_DIR$\internal_ipc.h</file>
+      <file>$PROJ_DIR$\info.h</file>
+      <file>$PROJ_DIR$\daemon.h</file>
+      <file>$PROJ_DIR$\..\inc\sieget_ipc.h</file>
+      <file>$PROJ_DIR$\files_menu.h</file>
+      <file>$PROJ_DIR$\notify.h</file>
+      <file>$PROJ_DIR$\http.h</file>
+      <file>$PROJ_DIR$\dialog.h</file>
+      <file>$PROJ_DIR$\url_utils.h</file>
+      <file>$PROJ_DIR$\info.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\list.h</file>
+      <file>$PROJ_DIR$\url.h</file>
+      <file>$PROJ_DIR$\notify.cpp</file>
+      <file>$PROJ_DIR$\inet.cpp</file>
+      <file>$PROJ_DIR$\bookmarks.cpp</file>
+      <file>$PROJ_DIR$\http.cpp</file>
+      <file>$PROJ_DIR$\http_headers.cpp</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\list.cpp</file>
+      <file>$PROJ_DIR$\url_input.cpp</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\daemon.cpp</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\dialog.cpp</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\inet.h</file>
+      <file>$PROJ_DIR$\http_headers.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\files_menu.cpp</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\url.cpp</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\config_data.h</file>
+      <file>$PROJ_DIR$\..\c++\_cpp.C</file>
+      <file>$PROJ_DIR$\csm.cpp</file>
+      <file>$PROJ_DIR$\..\c++\_cpp2.cpp</file>
+      <file>$PROJ_DIR$\csm.h</file>
+      <file>$PROJ_DIR$\gui.cpp</file>
+      <file>$PROJ_DIR$\gui.h</file>
+      <file>$PROJ_DIR$\log_widget.cpp</file>
+      <file>$PROJ_DIR$\log_widget.h</file>
+      <file>$PROJ_DIR$\rect_patcher.cpp</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
+      <file>$PROJ_DIR$\macros.h</file>
+      <file>$PROJ_DIR$\dns.cpp</file>
+      <file>$PROJ_DIR$\dns.h</file>
+      <file>$PROJ_DIR$\socket.cpp</file>
+      <file>$PROJ_DIR$\socket.h</file>
+      <file>$PROJ_DIR$\file_works.cpp</file>
+      <file>$PROJ_DIR$\file_works.h</file>
+      <file>$PROJ_DIR$\iconpack.cpp</file>
+      <file>$PROJ_DIR$\iconpack.h</file>
+      <file>$PROJ_DIR$\langpack.cpp</file>
+      <file>$PROJ_DIR$\langpack.h</file>
+      <file>$PROJ_DIR$\log.cpp</file>
+      <file>$PROJ_DIR$\log.h</file>
+      <file>$PROJ_DIR$\main.cpp</file>
+      <file>$PROJ_DIR$\mem.cpp</file>
+      <file>$PROJ_DIR$\mem.h</file>
+      <file>$PROJ_DIR$\string_util.cpp</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD_X75\Exe\SieGet.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 80 41 29 12 50 37 56 3 51 17 31 45 40 47 39 42 38 20 57 33 18 25 52 24 26 4 13 16 5 10 1 19 65</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_utils.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 77</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\info.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 97 136 125 133 75 98 82 123 70 114 118 131 129 67</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\notify.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\inet.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 125 133 97 136 75 98 82 123 76 112 81 67 131 77 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\bookmarks.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 97 136 125 133 75 98 82 123 68 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 75 98 133 82 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\http_headers.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 98 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\list.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 114 97 136 125 133 75 98 82 123 81 67 76 112 131 118 116 70 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url_input.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 97 136 125 133 75 98 82 123 67 114 71 112 72 69 76 81 131 129 118 73 68 77</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\daemon.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 71 112 72 69 76 81 97 136 125 133 75 98 82 123 67 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dialog.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 76 112 81 97 136 125 133 75 98 82 123 67 131 71 72 69 129 63</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\files_menu.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 97 136 125 133 75 98 82 123 73 114 118 127 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\url.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 97 136 125 133 75 98 82 123 114 71 112 72 69 76 81 67 131 129 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 50</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88 101 92 79 64 103 0 96 99 104 89 94 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 37</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 94 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 41</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88 101 92 79 64 103 0 96 99 104 89</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\csm.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 56</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 112</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\c++\_cpp2.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88 101 92 79 64 103 0 96 99 104 89</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 114</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log_widget.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 118 116 133 114 67 82 71 112 72 69 76 81 97 136 125 75 98 123 131 129</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rect_patcher.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\dns.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 123 133 131</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\socket.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 125 133</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\file_works.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 129 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 131 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\log.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 133 76 112 81 97 136 125 75 98 82 123 67 131 116 114 127</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 71 112 72 69 76 81 97 136 125 133 75 98 82 123 67 131 129 106</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mem.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 26</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 120 88 101 92 79 64 103 0 96 99 104 89 121 108 138 74 136</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88 101 92 79 64 103 0 96 99 104 89 138</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
