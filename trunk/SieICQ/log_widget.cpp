@@ -26,6 +26,8 @@ void LogWidget::onRedraw()
     WSHDR * ws = AllocWS(32);
     ascii2ws(ws, LangPack::Active->data[LGP_Close]);
     DrawString(ws, Canvas.x, Canvas.y2-20, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
+    ascii2ws(ws, LangPack::Active->data[LGP_Close]);
+    DrawString(ws, Canvas.x2-50, Canvas.y2-20, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
     ascii2ws(ws, Status);
     DrawString(ws, Canvas.x, Canvas.y+30, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
     FreeWS(ws);
@@ -61,6 +63,9 @@ int  LogWidget::onKey(char key_code, int key_msg, short keys)
     case RED_BUTTON:
     case LEFT_SOFT:
       return GUI_RESULT_CLOSE;
+    case RIGHT_SOFT:
+      ContactList::Active->Show();
+      break;
     }
   }
   return GUI_RESULT_OK;

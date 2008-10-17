@@ -5266,6 +5266,12 @@
   <group>
     <name>gui</name>
     <file>
+      <name>$PROJ_DIR$\contact_list.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\contact_list.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\csm.cpp</name>
     </file>
     <file>

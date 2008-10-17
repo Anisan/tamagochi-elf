@@ -7,6 +7,7 @@
 #include "sieicq_ipc.h"
 #include "internal_ipc.h"
 #include "log_widget.h"
+#include "contact_list.h"
 
 #include "icq.h"
 
@@ -38,6 +39,7 @@ public:
   ~SieICQMain();
   
   LogWidget * status;
+  ContactList * CList;
  // static SieICQMain * Active;
 
   //SieGetDialog * dialog;
