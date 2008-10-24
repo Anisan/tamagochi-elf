@@ -30,6 +30,10 @@ void LogWidget::onRedraw()
     DrawString(ws, Canvas.x2-50, Canvas.y2-20, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
     ascii2ws(ws, Status);
     DrawString(ws, Canvas.x, Canvas.y+30, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
+    char traf[64];
+    sprintf(traf,"Traf %d/%d",Socket::GlobalTx,Socket::GlobalRx);
+    ascii2ws(ws, traf);
+    DrawString(ws, Canvas.x, Canvas.y+50, Canvas.x2, Canvas.y2, FONT_SMALL, 0, clLOGWIDGETTEXT, 0);
     FreeWS(ws);
  
 }

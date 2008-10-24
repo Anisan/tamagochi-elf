@@ -897,6 +897,7 @@ int str2int(const char *str)
 
 void _WriteLog(char *buf)
 {
+  
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\sieicq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);

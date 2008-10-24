@@ -93,9 +93,9 @@ int SieICQMain::onMessage(GBS_MSG *msg)
           CanvasData = ((void **)idata)[DISPLACE_OF_IDLECANVAS / 4];
   #endif
           DrawCanvas(CanvasData , CFG_IDLE_ICON_X,  CFG_IDLE_ICON_Y, 
-                 CFG_IDLE_ICON_X + GetImgWidth(IconPack::Active->data[IMG_OFF]), 
-                 CFG_IDLE_ICON_Y + GetImgHeight(IconPack::Active->data[IMG_OFF]), 1);
-          DrawImg(CFG_IDLE_ICON_X,  CFG_IDLE_ICON_Y, IconPack::Active->data[IMG_OFF]);
+                 CFG_IDLE_ICON_X + GetImgWidth(IconPack::Active->data[IMG_OFFLINE]), 
+                 CFG_IDLE_ICON_Y + GetImgHeight(IconPack::Active->data[IMG_OFFLINE]), 1);
+          DrawImg(CFG_IDLE_ICON_X,  CFG_IDLE_ICON_Y, IconPack::Active->data[IMG_OFFLINE]);
         }
       }
     }
@@ -153,6 +153,7 @@ void SieICQMain::ProcessSocket(int id, int event)
   char * tmp_msg;
   //Download * download = NULL;
   //if (download = DL_Handler->GetDownloadbyID(id))
+  if (Client->Socket->socket_id==id)
   {
     switch(event)
     {
@@ -170,7 +171,7 @@ void SieICQMain::ProcessSocket(int id, int event)
         Client->onDataRead();
 //        status->Status="ENIP_SOCK_DATA_READ";
 //        status->Redraw();
-        _WriteLog("ENIP_SOCK_DATA_READ");
+//        _WriteLog("ENIP_SOCK_DATA_READ");
       break;
 
     case ENIP_SOCK_REMOTE_CLOSED: //Соединение разорвано сервером
@@ -193,6 +194,7 @@ void SieICQMain::ProcessSocket(int id, int event)
     case ENIP_BUFFER_FREE: //Буфер отпраки пуст
     case ENIP_BUFFER_FREE1:
       //Досылаем очередь
+        Client->Socket->Send(NULL, NULL);
 //      download->log->Print("Socket buffer free", CLR_Grey);
 //      download->Send(NULL, NULL);
         status->Status="ENIP_BUFFER_FREE";
