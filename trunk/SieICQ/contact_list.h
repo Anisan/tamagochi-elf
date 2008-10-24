@@ -12,7 +12,9 @@ typedef struct
   unsigned int isgroup;
   unsigned int uin;
   unsigned int group;
+  unsigned int status;
   char name[64];
+  
 }CLIST;
 
 class UsersList
@@ -20,11 +22,13 @@ class UsersList
 public:
   UsersList();
   ~UsersList();
-  void AddUser(char *name, unsigned int isgroup, uin, group);
+  void AddUser(char *name, unsigned int isgroup, unsigned int uin, unsigned int group);
   
   int GetCount();
+  CLIST * GetItem(int curitem);
 private:
-  CLIST *clist;
+  CLIST *Itemtop;
+  void FreeItemsList();
 };
 
 

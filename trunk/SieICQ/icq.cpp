@@ -2,11 +2,13 @@
 #include "icq.h"
 #include "icqsocket.h"
 #include "log_widget.h"
+#include "contact_list.h"
 #include "icq_packet.h"
 #include "Random.h"
 
 //#include "icq_snac.h"
 
+ICQClient * ICQClient::Active = NULL;
 
 /* This was borrowed from libfaim */
 char *icq_encode_password(char *password) {
@@ -26,8 +28,36 @@ char *icq_encode_password(char *password) {
 	return encoded;
 }
 ///////////////////////////////////////////////////////
+GBSTMR tmr_active;
 
-/////////////////////////////////////////////
+void process_active_timer(void)
+{
+  
+  //if (ICQClient::Active->Socket->connect_state>1)
+  {
+    if (++ICQClient::Active->tenseconds_to_ping>6)
+    {
+      ICQClient::Active->tenseconds_to_ping=0;
+      ICQClient::Active->Keep_alive();
+    }
+  }
+//  tmr_gipc.name_to=ipc_my_name;
+//  tmr_gipc.name_from=ipc_my_name;
+//  tmr_gipc.data=NULL;
+//  GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_TENSECONDS,&tmr_gipc);
+  GBS_StartTimerProc(&tmr_active,_tmr_second(5),process_active_timer);
+}
+
+GBSTMR tmr_recv;
+
+void process_recv_timer(void)
+{
+  GBS_DelTimer(&tmr_recv);
+  
+  ICQClient::Active->onDataRead();
+  
+  GBS_StartTimerProc(&tmr_recv,_tmr_second(5),process_recv_timer);
+}/////////////////////////////////////////////
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
@@ -56,6 +86,7 @@ void _WriteLogICQ(char *buf, int size, int in_out)
 
 ICQClient::ICQClient()
 {
+  Active = this;
  // Socket = new SocketAbstract();
   PASS=new char[64];
   Host=new char[64];
@@ -76,12 +107,17 @@ ICQClient::~ICQClient()
 
 void ICQClient::Create()
 {
+ 
+  flags_status =0x0101;// INVISIBLE IP
+ // flags_status =0x0000; // VISIBLE IP
  // Socket = new SocketAbstract();
  // Socket->Create();
 }
 
 void ICQClient::Close()
 {
+  GBS_DelTimer(&tmr_active);
+  GBS_DelTimer(&tmr_recv);
   Socket->Close();
   delete Socket;
 }
@@ -114,14 +150,15 @@ void ICQClient::Login()
 void ICQClient::onConnected()
 {
   // auth
-  
+  //process_active_timer();
 }
 
 void ICQClient::onDataRead()
 {
   //главная функция
-  //_WriteLog("DATA_READ");
-  int offset=0;
+  _WriteLog("DATA_READ");
+  
+   int offset=0;
    char tmp_buf[4096]; // Буфер приема даннях
    char *pack;
    int nrecv = Socket->Recv(tmp_buf, sizeof(tmp_buf)); // Получаем даные
@@ -184,6 +221,61 @@ void ICQClient::onDataRead()
   // delete tmp_buf;
   // delete pack;
    delete flap;
+  
+  /*
+  FLAP_HEAD *flap = new FLAP_HEAD;
+  int nrecv = Socket->Recv((char*)flap,sizeof(FLAP_HEAD)); // Получаем даные
+  
+  
+   if (!nrecv)
+   {
+     _WriteLog("Empty recv!!");
+     LogWidget::Active->Status="Empty recv!!";
+     LogWidget::Active->Redraw();
+     return;
+   }
+   
+   //_WriteLogICQ(tmp_buf,nrecv,1);
+   // может быть несколько пакетов в одном сообщении
+   while (nrecv)
+   {
+   
+     flap->data_size = htons(flap->data_size);
+     flap_seqno=htons(flap->seq_number);
+     
+     _WriteLogICQ((char*)flap,sizeof(FLAP_HEAD),1);
+   
+         char *pack = (char*)malloc(flap->data_size);
+         nrecv = Socket->Recv(pack,flap->data_size);
+         
+     _WriteLogICQ(pack,flap->data_size,1);
+         
+         switch(flap->channel) {
+                case 0x01:
+                      if (auth_cookie) {
+                              send_cookie();
+                      } else 
+                              send_login();
+                      break;
+                      
+                case 0x02:
+                       parse_snac(pack,flap->data_size);
+                      break;
+                      
+                case 0x04:
+                      if (!auth_cookie)
+                        parse_auth(pack,flap->data_size);
+                      break;
+                      
+                default:
+                  ;
+              };
+         delete pack;
+         
+         nrecv = Socket->Recv((char*)flap,sizeof(FLAP_HEAD));
+   }
+   delete flap;
+  */
 }
 
 void ICQClient::send_packet(int channel,Packet* packet)
@@ -388,7 +480,7 @@ void ICQClient::icq_connect(char *host, int port) {
 /*
 	person_change_status(PERSON(account), CONNECTING);
 */
-  Status=CONNECTING;
+  ICQStatus=CONNECTING;
 }
 
 void ICQClient::send_cookie() 
@@ -419,9 +511,10 @@ void ICQClient::parse_snac(char *data, int size) {
         snac->subtype_id=htons(snac->subtype_id);
         snac->flags=htons(snac->flags);
         snac->request_id=htonl(snac->request_id);
-   
-        packet->data = packet->data + sizeof(SNAC_HEAD);
+        
+        packet->data = packet->data + 2+2+2+4;
         packet->size = size - sizeof(SNAC_HEAD);
+
 	
           char *tmp_msg=new char[64];
          sprintf(tmp_msg, "SNAC -> 0x%04x, 0x%04x", snac->service_id, snac->subtype_id);
@@ -495,7 +588,8 @@ void ICQClient::parse_snac(char *data, int size) {
 
 void ICQClient::Disconnect() 
 {
-  
+  GBS_DelTimer(&tmr_active);
+  GBS_DelTimer(&tmr_recv);
   Socket->Close();
   delete Socket;
 
@@ -503,9 +597,8 @@ void ICQClient::Disconnect()
 
 void ICQClient::snac_new(Packet* packet,short int family, short int subtype, short int *flags, int *reqid) 
 {
-	
 	/* Add SNAC values before giving the packet away */
-        packet->size=0;  
+        //packet->size=0;  
         
           char *tmp_msg=new char[64];
          sprintf(tmp_msg, "SNAC <- 0x%04x, 0x%04x", family, subtype);
@@ -528,19 +621,12 @@ void ICQClient::snac_new(Packet* packet,short int family, short int subtype, sho
 }
 
 void ICQClient::message_new(Packet* packet, short int type, short int *seqno) {
-        packet->size=0;  
-        
-	
 	PackAdd32LE(packet, UIN);
-	
 	PackAdd16(packet, type);
-	
 	/* ICQ Message Sequence number */
 	PackAdd16LE(packet, icq_seqno);
-        
 	if (seqno) *seqno = icq_seqno;
 	icq_seqno++;
-	
 }
 
 void ICQClient::message_parse(Packet *packet) {  
@@ -614,19 +700,21 @@ void ICQClient::snac_server_ready(short int flags, int request_id, Packet *packe
 	PackAdd16(new_packet, 0x0001);
 	PackAdd16(new_packet, 0x000a);
 	PackAdd16(new_packet, 0x0001);
-	
+        
+       	
 	send_packet(0x02, new_packet);
 }
 
 void ICQClient::snac_host_versions(short int flags, int request_id, Packet *packet) {
 	Packet *new_packet = PackNew(); 
+        
         snac_new(new_packet, 0x0001, 0x0006, NULL, NULL);
 	
 	_WriteLog("Server sent us the versions response");
 	_WriteLog("Sending rate request");
 	
-	/* Requesting rate information */
 	send_packet(0x02, new_packet);
+        
 }
 
 void ICQClient::snac_rate_response(short int flags, int request_id, Packet *packet) {
@@ -635,6 +723,8 @@ void ICQClient::snac_rate_response(short int flags, int request_id, Packet *pack
    LogWidget::Active->Redraw();
    
   Packet *new_packet = PackNew();
+  
+
 	
 	/* Acknowledge rate info */
 	snac_new(new_packet, 0x0001, 0x0008, NULL, NULL);
@@ -642,6 +732,7 @@ void ICQClient::snac_rate_response(short int flags, int request_id, Packet *pack
 	PackAdd16(new_packet, 0x0002);
 	PackAdd16(new_packet, 0x0003);
 	PackAdd16(new_packet, 0x0004);
+	PackAdd16(new_packet, 0x0005);
 	send_packet(0x02, new_packet);
 	
 	/* Request info about ourself */
@@ -669,7 +760,7 @@ void ICQClient::snac_rate_response(short int flags, int request_id, Packet *pack
         snac_new(new_packet, 0x0009, 0x0002, NULL, NULL);
 	send_packet( 0x02, new_packet);
         
-        /*  */
+        /*  
 	new_packet = PackNew();
         snac_new(new_packet, 0x0013, 0x0002, NULL, NULL);
 	send_packet( 0x02, new_packet);
@@ -678,6 +769,7 @@ void ICQClient::snac_rate_response(short int flags, int request_id, Packet *pack
         new_packet = PackNew();
         snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
         send_packet( 0x02, new_packet);
+        */
 }
 
 void ICQClient::snac_location_rights(short int flags, int request_id, Packet *packet) {
@@ -690,7 +782,8 @@ void ICQClient::snac_list_rights(short int flags, int request_id, Packet *packet
 }
 
 void ICQClient::snac_im_rights(short int flags, int request_id, Packet *packet) {
-	Packet *new_packet = PackNew(); 
+
+  Packet *new_packet = PackNew(); 
         snac_new(new_packet, 0x0004, 0x0002, NULL, NULL);
 	
 	/* Some Initial IM parameter */
@@ -704,71 +797,90 @@ void ICQClient::snac_im_rights(short int flags, int request_id, Packet *packet) 
 	_WriteLog("Sending initial IM stuff");
 	
 	send_packet(0x02, new_packet);
+        
+        new_packet = PackNew(); 
+        snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
+        PackAdd32(new_packet,0);
+        PackAdd16(new_packet,0);
+	send_packet(0x02, new_packet);
+  
 }
 
 void ICQClient::snac_bos_rights(short int flags, int request_id, Packet *packet) {
-	Packet *new_packet = PackNew();
+
+  
+  SetStatus(STATUS_ONLINE);
+  
+    Packet *new_packet = PackNew();
+          // запрос контакт листа
+        new_packet = PackNew();
+        snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
+        send_packet( 0x02, new_packet);
+   
+  new_packet = PackNew();
         snac_new(new_packet, 0x0001, 0x0002, NULL, NULL);
 	
 	/* Send "Client Ready" */
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0003);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	PackAdd16(new_packet, 0x0002);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0101);
-	PackAdd16(new_packet, 0x028a);
-	
-	PackAdd16(new_packet, 0x0003);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	PackAdd16(new_packet, 0x0015);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	
-	PackAdd16(new_packet, 0x0004);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	PackAdd16(new_packet, 0x0006);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	
-	PackAdd16(new_packet, 0x0009);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
-	PackAdd16(new_packet, 0x000a);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0110);
-	PackAdd16(new_packet, 0x028a);
+	PackAdd32(new_packet, 0x00010003);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x00020001);
+	PackAdd32(new_packet, 0x0101028A);
+	PackAdd32(new_packet, 0x00030001);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x00150001);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x00040001);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x00060001);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x00090001);
+	PackAdd32(new_packet, 0x0110028A);
+	PackAdd32(new_packet, 0x000a0003);
+	PackAdd32(new_packet, 0x0110028A);
 	
 	_WriteLog("Sending Client Ready");
 	
 	send_packet( 0x02, new_packet);
         
-        Status = STATUS_ONLINE;
+       
         
          _WriteLog("STATUS_ONLINE");
          LogWidget::Active->Status="STATUS_ONLINE";
          LogWidget::Active->Redraw();
         
 	
+        // запрос контакт листа
+        new_packet = PackNew();
+        snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
+        send_packet( 0x02, new_packet);
         
         // запрос оффлайн сообщений
         new_packet = PackNew();
         message_new(new_packet, 0x3c00, NULL);
 	send_message(new_packet);
+        
+        
+	send_key_data("<key>DataFilesIP</key>");
+	send_key_data("<key>BannersIP</key>");
+	send_key_data("<key>ChannelsIP</key>");
+        
+        process_active_timer();
+       // process_recv_timer();
+}
+
+void ICQClient::send_key_data(char *data) {
+	Packet *packet = PackNew();
+        message_new(packet, 0xd007, NULL);
+	int size = strlen(data) + 1;
 	
-        /*
-	send_key_data(account, "<key>DataFilesIP</key>");
-	send_key_data(account, "<key>BannersIP</key>");
-	send_key_data(account, "<key>ChannelsIP</key>");
-        */
+	/* Subtype */
+	PackAdd16(packet, 0x9808);
+	/* Key size */
+	PackAdd16LE(packet, size);
+	/* actual data */
+	PackAdd(packet, data, size);
+	
+	send_message(packet);
 }
 
 void ICQClient::snac_server_message(short int flags, int request_id, Packet *packet) {
@@ -790,6 +902,18 @@ void ICQClient::send_contact_list() {
 	
 	/* Build a packet with all contacts in it */
 //	g_list_foreach(ACCOUNT(account)->contacts, (GFunc)icq_send_contact_cb, packet);
+        
+        for (int i=0;i<ContactList::Active->list->GetCount();i++)
+        {
+          CLIST* item=ContactList::Active->list->GetItem(i);
+          if (!item->isgroup)
+          {
+            char *str=(char*)malloc(64);
+            sprintf(str,percent_d,item->uin);
+            PackAdd8(packet,(char)strlen(str));
+            PackAddStr(packet,str);
+          }
+        }
 	
 	send_packet( 0x02, packet);
 }
@@ -817,22 +941,20 @@ void ICQClient::snac_user_info(short int flags, int request_id, Packet *packet) 
 	//		user, warn_level, tlv_count);
 	
 	/* Only set our info if it's the first time we receive this packet */
-	if (Status == CONNECTING) 
-          send_user_info();
+//	if (Status == CONNECTING) 
+        send_user_info();
 }
 
 void ICQClient::send_user_info() {
+  
+         // Set User Info (capability)
+  
 	Packet *packet = PackNew();
         snac_new(packet, 0x0002, 0x0004, NULL, NULL);
 	
-	PackAddTLV(packet, 0x0005, 0x0020);
+	PackAddTLV(packet, 0x0005, 0x0010);
 	
 	/* This is the capability block for the icq client */
-	PackAdd32(packet, 0x09461349);
-	PackAdd32(packet, 0x4c7f11d1);
-	PackAdd32(packet, 0x82224445);
-	PackAdd32(packet, 0x53540000);
-	
 	PackAdd32(packet, 0x09461349);
 	PackAdd32(packet, 0x4c7f11d1);
 	PackAdd32(packet, 0x82224445);
@@ -887,21 +1009,137 @@ void ICQClient::snac_incoming_msg(short int flags, int request_id, Packet *packe
 
 void ICQClient::snac_contactlist(short int flags, int request_id, Packet *packet) {
 
+  /*
+        //запрос оффлайн сообщений
+        Packet *new_packet = PackNew();
+        message_new(new_packet, 0x3c00, NULL);
+	send_message(new_packet);
+        
+        new_packet = PackNew();
+        snac_new(new_packet, 0x0013, 0x0007, NULL, NULL);
+        send_packet( 0x02, new_packet);
+       
+        // устанавливаем статус
+        new_packet = PackNew();
+        snac_new(new_packet, 0x0001, 0x001e, NULL, NULL);
+        PackAddTLV32(new_packet, 0x0006, 0x00000001);
+	send_packet(0x02, new_packet);
+        
+        snac_bos_rights(0, 0,NULL);
+  */      
+  
+        return;
 //Version number of SSI protocol (currently 0x00)
 	char vnum;
 	PackGet8(packet, &vnum);
-        
+        _WriteLog("parse CL");
         short int Count=0;
         PackGet16(packet,&Count);
-        if (Count<=0) return;
+       // if (Count<=0) return;
         for (int i=0;i<Count;i++)
         {
+          short int len=0;
+          PackGet16(packet,&len);
+          char *name;
+          char *uin_name=(char*)malloc(64);
+
+          name = (char*)malloc((int)len + 1);
+          PackGet(packet, (char*)name, (int)len);
+          name[(int)len] = 0;
+          short int GroupID=0;
+          PackGet16(packet,&GroupID);
+          short int ItemID=0;
+          PackGet16(packet,&ItemID);
+          short int Type=0;
+          PackGet16(packet,&Type);
+          PackGet16(packet,&len);
           
+          short int type, length=0;
+          int end_info=packet->offset+len;
           
+          while (packet->offset<end_info)
+            {
+              PackGetTLV(packet, &type, &length);
+              switch (type)
+              {
+              case 0x0131:
+                PackGet(packet, (char*)uin_name, length);
+                uin_name[(int)length]=0;
+                break;
+              default:
+                 char *tmp = (char*)malloc(length);
+                 PackGet(packet, (char*)tmp, length);
+                 delete tmp;
+              }
+            }
+          
+          switch (Type)
+          {
+          case 0:// buddi
+            int uin = str2int(name);
+            ContactList::Active->list->AddUser((char*)uin_name,0,uin,GroupID);
+            break;
+          case 1:// group
+            ContactList::Active->list->AddUser(name,1,0,GroupID);
+            break;
+          default:
+            break;
+          }
+          
+          delete uin_name;
           
         }
         
         
-        
-  
+}
+
+
+
+void ICQClient::Keep_alive()
+{
+  Packet* pack=PackNew();
+  send_packet( 0x05, pack);
+  LogWidget::Active->Redraw();
+}
+
+
+void ICQClient::SetStatus(int Status)
+{
+       ICQStatus = Status;
+     
+       /*
+       // Set Status Code
+       tmp := CreatePacket(2,SEQ);
+       SNACAppend(tmp,$1,$1E);
+       TLVAppendDWord(tmp,6,ICQStatus);
+       TLVAppendWord(tmp,8,$0000);
+       // imitation TLV(C)
+       PacketAppend32(tmp,dswap($000C0025)); // TLV(C)
+       StrToIP(Get_my_IP,DIM_IP);
+       PacketAppend(tmp,@DIM_IP,4);                  // IP address
+       PacketAppend32(tmp,dswap(28000+random(1000)));// Port
+       PacketAppend8(tmp,$04);
+       PacketAppend16(tmp,swap($0007));
+       PacketAppend16(tmp,swap($466B));
+       PacketAppend16(tmp,swap($AE68));
+       PacketAppend32(tmp,dswap($00000050));
+       PacketAppend32(tmp,dswap($00000003));
+       PacketAppend32(tmp,dswap(SecsSince1970));
+       PacketAppend32(tmp,dswap(SecsSince1970));
+       PacketAppend32(tmp,dswap(SecsSince1970));
+       PacketAppend16(tmp,swap($0000));
+       PacketSend(tmp); 
+       */
+       int long_status=0;
+       
+       long_status=flags_status*0x10000+Status;
+       
+       
+       Packet *new_packet = PackNew();
+       snac_new(new_packet, 0x0001, 0x001e, NULL, NULL);
+       PackAddTLV32(new_packet, 0x0006, long_status);
+       //PackAddTLV16(new_packet, 0x0008, 0x0000);
+      
+       
+       send_packet(0x02, new_packet);
 }

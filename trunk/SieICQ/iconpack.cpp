@@ -7,7 +7,16 @@ IconPack * IconPack::Active = NULL;
 static const char * const img_names[TOTAL_ICONS_NUM]=
 {
   "logo.png",
-  "off.png",
+  "UNKNOWN.png",
+  "OFFLINE.png",
+  "ONLINE.png",
+  "AWAY.png",
+  "DND.png",
+  "NA.png", 
+  "OCCUPIED.png",
+  "FFC.png",
+  "INVISIBLE.png"
+  
 };
 
 IconPack::IconPack()

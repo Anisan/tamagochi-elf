@@ -29,6 +29,10 @@ void PackAdd(Packet *packet, char* data, int size) {
        
 }
 
+void PackAdd8(Packet *packet, char data){
+    PackAdd(packet,(char*)&data,1);
+}
+
 void PackAdd16(Packet *packet, int data) {
     int tmp=htons(data);
     PackAdd(packet,(char*)&tmp,2);

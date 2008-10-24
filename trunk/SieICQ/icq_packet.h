@@ -14,10 +14,12 @@ Packet* PackNew();
 void PackFree(Packet *packet);
 
 void PackAdd(Packet *packet, char* data, int size);
+void PackAdd8(Packet *packet, char data);
 void PackAdd16(Packet *packet, int data);
 void PackAdd16LE(Packet *packet, int data);
 void PackAdd32(Packet *packet,long data);
 void PackAdd32LE(Packet *packet,long data);
+void PackAddStr(Packet *packet, char *str);
 
 void PackAddPack(Packet *packet,Packet *packet2);
 

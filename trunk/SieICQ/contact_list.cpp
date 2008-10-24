@@ -11,20 +11,75 @@ UsersList
 *******************************************************************************/
 UsersList::UsersList()
 {
+  Itemtop=NULL;
 }
 
 UsersList::~UsersList()
 {
 }
 
-void UsersList::AddUser(char *name, unsigned int isgroup, uin, group)
+void UsersList::AddUser(char *name, unsigned int isgroup,unsigned int uin,unsigned int group)
 {
-    
+ CLIST *bmk=(CLIST*)malloc(sizeof(CLIST));
+ bmk->next=NULL;
+ bmk->prev=NULL;
+ sprintf(bmk->name,name);
+ bmk->isgroup=isgroup;
+ bmk->uin=uin;
+ bmk->group=group;
+ bmk->status=0;
+ 
+ if(!Itemtop)
+ {
+   Itemtop=bmk; 
+ }
+ else
+ {
+   CLIST *Item=Itemtop;
+   while(Item->next)
+       Item=(CLIST*)Item->next;
+   Item->next=bmk;   
+ } 
+}
+
+CLIST *UsersList::GetItem(int curitem)
+{
+  CLIST *bmk;
+  bmk=(CLIST*)Itemtop;
+  int i=0;
+  while(bmk)
+  {
+    if(i==curitem)
+      return bmk;
+    i++;
+    if(bmk->next) bmk=(CLIST*)bmk->next;  
+    else return 0;
+  }
+  return 0;
 }
   
 int UsersList::GetCount()
 {
-  return 0;
+  if(!Itemtop) return 0;
+  CLIST *bmk;
+  bmk=Itemtop;
+  int i=1; 
+  while(bmk=(CLIST*)bmk->next) i++;
+  return i;
+}
+
+void UsersList::FreeItemsList()
+{  
+  LockSched();
+  CLIST *bmk=(CLIST *)Itemtop;
+  Itemtop=NULL;
+  UnlockSched();
+  while(bmk)
+  {
+    CLIST *bmk_prev=bmk;
+    bmk=(CLIST*)bmk->next;
+    mfree(bmk_prev);
+  }
 }
 
 /*******************************************************************************
@@ -146,27 +201,29 @@ void ContactList::gHook(void *data, int cmd)
 
 void ContactList::ItemHandler(void * data, int curitem, void * unk)
 {
-  /*
+  
   WSHDR * ws1, * ws2, * ws3;
   void * item = AllocMLMenuItem(data);
-  Download * dl = DownloadHandler::Top->GetDownloadbyN(curitem);
-  if(dl && dl->file_name)
+  CLIST* dl = list->GetItem(curitem);
+  if(dl && dl->name)
   {
-    ws1 = AllocMenuWS(data, strlen(dl->file_name) + 1);
-    str_2ws(ws1, dl->file_name, strlen(dl->file_name));
+    ws1 = AllocMenuWS(data, strlen(dl->name) + 1);
+    str_2ws(ws1, dl->name, strlen(dl->name));
   }
   else
   {
     ws1 = AllocMenuWS(data, 32);
     ascii2ws(ws1, "No name");
   }
+  
   ws2 = AllocMenuWS(data, 32);
-  switch(dl->download_state)
+  switch(dl->status)
   {
-  case DOWNLOAD_ERROR:
-    ascii2ws(ws2, LangPack::Active->data[LGP_Error]);
-    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Error]);
+    
+  case STATUS_ONLINE:
+    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_ONLINE]);
     break;
+  /*  
   case DOWNLOAD_CONNECT:
     ascii2ws(ws2, LangPack::Active->data[LGP_Connecting]);
     SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Start]);
@@ -175,41 +232,21 @@ void ContactList::ItemHandler(void * data, int curitem, void * unk)
     ascii2ws(ws2, LangPack::Active->data[LGP_GettingInfo]);
     SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_GetInfo]);
     break;
-  case DOWNLOAD_DATA:
-    if(dl->file_size)
-    {
-      ws3 = AllocWS(16);
-      wsprintf_bytes(ws2, dl->file_loaded_size);
-      wsprintf_bytes(ws3, dl->file_loaded_size, dl->file_size);
-      wstrcat(ws2, ws3);
-      FreeWS(ws3);
-    }
-    else
-      wsprintf_bytes(ws2, dl->file_loaded_size);
-    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Downloading]);
-    break;
-  case DOWNLOAD_COMPLETE:
-    ascii2ws(ws2, LangPack::Active->data[LGP_Completed]);
-    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Complete]);
-    break;
-  case DOWNLOAD_STOPPED:
-    ascii2ws(ws2, LangPack::Active->data[LGP_Stopped]);
-    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Pause]);
-    break;
+    */
   default:
-    ascii2ws(ws2, LangPack::Active->data[LGP_Waiting]);
-    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_Idle]);
+    SetMenuItemIconArray(data, item, &IconPack::Active->data[IMG_OFFLINE]);
     break;
   }
-  if (dl->ranges_support != -1) // Вставляем смайл - индикатор поддержки докачки
-    wsInsertChar(ws2, dl->ranges_support == 1?LGP_SMILE_OK:LGP_SMILE_NO, 1);
+  char uin[64];
+  sprintf(uin,percent_d,dl->uin);
+  str_2ws(ws1, uin, strlen(uin));
   SetMLMenuItemText(data, item, ws1, ws2, curitem);
-  */
+  
 }
 
 void ContactList::Show()
 {
-  patch_header(&ContactList_hdr, &IconPack::Active->data[IMG_OFF], (int)"SieICQ");
+  patch_header(&ContactList_hdr, &IconPack::Active->data[IMG_UNKNOWN], (int)"SieICQ");
   
   ContactList_sk[0].lgp_id = (int)LangPack::Active->data[LGP_Options];
   ContactList_sk[1].lgp_id = (int)LangPack::Active->data[LGP_Close];
@@ -222,6 +259,8 @@ ContactList::ContactList()
   Active = this;
   gui_id = NULL;
   list = new UsersList;
+  
+//  list->AddUser("Eraser",0,0,0);
 }
 
 ContactList::~ContactList()
