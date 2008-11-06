@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>SieICQ/Release_ELKA</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>175</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>748</ColumnWidth1><ColumnWidth2>199</ColumnWidth2><ColumnWidth3>49</ColumnWidth3></Build></Static>
+    <Windows>
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-25188-1950</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>SieICQ</ExpandedNode><ExpandedNode>SieICQ/ICQ</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-17116-2306</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ\sieicq_ipc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>28</SelStart><SelEnd>28</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\main.c</Filename><XPos>0</XPos><YPos>889</YPos><SelStart>21167</SelStart><SelEnd>21167</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\include.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>213</SelStart><SelEnd>241</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\icq.h</Filename><XPos>0</XPos><YPos>84</YPos><SelStart>3417</SelStart><SelEnd>3417</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\icq.c</Filename><XPos>0</XPos><YPos>845</YPos><SelStart>21657</SelStart><SelEnd>21657</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\config_data.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>186</SelStart><SelEnd>311</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\conf_loader.c</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>1420</SelStart><SelEnd>1420</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\revision.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\sieicq_ipc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\icq_packet.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>754</SelStart><SelEnd>754</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-0036fd60><key>iaridepm.enu1</key></Toolbar-0036fd60></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>602</Bottom><Right>249</Right><x>-2</x><y>-2</y><xscreen>211</xscreen><yscreen>208</yscreen><sizeHorzCX>189238</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>225112</sizeVertCX><sizeVertCY>708920</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>206</Bottom><Right>1117</Right><x>-2</x><y>-2</y><xscreen>1119</xscreen><yscreen>208</yscreen><sizeHorzCX>1003587</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>189238</sizeVertCX><sizeVertCY>244131</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
