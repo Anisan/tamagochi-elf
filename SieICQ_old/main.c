@@ -467,7 +467,7 @@ void get_answer(void)
          memcpy(flap, tmp_buf+offset, sizeof(FLAP_HEAD));
          
          flap->data_size = htons(flap->data_size);
-         flap_seqno=htons(flap->seq_number);
+         //flap_seqno=htons(flap->seq_number);
 
          //char *tmp_msg=new char[64];
          //sprintf(tmp_msg, percent_d, flap->data_size);
@@ -632,7 +632,6 @@ int method5(MAIN_GUI *data,GUI_MSG *msg)
 //      if ((connect_state==0)&&(sock==-1))
       {
         CreateICQ();
-        _WriteLog("connect");
         GBS_DelTimer(&reconnect_tmr);
 	DNR_TRIES=3;
         SUBPROC((void *)create_connect);
@@ -705,30 +704,14 @@ void maincsm_oncreate(CSM_RAM *data)
 void maincsm_onclose(CSM_RAM *csm)
 {
   
-/*
-  #pragma segment="CONFIG_C"
-  unsigned int ul;
-  int f;
-  extern const CFG_HDR cfghdr0; //first var in CONFIG
-  void *cfg=(void*)&cfghdr0;
-  unsigned int len=(int)__segment_end("CONFIG_C")-(int)__segment_begin("CONFIG_C");
-
-  if ((f=fopen("4:\\ZBin\\etc\\NATICQ.bcfg",A_ReadWrite+A_Create+A_Truncate,P_READ+P_WRITE,&ul))==-1){
-   f=fopen("0:\\ZBin\\etc\\NATICQ.bcfg",A_ReadWrite+A_Create+A_Truncate,P_READ+P_WRITE,&ul);
-  }
-  fwrite(f,cfg,len,&ul);
-  fclose(f,&ul);
-*/
-
-  //  GBS_DelTimer(&tmr_dorecv);
+//  GBS_DelTimer(&tmr_dorecv);
 //  GBS_DelTimer(&tmr_active);
 //  GBS_DelTimer(&tmr_ping);
+//  FreeSmiles();
 
-
-  //  FreeSmiles();
- 
-  //  MutexDestroy(&contactlist_mtx);
-
+  Disconnect();
+  SUBPROC((void *)end_socket);
+  SUBPROC((void *)ClearSendQ);
   SUBPROC((void *)ElfKiller);
 }
 
@@ -752,7 +735,11 @@ void CheckDoubleRun(void)
   {
     //InitXStatusesImg();
     //InitSmiles(); Это вызовется из InitXStatusesImg
-   // create_connect();
+   
+    CreateICQ();
+    GBS_DelTimer(&reconnect_tmr);
+    DNR_TRIES=3;
+    create_connect();
   }
 }
 
@@ -864,7 +851,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
       case ENIP_SOCK_CONNECTED:
 	if (connect_state==1)
 	{
-	  //Соединение установленно, посылаем пакет login
+	  //Соединение установленно
 	  strcpy(logmsg, "Connected");
           SMART_REDRAW();
 	}
@@ -874,8 +861,6 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
 	}
 	break;
       case ENIP_SOCK_DATA_READ:
-        strcpy(logmsg, "Data_Read");
-        _WriteLog("data read");
 	SUBPROC((void *)get_answer);
 	SMART_REDRAW();
 	break;
@@ -889,10 +874,11 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
 	//Закрыт со стороны сервера
 	if (connect_state)
 	  SUBPROC((void *)end_socket);
+        strcpy(logmsg, "REMOTE_CLOSED");
         SUBPROC((void *)ClearSendQ);
 	break;
       case ENIP_SOCK_CLOSED:
-	//strcpy(logmsg, "No connection");
+	strcpy(logmsg, "No connection");
 	//Dump not received
 /*	if (RXstate>(-(int)sizeof(PKT)))
 	{
@@ -911,7 +897,6 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
 	  snprintf(logmsg,255,"Disconnected, %d bytes not sended!",sendq_l);
 	}
 	SMART_REDRAW();
-        _WriteLog(logmsg);
         
 	SUBPROC((void *)ClearSendQ);
 	/*
@@ -988,7 +973,7 @@ int main(char *filename)
   
   UIN=_UIN;
   strcpy(PASS,_PASS);
-/*
+
   if (!UIN)
   {
     LockSched();
@@ -1000,7 +985,7 @@ int main(char *filename)
     SUBPROC((void *)ElfKiller);
     return 0;
   }
-  */
+  
   UpdateCSMname();
   LockSched();
   maincsm_id=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
