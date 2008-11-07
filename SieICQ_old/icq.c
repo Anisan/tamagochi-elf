@@ -202,6 +202,8 @@ void send_login()
 
 
 extern void icq_connect(char *host, int port);
+extern char logmsg[256];
+extern void SMART_REDRAW(void);
 
 void parse_auth(char *data, int size) {
 	
@@ -228,12 +230,51 @@ void parse_auth(char *data, int size) {
           PackGet(packet, (char*)uin, length);
           uin[length] = 0;
           break;
-          case 0x04:
+          case 0x08:
+          {
+            short int error_code;
+            PackGet16(packet,&error_code);
+            switch (error_code)
+           {
             //обработка ошибки
-            
-            
-            Disconnect();
-          return;
+	      case 0x0001: strcpy(logmsg, "Invalid nick or password");break; 
+              case 0x0002: strcpy(logmsg, "Service temporarily unavailable");break; 
+              case 0x0003: strcpy(logmsg, "All other errors");break; 
+              case 0x0004: strcpy(logmsg, "Incorrect nick or password, re-enter");break; 
+              case 0x0005: strcpy(logmsg, "Mismatch nick or password, re-enter");break; 
+              case 0x0006: strcpy(logmsg, "Internal client error (bad input to authorizer)");break; 
+              case 0x0007: strcpy(logmsg, "Invalid account");break; 
+              case 0x0008: strcpy(logmsg, "Deleted account");break; 
+              case 0x0009: strcpy(logmsg, "Expired account");break; 
+              case 0x000A: strcpy(logmsg, "No access to database");break; 
+              case 0x000B: strcpy(logmsg, "No access to resolver");break; 
+              case 0x000C: strcpy(logmsg, "Invalid database fields");break; 
+              case 0x000D: strcpy(logmsg, "Bad database status");break; 
+              case 0x000E: strcpy(logmsg, "Bad resolver status");break; 
+              case 0x000F: strcpy(logmsg, "Internal error");break; 
+              case 0x0010: strcpy(logmsg, "Service temporarily offline");break; 
+              case 0x0011: strcpy(logmsg, "Suspended account");break; 
+              case 0x0012: strcpy(logmsg, "DB send error");break; 
+              case 0x0013: strcpy(logmsg, "DB link error");break; 
+              case 0x0014: strcpy(logmsg, "Reservation map error");break; 
+              case 0x0015: strcpy(logmsg, "Reservation link error");break; 
+              case 0x0016: strcpy(logmsg, "The users num connected from this IP has reached the maximum");break; 
+              case 0x0017: strcpy(logmsg, "The users num connected from this IP has reached the maximum (reservation)");break; 
+              case 0x0018: strcpy(logmsg, "Rate limit exceeded (reservation). Please try to reconnect in a few minutes");break; 
+              case 0x0019: strcpy(logmsg, "User too heavily warned");break; 
+              case 0x001A: strcpy(logmsg, "Reservation timeout");break; 
+              case 0x001B: strcpy(logmsg, "You are using an older version of ICQ. Upgrade required");break; 
+              case 0x001C: strcpy(logmsg, "You are using an older version of ICQ. Upgrade recommended");break; 
+              case 0x001D: strcpy(logmsg, "Rate limit exceeded. Please try to reconnect in a few minutes");break; 
+              case 0x001E: strcpy(logmsg, "Can't register on the ICQ network. Reconnect in a few minutes");break; 
+              case 0x0020: strcpy(logmsg, "Invalid SecurID");break; 
+              case 0x0022: strcpy(logmsg, "Account suspended because of your age (age < 13)");break; 
+            }    
+
+            SMART_REDRAW();
+            //Disconnect();
+            return;
+          }
           case 0x05:
           /* Get new host */
             host = (char*)malloc(length + 1);

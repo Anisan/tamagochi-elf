@@ -878,7 +878,6 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
         SUBPROC((void *)ClearSendQ);
 	break;
       case ENIP_SOCK_CLOSED:
-	strcpy(logmsg, "No connection");
 	//Dump not received
 /*	if (RXstate>(-(int)sizeof(PKT)))
 	{
@@ -896,6 +895,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
 	{
 	  snprintf(logmsg,255,"Disconnected, %d bytes not sended!",sendq_l);
 	}
+        
 	SMART_REDRAW();
         
 	SUBPROC((void *)ClearSendQ);
