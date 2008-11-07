@@ -930,7 +930,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>4.41A</state>
+          <state>4.42A</state>
         </option>
         <option>
           <name>GeneralMisraRules</name>
@@ -1373,7 +1373,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>NATICQ.elf</state>
+          <state>SieICQ.elf</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -4118,6 +4118,27 @@
       <data/>
     </settings>
   </configuration>
+  <group>
+    <name>GUI</name>
+    <file>
+      <name>$PROJ_DIR$\gui_begin.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui_begin.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui_mainmenu.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui_mainmenu.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\visual_util.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\visual_util.h</name>
+    </file>
+  </group>
   <group>
     <name>ICQ</name>
     <file>

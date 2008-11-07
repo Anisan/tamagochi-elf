@@ -2,84 +2,84 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2223637814</fileChecksum>
+  <fileChecksum>3660089767</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\..\inc\bn.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.r79</file>
-      <file>$PROJ_DIR$\..\inc\zlib.h</file>
-      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
       <file>$PROJ_DIR$\smiles_loader.c</file>
       <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\history.pbi</file>
-      <file>$PROJ_DIR$\..\inc\swilib.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\config_data.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\mainmenu.r79</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
       <file>$PROJ_DIR$\Debug\Obj\history.r79</file>
       <file>$PROJ_DIR$\status_change.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\status_change.pbi</file>
       <file>$PROJ_DIR$\cl_work.c</file>
       <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\select_smile.c</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
       <file>$PROJ_DIR$\Debug\Obj\smiles_loader.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\history.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainmenu.pbi</file>
       <file>$PROJ_DIR$\mainmenu.c</file>
-      <file>$PROJ_DIR$\strings.c</file>
-      <file>$PROJ_DIR$\..\inc\sha.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\strings.r79</file>
-      <file>$PROJ_DIR$\..\inc\crypto.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\func.r79</file>
-      <file>$PROJ_DIR$\..\inc\png.h</file>
-      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
       <file>$PROJ_DIR$\conf_loader.c</file>
       <file>$PROJ_DIR$\config_data.c</file>
       <file>$PROJ_DIR$\func.asm</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\select_smile.pbi</file>
-      <file>$PROJ_DIR$\main.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\conf_loader.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\mainmenu.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\conf_loader.r79</file>
-      <file>$PROJ_DIR$\Debug\Obj\manage_cl.pbi</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\status_change.r79</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\select_smile.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainmenu.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\history.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\SieICQ.pbd</file>
       <file>$PROJ_DIR$\..\inc\pnglist.h</file>
-      <file>$PROJ_DIR$\..\inc\obs.h</file>
       <file>$PROJ_DIR$\Debug\Exe\SieICQ.d79</file>
-      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\status_change.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\manage_cl.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\strings.c</file>
       <file>$PROJ_DIR$\..\inc\rsa.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\config_data.r79</file>
-      <file>$PROJ_DIR$\history.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\select_smile.r79</file>
-      <file>$PROJ_DIR$\Debug\Obj\smiles_loader.r79</file>
-      <file>$PROJ_DIR$\select_smile.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\cl_work.pbi</file>
-      <file>$PROJ_DIR$\manage_cl.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\manage_cl.r79</file>
-      <file>$PROJ_DIR$\Debug\Obj\status_change.r79</file>
-      <file>$PROJ_DIR$\Debug\Obj\cl_work.r79</file>
       <file>$PROJ_DIR$\..\inc\md5.h</file>
       <file>$PROJ_DIR$\Debug\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\cl_work.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\cl_work.pbi</file>
+      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Debug\Obj\smiles_loader.r79</file>
+      <file>$PROJ_DIR$\main.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\select_smile.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\manage_cl.r79</file>
     </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 39</file>
-        </tool>
-      </outputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\smiles_loader.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 45</file>
+          <file> 50</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 15</file>
+          <file> 11</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 33</file>
         </tool>
       </outputs>
     </file>
@@ -88,11 +88,11 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 50</file>
+          <file> 25</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 12</file>
+          <file> 34</file>
         </tool>
       </outputs>
     </file>
@@ -101,125 +101,11 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 51</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 47</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\mainmenu.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 9</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 33</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\strings.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 19</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 53</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\conf_loader.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 32</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 7 22 2 3 14 41 0 20 18 52 40 38 29 23</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\config_data.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
           <file> 42</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 8</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 29</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\func.asm</name>
-      <outputs>
-        <tool>
-          <name>AARM</name>
-          <file> 21</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 1</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 24</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 7 22 2 3 14 41 0 20 18 52 40 38 29 37 23 31 5</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Obj\SieICQ.pbd</name>
-      <inputs>
-        <tool>
-          <name>BILINK</name>
-          <file> 47 32 8 6 24 33 35 30 15 12 53</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\history.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 10</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 6</file>
+          <file> 45</file>
         </tool>
       </outputs>
     </file>
@@ -228,7 +114,20 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 44</file>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\history.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -237,15 +136,116 @@
       </outputs>
     </file>
     <file>
+      <name>$PROJ_DIR$\mainmenu.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 47 26 17 8 39 27 44 24 40 4 10 19 48</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 47 26 17 8 39 27 44 24 40 4 10 19 32 48 51 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\SieICQ.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 45 14 37 30 18 15 36 52 11 34 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
       <name>$PROJ_DIR$\manage_cl.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 49</file>
+          <file> 53</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 35</file>
+          <file> 36</file>
         </tool>
       </outputs>
     </file>
@@ -260,139 +260,229 @@
   <configuration>
     <name>Release</name>
     <outputs>
-      <file>$PROJ_DIR$\..\inc\bn.h</file>
-      <file>$PROJ_DIR$\..\inc\zlib.h</file>
-      <file>$PROJ_DIR$\..\inc\zconf.h</file>
-      <file>$PROJ_DIR$\smiles_loader.c</file>
-      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
-      <file>$PROJ_DIR$\..\inc\swilib.h</file>
-      <file>$PROJ_DIR$\Release\List\select_smile.lst</file>
-      <file>$PROJ_DIR$\status_change.c</file>
-      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
-      <file>$PROJ_DIR$\Release\List\conf_loader.lst</file>
-      <file>$PROJ_DIR$\language.h</file>
-      <file>$PROJ_DIR$\Release\Obj\main.r79</file>
-      <file>$PROJ_DIR$\smiles.h</file>
-      <file>$PROJ_DIR$\select_smile.h</file>
-      <file>$PROJ_DIR$\Release\List\status_change.i</file>
-      <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\cl_work.c</file>
-      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
-      <file>$PROJ_DIR$\mainmenu.c</file>
-      <file>$PROJ_DIR$\strings.c</file>
-      <file>$PROJ_DIR$\..\inc\sha.h</file>
-      <file>$PROJ_DIR$\..\inc\crypto.h</file>
-      <file>$PROJ_DIR$\..\inc\png.h</file>
-      <file>$PROJ_DIR$\conf_loader.h</file>
-      <file>$PROJ_DIR$\Release\Obj\manage_cl.r79</file>
-      <file>$PROJ_DIR$\Release\Obj\manage_cl.pbi</file>
-      <file>$PROJ_DIR$\Release\List\mainmenu.lst</file>
-      <file>$PROJ_DIR$\status_change.h</file>
-      <file>$PROJ_DIR$\Release\List\strings.lst</file>
-      <file>$PROJ_DIR$\naticq_ipc.h</file>
-      <file>$PROJ_DIR$\Release\Obj\func.r79</file>
+      <file>$PROJ_DIR$\gui_begin.c</file>
+      <file>$PROJ_DIR$\gui_begin.h</file>
+      <file>$PROJ_DIR$\gui_mainmenu.h</file>
+      <file>$PROJ_DIR$\gui_mainmenu.c</file>
+      <file>$PROJ_DIR$\visual_util.c</file>
+      <file>$PROJ_DIR$\visual_util.h</file>
       <file>$PROJ_DIR$\conf_loader.c</file>
       <file>$PROJ_DIR$\config_data.c</file>
       <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
       <file>$PROJ_DIR$\revision.h</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
-      <file>$PROJ_DIR$\history.h</file>
-      <file>$PROJ_DIR$\main.h</file>
-      <file>$PROJ_DIR$\Release\Obj\config_data.r79</file>
-      <file>$PROJ_DIR$\strings.h</file>
-      <file>$PROJ_DIR$\Release\List\history.i</file>
-      <file>$PROJ_DIR$\Release\List\mainmenu.i</file>
-      <file>$PROJ_DIR$\Release\Obj\select_smile.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\smiles_loader.pbi</file>
-      <file>$PROJ_DIR$\Release\List\smiles_loader.lst</file>
-      <file>$PROJ_DIR$\Release\List\main.i</file>
-      <file>$PROJ_DIR$\Release\List\status_change.lst</file>
-      <file>$PROJ_DIR$\Release\Obj\smiles_loader.r79</file>
-      <file>$PROJ_DIR$\Release\Obj\select_smile.r79</file>
-      <file>$PROJ_DIR$\Release\Obj\mainmenu.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\conf_loader.pbi</file>
-      <file>$PROJ_DIR$\naticq.h</file>
-      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
-      <file>$PROJ_DIR$\..\inc\data_n.h</file>
-      <file>$PROJ_DIR$\Release\Obj\status_change.pbi</file>
-      <file>$PROJ_DIR$\cl_work.h</file>
-      <file>$PROJ_DIR$\Release\List\NATICQ.map</file>
-      <file>$PROJ_DIR$\Release\Obj\cl_work.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\strings.r79</file>
-      <file>$PROJ_DIR$\..\inc\rsa.h</file>
-      <file>$PROJ_DIR$\history.c</file>
-      <file>$PROJ_DIR$\select_smile.c</file>
-      <file>$PROJ_DIR$\manage_cl.c</file>
-      <file>$PROJ_DIR$\test.xcl</file>
-      <file>$PROJ_DIR$\Release\Exe\NATICQ.elf</file>
-      <file>$PROJ_DIR$\Release\Obj\history.r79</file>
-      <file>$PROJ_DIR$\Release\List\cl_work.i</file>
-      <file>$PROJ_DIR$\Release\Obj\mainmenu.r79</file>
-      <file>$PROJ_DIR$\Release\List\conf_loader.i</file>
-      <file>$PROJ_DIR$\manage_cl.h</file>
-      <file>$PROJ_DIR$\..\inc\md5.h</file>
-      <file>$PROJ_DIR$\Release\List\cl_work.lst</file>
-      <file>$PROJ_DIR$\Release\Obj\history.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\strings.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\cl_work.r79</file>
-      <file>$PROJ_DIR$\Release\Obj\conf_loader.r79</file>
-      <file>$PROJ_DIR$\rect_patcher.h</file>
-      <file>$PROJ_DIR$\Release\List\manage_cl.lst</file>
-      <file>$PROJ_DIR$\Release\Obj\config_data.pbi</file>
-      <file>$PROJ_DIR$\Release\List\main.lst</file>
-      <file>$PROJ_DIR$\Release\List\history.lst</file>
-      <file>$PROJ_DIR$\Release\List\select_smile.i</file>
-      <file>$PROJ_DIR$\Release\List\strings.i</file>
-      <file>$PROJ_DIR$\Release\Obj\status_change.r79</file>
-      <file>$PROJ_DIR$\Release\List\smiles_loader.i</file>
-      <file>$PROJ_DIR$\Release\List\manage_cl.i</file>
-      <file>$PROJ_DIR$\mainmenu.h</file>
+      <file>$PROJ_DIR$\sieicq_ipc.h</file>
+      <file>$PROJ_DIR$\string_util.c</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+      <file>$PROJ_DIR$\TODO.txt</file>
     </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 65 57</file>
-        </tool>
-      </outputs>
-    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_ELKA</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\smiles_loader.c</file>
+      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\status_change.c</file>
+      <file>$PROJ_DIR$\cl_work.c</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$TOOLKIT_DIR$\inc\ymath.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_packet.lst</file>
+      <file>$PROJ_DIR$\select_smile.c</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\history.c</file>
+      <file>$PROJ_DIR$\mainmenu.c</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\icq.c</file>
+      <file>$PROJ_DIR$\icq.h</file>
+      <file>$PROJ_DIR$\icq_packet.c</file>
+      <file>$PROJ_DIR$\icq_packet.h</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\config_data.c</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\include.h</file>
+      <file>$PROJ_DIR$\revision.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\sieicq_ipc.h</file>
+      <file>$PROJ_DIR$\string_util.c</file>
+      <file>$PROJ_DIR$\string_util.h</file>
+      <file>$PROJ_DIR$\language.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\naticq_ipc.h</file>
+      <file>$TOOLKIT_DIR$\inc\math.h</file>
+      <file>$PROJ_DIR$\status_change.h</file>
+      <file>$TOOLKIT_DIR$\inc\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Product.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\manage_cl.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_message.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\string_util.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\cl_work.i</file>
+      <file>$PROJ_DIR$\ICQ\icq2_module.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\history.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\select_smile.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_utils.pbi</file>
+      <file>$PROJ_DIR$\mainmenu.h</file>
+      <file>$TOOLKIT_DIR$\inc\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\cl_work.h</file>
+      <file>$PROJ_DIR$\naticq.h</file>
+      <file>$PROJ_DIR$\strings.h</file>
+      <file>$TOOLKIT_DIR$\inc\yvals.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\history.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\manage_cl.h</file>
+      <file>$PROJ_DIR$\Random.h</file>
+      <file>$PROJ_DIR$\smiles.h</file>
+      <file>$PROJ_DIR$\select_smile.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\status_change.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\status_change.i</file>
+      <file>$PROJ_DIR$\ICQ\icq_packet.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\NATICQ.elf</file>
+      <file>$PROJ_DIR$\ICQ\icq_snac.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\mainmenu.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\conf_loader.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\strings.i</file>
+      <file>$PROJ_DIR$\ICQ\icq_info.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_utils.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_snac.i</file>
+      <file>$PROJ_DIR$\ICQ\icq2_module.h</file>
+      <file>$PROJ_DIR$\ICQ\icq_utils.c</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\mainmenu.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\smiles_loader.lst</file>
+      <file>$TOOLKIT_DIR$\inc\stdio.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.pbi</file>
+      <file>$PROJ_DIR$\ICQ\icq.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\history.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\smiles_loader.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_info.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\manage_cl.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\manage_cl.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\smiles_loader.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq2_module.pbi</file>
+      <file>$PROJ_DIR$\main.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\manage_cl.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\strings.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_packet.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.r79</file>
+      <file>$PROJ_DIR$\ICQ\icq_snac.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\select_smile.lst</file>
+      <file>$PROJ_DIR$\ICQ\icq_message.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\history.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\mainmenu.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\cl_work.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\status_change.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_info.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_message.r79</file>
+      <file>$TOOLKIT_DIR$\inc\time.h</file>
+      <file>$TOOLKIT_DIR$\inc\stdlib.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_utils.i</file>
+      <file>$TOOLKIT_DIR$\inc\string.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq2_module.r79</file>
+      <file>$PROJ_DIR$\ICQ\icq_packet.h</file>
+      <file>$PROJ_DIR$\ICQ\icq_utils.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\cl_work.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\mainmenu.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\ysizet.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq2_module.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_message.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\status_change.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\select_smile.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.lst</file>
+      <file>$PROJ_DIR$\ICQ\icq.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq_info.lst</file>
+      <file>$PROJ_DIR$\ICQ\icq_message.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\history.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\select_smile.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\smiles_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\string_util.i</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_info.pbi</file>
+      <file>$PROJ_DIR$\ICQ\icq_info.c</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\icq.lst</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\cl_work.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
+    </outputs>
     <file>
       <name>$PROJ_DIR$\smiles_loader.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 48 85 45</file>
+          <file> 100 94 88</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 44</file>
+          <file> 146</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 53 29 12 52</file>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 41 35 64 54</file>
         </tool>
       </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 143</file>
+        </tool>
+      </outputs>
     </file>
     <file>
       <name>$PROJ_DIR$\status_change.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 84 14 47</file>
+          <file> 118 69 135</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 55</file>
+          <file> 67</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 36 53 52 38 27 40 10</file>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 16 41 54 102 37 55 30</file>
         </tool>
       </inputs>
     </file>
@@ -401,17 +491,55 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 75 67 72</file>
+          <file> 151 45 117</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 58</file>
+          <file> 129</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 52 40 38 56</file>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 54 55 102 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\select_smile.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 142 49 112</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 136</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 41 54 102 64 8 65 55</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\history.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 115 47 141</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 93</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 54 60 30</file>
         </tool>
       </inputs>
     </file>
@@ -420,7 +548,247 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 68 42 26</file>
+          <file> 74 87 116</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 16 41 54 60 51 102 86 37 30 25 62 8 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 109 66 150</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 31 39 38 52 18 20 102 63</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 39 38 52 18 20 102 63</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\icq_packet.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 105 107 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 108</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 31 39 38 52 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 39 38 52 20</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 68 75 79</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 130</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 12 16 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 12 16 86</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 114</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 152</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 90 128 137</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 153</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 31 39 38 52 16 41 2 27 25 55 86 18 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24 0 85 33 15 7 58 34 83 32 59 4 12 29 36 9 56 3 39 38 52 16 41 2 27 25 55 86 18 20</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\string_util.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 103 147 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 145</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 12 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 12 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ICQ\icq2_module.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 125 133</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 101</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 81 126 73 138</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81 126 73 138</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 48 76 106</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 144</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 55</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ICQ\icq_packet.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 105 107 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 108</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 126</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 126</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\NATICQ.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 40 151 68 71 152 115 90 74 99 142 100 118 48 61</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ICQ\icq_utils.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 78 123</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -430,120 +798,94 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 36 53 52 37 87 38 23 27 10 34 70 77 56</file>
+          <file> 124 56 3 31 39 38 52 132</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 124 56 3 39 38 52 132 126 81</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\strings.c</name>
+      <name>$PROJ_DIR$\manage_cl.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 59 83 28</file>
+          <file> 99 97 42</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 74</file>
+          <file> 104</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 40</file>
+          <file> 0 85 33 15 7 58 34 83 32 59 4 8 30 54 62 55 102</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\conf_loader.c</name>
+      <name>$PROJ_DIR$\ICQ\icq.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 76 69 9</file>
+          <file> 109 66</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 51</file>
+          <file> 95</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 36 23</file>
+          <file> 81 127 126 113 73 138</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81 127 126 113 73 138</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\config_data.c</name>
+      <name>$PROJ_DIR$\ICQ\icq_snac.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 39</file>
+          <file> 98 80</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 79</file>
+          <file> 91</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 36 10</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\func.asm</name>
-      <outputs>
-        <tool>
-          <name>AARM</name>
-          <file> 30</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 11 46 80</file>
+          <file> 89 56 3 31 39 38 52 132 122 121</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 15</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 36 53 52 37 23 87 38 10 4 12 29 27 40 70 56 13 34</file>
+          <file> 89 56 3 39 38 52 132 122 121 81 126 113 73 127 138</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\history.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 66 41 81</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 73</file>
-        </tool>
-      </outputs>
+      <name>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</name>
       <inputs>
         <tool>
-          <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 52 37 10</file>
+          <name>BILINK</name>
+          <file> 130 114 95 108 153 145</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\select_smile.c</name>
+      <name>$PROJ_DIR$\ICQ\icq_message.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 49 82 6</file>
+          <file> 120 134</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -553,41 +895,43 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 53 52 38 12 77 13 40</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\manage_cl.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 24 86 78</file>
+          <file> 89 56 3 31 39 38 52 132 122</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 25</file>
+          <file> 89 56 3 39 38 52 132 122 81 126 73 77 113</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 40 68 71 152 109 105 90 103 61</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ICQ\icq_info.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 119 96 139</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 148</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 22 1 2 17 60 0 21 20 71 54 77 10 52 70 40 38</file>
+          <file> 89 56 3 31 39 38 52 132 122 77</file>
         </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Release\Exe\NATICQ.elf</name>
-      <outputs>
         <tool>
-          <name>XLINK</name>
-          <file> 57</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 64 75 76 39 30 66 11 68 24 49 48 84 59 8</file>
+          <name>BICOMP</name>
+          <file> 89 56 3 39 38 52 132 122 77</file>
         </tool>
       </inputs>
     </file>
@@ -600,912 +944,102 @@
     </forcedrebuild>
   </configuration>
   <configuration>
-    <name>Release_ELKA</name>
-    <outputs>
-      <file>$PROJ_DIR$\..\inc\bn.h</file>
-      <file>$PROJ_DIR$\..\inc\zlib.h</file>
-      <file>$PROJ_DIR$\ICQ\icq.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_message.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\conf_loader.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\history.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\select_smile.lst</file>
-      <file>$PROJ_DIR$\ICQ\icq_message.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\smiles_loader.i</file>
-      <file>$PROJ_DIR$\ICQ\icq_info.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_utils.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq2_module.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq2_module.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_info.r79</file>
-      <file>$PROJ_DIR$\ICQ\icq2_module.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_message.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\mainmenu.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_message.r79</file>
-      <file>$PROJ_DIR$\..\inc\zconf.h</file>
-      <file>$PROJ_DIR$\smiles_loader.c</file>
-      <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
-      <file>$PROJ_DIR$\..\inc\swilib.h</file>
-      <file>$PROJ_DIR$\status_change.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\string_util.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
-      <file>$TOOLKIT_DIR$\inc\ymath.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\conf_loader.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_utils.r79</file>
-      <file>$PROJ_DIR$\Random.h</file>
-      <file>$PROJ_DIR$\ICQ\icq_snac.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\cl_work.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_info.pbi</file>
-      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
-      <file>$PROJ_DIR$\language.h</file>
-      <file>$PROJ_DIR$\smiles.h</file>
-      <file>$PROJ_DIR$\select_smile.h</file>
-      <file>$PROJ_DIR$\cl_work.c</file>
-      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
-      <file>$PROJ_DIR$\mainmenu.c</file>
-      <file>$PROJ_DIR$\strings.c</file>
-      <file>$TOOLKIT_DIR$\inc\DLib_Threads.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\strings.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_packet.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\manage_cl.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\mainmenu.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\strings.pbi</file>
-      <file>$PROJ_DIR$\ICQ\icq_packet.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\main.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\manage_cl.lst</file>
-      <file>$PROJ_DIR$\ICQ\icq_packet.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\history.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\mainmenu.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\cl_work.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\stdlib.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Exe\NATICQ.elf</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq2_module.r79</file>
-      <file>$PROJ_DIR$\ICQ\icq_info.h</file>
-      <file>$PROJ_DIR$\..\inc\sha.h</file>
-      <file>$PROJ_DIR$\..\inc\crypto.h</file>
-      <file>$PROJ_DIR$\..\inc\png.h</file>
-      <file>$PROJ_DIR$\conf_loader.h</file>
-      <file>$PROJ_DIR$\status_change.h</file>
-      <file>$PROJ_DIR$\naticq_ipc.h</file>
-      <file>$PROJ_DIR$\icq.c</file>
-      <file>$PROJ_DIR$\icq.h</file>
-      <file>$PROJ_DIR$\icq_packet.h</file>
-      <file>$PROJ_DIR$\icq_packet.c</file>
-      <file>$PROJ_DIR$\conf_loader.c</file>
-      <file>$PROJ_DIR$\config_data.c</file>
-      <file>$PROJ_DIR$\func.asm</file>
-      <file>$PROJ_DIR$\include.h</file>
-      <file>$PROJ_DIR$\revision.h</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\sieicq_ipc.h</file>
-      <file>$PROJ_DIR$\string_util.c</file>
-      <file>$PROJ_DIR$\string_util.h</file>
-      <file>$PROJ_DIR$\TODO.txt</file>
-      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
-      <file>$PROJ_DIR$\history.h</file>
-      <file>$PROJ_DIR$\main.h</file>
-      <file>$PROJ_DIR$\strings.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\smiles_loader.pbi</file>
-      <file>$PROJ_DIR$\naticq.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\select_smile.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\strings.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\manage_cl.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\smiles_loader.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_packet.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\status_change.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\smiles_loader.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\xencoding_limits.h</file>
-      <file>$PROJ_DIR$\ICQ\icq.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_packet.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\status_change.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq.pbi</file>
-      <file>$PROJ_DIR$\ICQ\icq2_module.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\history.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\select_smile.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\strings.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_info.i</file>
-      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
-      <file>$PROJ_DIR$\..\inc\obs.h</file>
-      <file>$PROJ_DIR$\..\inc\data_n.h</file>
-      <file>$PROJ_DIR$\cl_work.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\cl_work.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\cl_work.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\main.lst</file>
-      <file>$PROJ_DIR$\ICQ\icq_utils.c</file>
-      <file>$TOOLKIT_DIR$\inc\time.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_utils.i</file>
-      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
-      <file>$PROJ_DIR$\ICQ\icq_utils.h</file>
-      <file>$TOOLKIT_DIR$\inc\string.h</file>
-      <file>$PROJ_DIR$\ICQ\icq_message.c</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_info.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
-      <file>$PROJ_DIR$\..\inc\rsa.h</file>
-      <file>$PROJ_DIR$\history.c</file>
-      <file>$PROJ_DIR$\select_smile.c</file>
-      <file>$PROJ_DIR$\manage_cl.c</file>
-      <file>$PROJ_DIR$\test.xcl</file>
-      <file>$PROJ_DIR$\manage_cl.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq_snac.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\config_data.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\history.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\icq.lst</file>
-      <file>$PROJ_DIR$\ICQ\icq_snac.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.pbi</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\conf_loader.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\math.h</file>
-      <file>$PROJ_DIR$\..\inc\md5.h</file>
-      <file>$TOOLKIT_DIR$\inc\DLib_Product.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\string_util.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\string_util.lst</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\status_change.r79</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\select_smile.i</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\mainmenu.lst</file>
-      <file>$TOOLKIT_DIR$\inc\stdio.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\icq_snac.r79</file>
-      <file>$TOOLKIT_DIR$\inc\DLib_Defaults.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\List\status_change.i</file>
-      <file>$TOOLKIT_DIR$\inc\yvals.h</file>
-      <file>$TOOLKIT_DIR$\inc\ysizet.h</file>
-      <file>$PROJ_DIR$\Release_ELKA\Obj\manage_cl.pbi</file>
-      <file>$PROJ_DIR$\rect_patcher.h</file>
-      <file>$PROJ_DIR$\mainmenu.h</file>
-    </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 117</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq_info.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 14 107 123</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 36</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 146 150 148 119 140 98 45 151 60 63</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 146 150 148 140 98 45 151 60 63</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq2_module.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 62 11</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 103 53 135 2</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 103 53 135 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\smiles_loader.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 93 8 96</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 88</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 108 69 39 89</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\status_change.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 143 149 101</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 95</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 84 108 89 86 68 87 38</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq_snac.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 147 131</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 136</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 146 150 148 119 140 98 45 151 60 116</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 146 150 148 140 98 45 151 60 116 103 53 7 135 120 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Release_ELKA\Obj\SieICQ.pbd</name>
-      <inputs>
-        <tool>
-          <name>BILINK</name>
-          <file> 137 16 102 18 97 50</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\cl_work.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 113 35 112</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 59</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 89 87 86 111</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\mainmenu.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 58 51 145</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 20</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 84 108 89 85 154 86 67 68 38 78 130 153 111</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\strings.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 91 106 46</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 52</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 87</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq_packet.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 47 94 100</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 18</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 53</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 53</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Release_ELKA\Exe\NATICQ.elf</name>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 129 113 49 132 28 5 124 58 48 105 93 143 91 37</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\icq.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 19 13 134</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 102</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 119 140 98 45 71 72 86 32</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 140 98 45 71 72 86 32</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\icq_packet.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 47 94 100</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 18</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 119 140 98 45 72</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 140 98 45 72</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\conf_loader.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 49 4 30</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 137</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 109 84 67</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 109 84 67</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\config_data.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 132</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 16</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 84</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 84</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\func.asm</name>
-      <outputs>
-        <tool>
-          <name>AARM</name>
-          <file> 28</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 124 54 114</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 97</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 119 140 98 45 84 108 24 80 78 87 67 71 72</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77 25 66 1 22 42 125 0 65 64 139 110 109 82 138 29 150 148 140 98 45 84 108 24 80 78 87 67 71 72</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\string_util.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 141 27 142</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 50</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 109 82</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 109 82</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 19 13</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 102</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 103 120 53 7 135 2</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 103 120 53 7 135 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq_utils.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 31 118</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 10</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 121 150 148 119 140 98 45 151</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 121 150 148 140 98 45 151 53 103</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Release_ELKA\Exe\SieICQ.elf</name>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 129 49 132 28 19 47 124 141 37</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\ICQ\icq_message.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 21 17</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 3</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 146 150 148 119 140 98 45 151 60</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 146 150 148 140 98 45 151 60 103 53 135 63 7</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\history.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 57 133</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 104</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 89 85 38</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\select_smile.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 105 144 6</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 90</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 108 89 86 39 153 40 87</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\manage_cl.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 48 92 55</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 152</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 25 66 1 22 42 125 0 65 64 139 110 153 38 89 130 87 86</file>
-        </tool>
-      </inputs>
-    </file>
-    <forcedrebuild>
-      <name>[REBUILD_ALL]</name>
-    </forcedrebuild>
-  </configuration>
-  <configuration>
     <name>Release_SGOLD</name>
     <outputs>
-      <file>$PROJ_DIR$\..\inc\bn.h</file>
-      <file>$PROJ_DIR$\..\inc\zlib.h</file>
-      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
       <file>$PROJ_DIR$\smiles_loader.c</file>
       <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
-      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
       <file>$PROJ_DIR$\status_change.c</file>
-      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
-      <file>$PROJ_DIR$\language.h</file>
-      <file>$PROJ_DIR$\smiles.h</file>
-      <file>$PROJ_DIR$\select_smile.h</file>
       <file>$PROJ_DIR$\cl_work.c</file>
       <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\select_smile.c</file>
+      <file>$PROJ_DIR$\history.c</file>
       <file>$PROJ_DIR$\mainmenu.c</file>
-      <file>$PROJ_DIR$\strings.c</file>
-      <file>$PROJ_DIR$\..\inc\sha.h</file>
-      <file>$PROJ_DIR$\..\inc\crypto.h</file>
-      <file>$PROJ_DIR$\..\inc\png.h</file>
-      <file>$PROJ_DIR$\conf_loader.h</file>
-      <file>$PROJ_DIR$\status_change.h</file>
-      <file>$PROJ_DIR$\naticq_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
       <file>$PROJ_DIR$\conf_loader.c</file>
       <file>$PROJ_DIR$\config_data.c</file>
       <file>$PROJ_DIR$\func.asm</file>
       <file>$PROJ_DIR$\revision.h</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
-      <file>$PROJ_DIR$\history.h</file>
-      <file>$PROJ_DIR$\main.h</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\conf_loader.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\select_smile.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\status_change.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\status_change.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\cl_work.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\status_change.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\smiles_loader.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\manage_cl.pbi</file>
-      <file>$PROJ_DIR$\strings.h</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\select_smile.i</file>
-      <file>$PROJ_DIR$\naticq.h</file>
-      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
-      <file>$PROJ_DIR$\..\inc\data_n.h</file>
-      <file>$PROJ_DIR$\cl_work.h</file>
-      <file>$PROJ_DIR$\..\inc\rsa.h</file>
-      <file>$PROJ_DIR$\history.c</file>
-      <file>$PROJ_DIR$\select_smile.c</file>
-      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\language.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\naticq_ipc.h</file>
+      <file>$PROJ_DIR$\status_change.h</file>
       <file>$PROJ_DIR$\test.xcl</file>
-      <file>$PROJ_DIR$\manage_cl.h</file>
-      <file>$PROJ_DIR$\..\inc\md5.h</file>
-      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
       <file>$PROJ_DIR$\mainmenu.h</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\manage_cl.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\cl_work.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\strings.i</file>
+      <file>$PROJ_DIR$\cl_work.h</file>
+      <file>$PROJ_DIR$\naticq.h</file>
+      <file>$PROJ_DIR$\strings.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\history.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\manage_cl.h</file>
+      <file>$PROJ_DIR$\smiles.h</file>
+      <file>$PROJ_DIR$\select_smile.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\main.h</file>
       <file>$PROJ_DIR$\Release_SGOLD\List\history.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\mainmenu.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\manage_cl.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\cl_work.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\strings.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\smiles_loader.i</file>
       <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\main.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\smiles_loader.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\select_smile.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\manage_cl.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\history.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\select_smile.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\cl_work.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\status_change.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\manage_cl.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\mainmenu.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\cl_work.i</file>
       <file>$PROJ_DIR$\Release_SGOLD\Obj\smiles_loader.r79</file>
       <file>$PROJ_DIR$\Release_SGOLD\Obj\smiles_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\history.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\status_change.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\status_change.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\history.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\cl_work.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\manage_cl.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\status_change.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\mainmenu.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\strings.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\select_smile.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\manage_cl.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\NATICQ.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\cl_work.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\select_smile.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\mainmenu.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\smiles_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\conf_loader.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\manage_cl.lst</file>
       <file>$PROJ_DIR$\Release_SGOLD\Obj\history.r79</file>
       <file>$PROJ_DIR$\Release_SGOLD\Obj\select_smile.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\mainmenu.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\cl_work.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\strings.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\mainmenu.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\status_change.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\conf_loader.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\config_data.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\mainmenu.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD\List\history.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Exe\NATICQ.elf</file>
-      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\mainmenu.lst</file>
     </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 85</file>
-        </tool>
-      </outputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\smiles_loader.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 68 35 64</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 69</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 41 20 9 40</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\status_change.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 78 31 32</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 34</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 26 41 40 28 19 37 8</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\cl_work.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 74 61 33</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 54</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 40 37 28 43</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\mainmenu.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 82 76 59</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 73</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 26 41 40 27 52 28 18 19 8 24 49 51 43</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\strings.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 81 56 75</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 62</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 37</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\conf_loader.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 77 29 79</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 72</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 26 18</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\config_data.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 38</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 80</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 26 8</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\func.asm</name>
-      <outputs>
-        <tool>
-          <name>AARM</name>
-          <file> 86</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 83 63 58</file>
+          <file> 54 45 78</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -1515,26 +1049,54 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 26 41 40 27 18 52 28 8 4 9 20 19 37 49 43 10 24</file>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 25 22 36 28</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\history.c</name>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 74</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\status_change.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 70 57 84</file>
+          <file> 59 60 66</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 67</file>
+          <file> 50</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 40 27 8</file>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 12 25 28 42 23 29 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\cl_work.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 53 75</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 28 29 42 27</file>
         </tool>
       </inputs>
     </file>
@@ -1543,17 +1105,140 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 65 39 30</file>
+          <file> 69 76 47</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 71</file>
+          <file> 85</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 41 40 28 9 51 10 37</file>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 25 28 42 36 7 37 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\history.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 84 43 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 28 33 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\mainmenu.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 77 67 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 12 25 28 33 26 42 41 23 18 16 35 7 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 79 81 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 73</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 12 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 56</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 71</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 72 57 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 12 25 28 33 41 26 42 18 2 36 22 23 29 35 27 37 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62 44 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 29</file>
         </tool>
       </inputs>
     </file>
@@ -1562,17 +1247,17 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 66 60 53</file>
+          <file> 70 51 83</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 36</file>
+          <file> 64</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 44 0 16 15 50 42 51 8 40 49 37 28</file>
+          <file> 0 40 20 11 6 31 21 38 19 32 3 7 18 28 35 29 42</file>
         </tool>
       </inputs>
     </file>
@@ -1581,7 +1266,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 48 74 77 38 86 70 83 82 66 65 68 78 81 7</file>
+          <file> 24 63 79 49 71 84 72 77 70 69 54 59 62 34</file>
         </tool>
       </inputs>
     </file>
@@ -1596,134 +1281,180 @@
   <configuration>
     <name>Release_SGOLD_X75</name>
     <outputs>
-      <file>$PROJ_DIR$\..\inc\bn.h</file>
-      <file>$PROJ_DIR$\..\inc\zlib.h</file>
-      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
       <file>$PROJ_DIR$\smiles_loader.c</file>
       <file>$PROJ_DIR$\..\inc\xtask_ipc.h</file>
-      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
       <file>$PROJ_DIR$\status_change.c</file>
-      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
-      <file>$PROJ_DIR$\language.h</file>
-      <file>$PROJ_DIR$\smiles.h</file>
-      <file>$PROJ_DIR$\select_smile.h</file>
       <file>$PROJ_DIR$\cl_work.c</file>
       <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\select_smile.c</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\history.c</file>
       <file>$PROJ_DIR$\mainmenu.c</file>
-      <file>$PROJ_DIR$\strings.c</file>
-      <file>$PROJ_DIR$\..\inc\sha.h</file>
-      <file>$PROJ_DIR$\..\inc\crypto.h</file>
-      <file>$PROJ_DIR$\..\inc\png.h</file>
-      <file>$PROJ_DIR$\conf_loader.h</file>
-      <file>$PROJ_DIR$\status_change.h</file>
-      <file>$PROJ_DIR$\naticq_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
       <file>$PROJ_DIR$\conf_loader.c</file>
       <file>$PROJ_DIR$\config_data.c</file>
       <file>$PROJ_DIR$\func.asm</file>
       <file>$PROJ_DIR$\revision.h</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
-      <file>$PROJ_DIR$\history.h</file>
-      <file>$PROJ_DIR$\main.h</file>
-      <file>$PROJ_DIR$\strings.h</file>
-      <file>$PROJ_DIR$\naticq.h</file>
-      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
-      <file>$PROJ_DIR$\..\inc\obs.h</file>
-      <file>$PROJ_DIR$\..\inc\data_n.h</file>
-      <file>$PROJ_DIR$\cl_work.h</file>
-      <file>$PROJ_DIR$\..\inc\rsa.h</file>
-      <file>$PROJ_DIR$\history.c</file>
-      <file>$PROJ_DIR$\select_smile.c</file>
-      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\language.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\naticq_ipc.h</file>
+      <file>$PROJ_DIR$\status_change.h</file>
       <file>$PROJ_DIR$\test.xcl</file>
-      <file>$PROJ_DIR$\manage_cl.h</file>
-      <file>$PROJ_DIR$\..\inc\md5.h</file>
-      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\..\inc\pnglist.h</file>
       <file>$PROJ_DIR$\mainmenu.h</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\history.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\status_change.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\select_smile.pbi</file>
+      <file>$PROJ_DIR$\cl_work.h</file>
+      <file>$PROJ_DIR$\naticq.h</file>
+      <file>$PROJ_DIR$\strings.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\history.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\manage_cl.h</file>
+      <file>$PROJ_DIR$\smiles.h</file>
+      <file>$PROJ_DIR$\select_smile.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\manage_cl.c</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\main.h</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\List\cl_work.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mainmenu.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\status_change.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\smiles_loader.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\strings.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\mainmenu.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\select_smile.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\conf_loader.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\cl_work.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\history.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\smiles_loader.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\strings.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\select_smile.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Exe\NATICQ.elf</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\history.lst</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\func.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\history.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\conf_loader.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\manage_cl.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\smiles_loader.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mainmenu.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\NATICQ.pbd</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\manage_cl.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\strings.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\cl_work.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\mainmenu.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\manage_cl.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\status_change.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\manage_cl.lst</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\cl_work.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\smiles_loader.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\conf_loader.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\status_change.lst</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\List\select_smile.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\main.i</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\strings.r79</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\select_smile.pbi</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\config_data.pbi</file>
-      <file>$PROJ_DIR$\Release_SGOLD_X75\List\main.lst</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\select_smile.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\history.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\config_data.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\status_change.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mainmenu.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\history.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\smiles_loader.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Exe\NATICQ.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\NATICQ.pbd</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\cl_work.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\cl_work.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\main.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\mainmenu.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\manage_cl.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\manage_cl.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\select_smile.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\cl_work.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\strings.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\manage_cl.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\history.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\smiles_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\smiles_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\history.r79</file>
       <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\status_change.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\manage_cl.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\mainmenu.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\strings.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\status_change.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\conf_loader.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\List\mainmenu.i</file>
+      <file>$PROJ_DIR$\Release_SGOLD_X75\Obj\smiles_loader.r79</file>
     </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 61</file>
-        </tool>
-      </outputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\smiles_loader.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 50 58 67</file>
+          <file> 88 59 77</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 79</file>
+          <file> 76</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 31 20 9 30</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 26 23 37 29</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 31 20 9 30</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 26 23 37 29</file>
         </tool>
       </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
     </file>
     <file>
       <name>$PROJ_DIR$\status_change.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 88 75 45</file>
+          <file> 79 85 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 13 26 29 43 24 30 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 13 26 29 43 24 30 19</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\cl_work.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71 62 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 29 30 43 28</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 29 30 43 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\select_smile.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52 48 70</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -1733,158 +1464,11 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 26 31 30 28 19 29 8</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 26 29 43 37 7 38 30</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 26 31 30 28 19 29 8</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\cl_work.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 72 56 47</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 78</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 30 29 28 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 30 29 28 34</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\mainmenu.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 48 73 52</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 68</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 26 31 30 27 43 28 18 19 8 24 40 42 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 26 31 30 27 43 28 18 19 8 24 40 42 34</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\strings.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 83 71 51</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 59</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 29</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 29</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\conf_loader.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 65 80 55</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 87</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 26 18</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 26 18</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\config_data.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 84</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 85</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 26 8</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26 8</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\func.asm</name>
-      <outputs>
-        <tool>
-          <name>AARM</name>
-          <file> 63</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 54 82 86</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 26 31 30 27 18 43 28 8 4 9 20 19 29 40 34 10 24</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 26 31 30 27 18 43 28 8 4 9 20 19 29 40 34 10 24</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 26 29 43 37 7 38 30</file>
         </tool>
       </inputs>
     </file>
@@ -1893,44 +1477,145 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 57 64 62</file>
+          <file> 78 75 57</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 44</file>
+          <file> 53</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 30 27 8</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 29 34 19</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 30 27 8</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 29 34 19</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\select_smile.c</name>
+      <name>$PROJ_DIR$\mainmenu.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 53 81 60</file>
+          <file> 56 87 65</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 46</file>
+          <file> 81</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 31 30 28 9 42 10 29</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 13 26 29 34 27 43 42 24 19 17 36 7 28</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 31 30 28 9 42 10 29</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 13 26 29 34 27 43 42 24 19 17 36 7 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 84 86 66</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 13 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 13 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config_data.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 54</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 13 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13 19</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 45</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 46 64 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 13 26 29 34 42 27 43 19 2 37 23 24 30 36 28 38 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 13 26 29 34 42 27 43 19 2 37 23 24 30 36 28 38 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 72 73 83</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 30</file>
         </tool>
       </inputs>
     </file>
@@ -1939,21 +1624,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 70 66 76</file>
+          <file> 74 80 67</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 74</file>
+          <file> 69</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 42 8 30 40 29 28</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 7 19 29 36 30 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5 17 1 2 12 35 0 16 15 41 33 32 42 8 30 40 29 28</file>
+          <file> 0 41 21 12 6 32 22 39 20 33 3 9 7 19 29 36 30 43</file>
         </tool>
       </inputs>
     </file>
@@ -1962,7 +1647,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 39 72 65 84 63 57 54 48 70 53 50 88 83 7</file>
+          <file> 25 71 84 54 45 78 46 56 74 52 88 79 72 35</file>
         </tool>
       </inputs>
     </file>
@@ -1971,7 +1656,7 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 78 87 85 44 77 68 74 46 79 49 59</file>
+          <file> 63 51 50 53 58 81 69 49 76 55 82</file>
         </tool>
       </inputs>
     </file>
