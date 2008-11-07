@@ -113,6 +113,9 @@ extern  int tenseconds_to_ping;
 
 
   void snac_contactlist(short int flags, int request_id, Packet *packet);
+  
+  void snac_online_notify(short int flags, int request_id, Packet *packet);
+  void snac_offline_notify(short int flags, int request_id, Packet *packet);
 
 
 

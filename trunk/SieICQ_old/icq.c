@@ -78,7 +78,8 @@ void CreateICQ()
  // Socket->Create();
   auth_cookie=NULL;
   curr_reqid = 0;
- // icq_seqno = 2;
+  flap_seqno=0;
+  icq_seqno = 2;
   Randomize();
 }
 
@@ -91,20 +92,6 @@ void CloseICQ()
 void Login() 
 {
 
-  
-  int ip=str2ip(Host);
-  if (ip!=0xFFFFFFFF)
-  {
-
-//   Socket->Start(ip,Port);
-  }
-  else
-  {
-
-//   Socket->Start(Host,Port);
-  }
-  
-  flap_seqno = rand() % 65063;
   curr_reqid = 0;
   icq_seqno = 2;
 }
@@ -348,39 +335,39 @@ void parse_snac(char *data, int size) {
         case 0x0001:
           switch (snac->subtype_id)
             {
-            case 0x0003:snac_server_ready(snac->flags, snac->request_id,packet);break;
-//          case 0x0007:snac_rate_response(snac->flags, snac->request_id,packet);break;
-            case 0x000f:snac_user_info(snac->flags, snac->request_id,packet);break;
+            case 0x0003: snac_server_ready(snac->flags, snac->request_id,packet);break;
+//          case 0x0007: snac_rate_response(snac->flags, snac->request_id,packet);break;
+            case 0x000f: snac_user_info(snac->flags, snac->request_id,packet);break;
             case 0x0013: snac_motd(snac->flags, snac->request_id,packet);break;
             case 0x0018: snac_host_versions(snac->flags, snac->request_id,packet);break;
-//            case 0x001f: icq_snac_mem_request;break;
+//          case 0x001f: icq_snac_mem_request;break;
             }
           break;
         case 0x0002:
           switch (snac->subtype_id)
             {
-            case 0x0003:snac_location_rights(snac->flags, snac->request_id,packet);break;
+            case 0x0003: snac_location_rights(snac->flags, snac->request_id,packet);break;
             }
           break;
         case 0x0003:
           switch (snac->subtype_id)
             {
-            case 0x0003:snac_list_rights(snac->flags, snac->request_id,packet);break;
-//		{ 0x0003, 0x000b, icq_snac_online_notify },
-//		{ 0x0003, 0x000c, icq_snac_offline_notify },
+            case 0x0003: snac_list_rights(snac->flags, snac->request_id,packet);break;
+            case 0x000b: snac_online_notify(snac->flags, snac->request_id,packet);break;
+            case 0x000c: snac_offline_notify(snac->flags, snac->request_id,packet);break;
             }
           break;  
         case 0x0004:
           switch (snac->subtype_id)
             {
-            case 0x0005:snac_im_rights(snac->flags, snac->request_id,packet);break;
-            case 0x0007:snac_incoming_msg(snac->flags, snac->request_id,packet);break;
+            case 0x0005: snac_im_rights(snac->flags, snac->request_id,packet);break;
+            case 0x0007: snac_incoming_msg(snac->flags, snac->request_id,packet);break;
             }
           break;  
         case 0x0009:
           switch (snac->subtype_id)
             {
-            case 0x0003:snac_bos_rights(snac->flags, snac->request_id,packet);break;
+            case 0x0003: snac_bos_rights(snac->flags, snac->request_id,packet);break;
             }
           break;  
         case 0x000b:
@@ -392,13 +379,13 @@ void parse_snac(char *data, int size) {
         case 0x0013:
           switch (snac->subtype_id)
             {
-	    case 0x0006:snac_contactlist(snac->flags, snac->request_id,packet);break;
+	    case 0x0006: snac_contactlist(snac->flags, snac->request_id,packet);break;
             }
           break;    
         case 0x0015:
           switch (snac->subtype_id)
             {
-	    case 0x0003:snac_server_message(snac->flags, snac->request_id,packet);break;
+	    case 0x0003: snac_server_message(snac->flags, snac->request_id,packet);break;
             }
           break;  
 
@@ -411,7 +398,9 @@ void parse_snac(char *data, int size) {
 
 void Disconnect() 
 {
-
+// отключаемся
+        Packet *new_packet = PackNew();
+        send_packet(0x04, new_packet);
 
 }
 
@@ -649,8 +638,8 @@ void snac_im_rights(short int flags, int request_id, Packet *packet) {
 
 void snac_bos_rights(short int flags, int request_id, Packet *packet) {
 
-  
-  SetStatus(STATUS_ONLINE);
+  // устанавливаем статус
+    SetStatus(STATUS_ONLINE);
   
     Packet *new_packet = PackNew();
 
@@ -674,14 +663,11 @@ void snac_bos_rights(short int flags, int request_id, Packet *packet) {
 	PackAdd32(new_packet, 0x0110028A);
 	PackAdd32(new_packet, 0x000a0003);
 	PackAdd32(new_packet, 0x0110028A);
-	
-	_WriteLog("Sending Client Ready");
-	
 	send_packet( 0x02, new_packet);
         
        
         
-         _WriteLog("STATUS_ONLINE");
+        _WriteLog("STATUS_ONLINE");
 
         
 	
@@ -778,7 +764,7 @@ void snac_user_info(short int flags, int request_id, Packet *packet) {
 	
 	/* Only set our info if it's the first time we receive this packet */
 //	if (Status == CONNECTING) 
-        send_user_info();
+//        send_user_info();
 }
 
 void send_user_info() {
@@ -845,32 +831,20 @@ void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
 
 void snac_contactlist(short int flags, int request_id, Packet *packet) {
 
-  /*
-        //запрос оффлайн сообщений
-        Packet *new_packet = PackNew();
-        message_new(new_packet, 0x3c00, NULL);
-	send_message(new_packet);
-        
 
-       
-        // устанавливаем статус
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0001, 0x001e, NULL, NULL);
-        PackAddTLV32(new_packet, 0x0006, 0x00000001);
-	send_packet(0x02, new_packet);
-   */   
-  
 snac_im_rights(0, 0,NULL);
 
-
-//        Packet *new_packet = PackNew();
-//        snac_new(new_packet, 0x0013, 0x0007, NULL, 0x0007);
-//        send_packet( 0x02, new_packet);
+// чтобы всем рассылалось уведомление о моем статусе
+Packet *new_packet = PackNew();
+snac_new(new_packet, 0x0013, 0x0007, NULL, 0x0007);
+send_packet( 0x02, new_packet);
         
 snac_bos_rights(0, 0,NULL);
         
   
         return;
+        
+//разбираем контакт лист        
 //Version number of SSI protocol (currently 0x00)
 	char vnum;
 	PackGet8(packet, &vnum);
@@ -919,7 +893,7 @@ snac_bos_rights(0, 0,NULL);
           
           switch (Type)
           {
-          case 0:// buddi
+          case 0:// контакт
 //            int uin = str2int(name);
 //            ContactList::Active->list->AddUser((char*)uin_name,0,uin,GroupID);
             break;
@@ -933,8 +907,6 @@ snac_bos_rights(0, 0,NULL);
           mfree(uin_name);
           
         }
-        
-        
 }
 
 
@@ -943,47 +915,80 @@ void Keep_alive()
 {
   Packet* pack=PackNew();
   send_packet( 0x05, pack);
-//  LogWidget::Active->Redraw();
 }
 
 
 void SetStatus(int Status)
 {
        ICQStatus = Status;
-     
-       /*
-       // Set Status Code
-       tmp := CreatePacket(2,SEQ);
-       SNACAppend(tmp,$1,$1E);
-       TLVAppendDWord(tmp,6,ICQStatus);
-       TLVAppendWord(tmp,8,$0000);
-       // imitation TLV(C)
-       PacketAppend32(tmp,dswap($000C0025)); // TLV(C)
-       StrToIP(Get_my_IP,DIM_IP);
-       PacketAppend(tmp,@DIM_IP,4);                  // IP address
-       PacketAppend32(tmp,dswap(28000+random(1000)));// Port
-       PacketAppend8(tmp,$04);
-       PacketAppend16(tmp,swap($0007));
-       PacketAppend16(tmp,swap($466B));
-       PacketAppend16(tmp,swap($AE68));
-       PacketAppend32(tmp,dswap($00000050));
-       PacketAppend32(tmp,dswap($00000003));
-       PacketAppend32(tmp,dswap(SecsSince1970));
-       PacketAppend32(tmp,dswap(SecsSince1970));
-       PacketAppend32(tmp,dswap(SecsSince1970));
-       PacketAppend16(tmp,swap($0000));
-       PacketSend(tmp); 
-       */
+
        int long_status=0;
-       
        long_status=flags_status*0x10000+Status;
-       
        
        Packet *new_packet = PackNew();
        snac_new(new_packet, 0x0001, 0x001e, NULL, NULL);
        PackAddTLV32(new_packet, 0x0006, long_status);
-       //PackAddTLV16(new_packet, 0x0008, 0x0000);
-      
-       
        send_packet(0x02, new_packet);
+}
+
+void snac_online_notify(short int flags, int request_id, Packet *packet)
+{       short int type, length=0;
+        int user_status;
+	char uin_length;
+        char *uin;
+	/* Pull off the length of the UIN string */
+	PackGet8(packet, &uin_length);
+	/* Get the UIN string */
+        uin = malloc((int)uin_length+1);
+	PackGet(packet, (char*)uin, (int)uin_length);   
+	// skip warning not use ICQ
+        packet->offset+=2;
+        // Count TLV
+        short int cTLV;
+        PackGet16(packet,&cTLV);
+        for (int i=0;i<cTLV;i++)
+        {
+          PackGetTLV(packet, &type, &length);
+          switch (type)
+          {
+            /*
+            TLV.Type(0x01) - user class 
+            TLV.Type(0x03) - signon time 
+            TLV.Type(0x05) - member since 
+            TLV.Type(0x06) - user status 
+            TLV.Type(0x0A) - external ip address 
+            TLV.Type(0x0C) - dc info (optional) 
+            TLV.Type(0x0D) - user capabilities 
+            TLV.Type(0x0F) - online time 
+            TLV.Type(0x11) - times updated 
+            TLV.Type(0x19) - new-style capabilities list 
+            TLV.Type(0x1D) - user icon id & hash 
+           */
+              //user status          
+              case 0x06: PackGet32(packet,&user_status); break;
+              default:
+                 packet->offset+=length;
+          }
+        }
+	
+        // тут найти контакт uin и сменить его статус на user_status
+        
+	mfree(uin);
+}
+
+void snac_offline_notify(short int flags, int request_id, Packet *packet)
+{
+        char uin_length;
+        char *uin;
+	/* Pull off the length of the UIN string */
+	PackGet8(packet, &uin_length);
+	/* Get the UIN string */
+        uin = malloc((int)uin_length+1);
+	PackGet(packet, (char*)uin, (int)uin_length);   
+	
+	
+        // тут найти контакт uin и сменить его статус на OFFLINE
+        
+        
+	mfree(uin);
 }

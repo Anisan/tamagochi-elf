@@ -110,11 +110,7 @@ void PackGetType(Packet *packet,void* val, int size)
 }
 
 void PackGet8(Packet *packet, char* num){
-    //char value=0;
-    
     PackGetType(packet,(char*)num,1);
-    //value = htons(*num);
-    //*num=value;
 }
 
 void PackGet16(Packet *packet, short int* num){
