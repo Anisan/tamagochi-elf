@@ -1369,7 +1369,7 @@
         <debug>0</debug>
         <option>
           <name>XOutOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>OutputFile</name>
@@ -1559,7 +1559,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>NATICQ.a79</state>
+          <state>SieICQ.a79</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -5056,6 +5056,9 @@
         </data>
       </settings>
     </configuration>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\extern.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\func.asm</name>
