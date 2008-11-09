@@ -21,7 +21,7 @@ int TYPE_MENU;
 // MAIN_MENU !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define ALL_MENU_NUM 3 // Количество всех меню
 
-#define MAIN_MENU_NUMS 3 //Количество пунктов главного меню
+#define MAIN_MENU_NUMS 4 //Количество пунктов главного меню
 #define MAIN_MENU_Y_DISP 3
 #define MAIN_MENU_X_DISP 3
 
@@ -46,11 +46,16 @@ static void ExitSieICQ(GUI *data)
   Close_MAIN_CSM();
 }
 
+static void AboutSieICQ(GUI *data)
+{
+  ShowMSG(1,(int)"SieISQ\n(c) Anisan, Vedan");
+}
 
 MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 {
   (int)"Подключиться",
   (int)"Настройки",
+  (int)"О программе",
   (int)"Выход"
 };
 
@@ -60,6 +65,7 @@ const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
 {
   ToConnect,
   EditConfig,
+  AboutSieICQ,
   ExitSieICQ
 };
   
