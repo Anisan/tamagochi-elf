@@ -934,7 +934,8 @@ extern const char _PASS[9];
 
 void StartTimerSendGuiRedraw()
 {
-  DirectRedrawGUI();
+  SMART_REDRAW();
+  //DirectRedrawGUI();
   GBS_StartTimerProc(&OnRedrawTimer,216/4,StartTimerSendGuiRedraw);
 }
 
