@@ -21,7 +21,7 @@ int TYPE_MENU;
 // MAIN_MENU !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define ALL_MENU_NUM 3 // Количество всех меню
 
-#define MAIN_MENU_NUMS 4 //Количество пунктов главного меню
+#define MAIN_MENU_NUMS 5 //Количество пунктов главного меню
 #define MAIN_MENU_Y_DISP 3
 #define MAIN_MENU_X_DISP 3
 
@@ -32,6 +32,11 @@ static void ToConnect(GUI *data)
   //ShowMSG(1,(int)"Connect");
   RUN_GUI_BEGIN(1);
   Create_Connect();
+}
+
+static void ContactList(GUI *data)
+{
+  ShowMSG(1,(int)"ContactList");
 }
 
 static void EditConfig(GUI *data)
@@ -48,12 +53,13 @@ static void ExitSieICQ(GUI *data)
 
 static void AboutSieICQ(GUI *data)
 {
-  ShowMSG(1,(int)"SieISQ\n(c) Anisan, Vedan");
+  ShowMSG(1,(int)"SieICQ\n(c) Anisan, Vedan");
 }
 
 MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 {
   (int)"Подключиться",
+  (int)"Список контактов",
   (int)"Настройки",
   (int)"О программе",
   (int)"Выход"
@@ -64,6 +70,7 @@ MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
 {
   ToConnect,
+  ContactList,
   EditConfig,
   AboutSieICQ,
   ExitSieICQ
