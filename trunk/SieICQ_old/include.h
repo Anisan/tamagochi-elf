@@ -10,6 +10,8 @@
 #include "visual_util.h"
 #include "extern.h"
 #include <math.h>
+
+
 //#include "notify.h"
 
 //const char percent_t[]="%t";

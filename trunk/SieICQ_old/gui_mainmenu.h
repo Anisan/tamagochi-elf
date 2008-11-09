@@ -2,7 +2,7 @@
  #ifdef _GUI_MAINMENU_H_
 
 // Запустить гуй меню
-int RUN_GUI_MAINMENU();
+void RUN_GUI_MAINMENU(int menu_mode);
 
 enum LGP_ID_MAIN_MENU
 {
@@ -11,14 +11,6 @@ enum LGP_ID_MAIN_MENU
   
   LGP_DATA_NUM
 };
-  
-
-typedef struct 
-{
-  int max_num;
-  char header_text;
-  int type_header_text;
-  char *name;
-} MENU_STRUCT;
+ 
 
 #endif

@@ -1,13 +1,27 @@
-#ifndef _EXTERN_H_
-#define _EXTERN_H_
 
+extern char COLOUR[4], COLOUR_FRING[4];
+
+extern char CURSOR_COLOUR[4],CURSOR_COLOUR_FRING[4], hostname[128], logmsg[256];;
+
+extern int FONT,
+           Font_H,
+           connect_state,
+           RXstate;
+
+extern volatile int sendq_l;
 // Unsigned int:
 
+extern volatile unsigned long ALLTOTALRECEIVED,ALLTOTALSENDED;
 // Visual parametres
 extern unsigned int ScrW, ScrH;
 
 // Void
 extern void kill_data(void *p,void (*func_p)(void *));
+
+// Const char
+extern const char percent_t[],
+                  percent_d[],
+                  percent_s[];
 
 //===============================================================================================
 #pragma inline
@@ -37,4 +51,5 @@ void patch_input(const INPUTDIA_DESC* inp)
 }
 //===============================================================================================
 
-#endif
+
+//"obexcopy.exe" $EXE_DIR$\NatICQ.elf \MMCard\ZBin\NatICQ\NatICQ.elf

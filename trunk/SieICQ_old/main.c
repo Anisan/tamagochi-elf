@@ -10,6 +10,7 @@
 
 #include "icq.h"
 
+#include "gui_begin.h"
 
 #ifndef NEWSGOLD
 #define SEND_TIMER
@@ -17,14 +18,14 @@
 
 const char percent_t[]="%t";
 const char percent_d[]="%d";
-
+const char percent_s[]="%s";
 
 #define TMR_SECOND 216
 
 #define EOP -10
 int RXstate=EOP; //-sizeof(RXpkt)..-1 - receive header, 0..RXpkt.data_len - receive data
 
-
+static GBSTMR OnRedrawTimer; 
 
 //IPC
 const char ipc_my_name[32]=IPC_SIEICQ_NAME;
@@ -42,8 +43,15 @@ int maingui_id;
 
 // Visual parametres
 unsigned int ScrW, ScrH;
+char COLOUR[4]={0,0,0,100};
+char COLOUR_FRING[4]={255,255,255,100};
 
+char CURSOR_COLOUR[4]={100,100,100,100};
+char CURSOR_COLOUR_FRING[4]={100,100,100,100};
+
+int FONT=11;
 char logmsg[256];
+int Font_H;
 //==================
 // HOST
 GBSTMR reconnect_tmr;
@@ -52,6 +60,11 @@ extern const char SieICQ_HOST[];
 extern const unsigned int SieICQ_PORT;
 char hostname[128];
 int host_counter = 0;
+
+void Close_MAIN_CSM()
+{
+  CloseCSM(maincsm_id);
+}
 
 //---------------------------------------------------------------------------
 const char *GetHost(int cnt, const char *str, char *buf)
@@ -526,39 +539,6 @@ typedef struct
 
 void method0(MAIN_GUI *data)
 {
-  int scr_w=ScreenW();
-  int scr_h=ScreenH();
-
-  DrawRectangle(0,YDISP,scr_w-1,scr_h-1,0,
-		   GetPaletteAdrByColorIndex(1),
-		   GetPaletteAdrByColorIndex(1));
-  DrawImg(0,0,(int)"4:\\Zbin\\SieICQ\\img\\logo.png");
-  
- unsigned long RX=TOTALRECEIVED; unsigned long TX=TOTALSENDED;			//by BoBa 10.07
-  wsprintf(data->ws1,"State: %d, RXstate: %d\nRx:%db,Tx:%db\nQueue: %db\n%s\n%t",
-           connect_state,RXstate,RX,TX,sendq_l,hostname,logmsg);
-/*
-  if(pm != pl)
-  {
-     DrawRectangle(0,scr_h-4-2*GetFontYSIZE(FONT_SMALL_BOLD),scr_w-1,scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-2,0,
-                     GetPaletteAdrByColorIndex(0),
-                     GetPaletteAdrByColorIndex(0));
-    pos_status = ((scr_w-1) * pl) / pm;
-    DrawRectangle(1,scr_h-4-2*GetFontYSIZE(FONT_SMALL_BOLD)+1,pos_status,scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-3,0,
-                     GetPaletteAdrByColorIndex(14),
-                     GetPaletteAdrByColorIndex(14));  
-    wstrcatprintf(data->ws1,"\nLoading images...");
-  }
-*/
-  DrawString(data->ws1,3,3+YDISP,scr_w-4,scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD),
-	     FONT_SMALL,0,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23));
-  wsprintf(data->ws2,percent_t,"clist");
-  DrawString(data->ws2,(scr_w >> 1),scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD),
-	     scr_w-4,scr_h-4,FONT_MEDIUM_BOLD,TEXT_ALIGNRIGHT,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23));
-  wsprintf(data->ws2,percent_t,"Exit");
-  DrawString(data->ws2,3,scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD),
-	     scr_w>>1,scr_h-4,FONT_MEDIUM_BOLD,TEXT_ALIGNLEFT,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23));
-
 }
 
 void method1(MAIN_GUI *data,void *(*malloc_adr)(int))
@@ -588,6 +568,14 @@ void method4(MAIN_GUI *data,void (*mfree_adr)(void *))
   data->gui.state=1;
 }
 
+void Create_Connect()
+{
+  CreateICQ();
+  GBS_DelTimer(&reconnect_tmr);
+  DNR_TRIES=3;
+  SUBPROC((void *)create_connect);
+}
+
 int method5(MAIN_GUI *data,GUI_MSG *msg)
 {
   DirectRedrawGUI();
@@ -604,12 +592,13 @@ int method5(MAIN_GUI *data,GUI_MSG *msg)
     case GREEN_BUTTON:
 //      disautorecconect=0;
 //      if ((connect_state==0)&&(sock==-1))
-      {
+     /* {
         CreateICQ();
         GBS_DelTimer(&reconnect_tmr);
 	DNR_TRIES=3;
         SUBPROC((void *)create_connect);
-      }
+      }*/
+      Create_Connect();
       break;
     case '0':
       /*
@@ -673,6 +662,8 @@ void maincsm_oncreate(CSM_RAM *data)
   gipc.data=(void *)-1;
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&gipc);
   
+  RUN_GUI_BEGIN(0);
+  
 }
 
 void maincsm_onclose(CSM_RAM *csm)
@@ -687,6 +678,8 @@ void maincsm_onclose(CSM_RAM *csm)
   SUBPROC((void *)end_socket);
   SUBPROC((void *)ClearSendQ);
   SUBPROC((void *)ElfKiller);
+  
+  GBS_DelTimer(&OnRedrawTimer);
 }
 
 
@@ -715,6 +708,14 @@ void CheckDoubleRun(void)
     DNR_TRIES=3;
     create_connect();
   }
+}
+
+void OpenSettings(void)
+{
+  WSHDR * ws = AllocWS(150);
+  str_2ws(ws, successed_config_filename, 128);
+  ExecuteFile(ws, 0, 0);
+  FreeWS(ws);
 }
 
 int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
@@ -931,6 +932,13 @@ void UpdateCSMname(void)
 extern const unsigned int _UIN;
 extern const char _PASS[9];
 
+void StartTimerSendGuiRedraw()
+{
+  DirectRedrawGUI();
+  GBS_StartTimerProc(&OnRedrawTimer,216/4,StartTimerSendGuiRedraw);
+}
+
+
 int main(char *filename)
 {
   MAIN_CSM main_csm;
@@ -942,7 +950,9 @@ int main(char *filename)
   //Visual parametres
   ScrW = ScreenW();
   ScrH = ScreenH();
-  
+  Font_H = GetFontYSIZE(FONT);
+  StartTimerSendGuiRedraw();
+    
   InitConfig();
   s=strrchr(filename,'\\');
   len=(s-filename)+1;
@@ -964,10 +974,15 @@ int main(char *filename)
     return 0;
   }
   
+  
+  
   UpdateCSMname();
   LockSched();
   maincsm_id=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
   UnlockSched();
+  
+  
+  
   return 0;
 }
 
