@@ -1357,7 +1357,7 @@
       <archiveVersion>1</archiveVersion>
       <data>
         <prebuild></prebuild>
-        <postbuild>"obexcopy.exe" $EXE_DIR$\NatICQ.elf \MMCard\ZBin\NatICQ\NatICQ.elf</postbuild>
+        <postbuild></postbuild>
       </data>
     </settings>
     <settings>
@@ -4152,6 +4152,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\icq_packet.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Items.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Items.h</name>
     </file>
   </group>
   <file>

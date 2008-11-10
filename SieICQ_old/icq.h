@@ -5,15 +5,15 @@
 #include "icq_packet.h"
 //#include "icq_snac.h"
 
-//#define ICQ_CLIENT_STRING "Sie_ICQ"
-#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2002a.5.37.1.3728.85"
+#define ICQ_CLIENT_STRING "Sie_ICQ"
+//#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2002a.5.37.1.3728.85"
 //#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2000b.4.63.1.3279.85"
 
-#define ICQ_CLIENT_MAJOR 0x0005
-#define ICQ_CLIENT_MINOR 0x0025
-#define ICQ_CLIENT_BUILD1 0x0001
-#define ICQ_CLIENT_BUILD2 0x0ccf
-#define ICQ_CLIENT_BUILD3 0x00000055
+#define ICQ_CLIENT_MAJOR 0x0004
+#define ICQ_CLIENT_MINOR 0x0034
+#define ICQ_CLIENT_BUILD1 0x0000
+#define ICQ_CLIENT_BUILD2 0x0c18
+#define ICQ_CLIENT_BUILD3 0x0000043d
 
 #define ICQ_REQUEST_EMPTY (0x3c00)
 #define ICQ_REQUEST_VALUE (0xd007)
@@ -36,7 +36,7 @@ typedef struct
 
 //enum (OFFLINE,ONLINE)
 
-#define CONNECTING        0xffff
+#define STATUS_OFFLINE    0xffff
 #define STATUS_ONLINE     0x0000 //  Status is online 
 #define STATUS_AWAY       0x0001 //  Status is away 
 #define STATUS_DND        0x0002 //  Status is no not disturb (DND) 
@@ -75,7 +75,6 @@ extern  int tenseconds_to_ping;
    void CreateICQ();
    void CloseICQ();
   
-   void Login();
    void Disconnect();
    
   void _WriteLogICQ(char *buf, int size, int in_out); 
