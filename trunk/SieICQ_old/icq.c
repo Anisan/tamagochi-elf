@@ -2,9 +2,10 @@
 #include "icq.h"
 #include "main.h"
 #include "icq_packet.h"
+#include "items.h"
 #include "Random.h"
 
-//#include "icq_snac.h"
+
 
 
 
@@ -87,15 +88,6 @@ void CloseICQ()
 {
 
 }
-
-
-void Login() 
-{
-
-  curr_reqid = 0;
-  icq_seqno = 2;
-}
-
 
 
 extern void Send(char* data,int size);
@@ -211,10 +203,7 @@ void parse_auth(char *data, int size) {
 	char *uin, *host;
 	int port;
 	
-
-	
 	Packet *packet = PackNew();
-	//memcpy(packet->data,data,size);
         packet->data=data;
 	packet->size = size;
         
@@ -339,7 +328,6 @@ void send_cookie()
 {
    _WriteLog("send cookie");
 
-   
         Packet *packet = PackNew();
 	/* Raw start */
 	PackAdd32(packet, 0x00000001);
@@ -659,7 +647,9 @@ void snac_im_rights(short int flags, int request_id, Packet *packet) {
 	
 	/* Some Initial IM parameter */
 	PackAdd16(new_packet, 0x0002);
-	PackAdd32(new_packet, 0x00000003);
+//	PackAdd32(new_packet, 0x00000003);
+        //bit4: client supports typing notifications
+	PackAdd32(new_packet, 0x0000000b);
 	PackAdd16(new_packet, 0x1f40);
 	PackAdd16(new_packet, 0x03e7);
 	PackAdd16(new_packet, 0x03e7);
@@ -818,11 +808,18 @@ void send_user_info() {
 	PackAddTLV(packet, 0x0005, 0x0010);
 	
 	/* This is the capability block for the icq client */
-	PackAdd32(packet, 0x09461349);
-	PackAdd32(packet, 0x4c7f11d1);
-	PackAdd32(packet, 0x82224445);
-	PackAdd32(packet, 0x53540000);
-	
+        //Client support "see as I type" IMs
+	//PackAdd32(packet, 0x563FC809);
+	//PackAdd32(packet, 0x0B6F41BD);
+	//PackAdd32(packet, 0x9F794226);
+	//PackAdd32(packet, 0x09DFA2F3);
+        //SERVER RELAY
+        PackAdd32(packet, 0x09461349);
+        PackAdd32(packet, 0x4c7f11d1);
+        PackAdd32(packet, 0x82224445);
+        PackAdd32(packet, 0x53540000);
+
+
 	send_packet( 0x02, packet);
 }
 
@@ -881,10 +878,10 @@ snac_new(new_packet, 0x0013, 0x0007, NULL, 0x0007);
 send_packet( 0x02, new_packet);
         
 snac_bos_rights(0, 0,NULL);
+
+send_user_info();
         
   
-        return;
-        
 //разбираем контакт лист        
 //Version number of SSI protocol (currently 0x00)
 	char vnum;
@@ -892,15 +889,13 @@ snac_bos_rights(0, 0,NULL);
         _WriteLog("parse CL");
         short int Count=0;
         PackGet16(packet,&Count);
-       // if (Count<=0) return;
+        if (Count<=0) return;
         for (int i=0;i<Count;i++)
         {
           short int len=0;
           PackGet16(packet,&len);
-          char *name;
           char *uin_name=(char*)malloc(64);
-
-          name = (char*)malloc((int)len + 1);
+          char *name = (char*)malloc((int)len + 1);
           PackGet(packet, (char*)name, (int)len);
           name[(int)len] = 0;
           short int GroupID=0;
@@ -913,7 +908,7 @@ snac_bos_rights(0, 0,NULL);
           
           short int type, length=0;
           int end_info=packet->offset+len;
-          
+
           while (packet->offset<end_info)
             {
               PackGetTLV(packet, &type, &length);
@@ -925,9 +920,7 @@ snac_bos_rights(0, 0,NULL);
                 break;
               default:
                 { 
-                char *tmp = malloc(length);
-                 PackGet(packet, (char*)tmp, length);
-                 mfree(tmp);
+                  packet->offset+=length;
                 }
               }
             }
@@ -935,16 +928,19 @@ snac_bos_rights(0, 0,NULL);
           switch (Type)
           {
           case 0:// контакт
-//            int uin = str2int(name);
-//            ContactList::Active->list->AddUser((char*)uin_name,0,uin,GroupID);
+            {
+            int uin = str2int(name);
+            AddItem(ItemID,GroupID,uin,BUDDY,uin_name);
             break;
+            }
           case 1:// group
-//            ContactList::Active->list->AddUser(name,1,0,GroupID);
+            AddItem(ItemID,GroupID,0,GROUP,name);
             break;
           default:
             break;
           }
           
+          mfree(name);
           mfree(uin_name);
           
         }
@@ -1013,6 +1009,9 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
         }
 	
         // тут найти контакт uin и сменить его статус на user_status
+        ITEM *Contact=GetItemByUINstr(uin);
+        if (Contact!=0)
+        Contact->Status=user_status;
         
 	mfree(uin);
 }
@@ -1027,9 +1026,10 @@ void snac_offline_notify(short int flags, int request_id, Packet *packet)
         uin = malloc((int)uin_length+1);
 	PackGet(packet, (char*)uin, (int)uin_length);   
 	
-	
         // тут найти контакт uin и сменить его статус на OFFLINE
-        
+        ITEM *Contact=GetItemByUINstr(uin);
+        if (Contact!=0)
+        Contact->Status=STATUS_OFFLINE;
         
 	mfree(uin);
 }

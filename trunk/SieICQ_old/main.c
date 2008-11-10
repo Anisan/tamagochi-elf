@@ -9,6 +9,7 @@
 #include "conf_loader.h"
 
 #include "icq.h"
+#include "items.h"
 
 #include "gui_begin.h"
 
@@ -149,7 +150,7 @@ int DNR_ID=0;
 int DNR_TRIES=3;
 volatile unsigned long TOTALRECEIVED;
 volatile unsigned long TOTALSENDED;
-volatile unsigned long ALLTOTALRECEIVED;	//by BoBa 10.07
+volatile unsigned long ALLTOTALRECEIVED;
 volatile unsigned long ALLTOTALSENDED;
 
 
@@ -370,8 +371,6 @@ void Send(char * data, int size)
 //  }
   if (data)
   {
-    TOTALSENDED+=size;
-    //ALLTOTALSENDED+=j;			//by BoBa 10.07
     //Проверяем, не надо ли добавить в очередь
     if (sendq_p)
     {
@@ -415,6 +414,9 @@ void Send(char * data, int size)
     }
     memcpy((void *)sendq_p,(char *)sendq_p+j,sendq_l-=j); //Удалили переданное
     
+    TOTALSENDED+=j;
+    ALLTOTALSENDED+=j;			
+
     if (j<i)
     {
       //Передали меньше чем заказывали
@@ -434,12 +436,12 @@ void get_answer(void)
   char tmp_buf[4096];
 //  char *rp=rb;
 //  if (connect_state<2) return;
-  _WriteLog("recv");
   int nrecv=recv(sock,tmp_buf,sizeof(tmp_buf),0);
   
   if(nrecv)
   {  
     TOTALRECEIVED+=nrecv;
+    ALLTOTALRECEIVED+=nrecv;
   //Пакет удачно принят, можно разбирать...
   _WriteLogICQ(tmp_buf,nrecv,1);  
    int offset=0;
@@ -674,7 +676,8 @@ void maincsm_onclose(CSM_RAM *csm)
 //  GBS_DelTimer(&tmr_ping);
 //  FreeSmiles();
 
-  Disconnect();
+//  Disconnect();
+  FreeItemsList();
   SUBPROC((void *)end_socket);
   SUBPROC((void *)ClearSendQ);
   SUBPROC((void *)ElfKiller);
@@ -976,13 +979,10 @@ int main(char *filename)
   }
   
   
-  
   UpdateCSMname();
   LockSched();
   maincsm_id=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
   UnlockSched();
-  
-  
   
   return 0;
 }
