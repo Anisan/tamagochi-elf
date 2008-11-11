@@ -165,5 +165,22 @@ void PackGetStr(Packet *packet, char* str, int len)
         str=tmp;
 }
 
+void PackSkip(Packet *packet, int len)
+{
+  packet->offset += len;
+}
+
+void PackSkipTLVs(Packet *packet, int num)
+{
+  short int len;
+  for (int i=0;i<num;i++)
+  {
+    PackSkip(packet,2);
+    PackGet16(packet,&len);
+    PackSkip(packet,len);
+  }
+}
+
+
  
  
