@@ -53,7 +53,7 @@ static void ExitSieICQ(GUI *data)
 
 static void AboutSieICQ(GUI *data)
 {
-  ShowMSG(1,(int)"SieICQ\n(c) Anisan, Vedan");
+  ShowMSG(1,(int)"SieICQ\n(c) Eraser, Vedan");
 }
 
 MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
