@@ -23,7 +23,7 @@ const char percent_s[]="%s";
 
 #define TMR_SECOND 216
 
-#define EOP -10
+#define EOP -99
 int RXstate=EOP; //-sizeof(RXpkt)..-1 - receive header, 0..RXpkt.data_len - receive data
 
 static GBSTMR OnRedrawTimer; 
@@ -142,7 +142,7 @@ int GetHostsCount(const char *str)
 /// GPRS
 volatile int sendq_l=0; //Длинна очереди для send
 volatile void *sendq_p=NULL; //указатель очереди
-
+TPKT RXbuf;
 volatile int is_gprs_online=1;
 int connect_state=0;
 int sock=-1;
@@ -152,6 +152,7 @@ volatile unsigned long TOTALRECEIVED;
 volatile unsigned long TOTALSENDED;
 volatile unsigned long ALLTOTALRECEIVED;
 volatile unsigned long ALLTOTALSENDED;
+
 
 
 
@@ -275,6 +276,7 @@ void create_connect(void)
     ShowMSG(1,(int)"LG_MSGHOSTNFND");
     UnlockSched();
   }
+    RXstate=-(int)sizeof(FLAP_HEAD);
 }
 
 
@@ -285,6 +287,7 @@ void end_socket(void)
   {
     shutdown(sock,2);
     closesocket(sock);
+    connect_state = 0;
   }
 #ifdef SEND_TIMER
   GBS_DelTimer(&send_tmr);
@@ -295,7 +298,7 @@ void end_socket(void)
 void icq_connect(char *host, int port) {
   
   end_socket();
-
+connect_state = 0;
   sprintf(hostname, "BOS: %s:%d", host, port);
   SMART_REDRAW();
 
@@ -328,7 +331,7 @@ void icq_connect(char *host, int port) {
 	  LockSched();
 	  ShowMSG(1,(int)"LG_MSGCANTCONN");
 	  UnlockSched();
-//	  GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
+	  GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
 	}  
         }
       else
@@ -340,6 +343,7 @@ void icq_connect(char *host, int port) {
 	GPRS_OnOff(0,1);
       }
   }
+  RXstate=-(int)sizeof(FLAP_HEAD);
 }
 
 #ifdef SEND_TIMER
@@ -364,11 +368,7 @@ void Send(char * data, int size)
 {
   int i;
   int j;
-//  if (connect_state<2)
-//  {
-//    mfree(data);
-//    return;
-//  }
+  if (connect_state<2) return;
   if (data)
   {
     //Проверяем, не надо ли добавить в очередь
@@ -377,7 +377,6 @@ void Send(char * data, int size)
       //Есть очередь, добавляем в нее
       sendq_p=realloc((void *)sendq_p,sendq_l+size);
       memcpy((char *)sendq_p+sendq_l,data,size);
-//      mfree(data);
       sendq_l+=size;
       return;
     }
@@ -430,7 +429,7 @@ void Send(char * data, int size)
   sendq_p=NULL;
 }
 
-
+/*
 void get_answer(void)
 {
   char tmp_buf[4096];
@@ -452,19 +451,8 @@ void get_answer(void)
    // может быть несколько пакетов в одном сообщении
    while (offset<nrecv)
    {
-     
-     
          memcpy(flap, tmp_buf+offset, sizeof(FLAP_HEAD));
-         
          flap->data_size = htons(flap->data_size);
-         //flap_seqno=htons(flap->seq_number);
-
-         //char *tmp_msg=new char[64];
-         //sprintf(tmp_msg, percent_d, flap->data_size);
-         //_WriteLog(tmp_msg);
-         //delete tmp_msg;
-
-         
          offset=offset+sizeof(FLAP_HEAD);
          pack = tmp_buf+offset;
          offset=offset+flap->data_size;
@@ -495,16 +483,94 @@ void get_answer(void)
   // delete pack;
    mfree(flap);
   }
-
-
 }
+*/
 
-void ProcessPacket()
+void get_answer(void)
 {
-  
+  void *p;
+  int i=RXstate;
+  int j;
+  int n;
+  char rb[1024];
+  char *rp=rb;
+  if (connect_state<1) return;
+  if (i==EOP) return;
+  j=recv(sock,rb,sizeof(rb),0);
+  while(j>0)
+  {
+    if (i<0)
+    {
+      //Принимаем заголовок
+      n=-i; //Требуемое количество байт
+      if (j<n) n=j; //полученное<требуемое?
+      memcpy(RXbuf.data+i,rp,n); //Копируем
+      i+=n;
+      j-=n;
+      rp+=n;
+      RXbuf.flap.data_size = htons(RXbuf.flap.data_size);
+    }
+    if (i>=0)
+    {
+      //Принимаем тельце ;)
+      n=RXbuf.flap.data_size; //Всего в тельце
+      if (n>16383)
+      {
+	//Слишком много
+	strcpy(logmsg,"LG_GRBADPACKET");
+	end_socket();
+	RXstate=EOP;
+	return;
+      }
+      n-=i; //Количество требуемых байт (общая длинна тельца-текущая позиция)
+      if (n>0)
+      {
+	if (j<n) n=j; //полученное<требуемое?
+	memcpy(RXbuf.data+i,rp,n);
+	i+=n;
+	j-=n;
+	rp+=n;
+      }
+      if (RXbuf.flap.data_size==i)
+      {
+        _WriteLogICQ((char*)&RXbuf,RXbuf.flap.data_size+sizeof(FLAP_HEAD),1); 
+	
+        //Пакет полностью получен
+	TOTALRECEIVED+=(i+8);
+	ALLTOTALRECEIVED+=(i+8);			//by BoBa 10.07
+	//Пакет удачно принят, можно разбирать...
+	RXbuf.data[i]=0; //Конец строки
+	switch(RXbuf.flap.channel) {
+                case 0x01:
+                      _WriteLog("Auth");
+                      if (auth_cookie) 
+                      {connect_state=3;send_cookie();} 
+                      else 
+                      {connect_state=2;send_login();}
+                      
+                      break;
+                      
+                case 0x02:
+                       parse_snac(RXbuf.data,RXbuf.flap.data_size);
+                      break;
+                      
+                case 0x04:
+                      if (!auth_cookie)
+                        parse_auth(RXbuf.data,RXbuf.flap.data_size);
+                      break;
+                      
+                default:
+                  ;
+              };
+        
+	i=-(int)sizeof(FLAP_HEAD); //А может еще есть данные
+      }
+    }
+  }
+  RXstate=i;
+  //  GBS_StartTimerProc(&tmr_dorecv,3000,dorecv);
+  //  SMART_REDRAW();
 }
-
-
 
 void do_reconnect(void)
 {
@@ -572,10 +638,13 @@ void method4(MAIN_GUI *data,void (*mfree_adr)(void *))
 
 void Create_Connect()
 {
-  CreateICQ();
-  GBS_DelTimer(&reconnect_tmr);
-  DNR_TRIES=3;
-  SUBPROC((void *)create_connect);
+  if ((connect_state==0)&&(sock==-1))
+  {
+    CreateICQ();
+    GBS_DelTimer(&reconnect_tmr);
+    DNR_TRIES=3;
+    SUBPROC((void *)create_connect);
+  }
 }
 
 int method5(MAIN_GUI *data,GUI_MSG *msg)
@@ -664,6 +733,8 @@ void maincsm_oncreate(CSM_RAM *data)
   gipc.data=(void *)-1;
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&gipc);
   
+  LoadCL("4:\\Zbin\\SieICQ\\SieICQ.cl");
+  
   RUN_GUI_BEGIN(0);
   
 }
@@ -677,6 +748,7 @@ void maincsm_onclose(CSM_RAM *csm)
 //  FreeSmiles();
 
 //  Disconnect();
+  SaveCL("4:\\Zbin\\SieICQ\\SieICQ.cl");
   FreeItemsList();
   SUBPROC((void *)end_socket);
   SUBPROC((void *)ClearSendQ);
@@ -824,6 +896,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
         _WriteLog("Packet (((unsigned int)msg->data0)>>28)==0xA");
 	return(0);
       }
+      
       switch((int)msg->data0)
       {
       case ENIP_SOCK_CONNECTED:
@@ -875,16 +948,11 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
 	}
         
 	SMART_REDRAW();
-        
-	SUBPROC((void *)ClearSendQ);
-	/*
-        if (!disautorecconect)
-        {
-          GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
-          snprintf(logmsg,255,"%s\nReconect after %d second...",logmsg, RECONNECT_TIME);
-        }
+        SUBPROC((void *)ClearSendQ);
+        GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
+        snprintf(logmsg,255,"%s\nReconect after %d second...",logmsg, RECONNECT_TIME);
 	break;
-        */
+        
       }
     }
   }

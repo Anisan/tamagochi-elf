@@ -32,8 +32,8 @@ ITEM *GetItemByID(int ID);
 ITEM *GetItemByUIN(int UIN);
 ITEM *GetItemByUINstr(char *UIN);
 
-//void LoadCL(char *pathfile);
-//void SaveCL(char *pathfile);
+void LoadCL(char *pathfile);
+void SaveCL(char *pathfile);
 
 int TotalItems();
 void FreeItemsList();

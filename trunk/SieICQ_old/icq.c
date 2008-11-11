@@ -543,12 +543,33 @@ void snac_server_ready(short int flags, int request_id, Packet *packet)
 
 void snac_motd(short int flags, int request_id, Packet *packet) 
 {
-  Packet *new_packet = PackNew();
-	snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
+  //
+  
+   Packet *new_packet = PackNew();
+   
+   
+   if (TotalItems()==0)     
+   {
+     //если пусто, то запрос контакт листа
+        snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
 	PackAdd16(new_packet, 0x0000);
 	PackAdd16(new_packet, 0x0000);
 	PackAdd16(new_packet, 0x0000);
 	send_packet(0x02, new_packet);
+   }
+   
+   
+    snac_im_rights(0, 0,NULL);
+    
+    // чтобы всем рассылалось уведомление о моем статусе
+    new_packet = PackNew();
+    snac_new(new_packet, 0x0013, 0x0007, NULL, 0x0007);
+    send_packet( 0x02, new_packet);
+            
+    snac_bos_rights(0, 0,NULL);
+    
+    send_user_info();
+   
 }
 
 
@@ -618,14 +639,6 @@ void snac_rate_response(short int flags, int request_id, Packet *packet) {
         send_packet( 0x02, new_packet);
         */
         
-        snac_im_rights(0, 0,NULL);
-
-
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0007, NULL, NULL);
-        send_packet( 0x02, new_packet);
-        
-        snac_bos_rights(0, 0,NULL);
 }
 
 
@@ -659,12 +672,7 @@ void snac_im_rights(short int flags, int request_id, Packet *packet) {
 	
 	send_packet(0x02, new_packet);
         
-//        new_packet = PackNew(); 
-//      snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
-//        PackAdd32(new_packet,0);
-//        PackAdd16(new_packet,0);
-//	send_packet(0x02, new_packet);
-  
+
 }
 
 void snac_bos_rights(short int flags, int request_id, Packet *packet) {
@@ -868,20 +876,8 @@ void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
 }
 
 void snac_contactlist(short int flags, int request_id, Packet *packet) {
-
-
-snac_im_rights(0, 0,NULL);
-
-// чтобы всем рассылалось уведомление о моем статусе
-Packet *new_packet = PackNew();
-snac_new(new_packet, 0x0013, 0x0007, NULL, 0x0007);
-send_packet( 0x02, new_packet);
-        
-snac_bos_rights(0, 0,NULL);
-
-send_user_info();
-        
   
+  FreeItemsList();
 //разбираем контакт лист        
 //Version number of SSI protocol (currently 0x00)
 	char vnum;

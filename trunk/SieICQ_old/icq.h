@@ -28,6 +28,12 @@ typedef struct
 
 typedef struct
 {
+  FLAP_HEAD flap;
+  char data[16384];
+}TPKT;
+
+typedef struct
+{
  short int   service_id; 
  short int   subtype_id;
  short int   flags; 
