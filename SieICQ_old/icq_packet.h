@@ -38,6 +38,10 @@ void PackGet32LE(Packet *packet,int* num);
 void PackGetStr(Packet *packet, char* str, int len);
 void PackGetTLV(Packet *packet,short int* type,short int* size);
 
+void PackSkip(Packet *packet, int len);
+void PackSkipTLVs(Packet *packet, int num);
+
+
 
 #endif /* _PACKET_H */
 

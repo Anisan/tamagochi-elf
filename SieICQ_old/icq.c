@@ -831,48 +831,237 @@ void send_user_info() {
 	send_packet( 0x02, packet);
 }
 
-void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
-	//guint8 cookie[8], source_len;
-	//guint16 channel, warning_level, num_tlvs;
-	char *source;
+void contact_incoming_msg(char * source, char* msg)
+{
+  char file[512];
+  sprintf("4:\\ZBin\\sieicq\\history\\%s.log",source);
+  int flog=-1;
+  unsigned int err;
+  flog = fopen(file,A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
+        if (flog!=-1)
+	{
+		char _msg[512];
+
+		TTime t;
+		TDate d;
+		GetDateTime(&d,&t);
+		sprintf(_msg, "%02d:%02d:%02d %s\n", t.hour,t.min,t.sec,msg);
+		//  sprintf(msg, "%s\n", buf);
+		fwrite(flog,msg,strlen(msg),&err);
+	}
+  fclose(flog,&err);      
+}
+
+void handle_simple_message(char *source, short int num_tlvs, Packet *packet) {
 	
-	/* IM Cookie */
-	//icq_packet_get(packet, cookie, 8);
+        short int msg_tlv, msg_len, encoding, subencoding;
+	char *msg;
 	
-	/* The IM channel that this is coming in on */
-	/*
-        PACKET_GET_16(packet, channel);
+	PackSkipTLVs(packet, num_tlvs);
 	
-	PACKET_GET_8(packet, source_len);
-	PACKET_GET_STR(packet, source, source_len);
+	PackGetTLV(packet, &msg_tlv, &msg_len);
+	if (msg_tlv != 0x0002) {
+		_WriteLog("Simple message has an unexpected TLV:");
+		return;
+	}
 	
-	PACKET_GET_16(packet, warning_level);
-	PACKET_GET_16(packet, num_tlvs);
+	/* Unknown, usually 05 01 00 01 01 01 01 */
+	PackSkip(packet, 7);
 	
-	n_debug("Incoming Message:");
-	icq_packet_dump(packet);
+	/* This is the actual message length */
+	PackGet16(packet, &msg_len);
+        
+	/* Encodings of the content */
+	PackGet16(packet, &encoding);
+	PackGet16(packet, &subencoding);
 	
-	switch (channel) {
-	  case 0x0001:
-		handle_simple_message(account, source, num_tlvs, packet);
+	if (encoding != 0x0000 || subencoding != 0x0000)
+		_WriteLog("Warning: unsupported encoding");
+	
+	/* And finally we get the message */
+	msg = malloc(msg_len-4+1);
+	PackGet(packet, msg, msg_len - 4);
+	msg[msg_len - 4]=0;
+        
+        // здесь надо обработать полученное тело сообщения
+        // source = UIN от кого
+	contact_incoming_msg(source, msg);
+        
+	mfree(msg);
+}
+
+void handle_advanced_message(char *source, short int num_tlvs, Packet *packet) {
+	short int msg_tlv, msg_len, msg_type, flag1, flag2;
+	char msg_subtype, msg_flags;
+	char *msg;
+	
+	PackSkipTLVs(packet, num_tlvs);
+	
+	PackGetTLV(packet, &msg_tlv, &msg_len);
+	if (msg_tlv != 0x0005) {
+		_WriteLog("Advanced message has an unexpected TLV:");
+		return;
+	}
+	
+	PackGet16(packet, &flag1);
+	
+	/* Message cookie, again */
+	PackSkip(packet, 8);
+	
+	/* Capability block */
+	PackSkip(packet, 8);
+	
+	PackGet16(packet, &flag2);
+	
+	/* Unknown */
+	PackSkip(packet, 4);
+	
+	if (flag1 != 0x0000 || flag2 != 0x000a) {
+		_WriteLog("Unknown advanced message type:");
+		return;
+	}
+	
+	PackGet16(packet, &msg_type);
+	if (msg_type == 0x0005) {
+		_WriteLog("Looks to be a file transfer:");
+		return;
+	}
+	
+	/* Some unknown that rejetto didn't see as necessary */
+	PackSkip(packet, 53);
+	
+	PackGet8(packet, &msg_subtype);
+	PackGet8(packet, &msg_flags);
+	
+	/* Two unknowns that don't seem to mean much */
+	PackSkip(packet, 8);
+	
+	/* Actual message length */
+	PackGet16LE(packet, &msg_len);
+	
+	/* Actual message */
+        msg = malloc(msg_len+1);
+	PackGet(packet, msg, msg_len);
+	msg[msg_len]=0;
+	
+        // здесь надо обработать полученное тело сообщения
+        // source = UIN от кого
+	 contact_incoming_msg(source, msg);
+	
+        mfree(msg);
+}
+
+void handle_special_message(char *source,short int num_tlvs, Packet *packet) {
+	char subtype, flags;
+	short int length, tlv_type;
+	char *msg;
+	
+	PackSkipTLVs(packet, num_tlvs);
+	
+	PackGetTLV(packet, &tlv_type, &length);
+	
+	if (tlv_type != 0x0005) {
+		_WriteLog("Unknown special message type 0x%04x:");
+		return;
+	}
+	
+	/* This is the uin, but we already have that from the source */
+	PackSkip(packet, 4);
+	
+	/* Determines what we are going to do with this message */
+	PackGet8(packet, &subtype);
+	PackGet8(packet, &flags);
+	
+	PackGet16LE(packet, &length);
+	
+	msg = malloc(length+1);
+	PackGet(packet, msg, length);
+	msg[length]=0;
+        
+	switch (subtype) {
+	  case 0x01: //Plain text (simple) message
+		contact_incoming_msg(source, msg);
 		break;
 		
-	  case 0x0002:
-		handle_advanced_message(account, source, num_tlvs, packet);
+	  case 0x04: // URL message 
+            {
+		  //char *buf, *descr, *url;
+		  //url = next_arg(msg, &url, NULL, "\xFE");
+		  //buf = d_strdup_printf("\002%s\001\n%s", descr, url);
+		  //contact_incoming_msg(CONTACT(contact), buf);
+		  //mfree(buf);
+		  break;
+	  }
+		
+	  case 0x06: // Authorization request message
+//		contact_action(CONTACT(contact), "has requested authorization to add you to their list.");
 		break;
 		
-	  case 0x0004:
-		handle_special_message(account, source, num_tlvs, packet);
+	  case 0x07: // Authorization denied message
+		//contact_action(CONTACT(contact), "has denied your request for authorization:");
+		break;
+		
+	  case 0x08: // Authorization given message
+		//contact_action(CONTACT(contact), "has authorized you.");
+		break;
+		
+	  case 0x0C: // "You-were-added" message
+		//contact_action(CONTACT(contact), "has added you to their list.");
+		break;
+		
+	  case 0x13: //Contact list message
+		contact_incoming_msg(source, msg);
 		break;
 		
 	  default:
-		n_error("Unknown IM channel 0x%04x", channel);
-		icq_packet_dump(packet);
+		_WriteLog("Unknown special message subtype");
 		break;
 	}
 	
-	d_free(source);
-        */
+	mfree(msg);
+}
+
+void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
+	long cookie;
+        char source_len;
+	short int channel, warning_level, num_tlvs;
+	char *source;
+	
+	/* IM Cookie */
+	PackGet(packet, &cookie, 8);
+	
+	/* The IM channel that this is coming in on */
+	
+        PackGet16(packet, &channel);
+	
+	PackGet8(packet, &source_len);
+        source = malloc((int)source_len+1);
+	PackGet(packet, source, source_len);
+        source[(int)source_len]=0;
+	
+	PackGet16(packet, &warning_level);
+	PackGet16(packet, &num_tlvs);
+	
+	switch (channel) {
+	  case 0x0001:
+		handle_simple_message(source, num_tlvs, packet);
+		break;
+		
+	  case 0x0002:
+		handle_advanced_message(source, num_tlvs, packet);
+		break;
+		
+	  case 0x0004:
+		handle_special_message(source, num_tlvs, packet);
+		break;
+		
+	  default:
+		_WriteLog("Unknown IM channel ");
+		break;
+	}
+	
+	mfree(source);
+        
 }
 
 void snac_contactlist(short int flags, int request_id, Packet *packet) {
