@@ -4121,6 +4121,12 @@
   <group>
     <name>GUI</name>
     <file>
+      <name>$PROJ_DIR$\c_list_util.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\c_list_util.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\gui_begin.c</name>
     </file>
     <file>

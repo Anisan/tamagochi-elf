@@ -1,7 +1,10 @@
 #include "include.h"
 #include "gui_begin.h"
 #include "gui_mainmenu.h"
+
 #include "main.h"
+#include "c_list_util.h"
+
 // (c) Vedan
 
 typedef struct
@@ -16,38 +19,42 @@ typedef struct
 } GUI_MAINMENU_CSM;
 
 int TYPE_MENU;
-// Структуры
 
-// MAIN_MENU !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#define ALL_MENU_NUM 3 // Количество всех меню
+// Структуры ===================================================================
 
-#define MAIN_MENU_NUMS 5 //Количество пунктов главного меню
+
+// ********* MAIN_MENU *********************************************************
+
+// Количество всех меню
+#define ALL_MENU_NUM 3 
+
+//Количество пунктов главного меню
+#define MAIN_MENU_NUMS 5 
+
 #define MAIN_MENU_Y_DISP 3
-#define MAIN_MENU_X_DISP 3
+#define MAIN_MENU_X_DISP 2
 
-//unsigned short int MAIN_MENU_NUMS = 3;
+// ********* MAIN_MENU - functions *********************************************
 
 static void ToConnect(GUI *data)
 {
-  //ShowMSG(1,(int)"Connect");
   RUN_GUI_BEGIN(1);
   Create_Connect();
 }
 
 static void ContactList(GUI *data)
 {
-  ShowMSG(1,(int)"ContactList");
+  RUN_GUI_C_LIST(0);
+  //ShowMSG(1,(int)"ContactList");
 }
 
 static void EditConfig(GUI *data)
 {
-  //ShowMSG(1,(int)"Settings");
   OpenSettings();
 }
 
 static void ExitSieICQ(GUI *data)
 {
-  //ShowMSG(1,(int)"Exit");
   Close_MAIN_CSM();
 }
 
@@ -55,6 +62,8 @@ static void AboutSieICQ(GUI *data)
 {
   ShowMSG(1,(int)"SieICQ\n(c) Eraser, Vedan");
 }
+
+// *****************************************************************************
 
 MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 {
@@ -64,7 +73,6 @@ MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
   (int)"О программе",
   (int)"Выход"
 };
-
 
 
 const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
@@ -88,14 +96,15 @@ MENU_STRUCT main_menu_struct=
   mainmenu_procs
 };
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// *****************************************************************************
 
-// S O F T   B U T T O N =======================================================
+
+// ********* SOFT BUTTON *******************************************************
 
 // Инициализируются софт надписи главного меню
 SOFT_BUTTON_STRUCT mainmemu_soft={3, 3, "Выбор", "Выйти", 1, 0};
 
-//==============================================================================
+// *****************************************************************************
 
 #define IS_MAIN_MENU 0
 
@@ -165,8 +174,15 @@ static void OnRedraw(GUI_MAINMENU_GUI *data)
   if (data->gui.state==2)
   {
     DrawMenuFon();
-    DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], menu_cursors[IS_MAIN_MENU]);
-    DrawSoftButton(&mainmemu_soft);
+
+    switch(TYPE_MENU)
+    {
+    case IS_MAIN_MENU:
+      {
+        DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], menu_cursors[IS_MAIN_MENU]);
+        DrawSoftButton(&mainmemu_soft);
+      } break;
+    }
   }
 }
 

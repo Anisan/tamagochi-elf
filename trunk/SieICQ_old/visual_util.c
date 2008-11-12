@@ -4,9 +4,42 @@
 
 // Developer - Vedan, 2008
 
+void DrawHeaderText(HEADER_ITEM *data)
+{
+  WSHDR *ws_head_text = AllocWS(128);
+
+  wsprintf(ws_head_text, percent_t, data->text);
+  DrawString(ws_head_text, 0, data->y_disp, ScrW , 2*data->y_disp + Font_H, FONT,32,COLOUR, COLOUR_FRING);
+  FreeWS(ws_head_text);
+};
+
+int Get_HeaderText_Height(HEADER_ITEM *data)
+{
+  int hh = 2 * (data->y_disp) + GetFontYSIZE(data->font);
+  return hh;
+}
+
+void InitHeaderText(HEADER_ITEM *data, char *txt)
+{
+  sprintf(data->text, percent_s, txt);
+}
+
+void InitHeaderData(HEADER_ITEM *data, char *txt, int y, int f, int f_t, char *c, char *f_c)
+{
+  if(strlen(txt)!=0) sprintf(data->text, percent_s, txt);
+  if(y!=0) data->y_disp = y;
+  if(f!=0) data->font = f;
+  if(f_t!=0) data->font_type = f_t;
+  if(strlen(c)!=0) memcpy(&(data->colour),c,4);
+  if(strlen(f_c)!=0) memcpy(&(data->fring_colour),f_c,4);
+   
+  // Проверка на пустоту для того,чтобы можно было устнавливать отдельные параметры, не дёргая остальные
+  // Например нужно только высоту изменить 
+}
 
 
 char *dday[7]={"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресение"};
+
 void DrawDataTime(DATA_TIME *data)
 {
   int Y_POS = data->y_position;
@@ -33,6 +66,7 @@ void DrawDataTime(DATA_TIME *data)
   FreeWS(ws_data_time);
   
 }
+
 
 void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2)
 {
@@ -87,6 +121,11 @@ void DrawSoftButton(SOFT_BUTTON_STRUCT *data)
   FreeWS(ws_soft_text);
 };
 
+int Get_SoftButton_Height(SOFT_BUTTON_STRUCT *data)
+{
+  int hh = 2 *(data->y_disp) + Font_H;
+  return hh;
+}
 
 void InitSoftButton(SOFT_BUTTON_STRUCT *data, int x_dsp, int y_dsp, char * left, char * right, int ena_t, int ena_t_s)
 {
