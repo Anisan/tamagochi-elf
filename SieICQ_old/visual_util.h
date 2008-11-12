@@ -17,6 +17,20 @@ typedef struct
   char fring_colour[4];
 }DATA_TIME;
 
+
+typedef struct
+{
+  int y_disp;
+  char text[256];
+  
+  //Для более тонкой настройки
+  int font;
+  int font_type;
+  char colour[4];
+  char fring_colour[4];
+  
+}HEADER_ITEM;
+
 typedef struct
 {
   int lgp_id;
@@ -35,11 +49,11 @@ typedef struct
   char text_right[32];
   int ena_time;
   int ena_time_sec;
-  
 } SOFT_BUTTON_STRUCT;
 
 
 typedef void (__interwork *MENU_PROCS)(GUI *);
+
 typedef struct 
 {
   int max_num;
@@ -49,22 +63,28 @@ typedef struct
   int type_header_text;
   const MENU_ITEM *items;
   const MENU_PROCS *procs;//  void ** procs; //Table of procs when item selected
-  
 } MENU_STRUCT;
 
-// Инициализация структуры софт надписей
-void InitSoftButton(SOFT_BUTTON_STRUCT *data, int x_dsp, int y_dsp, char * left, char * right, int ena_t, int ena_t_s);
-// Отрисовка софт надписей
-void DrawSoftButton(SOFT_BUTTON_STRUCT *data);
 
-// Инициализация структуры главного меню
+// Софт надписи ----------------------------------------------------------------
+void InitSoftButton(SOFT_BUTTON_STRUCT *data, int x_dsp, int y_dsp, char * left, char * right, int ena_t, int ena_t_s);
+void DrawSoftButton(SOFT_BUTTON_STRUCT *data);
+int Get_SoftButton_Height(SOFT_BUTTON_STRUCT *data);
+
+// Головные надписи ------------------------------------------------------------
+void InitHeaderData(HEADER_ITEM *data, char *txt, int y, int f, int f_t, char *c, char *f_c);
+void DrawHeaderText(HEADER_ITEM *data);
+
+void InitHeaderText(HEADER_ITEM *data, char *txt);
+int Get_HeaderText_Height(HEADER_ITEM *data);
+
+// Главное меню ----------------------------------------------------------------
 void InitMenuList(MENU_STRUCT *data, char *head, int y_dsp);
-// Отрисовка главного меню
 void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count);
 
-// Вывод даты и времени
-void DrawDataTime(DATA_TIME *data);
-// Инициализировать даты и время
+// Дата и время ----------------------------------------------------------------
 void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2);
+void DrawDataTime(DATA_TIME *data);
+
                   
 #endif
