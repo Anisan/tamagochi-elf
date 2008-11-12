@@ -834,22 +834,25 @@ void send_user_info() {
 void contact_incoming_msg(char * source, char* msg)
 {
   char file[512];
-  sprintf("4:\\ZBin\\sieicq\\history\\%s.log",source);
+  sprintf(file,"4:\\ZBin\\sieicq\\history\\%s.log",source);
+  _WriteLog(file);
+  send_msg(source,msg);
   int flog=-1;
   unsigned int err;
   flog = fopen(file,A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
         if (flog!=-1)
 	{
-		char _msg[512];
+		char _msg[1024];
 
 		TTime t;
 		TDate d;
 		GetDateTime(&d,&t);
 		sprintf(_msg, "%02d:%02d:%02d %s\n", t.hour,t.min,t.sec,msg);
 		//  sprintf(msg, "%s\n", buf);
-		fwrite(flog,msg,strlen(msg),&err);
+		fwrite(flog,_msg,strlen(_msg),&err);
 	}
-  fclose(flog,&err);      
+  fclose(flog,&err);     
+  
 }
 
 void handle_simple_message(char *source, short int num_tlvs, Packet *packet) {
@@ -886,6 +889,7 @@ void handle_simple_message(char *source, short int num_tlvs, Packet *packet) {
         // здесь надо обработать полученное тело сообщения
         // source = UIN от кого
 	contact_incoming_msg(source, msg);
+        
         
 	mfree(msg);
 }
@@ -1217,4 +1221,60 @@ void snac_offline_notify(short int flags, int request_id, Packet *packet)
         Contact->Status=STATUS_OFFLINE;
         
 	mfree(uin);
+}
+
+
+void new_message_packet(Packet *packet, char* dUIN, short int channel) {
+	char cookie[8];
+        
+        for (int n = 0; n < 6; n++)
+		cookie[n] = rand();
+        cookie[7]=0;
+        cookie[8]=0;
+        
+	snac_new(packet,0x0004, 0x0006, NULL, NULL);
+	
+	/* IM Cookie */
+	PackAdd(packet, (char*)cookie, 8);
+	/* Channel ID */
+	PackAdd16(packet, channel);
+	/* UIN of the recipient */
+	PackAdd8(packet, strlen(dUIN));
+	PackAddStr(packet, dUIN);
+}
+
+void send_msg(char* dUIN, char *msg) {
+	Packet *packet = PackNew();
+        new_message_packet(packet, dUIN, 0x0001);
+	short int size = strlen(msg);
+	
+	/* Start of TLV for message */
+	PackAddTLV(packet, 0x0002, size + 13);
+	
+	/* Unknown purpose */
+	PackAdd16(packet, 0x0501);
+	
+	/* Some size value combo */
+	PackAdd16(packet, 0x0001);
+	PackAdd8(packet, 0x01);
+	
+	/* Intro to message */
+	PackAdd16(packet, 0x0101);
+	
+	/* Size of message */
+	PackAdd16(packet, size + 4);
+	
+	/* Encoding of message */
+	PackAdd16(packet, 0x0000);
+	
+	/* Subencoding */
+	PackAdd16(packet, 0x0000);
+	
+	/* And we get to the message itself! */
+	PackAddStr(packet, msg);
+	
+	/* Some empty value (this really isn't a TLV after all) */
+	PackAddTLV(packet, 0x0006, 0x0000);
+	
+	send_packet(0x02, packet);
 }
