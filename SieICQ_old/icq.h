@@ -126,6 +126,7 @@ extern  int tenseconds_to_ping;
 
   void send_contact_list();
 
+  void send_msg(char* dUIN, char *msg);
 
 
 
