@@ -299,7 +299,7 @@ void icq_connect(char *host, int port) {
   
   end_socket();
 connect_state = 0;
-  sprintf(hostname, "BOS: %s:%d", host, port);
+  sprintf(hostname, "BOSS: %s:%d", host, port);
   SMART_REDRAW();
 
   unsigned int ip;
@@ -488,7 +488,6 @@ void get_answer(void)
 
 void get_answer(void)
 {
-  void *p;
   int i=RXstate;
   int j;
   int n;
@@ -661,23 +660,12 @@ int method5(MAIN_GUI *data,GUI_MSG *msg)
 //      if (cltop) create_contactlist_menu();
       break;
     case GREEN_BUTTON:
-//      disautorecconect=0;
-//      if ((connect_state==0)&&(sock==-1))
-     /* {
-        CreateICQ();
-        GBS_DelTimer(&reconnect_tmr);
-	DNR_TRIES=3;
-        SUBPROC((void *)create_connect);
-      }*/
-      Create_Connect();
+      //disautorecconect=0;
+ //     Create_Connect();
       break;
     case '0':
-      /*
-      SUBPROC((void*)end_socket);
-      GBS_DelTimer(&reconnect_tmr);
-      DNR_TRIES=3;
-      SUBPROC((void *)create_connect);
-      */
+ //     SUBPROC((void*)end_socket);
+ //     Create_Connect();
       break;
     }
   }
@@ -778,10 +766,7 @@ void CheckDoubleRun(void)
     //InitXStatusesImg();
     //InitSmiles(); Это вызовется из InitXStatusesImg
    
-    CreateICQ();
-    GBS_DelTimer(&reconnect_tmr);
-    DNR_TRIES=3;
-    create_connect();
+    Create_Connect();
   }
 }
 
