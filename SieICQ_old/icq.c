@@ -391,6 +391,7 @@ void parse_snac(char *data, int size) {
             {
             case 0x0005: snac_im_rights(snac->flags, snac->request_id,packet);break;
             case 0x0007: snac_incoming_msg(snac->flags, snac->request_id,packet);break;
+            case 0x0014: snac_typing_msg(snac->flags, snac->request_id,packet);break;
             }
           break;  
         case 0x0009:
@@ -643,25 +644,40 @@ void snac_list_rights(short int flags, int request_id, Packet *packet) {
 void snac_im_rights(short int flags, int request_id, Packet *packet) {
 
 
-   
-  Packet *new_packet = PackNew(); 
+// Set message parameters for channel 1 (CLI_SET_ICBM_PARAMS)   
+        Packet *new_packet = PackNew(); 
         snac_new(new_packet, 0x0004, 0x0002, NULL, 0x0002);
-	
 	/* Some Initial IM parameter */
-	PackAdd16(new_packet, 0x0002);
-//	PackAdd32(new_packet, 0x00000003);
-        //bit4: client supports typing notifications
+	PackAdd16(new_packet, 0x0001);
+        //client supports typing notifications
 	PackAdd32(new_packet, 0x0000000b);
 	PackAdd16(new_packet, 0x1f40);
 	PackAdd16(new_packet, 0x03e7);
 	PackAdd16(new_packet, 0x03e7);
 	PackAdd32(new_packet, 0x00000000);
-	
-	_WriteLog("Sending initial IM stuff");
-	
 	send_packet(0x02, new_packet);
-        
+// Set message parameters for channel 2 (CLI_SET_ICBM_PARAMS)
+        new_packet = PackNew(); 
+        snac_new(new_packet, 0x0004, 0x0002, NULL, 0x0002);
+	PackAdd16(new_packet, 0x0002);
+	PackAdd32(new_packet, 0x00000003);
+	PackAdd16(new_packet, 0x1f40);
+	PackAdd16(new_packet, 0x03e7);
+	PackAdd16(new_packet, 0x03e7);
+	PackAdd32(new_packet, 0x00000000);
+	send_packet(0x02, new_packet);
+// Set message parameters for channel 4 (CLI_SET_ICBM_PARAMS)
+        new_packet = PackNew(); 
+        snac_new(new_packet, 0x0004, 0x0002, NULL, 0x0002);
+	PackAdd16(new_packet, 0x0004);
+	PackAdd32(new_packet, 0x00000003);
+	PackAdd16(new_packet, 0x1f40);
+	PackAdd16(new_packet, 0x03e7);
+	PackAdd16(new_packet, 0x03e7);
+	PackAdd32(new_packet, 0x00000000);
+	send_packet(0x02, new_packet);
 
+	_WriteLog("Sending initial IM stuff");
 }
 
 void snac_bos_rights(short int flags, int request_id, Packet *packet) {
@@ -1045,6 +1061,36 @@ void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
 		_WriteLog("Unknown IM channel ");
 		break;
 	}
+	
+	mfree(source);
+        
+}
+
+void snac_typing_msg(short int flags, int request_id, Packet *packet) {
+	long cookie;
+        char source_len;
+	short int channel, typing;
+	char *source;
+	/* IM Cookie */
+	PackGet(packet, &cookie, 8);
+	/* The IM channel that this is coming in on */
+        PackGet16(packet, &channel);
+	PackGet8(packet, &source_len);
+        source = malloc((int)source_len+1);
+	PackGet(packet, source, source_len);
+        source[(int)source_len]=0;
+        
+        PackGet16(packet,&typing);
+	
+//0x0000 - typing finished sign
+//0x0001 - text typed sign
+//0x0002 - typing begun sign
+        
+        // тут найти контакт uin 
+        ITEM *Contact=GetItemByUINstr(source);
+        if (Contact!=0)
+          Contact->istyping=typing;
+          
 	
 	mfree(source);
         
