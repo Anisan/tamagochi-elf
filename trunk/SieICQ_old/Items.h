@@ -20,7 +20,9 @@ typedef struct
   unsigned short XStatus;
   char* XStatusText;
   unsigned short isunread;  // есть непрочитанные
-  unsigned short iswriting; // набирает сообщение
+  unsigned short istyping; // набирает сообщение  //0x0000 - typing finished
+                                                  //0x0001 - text typed
+                                                  //0x0002 - typing begun
  
 }ITEM;
 

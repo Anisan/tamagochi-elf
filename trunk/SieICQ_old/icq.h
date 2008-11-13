@@ -112,6 +112,8 @@ extern  int tenseconds_to_ping;
   void snac_user_info(short int flags, int request_id, Packet *packet);
   void send_user_info();
   void snac_incoming_msg(short int flags, int request_id, Packet *packet);
+  void snac_typing_msg(short int flags, int request_id, Packet *packet);
+
   void send_key_data(char *data);
   void snac_motd(short int flags, int request_id, Packet *packet);
 
