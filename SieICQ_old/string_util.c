@@ -259,7 +259,8 @@ char* convUTF8_to_ANSI_STR(char *UTF8_str)
         }
 	if (chr<0xc0)
         {
-          ShowMSG(1,(int)"Bad UTF-8 Encoding encountered (chr<0xC0)");
+          // у меня все время выскакиевает эта мессага
+          //ShowMSG(1,(int)"Bad UTF-8 Encoding encountered (chr<0xC0)");
           mfree(tmp_out);
           return NULL;
         }
@@ -268,7 +269,8 @@ char* convUTF8_to_ANSI_STR(char *UTF8_str)
 
         if (chr2<0x80)
         {
-          ShowMSG(1,(int)"Bad UTF-8 Encoding encountered (chr2<0x80)");
+          // у меня все время выскакиевает эта мессага
+          //ShowMSG(1,(int)"Bad UTF-8 Encoding encountered (chr2<0x80)");
           mfree(tmp_out);
           return NULL;
         }
@@ -288,7 +290,7 @@ char* convUTF8_to_ANSI_STR(char *UTF8_str)
 
 	    if (chr3<0x80)
             {
-              ShowMSG(1,(int)"Bad UTF-8 Encoding encountered");
+              //ShowMSG(1,(int)"Bad UTF-8 Encoding encountered");
               mfree(tmp_out);
               return NULL;
             }

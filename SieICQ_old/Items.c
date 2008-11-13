@@ -101,6 +101,20 @@ ITEM *GetItemByID(int ID)
   return 0;
 }
 
+ITEM *GetGroupByID(int GroupID)
+{
+  ITEM *bmk;
+  bmk=Itemtop;
+  while(bmk)
+  {
+    if((GroupID==bmk->GroupID)&&(bmk->ID==0))
+      return bmk;
+    if(bmk->next) bmk=bmk->next;  
+    else return 0;
+  }
+  return 0;
+}
+
 ITEM *GetItemByUIN(int UIN)
 {
   ITEM *bmk;

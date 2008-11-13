@@ -628,17 +628,6 @@ void snac_rate_response(short int flags, int request_id, Packet *packet) {
         snac_new(new_packet, 0x0009, 0x0002, NULL, NULL);
 	send_packet( 0x02, new_packet);
         
-        /*  
-	new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0002, NULL, NULL);
-	send_packet( 0x02, new_packet);
-        
-         // запрос контакт листа
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
-        send_packet( 0x02, new_packet);
-        */
-        
 }
 
 
@@ -708,13 +697,6 @@ void snac_bos_rights(short int flags, int request_id, Packet *packet) {
         
         _WriteLog("STATUS_ONLINE");
 
-        
-	
-        // запрос контакт листа
-      //  new_packet = PackNew();
-      //  snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
-      //  send_packet( 0x02, new_packet);
-        
         // запрос оффлайн сообщений
         new_packet = PackNew();
         message_new(new_packet, 0x3c00, NULL);
@@ -813,14 +795,14 @@ void send_user_info() {
 	Packet *packet = PackNew();
         snac_new(packet, 0x0002, 0x0004, NULL, NULL);
 	
-	PackAddTLV(packet, 0x0005, 0x0010);
+	PackAddTLV(packet, 0x0005, 0x0020);
 	
 	/* This is the capability block for the icq client */
         //Client support "see as I type" IMs
-	//PackAdd32(packet, 0x563FC809);
-	//PackAdd32(packet, 0x0B6F41BD);
-	//PackAdd32(packet, 0x9F794226);
-	//PackAdd32(packet, 0x09DFA2F3);
+	PackAdd32(packet, 0x563FC809);
+	PackAdd32(packet, 0x0B6F41BD);
+	PackAdd32(packet, 0x9F794226);
+	PackAdd32(packet, 0x09DFA2F3);
         //SERVER RELAY
         PackAdd32(packet, 0x09461349);
         PackAdd32(packet, 0x4c7f11d1);
@@ -1113,7 +1095,7 @@ void snac_contactlist(short int flags, int request_id, Packet *packet) {
                 }
               }
             }
-          
+          if ((ItemID!=0)&&(GroupID!=0)) //  ItemID=0 GroupID=0 корневой (Master group) элемент
           switch (Type)
           {
           case 0:// контакт
