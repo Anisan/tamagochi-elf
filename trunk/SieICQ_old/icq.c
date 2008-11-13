@@ -1141,7 +1141,7 @@ void snac_contactlist(short int flags, int request_id, Packet *packet) {
                 }
               }
             }
-          if ((ItemID!=0)&&(GroupID!=0)) //  ItemID=0 GroupID=0 корневой (Master group) элемент
+          if ((ItemID!=0)||(GroupID!=0)) //  ItemID=0 GroupID=0 корневой (Master group) элемент
           switch (Type)
           {
           case 0:// контакт
