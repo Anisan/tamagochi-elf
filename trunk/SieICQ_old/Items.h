@@ -33,10 +33,10 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
 void DeleteItem(int curitem);
 
 ITEM *GetItem(int curitem);
-ITEM *GetItemByID(int ID);
-ITEM *GetGroupByGroupID(int GroupID);
-ITEM *GetItemByUIN(int UIN);
-ITEM *GetItemByUINstr(char *UIN);
+ITEM *GetItemByID(int ID); // возвращает контакт по ID
+ITEM *GetGroupByGroupID(int GroupID); // группу по GroupID
+ITEM *GetItemByUIN(int UIN); // контакт по его UIN(число)
+ITEM *GetItemByUINstr(char *UIN); // контакт по его Uin строке
 
 void LoadCL(char *pathfile);
 void SaveCL(char *pathfile);
