@@ -103,8 +103,10 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
 {
   int 
     ALT_disp = 0,
-    ALT_cursor_pos,
     ALT_clist_count,
+    
+    ALT_cursor_pos,
+    
     ALT_max_count=0,
     NEW_Y;
   
@@ -114,6 +116,8 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   
   if( c_list_max_contacts > c_list_max_show_n ) 
     ALT_max_count = c_list_max_show_n;
+  else
+    ALT_max_count = c_list_max_contacts;
     
   if(c_list_cursor_pos > c_list_max_show_n )
   {
@@ -131,9 +135,9 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   for(ALT_clist_count = 0; ALT_clist_count <= ALT_max_count; ALT_clist_count++)
   {
 
-    NEW_Y =  header_height + (2*Y_DISP + Font_H) * ALT_clist_count;
+    NEW_Y =  header_height + (2*Y_DISP + Font_H) * (ALT_clist_count);
 
-    if(c_list_cursor_pos==ALT_clist_count) 
+    if(ALT_clist_count==ALT_cursor_pos) 
       DrawRoundedFrame(0, NEW_Y+Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
       
     ITEM *it=GetItem(ALT_clist_count + ALT_disp);
@@ -141,7 +145,7 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
     char * newname = convUTF8_to_ANSI_STR(it->Nick);
     
     WSHDR *item_data = AllocWS(128);
-    wsprintf(item_data, percent_t, /*it->Nick); //*/newname);
+    wsprintf(item_data, percent_t, newname);
     DrawString(item_data, 0, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
     FreeWS(item_data); 
   }
