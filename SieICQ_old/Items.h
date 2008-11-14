@@ -23,6 +23,7 @@ typedef struct
   unsigned short istyping; // набирает сообщение  //0x0000 - typing finished
                                                   //0x0001 - text typed
                                                   //0x0002 - typing begun
+  unsigned short iscollapsed;
  
 }ITEM;
 
@@ -37,6 +38,8 @@ ITEM *GetItemByID(int ID); // возвращает контакт по ID
 ITEM *GetGroupByGroupID(int GroupID); // группу по GroupID
 ITEM *GetItemByUIN(int UIN); // контакт по его UIN(число)
 ITEM *GetItemByUINstr(char *UIN); // контакт по его Uin строке
+
+int GetKontactInGroup(int GroupID);
 
 void LoadCL(char *pathfile);
 void SaveCL(char *pathfile);
