@@ -40,8 +40,22 @@ extern
 // Функции - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Работа с курсором //
+  
+void CList_MoveCursorHome()
+{
+  if(!c_list_max_show_n)return;
+  c_list_cursor_pos = 0;
+  REDRAW();
+}
 
-static int MoveCursor(int mode_key, int type_key)
+void CList_MoveCursorEnd()
+{
+  if(!c_list_max_show_n)return;
+  c_list_cursor_pos = c_list_max_contacts;
+  REDRAW();
+}
+
+static int CList_MoveCursor(int mode_key, int type_key)
 {
   switch(mode_key)
   {
@@ -99,6 +113,9 @@ void GetShowsNumContacts(CONTACT_LIST_DESC * data, int head_h, int soft_h)
   c_list_max_show_n = (ScrH - head_h - soft_h)/ (2*( data->y_disp) + Font_H);
 }
 
+int GetShowNumGroups()
+{
+}
 static void DrawContactList(CONTACT_LIST_DESC *data)
 {
   int 
@@ -132,6 +149,8 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   InitHeaderText(&head_c_list, header_text);
   DrawHeaderText(&head_c_list);
   
+  WSHDR *item_data = AllocWS(128);
+  
   for(ALT_clist_count = 0; ALT_clist_count <= ALT_max_count; ALT_clist_count++)
   {
 
@@ -142,15 +161,17 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
       
     ITEM *it=GetItem(ALT_clist_count + ALT_disp);
     
+    if(!it->ID)
+    {
     char * newname = convUTF8_to_ANSI_STR(it->Nick);
-    
-    WSHDR *item_data = AllocWS(128);
+        
     wsprintf(item_data, percent_t, newname);
     DrawString(item_data, 0, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
-    FreeWS(item_data); 
+    }
+    
   }
   
-  
+  FreeWS(item_data); 
 }
   
 
@@ -203,11 +224,20 @@ static int OnKey(GUI_C_LIST_GUI *data, GUI_MSG *msg)
   case KEY_DOWN:
     switch(msg->gbsmsg->submess)
     {
-      case RIGHT_SOFT:return 1;
+    case '1': 
+      CList_MoveCursorHome();
+      break;
+    
+    case '7':
+      CList_MoveCursorEnd();
+      break;
+    
+    case RIGHT_SOFT:return 1;
+    
     }
     
   }
-  MoveCursor(sh, msg->gbsmsg->submess);
+  CList_MoveCursor(sh, msg->gbsmsg->submess);
   DirectRedrawGUI();
   
   return 0;

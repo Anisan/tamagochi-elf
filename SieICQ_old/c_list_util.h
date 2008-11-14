@@ -15,10 +15,9 @@ typedef struct
 
 // Функции работы с визуализацией списка контактов
 
+void CList_MoveCursorHome();
+void CList_MoveCursorEnd();
 
 void RUN_GUI_C_LIST(int mode);
-
-void LoadLocalCL(void);
-
 
 #endif
