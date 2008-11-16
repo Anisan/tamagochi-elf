@@ -109,13 +109,16 @@ static void DrawCListFon()
 void GetShowsNumContacts(CONTACT_LIST_DESC * data, int head_h, int soft_h)
 {
   data->y_disp = 2;
-  c_list_max_contacts = data->max_nums = TotalItems();
+  c_list_max_contacts = data->max_nums = TotalContact();
   c_list_max_show_n = (ScrH - head_h - soft_h)/ (2*( data->y_disp) + Font_H);
 }
 
-int GetShowNumGroups()
-{
-}
+
+
+#define SHOW_WITH_GROUP 1
+#define SHOW_WITHNOT_GROUP 0
+int ShowType=0;
+
 static void DrawContactList(CONTACT_LIST_DESC *data)
 {
   int 
@@ -143,6 +146,8 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   }
   else  ALT_cursor_pos = c_list_cursor_pos;
   
+  
+  
 
   char header_text[128]="";
   sprintf(header_text,"%d/%d", c_list_cursor_pos, c_list_max_contacts);
@@ -161,7 +166,7 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
       
     ITEM *it=GetItem(ALT_clist_count + ALT_disp);
     
-    if(!it->ID)
+    if(it->ID!=0)
     {
     char * newname = convUTF8_to_ANSI_STR(it->Nick);
         

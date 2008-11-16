@@ -4127,6 +4127,12 @@
       <name>$PROJ_DIR$\c_list_util.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\gui.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\gui.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\gui_begin.c</name>
     </file>
     <file>
@@ -4137,6 +4143,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\gui_mainmenu.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\status_change.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\status_change.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\visual_util.c</name>

@@ -5,6 +5,7 @@
 #include "main.h"
 #include "c_list_util.h"
 
+#include "gui.h"
 // (c) Vedan
 
 typedef struct
@@ -29,7 +30,7 @@ int TYPE_MENU;
 #define ALL_MENU_NUM 3 
 
 //Количество пунктов главного меню
-#define MAIN_MENU_NUMS 5 
+#define MAIN_MENU_NUMS 6 
 
 #define MAIN_MENU_Y_DISP 3
 #define MAIN_MENU_X_DISP 2
@@ -42,10 +43,16 @@ static void ToConnect(GUI *data)
   Create_Connect();
 }
 
+
 static void ContactList(GUI *data)
 {
   RUN_GUI_C_LIST(0);
-  //ShowMSG(1,(int)"ContactList");
+}
+
+
+static void ChangeStatus(GUI *data)
+{
+  Gui_Run(0);
 }
 
 static void EditConfig(GUI *data)
@@ -68,6 +75,7 @@ static void AboutSieICQ(GUI *data)
 MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 {
   (int)"Подключиться",
+  (int)"Сменить статус",
   (int)"Список контактов",
   (int)"Настройки",
   (int)"О программе",
@@ -78,6 +86,7 @@ MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
 {
   ToConnect,
+  ChangeStatus,
   ContactList,
   EditConfig,
   AboutSieICQ,
@@ -227,7 +236,6 @@ static int OnKey(GUI_MAINMENU_GUI *data, GUI_MSG *msg)
     {
       case RIGHT_SOFT: if(TYPE_MENU==IS_MAIN_MENU)Close_MAIN_CSM(); else return 1;
     }
-    
   }
   
   CountMenuCursors(IS_MAIN_MENU, sh, msg->gbsmsg->submess);
