@@ -39,12 +39,16 @@ ITEM *GetGroupByGroupID(int GroupID); // группу по GroupID
 ITEM *GetItemByUIN(int UIN); // контакт по его UIN(число)
 ITEM *GetItemByUINstr(char *UIN); // контакт по его Uin строке
 
-int GetKontactInGroup(int GroupID);
+int GetContactInGroup(int GroupID);
+int TotalItems();
+int TotalContact();
+int TotalGroup();
 
 void LoadCL(char *pathfile);
 void SaveCL(char *pathfile);
 
-int TotalItems();
+
+
 void FreeItemsList();
 
 #endif
