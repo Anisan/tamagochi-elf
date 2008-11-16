@@ -145,7 +145,7 @@ ITEM *GetItemByUINstr(char* UIN)
 }
 
 
-int GetKontactInGroup(int GroupID)
+int GetContactInGroup(int GroupID)
 {
   if(!Itemtop) return 0;
   ITEM *bmk;
@@ -153,9 +153,31 @@ int GetKontactInGroup(int GroupID)
   int i=-1; // c учетом самой группы
   while(bmk) 
   {
-    if (bmk->GroupID=GroupID) i++;
+    if (bmk->GroupID==GroupID) i++;
     bmk=bmk->next;  
   }
+  return i;
+}
+
+int TotalContact()
+{
+  if(!Itemtop) return 0;
+  ITEM *bmk;
+  bmk=Itemtop;
+  int i=1; 
+  while(bmk=bmk->next) 
+    if (bmk->ID!=0)i++;
+  return i;
+}
+
+int TotalGroup()
+{
+  if(!Itemtop) return 0;
+  ITEM *bmk;
+  bmk=Itemtop;
+  int i=1; 
+  while(bmk=bmk->next) 
+    if (bmk->ID==0)i++;
   return i;
 }
 
