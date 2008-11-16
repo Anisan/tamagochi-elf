@@ -65,7 +65,7 @@ void _WriteLogICQ(char *buf, int size, int in_out)
    
    char * Host;
    unsigned int Port;
-   short int ICQStatus;
+   short int ICQStatus = STATUS_OFFLINE;
    short int flags_status;
   
    int tenseconds_to_ping;
