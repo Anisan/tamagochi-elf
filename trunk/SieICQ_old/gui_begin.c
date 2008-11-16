@@ -45,6 +45,11 @@ static void DrawProgressbar()
   
 }
 
+static void CheckConnected()
+{
+  //if(ICQStatus!=STATUS_OFFLINE)
+    //Quit_GUI_BEGIN=1;
+}
 static void DrawInfo()
 {
   WSHDR *ws_info = AllocWS(128);
@@ -80,6 +85,7 @@ static void OnRedraw(GUI_BEGIN_GUI *data)
 {
   if (data->gui.state==2)
   {
+    CheckConnected();
     DrawBeginFon();
     DrawInfo();
     DrawProgressbar();
@@ -94,6 +100,7 @@ static void OnCreate(GUI_BEGIN_GUI *data,void *(*malloc_adr)(int))
 static void OnClose(GUI_BEGIN_GUI *data,void (*mfree_adr)(void *))
 {
   data->gui.state=0;
+  Quit_GUI_BEGIN = 0;
 }
 
 static void OnFocus(GUI_BEGIN_GUI *data,void *(*malloc_adr)(int),void (*mfree_adr)(void *))
@@ -117,7 +124,7 @@ static void OnUnfocus(GUI_BEGIN_GUI *data,void (*mfree_adr)(void *))
 
 static int OnKey(GUI_BEGIN_GUI *data, GUI_MSG *msg)
 {
-  //if(Quit_GUI_BEGIN)return 1;
+  if(Quit_GUI_BEGIN)return 1;
   int sh=msg->gbsmsg->msg;
   switch(sh)
   {
@@ -125,6 +132,7 @@ static int OnKey(GUI_BEGIN_GUI *data, GUI_MSG *msg)
     switch(msg->gbsmsg->submess)
     {
       case RIGHT_SOFT:Disconnect(); return 1;
+    case LEFT_SOFT: return 1;
     }
     
   }
