@@ -134,7 +134,6 @@ static int OnKey(GUI_BEGIN_GUI *data, GUI_MSG *msg)
       case RIGHT_SOFT:Disconnect(); return 1;
     case LEFT_SOFT: return 1;
     }
-    
   }
   DirectRedrawGUI();
   

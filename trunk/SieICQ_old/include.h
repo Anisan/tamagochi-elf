@@ -4,13 +4,14 @@
 // Все стандартные инклуды
 
 #include "..\inc\swilib.h"
-//#include "macros.h"
-//#include "config_data.h"
+#include "config_data.h"
 #include "string_util.h"
 #include "visual_util.h"
 #include "extern.h"
 #include <math.h>
 
+
+//#include "macros.h"
 
 //#include "notify.h"
 

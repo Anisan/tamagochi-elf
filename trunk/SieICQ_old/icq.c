@@ -3,9 +3,8 @@
 #include "main.h"
 #include "icq_packet.h"
 #include "items.h"
+#include "capabilities.h"
 #include "Random.h"
-
-
 
 
 
@@ -66,6 +65,7 @@ void _WriteLogICQ(char *buf, int size, int in_out)
    char * Host;
    unsigned int Port;
    short int ICQStatus = STATUS_OFFLINE;
+   short int XStatus=0;
    short int flags_status;
   
    int tenseconds_to_ping;
@@ -810,8 +810,13 @@ void send_user_info() {
   
 	Packet *packet = PackNew();
         snac_new(packet, 0x0002, 0x0004, NULL, NULL);
+  
+  int wData=0x0030;     
+  
+  if (XStatus)
+    wData += 0x10;
 	
-	PackAddTLV(packet, 0x0005, 0x0020);
+	PackAddTLV(packet, 0x0005, wData);
 	
 	/* This is the capability block for the icq client */
         //Client support "see as I type" IMs
@@ -825,14 +830,30 @@ void send_user_info() {
         PackAdd32(packet, 0x82224445);
         PackAdd32(packet, 0x53540000);
 
+        if (XStatus)
+        {
+          PackAdd(packet, (char*)&capXStatus[(XStatus-1)*0x10], 0x10);
+        }
 
+        //здесь можно будет замутить подмену ид клиента
+        // а пока пусть будет SieICQ
+          PackAdd(packet, (char*)&capSieICQ, 0x10);
+        ////
+        
 	send_packet( 0x02, packet);
+}
+
+void SetXStatus(int _xStatus)
+{
+  XStatus=_xStatus;
+  send_user_info();
 }
 
 void contact_incoming_msg(char * source, char* msg)
 {
+  
   char file[512];
-  sprintf(file,"4:\\ZBin\\sieicq\\history\\%s.log",source);
+  sprintf(file,"%s\\%s.log",HIST_PATH,source);
   _WriteLog(file);
   send_msg(source,msg);
   int flog=-1;
@@ -1218,6 +1239,15 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
             TLV.Type(0x19) - new-style capabilities list 
             TLV.Type(0x1D) - user icon id & hash 
            */
+              //case 0x0D:
+                // совместимость с Typing
+                
+                // Xstatus
+                
+                // ID клиента
+                
+              //  break;
+            
               //user status          
               case 0x06: PackGet32(packet,&user_status); break;
               default:
