@@ -721,7 +721,11 @@ void maincsm_oncreate(CSM_RAM *data)
   gipc.data=(void *)-1;
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&gipc);
   
-  LoadCL("4:\\Zbin\\SieICQ\\SieICQ.cl");
+  char *path=malloc(256);
+  sprintf(path,"%s\\%d.cl",TEMPLATES_PATH,UIN);
+  LoadCL(path);
+  mfree(path);
+  
   
   RUN_GUI_BEGIN(0);
   
@@ -736,7 +740,11 @@ void maincsm_onclose(CSM_RAM *csm)
 //  FreeSmiles();
 
 //  Disconnect();
-  SaveCL("4:\\Zbin\\SieICQ\\SieICQ.cl");
+  char *path=malloc(256);
+  sprintf(path,"%s\\%d.cl",TEMPLATES_PATH,UIN);
+  SaveCL(path);
+  mfree(path);
+
   FreeItemsList();
   SUBPROC((void *)end_socket);
   SUBPROC((void *)ClearSendQ);
@@ -984,9 +992,6 @@ void UpdateCSMname(void)
 {
   wsprintf((WSHDR *)(&MAINCSM.maincsm_name), "SieICQ: %d",UIN);
 }
-
-extern const unsigned int _UIN;
-extern const char _PASS[9];
 
 void StartTimerSendGuiRedraw()
 {

@@ -5,9 +5,9 @@
 #include "icq_packet.h"
 //#include "icq_snac.h"
 
-#define ICQ_CLIENT_STRING "Sie_ICQ"
+//#define ICQ_CLIENT_STRING "Sie_ICQ"
 //#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2002a.5.37.1.3728.85"
-//#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2000b.4.63.1.3279.85"
+#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2000b.4.63.1.3279.85"
 
 #define ICQ_CLIENT_MAJOR 0x0004
 #define ICQ_CLIENT_MINOR 0x0034
@@ -74,6 +74,7 @@ extern int login_bos;
 extern  char * Host;
 extern  unsigned int Port;
 extern  short int ICQStatus;
+extern  short int XStatus;
 extern  short int flags_status;
   
 extern  int tenseconds_to_ping;
@@ -88,6 +89,7 @@ extern  int tenseconds_to_ping;
   void Keep_alive();
   
   void SetStatus(int Status);
+  void SetXStatus(int _xStatus); // 0-нет Х статуса, 1-37 - Х статус
   
   
   void send_login();
