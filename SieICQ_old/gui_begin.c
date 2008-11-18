@@ -21,7 +21,12 @@ SOFT_BUTTON_STRUCT begin_soft={3, 3, " ", "Отмена", 1, 0};
 unsigned int GUI_BEGIN_ID = 0,
              Quit_GUI_BEGIN = 0,
              TYPE_GUI;
-             
+
+void SMART_REDRAW(void)
+{
+  DirectRedrawGUI();
+}
+
 static void EndLoad()
 { 
         //Quit_GUI_BEGIN = 1;
@@ -40,9 +45,51 @@ static void DrawBeginFon()
   
 }
 
+int pm,pl;
+char progress_msg[128];
+
+void BeginStep(int max)
+{
+  pm=max;
+  pl=0;
+}
+
+void NextStep(char * msg)
+{
+  if(pm > pl)
+  ++pl;
+  sprintf(progress_msg,msg);
+  SMART_REDRAW();
+}
+
+void EndStep()
+{
+  pl=pm;
+  SMART_REDRAW();
+}
+
+
 static void DrawProgressbar()
 {
   
+  if(pm != pl)
+  {
+     DrawRectangle(0,ScrH-4-GetFontYSIZE(FONT_SMALL)-GetFontYSIZE(FONT_MEDIUM_BOLD)-2,ScrW-1,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD),0,
+                     GetPaletteAdrByColorIndex(0),
+                     GetPaletteAdrByColorIndex(0));
+    int pos_status = ((ScrW-1) * pl) / pm;
+    DrawRectangle(1,ScrH-4-GetFontYSIZE(FONT_SMALL)-GetFontYSIZE(FONT_MEDIUM_BOLD)-1,pos_status,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-1,0,
+                     GetPaletteAdrByColorIndex(14),
+                     GetPaletteAdrByColorIndex(14));  
+
+    WSHDR *ws_info = AllocWS(128);
+    wsprintf(ws_info,"%s",progress_msg);
+    DrawString(ws_info,
+               1,ScrH-4-GetFontYSIZE(FONT_SMALL)-GetFontYSIZE(FONT_MEDIUM_BOLD)-1,ScrW-2,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-1,
+	       FONT_SMALL, TEXT_ALIGNMIDDLE, COLOUR,0);
+    FreeWS(ws_info);
+  }
+
 }
 
 static void CheckConnected()
@@ -59,19 +106,7 @@ static void DrawInfo()
   DrawDataTime(&begin_data_time);
   wsprintf(ws_info,"State: %d, RXstate: %d\nRx:%db,Tx:%db\nQueue: %db\n%s\n%t",
            connect_state,RXstate,RX,TX,sendq_l,hostname,logmsg);
-/*
-  if(pm != pl)
-  {
-     DrawRectangle(0,ScrH-4-2*GetFontYSIZE(FONT_SMALL_BOLD),ScrW-1,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-2,0,
-                     GetPaletteAdrByColorIndex(0),
-                     GetPaletteAdrByColorIndex(0));
-    pos_status = ((ScrW-1) * pl) / pm;
-    DrawRectangle(1,ScrH-4-2*GetFontYSIZE(FONT_SMALL_BOLD)+1,pos_status,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD)-3,0,
-                     GetPaletteAdrByColorIndex(14),
-                     GetPaletteAdrByColorIndex(14));  
-    wstrcatprintf(data->ws1,"\nLoading images...");
-  }
-*/
+
   DrawString(ws_info,3,60,ScrW-4,ScrH-4-GetFontYSIZE(FONT_MEDIUM_BOLD),
 	     FONT,0,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23));
   
