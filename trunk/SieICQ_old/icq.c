@@ -6,6 +6,7 @@
 #include "capabilities.h"
 #include "Random.h"
 
+#include "gui_begin.h"
 
 
 /* This was borrowed from libfaim */
@@ -94,21 +95,16 @@ extern void Send(char* data,int size);
 
 void send_packet(int channel,Packet* packet)
 {
-//          _WriteLog("head malloc");
 
-        FLAP_HEAD header;// = malloc(sizeof(FLAP_HEAD));
+        FLAP_HEAD header;
 	
 	if (!packet) return;
 	
-        //_WriteLogICQ((char*)&header,sizeof(FLAP_HEAD));
-        
 	header.id = 0x2a;
 	header.channel = channel;
 	header.seq_number = htons(flap_seqno);
 	header.data_size = htons(packet->size);
 	
-       // _WriteLogICQ((char*)&header,sizeof(FLAP_HEAD),1);
-
 	/* Sequence number rolls over at 65535 */
 	if (++flap_seqno > 0xffff) flap_seqno = 0;
 	
@@ -153,7 +149,6 @@ void send_login()
 {
 
         login_bos=0;
-//        _WriteLog("new pack");
         Packet *packet=PackNew();
 	
        /* Raw start */
@@ -162,7 +157,6 @@ void send_login()
 	/* ICQ Number (login) */
         char *tmp = malloc(32);
         sprintf(tmp,"%d",UIN);
-//        _WriteLog("tlv str");
 	PackAddTLVStr(packet, 0x0001, tmp);
         mfree(tmp);
         
@@ -260,6 +254,7 @@ void parse_auth(char *data, int size) {
               case 0x0022: strcpy(logmsg, "Account suspended because of your age (age < 13)");break; 
             }    
 
+            EndStep();
             SMART_REDRAW();
             //Disconnect();
             return;
@@ -519,6 +514,8 @@ void message_parse(Packet *packet) {
 
 void snac_server_ready(short int flags, int request_id, Packet *packet) 
 {
+  NextStep("Sending versions");
+  
 	Packet *new_packet = PackNew();
         snac_new(new_packet,0x0001, 0x0017, NULL, NULL);
 	
@@ -557,6 +554,8 @@ void snac_motd(short int flags, int request_id, Packet *packet)
 	PackAdd16(new_packet, 0x0000);
 	PackAdd16(new_packet, 0x0000);
 	send_packet(0x02, new_packet);
+        
+        NextStep("Loading contact list");
    }
    
    
@@ -575,8 +574,10 @@ void snac_motd(short int flags, int request_id, Packet *packet)
 
 
 void snac_host_versions(short int flags, int request_id, Packet *packet) {
-	Packet *new_packet = PackNew(); 
-        
+
+NextStep("Sending rate request");
+      
+        Packet *new_packet = PackNew(); 
         snac_new(new_packet, 0x0001, 0x0006, NULL, NULL);
 	
 	_WriteLog("Server sent us the versions response");
@@ -589,7 +590,7 @@ void snac_host_versions(short int flags, int request_id, Packet *packet) {
 
 void snac_rate_response(short int flags, int request_id, Packet *packet) {
 	
-
+NextStep("Rate response");
    
   Packet *new_packet = PackNew();
   
@@ -643,7 +644,7 @@ void snac_list_rights(short int flags, int request_id, Packet *packet) {
 
 void snac_im_rights(short int flags, int request_id, Packet *packet) {
 
-
+NextStep("Initial IM parameter");
 // Set message parameters for channel 1 (CLI_SET_ICBM_PARAMS)   
         Packet *new_packet = PackNew(); 
         snac_new(new_packet, 0x0004, 0x0002, NULL, 0x0002);
@@ -683,6 +684,8 @@ void snac_im_rights(short int flags, int request_id, Packet *packet) {
 void snac_bos_rights(short int flags, int request_id, Packet *packet) {
 
   // устанавливаем статус
+  NextStep("Set status");
+  
     SetStatus(STATUS_ONLINE);
   
     Packet *new_packet = PackNew();
@@ -709,9 +712,12 @@ void snac_bos_rights(short int flags, int request_id, Packet *packet) {
 	PackAdd32(new_packet, 0x0110028A);
 	send_packet( 0x02, new_packet);
         
-       
+ 
+        EndStep();
         
         _WriteLog("STATUS_ONLINE");
+
+        NextStep("Get offline message");
 
         // запрос оффлайн сообщений
         new_packet = PackNew();
@@ -744,6 +750,8 @@ void send_key_data(char *data) {
 
 void snac_server_message(short int flags, int request_id, Packet *packet) {
 	short int tlv_type, tlv_length;
+        
+        EndStep();
 	
 	PackGetTLV(packet, &tlv_type, &tlv_length);
 	
@@ -807,7 +815,8 @@ void snac_user_info(short int flags, int request_id, Packet *packet) {
 void send_user_info() {
   
          // Set User Info (capability)
-  
+NextStep("Set User Info (capability)");
+
 	Packet *packet = PackNew();
         snac_new(packet, 0x0002, 0x0004, NULL, NULL);
   
@@ -1118,7 +1127,8 @@ void snac_typing_msg(short int flags, int request_id, Packet *packet) {
 }
 
 void snac_contactlist(short int flags, int request_id, Packet *packet) {
-  
+
+
   FreeItemsList();
 //разбираем контакт лист        
 //Version number of SSI protocol (currently 0x00)

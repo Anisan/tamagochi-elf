@@ -157,6 +157,7 @@ volatile unsigned long ALLTOTALSENDED;
 
 
 //===============================================================================================
+/*
 void SMART_REDRAW(void)
 {
   int f;
@@ -165,10 +166,14 @@ void SMART_REDRAW(void)
   UnlockSched();
   if (f) REDRAW();
 }
+*/
 //---------------------------------------------------------------------------
 
 void create_connect(void)
 {
+BeginStep(10);
+NextStep("Connecting");
+  
   char hostbuf[128];
   int hostport;
   int ***p_res=NULL;
@@ -296,9 +301,11 @@ void end_socket(void)
 
 
 void icq_connect(char *host, int port) {
+
+  NextStep("Connecting BOSS");
   
   end_socket();
-connect_state = 0;
+  connect_state = 0;
   sprintf(hostname, "BOSS: %s:%d", host, port);
   SMART_REDRAW();
 
@@ -429,62 +436,6 @@ void Send(char * data, int size)
   sendq_p=NULL;
 }
 
-/*
-void get_answer(void)
-{
-  char tmp_buf[4096];
-//  char *rp=rb;
-//  if (connect_state<2) return;
-  int nrecv=recv(sock,tmp_buf,sizeof(tmp_buf),0);
-  
-  if(nrecv)
-  {  
-    TOTALRECEIVED+=nrecv;
-    ALLTOTALRECEIVED+=nrecv;
-  //ѕакет удачно прин€т, можно разбирать...
-  _WriteLogICQ(tmp_buf,nrecv,1);  
-   int offset=0;
-   char *pack;
-  
-  FLAP_HEAD *flap = malloc(sizeof(FLAP_HEAD));
-   
-   // может быть несколько пакетов в одном сообщении
-   while (offset<nrecv)
-   {
-         memcpy(flap, tmp_buf+offset, sizeof(FLAP_HEAD));
-         flap->data_size = htons(flap->data_size);
-         offset=offset+sizeof(FLAP_HEAD);
-         pack = tmp_buf+offset;
-         offset=offset+flap->data_size;
-         
-         switch(flap->channel) {
-                case 0x01:
-                      _WriteLog("Auth");
-                      if (auth_cookie) {
-                              send_cookie();
-                      } else 
-                              send_login();
-                      break;
-                      
-                case 0x02:
-                       parse_snac(pack,flap->data_size);
-                      break;
-                      
-                case 0x04:
-                      if (!auth_cookie)
-                        parse_auth(pack,flap->data_size);
-                      break;
-                      
-                default:
-                  ;
-              };
-   }
-  // delete tmp_buf;
-  // delete pack;
-   mfree(flap);
-  }
-}
-*/
 
 void get_answer(void)
 {
@@ -541,11 +492,18 @@ void get_answer(void)
 	RXbuf.data[i]=0; // онец строки
 	switch(RXbuf.flap.channel) {
                 case 0x01:
-                      _WriteLog("Auth");
                       if (auth_cookie) 
-                      {connect_state=3;send_cookie();} 
+                      {
+                        NextStep("Sending cookie");
+                        connect_state=3;
+                        send_cookie();
+                      } 
                       else 
-                      {connect_state=2;send_login();}
+                      {
+                        NextStep("Send login/pass");
+                        connect_state=2;
+                        send_login();
+                      }
                       
                       break;
                       
@@ -555,7 +513,7 @@ void get_answer(void)
                       
                 case 0x04:
                       if (!auth_cookie)
-                        parse_auth(RXbuf.data,RXbuf.flap.data_size);
+                       parse_auth(RXbuf.data,RXbuf.flap.data_size);
                       break;
                       
                 default:
