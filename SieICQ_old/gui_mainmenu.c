@@ -182,6 +182,7 @@ static void OnRedraw(GUI_MAINMENU_GUI *data)
 {
   if (data->gui.state==2)
   {
+    LockSched(); 
     DrawMenuFon();
 
     switch(TYPE_MENU)
@@ -192,6 +193,7 @@ static void OnRedraw(GUI_MAINMENU_GUI *data)
         DrawSoftButton(&mainmemu_soft);
       } break;
     }
+    UnlockSched(); 
   }
 }
 

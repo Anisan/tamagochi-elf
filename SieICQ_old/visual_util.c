@@ -7,7 +7,6 @@
 void DrawHeaderText(HEADER_ITEM *data)
 {
   WSHDR *ws_head_text = AllocWS(128);
-
   wsprintf(ws_head_text, percent_t, data->text);
   DrawString(ws_head_text, 0, data->y_disp, ScrW , 2*data->y_disp + Font_H, FONT,32,COLOUR, COLOUR_FRING);
   FreeWS(ws_head_text);
@@ -60,9 +59,8 @@ void DrawDataTime(DATA_TIME *data)
            time.min,
            dday[GetWeek(&date)]
              );
-  
+
   DrawString(ws_data_time,0, Y_POS , ScrW, ScrH, Font, 32 + 2, data->colour, data->fring_colour);
-  
   FreeWS(ws_data_time);
   
 }
@@ -78,6 +76,7 @@ void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2)
                    
 void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count)
 {
+  
   int Y_DISP = data->y_disp;
   
   WSHDR *ws_head_text = AllocWS(128);
@@ -95,9 +94,6 @@ void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count)
     DrawString(ws_head_text, 0, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
     
   }
-  
-
-    
   FreeWS(ws_head_text);
 };
 
