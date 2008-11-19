@@ -4160,6 +4160,9 @@
   <group>
     <name>ICQ</name>
     <file>
+      <name>$PROJ_DIR$\capabilities.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\icq.c</name>
     </file>
     <file>
@@ -5080,6 +5083,9 @@
         </data>
       </settings>
     </configuration>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\config_data.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\extern.h</name>

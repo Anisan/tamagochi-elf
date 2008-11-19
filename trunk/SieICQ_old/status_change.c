@@ -79,9 +79,11 @@ MENU_STRUCT status_change_struct=
 
 void Draw_StatusChange()
 {
+  LockSched(); 
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
   DrawMenuList(&status_change_struct, &status_change_text[STATUS_CHANGE_NUMS], Status_Change_Cursor);
   DrawSoftButton(&status_change_soft);
+  UnlockSched(); 
 }
 
 int MoveCursor_StatusChange(int pressed_mode, int key_kode)

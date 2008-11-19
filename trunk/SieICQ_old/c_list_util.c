@@ -154,7 +154,9 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   InitHeaderText(&head_c_list, header_text);
   DrawHeaderText(&head_c_list);
   
+
   WSHDR *item_data = AllocWS(128);
+  
   
   for(ALT_clist_count = 0; ALT_clist_count <= ALT_max_count; ALT_clist_count++)
   {
@@ -165,6 +167,7 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
       DrawRoundedFrame(0, NEW_Y+Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
       
     ITEM *it=GetItem(ALT_clist_count + ALT_disp);
+    
     
     if(it->ID!=0)
     {
@@ -185,9 +188,11 @@ static void OnRedraw(GUI_C_LIST_GUI *data)
 {
   if (data->gui.state==2)
   {
+    LockSched(); 
     DrawCListFon();
     DrawContactList(&main_c_list);
     DrawSoftButton(&c_list_soft);
+    UnlockSched(); 
   }
 }
 

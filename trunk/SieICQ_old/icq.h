@@ -1,3 +1,4 @@
+//// Eraser, 2008
 #ifndef _ICQ_H
 #define _ICQ_H
 
@@ -5,8 +6,6 @@
 #include "icq_packet.h"
 //#include "icq_snac.h"
 
-//#define ICQ_CLIENT_STRING "Sie_ICQ"
-//#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2002a.5.37.1.3728.85"
 #define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2000b.4.63.1.3279.85"
 
 #define ICQ_CLIENT_MAJOR 0x0004

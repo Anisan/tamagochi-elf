@@ -1,3 +1,4 @@
+//// Eraser, 2008
 #include "include.h"
 #include "icq.h"
 #include "main.h"
@@ -7,6 +8,7 @@
 #include "Random.h"
 
 #include "gui_begin.h"
+
 
 
 /* This was borrowed from libfaim */
@@ -30,7 +32,7 @@ char *icq_encode_password(char *password) {
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
-//  return;
+  return;
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\icq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -829,15 +831,9 @@ NextStep("Set User Info (capability)");
 	
 	/* This is the capability block for the icq client */
         //Client support "see as I type" IMs
-	PackAdd32(packet, 0x563FC809);
-	PackAdd32(packet, 0x0B6F41BD);
-	PackAdd32(packet, 0x9F794226);
-	PackAdd32(packet, 0x09DFA2F3);
+        PackAdd(packet, (char*)&capTyping[0], 0x10);
         //SERVER RELAY
-        PackAdd32(packet, 0x09461349);
-        PackAdd32(packet, 0x4c7f11d1);
-        PackAdd32(packet, 0x82224445);
-        PackAdd32(packet, 0x53540000);
+        PackAdd(packet, (char*)&capSrvRelay[0],0x10);
 
         if (XStatus)
         {
@@ -846,7 +842,7 @@ NextStep("Set User Info (capability)");
 
         //здесь можно будет замутить подмену ид клиента
         // а пока пусть будет SieICQ
-          PackAdd(packet, (char*)&capSieICQ, 0x10);
+        PackAdd(packet, (char*)&capSieICQ, 0x10);
         ////
         
 	send_packet( 0x02, packet);

@@ -45,6 +45,7 @@ static void DrawBeginFon()
   
 }
 
+///////// progressbar /////////////
 int pm,pl;
 char progress_msg[128];
 
@@ -91,6 +92,7 @@ static void DrawProgressbar()
   }
 
 }
+/////////////////////////////////////
 
 static void CheckConnected()
 {
@@ -121,9 +123,11 @@ static void OnRedraw(GUI_BEGIN_GUI *data)
   if (data->gui.state==2)
   {
     CheckConnected();
+    LockSched(); 
     DrawBeginFon();
     DrawInfo();
     DrawProgressbar();
+    UnlockSched(); 
   }
 }
 
@@ -167,7 +171,7 @@ static int OnKey(GUI_BEGIN_GUI *data, GUI_MSG *msg)
     switch(msg->gbsmsg->submess)
     {
       case RIGHT_SOFT:Disconnect(); return 1;
-    case LEFT_SOFT: return 1;
+      case LEFT_SOFT: return 1;
     }
   }
   DirectRedrawGUI();
