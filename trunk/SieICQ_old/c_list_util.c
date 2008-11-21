@@ -1,6 +1,7 @@
 #include "include.h"
 #include "items.h"
 #include "c_list_util.h"
+#include "iconpack.h"
 
 typedef struct
 {
@@ -173,8 +174,10 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
     {
     char * newname = convUTF8_to_ANSI_STR(it->Nick);
         
+    DrawImg(0, NEW_Y + Y_DISP, IconPack[IMG_OFFLINE]);
+
     wsprintf(item_data, percent_t, newname);
-    DrawString(item_data, 0, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
+    DrawString(item_data, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
     }
     
   }
