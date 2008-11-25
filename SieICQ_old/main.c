@@ -13,6 +13,8 @@
 
 #include "gui_begin.h"
 
+#include "iconpack.h"
+
 #ifndef NEWSGOLD
 #define SEND_TIMER
 #endif
@@ -684,6 +686,7 @@ void maincsm_oncreate(CSM_RAM *data)
   LoadCL(path);
   mfree(path);
   
+  LoadIcon();
   
   RUN_GUI_BEGIN(0);
   
@@ -702,6 +705,8 @@ void maincsm_onclose(CSM_RAM *csm)
   sprintf(path,"%s\\%d.cl",TEMPLATES_PATH,UIN);
   SaveCL(path);
   mfree(path);
+  
+  FreeIcon();
 
   FreeItemsList();
   SUBPROC((void *)end_socket);

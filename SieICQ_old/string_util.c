@@ -804,6 +804,17 @@ void remove_bad_chars(char *s)
   }
 }
 
+char *MakeGlobalString(const char *first, int breakchar, const char *last)
+{
+  int l;
+  char *p;
+  p=malloc((l=strlen(first))+strlen(last)+2);
+  strcpy(p,first);
+  if (breakchar)
+    p[l++]=breakchar;
+  strcpy(p+l,last);
+  return p;
+}
 
 int str2int(const char *str)
 {
@@ -819,7 +830,7 @@ int str2int(const char *str)
 
 void _WriteLog(char *buf)
 {
- return; 
+// return; 
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\sieicq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);

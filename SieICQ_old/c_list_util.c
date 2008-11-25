@@ -2,6 +2,8 @@
 #include "items.h"
 #include "c_list_util.h"
 #include "iconpack.h"
+#include "icq.h"
+
 
 typedef struct
 {
@@ -174,7 +176,19 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
     {
     char * newname = convUTF8_to_ANSI_STR(it->Nick);
         
-    DrawImg(0, NEW_Y + Y_DISP, IconPack[IMG_OFFLINE]);
+    int img=0;
+    switch (it->Status)
+    {
+    case STATUS_OFFLINE:   img=IMG_OFFLINE;break;
+    case STATUS_ONLINE:    img=IMG_ONLINE;break;
+    case STATUS_AWAY:      img=IMG_AWAY;break;
+    case STATUS_DND:       img=IMG_DND;break; 
+    case STATUS_NA:        img=IMG_NA;break;
+    case STATUS_OCCUPIED:  img=IMG_OCCUPIED;break;
+    case STATUS_FREE4CHAT: img=IMG_FFC;break;
+    case STATUS_INVISIBLE: img=IMG_INVISIBLE;break;
+    }
+    DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
 
     wsprintf(item_data, percent_t, newname);
     DrawString(item_data, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);

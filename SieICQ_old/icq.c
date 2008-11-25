@@ -1222,6 +1222,7 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
 	/* Get the UIN string */
         uin = malloc((int)uin_length+1);
 	PackGet(packet, (char*)uin, (int)uin_length);   
+        uin[(int)uin_length]=0;
 	// skip warning not use ICQ
         packet->offset+=2;
         // Count TLV
@@ -1261,10 +1262,18 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
           }
         }
 	
+        short int status=0;
+        status=user_status & 0x1111;
+        char tmp[128];
+        sprintf(tmp,"status %s - %02d", uin, status);
+        _WriteLog(tmp);
+        
         // тут найти контакт uin и сменить его статус на user_status
         ITEM *Contact=GetItemByUINstr(uin);
         if (Contact!=0)
-        Contact->Status=user_status;
+        {
+        Contact->Status=status;
+        }
         
 	mfree(uin);
 }
@@ -1277,12 +1286,19 @@ void snac_offline_notify(short int flags, int request_id, Packet *packet)
 	PackGet8(packet, &uin_length);
 	/* Get the UIN string */
         uin = malloc((int)uin_length+1);
-	PackGet(packet, (char*)uin, (int)uin_length);   
+	PackGet(packet, (char*)uin, (int)uin_length); 
+        uin[(int)uin_length]=0;
+        
+        _WriteLog(uin);
+        _WriteLog("offline");
 	
         // тут найти контакт uin и сменить его статус на OFFLINE
         ITEM *Contact=GetItemByUINstr(uin);
         if (Contact!=0)
+        {
+         _WriteLog("find"); 
         Contact->Status=STATUS_OFFLINE;
+        }
         
 	mfree(uin);
 }
