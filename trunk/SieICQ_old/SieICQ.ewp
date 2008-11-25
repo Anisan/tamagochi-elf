@@ -4181,6 +4181,21 @@
       <name>$PROJ_DIR$\Items.h</name>
     </file>
   </group>
+  <group>
+    <name>Modules</name>
+    <file>
+      <name>$PROJ_DIR$\iconpack.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\iconpack.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\langpack.h</name>
+    </file>
+  </group>
   <file>
     <name>$PROJ_DIR$\conf_loader.c</name>
   </file>
@@ -5092,12 +5107,6 @@
   </file>
   <file>
     <name>$PROJ_DIR$\func.asm</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\iconpack.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\iconpack.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\include.h</name>
