@@ -54,5 +54,8 @@ void remove_bad_chars(char *s);
 
 int str2int(const char *str);
 
+char *MakeGlobalString(const char *first, int breakchar, const char *last);
+
+
 void _WriteLog(char *buf);
 #endif

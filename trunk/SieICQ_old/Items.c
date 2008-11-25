@@ -15,7 +15,8 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
  bmk->UIN=UIN;
  bmk->Type=Type;
  sprintf(bmk->Nick,Nick);
- 
+ bmk->Status=0xffff; // offline
+ bmk->XStatus=0;
  bmk->StatusText=NULL;
  bmk->XStatusText=NULL;
              

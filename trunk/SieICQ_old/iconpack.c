@@ -13,6 +13,7 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "invisible.png"
 };
 
+int IconPack[TOTAL_ICONS_NUM];
 
 void LoadIcon()
 {

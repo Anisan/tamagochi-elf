@@ -19,6 +19,6 @@ enum ICON_ID
 void LoadIcon();
 void FreeIcon();
   
-int IconPack[TOTAL_ICONS_NUM];
+extern int IconPack[TOTAL_ICONS_NUM];
 
 #endif
