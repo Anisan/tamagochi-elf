@@ -10,7 +10,7 @@ HEADER_ITEM
   status_change_head;
 
 
-#define STATUS_CHANGE_NUMS 8
+#define STATUS_CHANGE_NUMS 13
 
 static unsigned int 
   Status_Change_Cursor = 0,
@@ -27,6 +27,11 @@ MENU_ITEM status_change_text[STATUS_CHANGE_NUMS]=
   (int)"Занят",
   (int)"Недоступен",
   (int)"Невидим",
+  (int)"Злой",
+  (int)"Депрессия",
+  (int)"Дома",
+  (int)"На работе",
+  (int)"Жру",
   (int)"Отключён"
 };
 
@@ -56,6 +61,21 @@ static void ChangeStatus(GUI *data)
     SetStatus(STATUS_INVISIBLE);
     break;
   case 7:
+    SetStatus(STATUS_EVIL);
+    break;
+  case 8:
+    SetStatus(STATUS_DEPRESSION);
+    break;
+  case 9:
+    SetStatus(STATUS_HOME);
+    break;
+  case 10:
+    SetStatus(STATUS_WORK);
+    break;
+  case 11:
+    SetStatus(STATUS_LUNCH);
+    break;
+  case 12:
     SetStatus(STATUS_OFFLINE);
     break;
   }

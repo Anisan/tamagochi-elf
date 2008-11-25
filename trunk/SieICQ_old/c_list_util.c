@@ -179,14 +179,19 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
     int img=0;
     switch (it->Status)
     {
-    case STATUS_OFFLINE:   img=IMG_OFFLINE;break;
-    case STATUS_ONLINE:    img=IMG_ONLINE;break;
-    case STATUS_AWAY:      img=IMG_AWAY;break;
-    case STATUS_DND:       img=IMG_DND;break; 
-    case STATUS_NA:        img=IMG_NA;break;
-    case STATUS_OCCUPIED:  img=IMG_OCCUPIED;break;
-    case STATUS_FREE4CHAT: img=IMG_FFC;break;
-    case STATUS_INVISIBLE: img=IMG_INVISIBLE;break;
+    case ICQ_STATUS_OFFLINE:   img=IMG_OFFLINE;break;
+    case ICQ_STATUS_ONLINE:    img=IMG_ONLINE;break;
+    case ICQ_STATUS_AWAY:      img=IMG_AWAY;break;
+    case ICQ_STATUS_DND:       img=IMG_DND;break; 
+    case ICQ_STATUS_NA:        img=IMG_NA;break;
+    case ICQ_STATUS_OCCUPIED:  img=IMG_OCCUPIED;break;
+    case ICQ_STATUS_FREE4CHAT: img=IMG_FFC;break;
+    case ICQ_STATUS_INVISIBLE: img=IMG_INVISIBLE;break;
+    case ICQ_STATUS_EVIL     : img=IMG_EVIL;break;
+    case ICQ_STATUS_DEPRESSION:img=IMG_DEPRESSION;break;
+    case ICQ_STATUS_HOME     : img=IMG_HOME;break;
+    case ICQ_STATUS_WORK     : img=IMG_WORK;break;
+    case ICQ_STATUS_LUNCH    : img=IMG_LUNCH;break;
     }
     DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
 

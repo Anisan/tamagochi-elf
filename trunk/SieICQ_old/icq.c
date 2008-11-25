@@ -32,7 +32,7 @@ char *icq_encode_password(char *password) {
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
-  return;
+//  return;
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\icq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -1214,7 +1214,8 @@ void SetStatus(int Status)
 
 void snac_online_notify(short int flags, int request_id, Packet *packet)
 {       short int type, length=0;
-        int user_status;
+        short int status=0;
+        short int flags_status=0;
 	char uin_length;
         char *uin;
 	/* Pull off the length of the UIN string */
@@ -1256,14 +1257,25 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
               //  break;
             
               //user status          
-              case 0x06: PackGet32(packet,&user_status); break;
+              case 0x06: 
+                if (length>=4)
+                {
+                PackGet16(packet,&flags_status); 
+                PackGet16(packet,&status); 
+                }
+                else
+                {
+                  flags_status=0;
+                  status=ICQ_STATUS_ONLINE;
+                }
+                break;
               default:
                  packet->offset+=length;
           }
         }
 	
-        short int status=0;
-        status=user_status & 0x1111;
+        //short int status=0;
+        //status=user_status & 0x1111;
         char tmp[128];
         sprintf(tmp,"status %s - %02d", uin, status);
         _WriteLog(tmp);
@@ -1272,7 +1284,7 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
         ITEM *Contact=GetItemByUINstr(uin);
         if (Contact!=0)
         {
-        Contact->Status=status;
+           Contact->Status=status;
         }
         
 	mfree(uin);
@@ -1297,7 +1309,7 @@ void snac_offline_notify(short int flags, int request_id, Packet *packet)
         if (Contact!=0)
         {
          _WriteLog("find"); 
-        Contact->Status=STATUS_OFFLINE;
+        Contact->Status=ICQ_STATUS_OFFLINE;
         }
         
 	mfree(uin);

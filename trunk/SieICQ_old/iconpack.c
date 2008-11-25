@@ -10,7 +10,12 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "na.png",
   "occupied.png",
   "ffc.png",
-  "invisible.png"
+  "invisible.png",
+  "EVIL.png",
+  "DEPRESSION.png",	   
+  "HOME.png",   
+  "WORK.png",
+  "LUNCH.png"
 };
 
 int IconPack[TOTAL_ICONS_NUM];
