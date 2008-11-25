@@ -41,6 +41,7 @@ typedef struct
 
 //enum (OFFLINE,ONLINE)
 
+// статусы для установки
 #define STATUS_OFFLINE    0xffff
 #define STATUS_ONLINE     0x0000 //  Status is online 
 #define STATUS_AWAY       0x0001 //  Status is away 
@@ -49,6 +50,26 @@ typedef struct
 #define STATUS_OCCUPIED   0x0010 //  Status is occupied (BISY) 
 #define STATUS_FREE4CHAT  0x0020 //  Status is free for chat 
 #define STATUS_INVISIBLE  0x0100 //  Status is invisible 
+#define STATUS_EVIL       0x3000
+#define STATUS_DEPRESSION 0x4000
+#define STATUS_HOME       0x5000
+#define STATUS_WORK       0x6000
+#define STATUS_LUNCH      0x2001
+
+// статусы для определения
+#define ICQ_STATUS_OFFLINE          0xffff
+#define ICQ_STATUS_ONLINE           0x0000
+#define ICQ_STATUS_AWAY             0x0001
+#define ICQ_STATUS_NA               0x0005
+#define ICQ_STATUS_OCCUPIED         0x0011
+#define ICQ_STATUS_DND              0x0013
+#define ICQ_STATUS_FREE4CHAT        0x0020
+#define ICQ_STATUS_INVISIBLE        0x0100
+#define ICQ_STATUS_EVIL		    0x3000
+#define ICQ_STATUS_DEPRESSION	    0x4000
+#define ICQ_STATUS_HOME		    0x5000
+#define ICQ_STATUS_WORK		    0x6000
+#define ICQ_STATUS_LUNCH	    0x2001
 
 #define STATUS_WEBAWARE   0x0001 //  Status webaware flag 
 #define STATUS_SHOWIP     0x0002 //  Status show ip flag 
