@@ -1,7 +1,7 @@
 #include "include.h"
 #include "gui_begin.h"
 #include "gui_mainmenu.h"
-
+#include "iconpack.h"
 #include "main.h"
 #include "c_list_util.h"
 
@@ -159,7 +159,7 @@ unsigned int GUI_MAINMENU_ID = 0,
 void OnRedraw_MainMenu()
 {
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
-  DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], menu_cursors[IS_MAIN_MENU]);
+  DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], 13, menu_cursors[IS_MAIN_MENU]);
   DrawSoftButton(&mainmemu_soft);
 }
 

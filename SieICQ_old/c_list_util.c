@@ -222,7 +222,7 @@ void Init_C_List()
   GetShowsNumContacts(&main_c_list, Get_HeaderText_Height(&head_c_list),Get_SoftButton_Height(&c_list_soft));
   header_height = Get_HeaderText_Height(&head_c_list);
      
-  main_c_list.y_disp=header_height;
+  //main_c_list.y_disp=header_height;
 }
 
 

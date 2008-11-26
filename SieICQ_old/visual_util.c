@@ -1,5 +1,5 @@
 #include "include.h"
-
+#include "iconpack.h"
 #include "gui_mainmenu.h"
 
 // Developer - Vedan, 2008
@@ -74,7 +74,7 @@ void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2)
   memcpy(&(data->fring_colour),c2,4);
 }
                    
-void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count)
+void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, /*const MENU_ITEM **/int images, int cur_count)
 {
   
   int Y_DISP = data->y_disp;
@@ -90,8 +90,10 @@ void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count)
     if(cur_count==start) 
       DrawRoundedFrame(0, NEW_Y + Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
     
+    DrawImg(0, NEW_Y + Y_DISP, IconPack[images+start]);
+    
     wsprintf(ws_head_text, percent_t, (data->items)[start]);
-    DrawString(ws_head_text, 0, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
+    DrawString(ws_head_text, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
     
   }
   FreeWS(ws_head_text);

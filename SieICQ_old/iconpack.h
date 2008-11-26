@@ -3,23 +3,31 @@
 
 enum ICON_ID
 {
-  IMG_OFFLINE,
+  // Status ; Start = 0
   IMG_ONLINE,
+  IMG_FFC,
   IMG_AWAY,
   IMG_DND,
-  IMG_NA,
   IMG_OCCUPIED,
-  IMG_FFC,
+  IMG_NA,
   IMG_INVISIBLE,
   IMG_EVIL,		
   IMG_DEPRESSION,	   
   IMG_HOME,		   
   IMG_WORK,	
-  IMG_LUNCH,	
+  IMG_LUNCH,
+  IMG_OFFLINE,
+  
+  // MainMenu ; Start = 13
+  IMG_TOCONNECT,
+  IMG_CHANGE_S,
+  IMG_CLIST,
+  IMG_SETTINGS,
+  IMG_ABOUT,
+  IMG_EXIT,
   
   TOTAL_ICONS_NUM
 };
-
 
 
 void LoadIcon();

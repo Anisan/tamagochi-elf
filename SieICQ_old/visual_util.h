@@ -34,6 +34,7 @@ typedef struct
 typedef struct
 {
   int lgp_id;
+  //int img_id;
 }MENU_ITEM;
 
 typedef struct
@@ -61,6 +62,7 @@ typedef struct
   int x_disp;
   char header_text[128];
   int type_header_text;
+  //const MENU_ITEM *images;
   const MENU_ITEM *items;
   const MENU_PROCS *procs;//  void ** procs; //Table of procs when item selected
 } MENU_STRUCT;
@@ -80,7 +82,7 @@ int Get_HeaderText_Height(HEADER_ITEM *data);
 
 // Главное меню ----------------------------------------------------------------
 void InitMenuList(MENU_STRUCT *data, char *head, int y_dsp);
-void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, int cur_count);
+void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr,/*const MENU_ITEM **/int images, int cur_count);
 
 // Дата и время ----------------------------------------------------------------
 void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2);
