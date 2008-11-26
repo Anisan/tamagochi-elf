@@ -1,6 +1,6 @@
 #include "include.h"
 #include "status_change.h"
-
+#include "iconpack.h"
 #include "icq.h"
 
 SOFT_BUTTON_STRUCT 
@@ -15,7 +15,28 @@ HEADER_ITEM
 static unsigned int 
   Status_Change_Cursor = 0;
 
+//MENU_ITEM status_change_images[TOTAL_ICONS_NUM];
 
+/*=
+{
+  (int)"online.png",
+  
+  
+  (int)"away.png",
+  (int)"dnd.png",
+  (int)"na.png",
+  (int)"occupied.png",
+  (int)"ffc.png",
+  (int)"invisible.png",
+  (int)"EVIL.png",
+  (int)"DEPRESSION.png",	   
+  (int)"HOME.png",   
+  (int)"WORK.png",
+  (int)"LUNCH.png",
+    (int)"offline.png",
+};
+
+*/
 MENU_ITEM status_change_text[STATUS_CHANGE_NUMS]=
 {
   (int)"В сети",
@@ -98,7 +119,10 @@ MENU_STRUCT status_change_struct=
 void OnRedraw_StatusChange()
 {
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
-  DrawMenuList(&status_change_struct, &status_change_text[STATUS_CHANGE_NUMS], Status_Change_Cursor);
+  DrawMenuList(&status_change_struct, 
+               &status_change_text[STATUS_CHANGE_NUMS], 
+               0,
+               Status_Change_Cursor);
   DrawSoftButton(&status_change_soft);
 }
 
