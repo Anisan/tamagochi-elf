@@ -168,7 +168,7 @@ int OnKey(int pressed_mode, int key_kode)
     
   }
   
-  DirectRedrawGUI();
+  //DirectRedrawGUI();
   return 0;
 }
 

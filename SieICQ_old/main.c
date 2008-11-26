@@ -8,6 +8,8 @@
 #include "strings.h"
 #include "conf_loader.h"
 
+#include "main.h"
+
 #include "icq.h"
 #include "items.h"
 
@@ -23,6 +25,8 @@
 const char percent_t[]="%t";
 const char percent_d[]="%d";
 const char percent_s[]="%s";
+
+int VisibleGUI =0;
 
 #define TMR_SECOND 216
 
@@ -568,6 +572,7 @@ typedef struct
   int i1;
 }MAIN_GUI;
 
+//отрисовка
 void method0(MAIN_GUI *data)
 {
   //LockSched();
@@ -589,12 +594,14 @@ void method2(MAIN_GUI *data,void (*mfree_adr)(void *))
   data->gui.state=0;
 }
 
+// focus
 void method3(MAIN_GUI *data,void *(*malloc_adr)(int),void (*mfree_adr)(void *))
 {
   DisableIDLETMR();
   data->gui.state=2;
 }
 
+//unfocus
 void method4(MAIN_GUI *data,void (*mfree_adr)(void *))
 {
   if (data->gui.state!=2)
@@ -613,6 +620,7 @@ void Create_Connect()
   }
 }
 
+// onkey
 int method5(MAIN_GUI *data,GUI_MSG *msg)
 {
   OnKey(msg->gbsmsg->msg, msg->gbsmsg->submess);
@@ -874,17 +882,6 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
         SUBPROC((void *)ClearSendQ);
 	break;
       case ENIP_SOCK_CLOSED:
-	//Dump not received
-/*	if (RXstate>(-(int)sizeof(PKT)))
-	{
-	  unsigned int err;
-	  int f=fopen("4:\\NATICQ.dump",A_ReadWrite+A_Create+A_Truncate+A_BIN,P_READ+P_WRITE,&err);
-	  if (f!=-1)
-	  {
-	    fwrite(f,&RXbuf,RXstate+sizeof(PKT),&err);
-	    fclose(f,&err);
-	  }
-	}*/
 	connect_state=0;
 	sock=-1;
 	if (sendq_p)

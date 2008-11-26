@@ -90,7 +90,7 @@ int MoveCursor_C_List(int mode_key, int type_key)
     break;
   }
   
-  DirectRedrawGUI();
+//  DirectRedrawGUI();
   return 0;
 }
   // Работа с интерфейсом //
