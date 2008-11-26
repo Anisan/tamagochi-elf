@@ -5,16 +5,6 @@
 #include "icq.h"
 
 
-typedef struct
-{
-  GUI gui;
-} GUI_C_LIST_GUI;
-
-typedef struct
-{
-  CSM_RAM csm;
-  int gui_id;
-} GUI_C_LIST_CSM;
 // Переменные - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 int 
@@ -58,7 +48,7 @@ void CList_MoveCursorEnd()
   REDRAW();
 }
 
-static int CList_MoveCursor(int mode_key, int type_key)
+int MoveCursor_C_List(int mode_key, int type_key)
 {
   switch(mode_key)
   {
@@ -81,16 +71,26 @@ static int CList_MoveCursor(int mode_key, int type_key)
       break;
       
       case LEFT_SOFT:
-        
       case ENTER_BUTTON:
 
       break;
       
-      case RIGHT_SOFT: return 1;
+      case '1': 
+      CList_MoveCursorHome();
+      break;
+    
+      case '7':
+      CList_MoveCursorEnd();
+      break;
+      
+      case RIGHT_SOFT: TYPE_DRAW = Draw_MainMenu;
+      break;
       }
     }
     break;
   }
+  
+  DirectRedrawGUI();
   return 0;
 }
   // Работа с интерфейсом //
@@ -206,116 +206,24 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   
 
 
-static void OnRedraw(GUI_C_LIST_GUI *data)
+void OnRedraw_C_List()
 {
-  if (data->gui.state==2)
-  {
-    LockSched(); 
     DrawCListFon();
     DrawContactList(&main_c_list);
     DrawSoftButton(&c_list_soft);
-    UnlockSched(); 
-  }
 }
-
-static void OnCreate(GUI_C_LIST_GUI *data,void *(*malloc_adr)(int))
-{
-  data->gui.state=1;
-}
-
-static void OnClose(GUI_C_LIST_GUI *data,void (*mfree_adr)(void *))
-{
-  data->gui.state=0;
-}
-
-static void OnFocus(GUI_C_LIST_GUI *data,void *(*malloc_adr)(int),void (*mfree_adr)(void *))
-{
-#ifdef ELKA
-  DisableIconBar(1);
-#endif
-  DisableIDLETMR();
-  data->gui.state=2;
-}
-
-static void OnUnfocus(GUI_C_LIST_GUI *data,void (*mfree_adr)(void *))
-{
-#ifdef ELKA
-  DisableIconBar(0);
-#endif
-  if (data->gui.state!=2) return;
-  data->gui.state=1;
-}
-
-
-static int OnKey(GUI_C_LIST_GUI *data, GUI_MSG *msg)
-{
-  //if(Quit_GUI_C_LIST)return 1;
-  int sh=msg->gbsmsg->msg;
-  switch(sh)
-  {
-  case KEY_DOWN:
-    switch(msg->gbsmsg->submess)
-    {
-    case '1': 
-      CList_MoveCursorHome();
-      break;
-    
-    case '7':
-      CList_MoveCursorEnd();
-      break;
-    
-    case RIGHT_SOFT:return 1;
-    
-    }
-    
-  }
-  CList_MoveCursor(sh, msg->gbsmsg->submess);
-  DirectRedrawGUI();
-  
-  return 0;
-}
-
-
-static int met0(void){return(0);}
-static const void * const GUI_C_LIST_GUI_methods[11]={
-  (void *)OnRedraw,
-  (void *)OnCreate,
-  (void *)OnClose,
-  (void *)OnFocus,
-  (void *)OnUnfocus,
-  (void *)OnKey,
-  0,
-  (void *)kill_data,
-  (void *)met0,
-  (void *)met0,
-  0
-};
-
 
           
-void InitContactList(CONTACT_LIST_DESC *data)
-{
-  data->y_disp=header_height;
-}
-
-void RUN_GUI_C_LIST(int mode)
+void Init_C_List()
 {
   InitHeaderData(&head_c_list, "Контакты", 2, FONT, 4, COLOUR, COLOUR_FRING);
+
   
   GetShowsNumContacts(&main_c_list, Get_HeaderText_Height(&head_c_list),Get_SoftButton_Height(&c_list_soft));
-  
-  
   header_height = Get_HeaderText_Height(&head_c_list);
-  //InitContactList(&main_c_list);
-    
-  static const RECT Canvas={0,0,0,0};
-  patch_rect((RECT*)&Canvas,0,0,ScreenW()-1,ScreenH()-1);
-  StoreXYXYtoRECT((RECT*)&Canvas,0,0,ScrW-1,ScrH-1);
-  GUI_C_LIST_GUI *main_gui=malloc(sizeof(GUI_C_LIST_GUI));
-  zeromem(main_gui,sizeof(GUI_C_LIST_GUI));
-  main_gui->gui.canvas=(void *)(&Canvas);
-  main_gui->gui.methods=(void *)GUI_C_LIST_GUI_methods;
-  main_gui->gui.item_ll.data_mfree=(void (*)(void *))mfree_adr();
-  CreateGUI(main_gui);
+     
+  main_c_list.y_disp=header_height;
 }
+
+
 

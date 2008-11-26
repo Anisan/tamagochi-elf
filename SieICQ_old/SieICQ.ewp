@@ -4139,10 +4139,10 @@
       <name>$PROJ_DIR$\gui_begin.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\gui_mainmenu.c</name>
+      <name>$PROJ_DIR$\mainmenu.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\gui_mainmenu.h</name>
+      <name>$PROJ_DIR$\mainmenu.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\status_change.c</name>
@@ -4179,6 +4179,18 @@
     </file>
     <file>
       <name>$PROJ_DIR$\Items.h</name>
+    </file>
+  </group>
+  <group>
+    <name>Inc</name>
+    <file>
+      <name>$PROJ_DIR$\define.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\extern.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\include.h</name>
     </file>
   </group>
   <group>
@@ -5103,13 +5115,7 @@
     <name>$PROJ_DIR$\config_data.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\extern.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\func.asm</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\include.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>

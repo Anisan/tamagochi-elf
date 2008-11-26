@@ -481,7 +481,8 @@ void message_parse(Packet *packet) {
 	PackGet16LE(packet, &seqno);
 	
 	/* check to see if there is any single type handlers for this 
-	 * packet */
+	 * packet 
+        */
 /*
 	for (; handler->type; handler++) {
 		if (type == handler->type) {
@@ -489,7 +490,8 @@ void message_parse(Packet *packet) {
 			return;
 		}
 	}
-	
+	*/
+        
 	/* If we don't have enough to check for a subtype then return */
 /*	if (packet->size - packet->offset < sizeof(guint16)) {
 		n_debug("Not enough remaining bytes to continue, unknown server message "
@@ -499,7 +501,7 @@ void message_parse(Packet *packet) {
 	}
 	
 	PackGet16(packet, subtype);
-	
+	*/
 	/* Continue on again looking for both type and subtype */
 /*	for (handler++; handler->type; handler++) {
 		if (type == handler->type && subtype == handler->subtype) {
