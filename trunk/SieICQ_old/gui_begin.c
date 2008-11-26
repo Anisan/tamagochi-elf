@@ -3,24 +3,9 @@
 #include "gui_mainmenu.h"
 #include "icq.h"
 
-typedef struct
-{
-  GUI gui;
-} GUI_BEGIN_GUI;
-
-typedef struct
-{
-  CSM_RAM csm;
-  int gui_id;
-} GUI_BEGIN_CSM;
-
 
 DATA_TIME begin_data_time;
 SOFT_BUTTON_STRUCT begin_soft={3, 3, " ", "Отмена", 1, 0};
-
-unsigned int GUI_BEGIN_ID = 0,
-             Quit_GUI_BEGIN = 0,
-             TYPE_GUI;
 
 void SMART_REDRAW(void)
 {
@@ -28,14 +13,14 @@ void SMART_REDRAW(void)
 }
 
 static void EndLoad()
-{ 
-        //Quit_GUI_BEGIN = 1;
-        RUN_GUI_MAINMENU(0);
+{
+  TYPE_DRAW = Draw_MainMenu;
+  SMART_REDRAW();
 }
 
 static void DrawBeginFon()
 {
-  if(!TYPE_GUI)EndLoad();
+  if(TYPE_DRAW==Draw_Begin)EndLoad();
   
   DrawRectangle(0,YDISP,ScrW-1,ScrH-1,0,
 		   GetPaletteAdrByColorIndex(1),
@@ -99,6 +84,7 @@ static void CheckConnected()
   //if(ICQStatus!=STATUS_OFFLINE)
     //Quit_GUI_BEGIN=1;
 }
+
 static void DrawInfo()
 {
   WSHDR *ws_info = AllocWS(128);
@@ -118,106 +104,39 @@ static void DrawInfo()
   FreeWS(ws_info);
 }
 
-static void OnRedraw(GUI_BEGIN_GUI *data)
+void OnRedraw_Begin()
 {
-  if (data->gui.state==2)
-  {
     CheckConnected();
-    LockSched(); 
     DrawBeginFon();
     DrawInfo();
     DrawProgressbar();
-    UnlockSched(); 
-  }
-}
-
-static void OnCreate(GUI_BEGIN_GUI *data,void *(*malloc_adr)(int))
-{
-  data->gui.state=1;
-}
-
-static void OnClose(GUI_BEGIN_GUI *data,void (*mfree_adr)(void *))
-{
-  data->gui.state=0;
-  Quit_GUI_BEGIN = 0;
-}
-
-static void OnFocus(GUI_BEGIN_GUI *data,void *(*malloc_adr)(int),void (*mfree_adr)(void *))
-{
-#ifdef ELKA
-  DisableIconBar(1);
-#endif
-  DisableIDLETMR();
-  data->gui.state=2;
-}
-
-static void OnUnfocus(GUI_BEGIN_GUI *data,void (*mfree_adr)(void *))
-{
-#ifdef ELKA
-  DisableIconBar(0);
-#endif
-  if (data->gui.state!=2) return;
-  data->gui.state=1;
 }
 
 
-static int OnKey(GUI_BEGIN_GUI *data, GUI_MSG *msg)
+
+int MoveCursor_Begin(int pressed_mode, int key_kode)
 {
-  if(Quit_GUI_BEGIN)return 1;
-  int sh=msg->gbsmsg->msg;
-  switch(sh)
+  switch(pressed_mode)
   {
   case KEY_DOWN:
-    switch(msg->gbsmsg->submess)
     {
-      case RIGHT_SOFT:Disconnect(); return 1;
-      case LEFT_SOFT: return 1;
+      switch(key_kode)
+      {
+      case RIGHT_SOFT:Disconnect(); TYPE_DRAW = Draw_MainMenu;break;
+      case LEFT_SOFT: TYPE_DRAW = Draw_MainMenu;break;
+      }
     }
   }
   DirectRedrawGUI();
-  
   return 0;
 }
 
 
-static int met0(void){return(0);}
-static const void * const GUI_BEGIN_GUI_methods[11]={
-  (void *)OnRedraw,
-  (void *)OnCreate,
-  (void *)OnClose,
-  (void *)OnFocus,
-  (void *)OnUnfocus,
-  (void *)OnKey,
-  0,
-  (void *)kill_data,
-  (void *)met0,
-  (void *)met0,
-  0
-};
 
 
-
-
-void InitBegin()
+void Init_Begin()
 {
   InitDataTime(&begin_data_time, 20, 11, COLOUR, COLOUR_FRING);
 }
                 
-void RUN_GUI_BEGIN(int mode)
-{
-  InitBegin();
-  Quit_GUI_BEGIN = 0;
-  TYPE_GUI = mode;
-  
-  static const RECT Canvas={0,0,0,0};
-  patch_rect((RECT*)&Canvas,0,0,ScreenW()-1,ScreenH()-1);
-  StoreXYXYtoRECT((RECT*)&Canvas,0,0,ScrW-1,ScrH-1);
-  GUI_BEGIN_GUI *main_gui=malloc(sizeof(GUI_BEGIN_GUI));
-  zeromem(main_gui,sizeof(GUI_BEGIN_GUI));
-  main_gui->gui.canvas=(void *)(&Canvas);
-  main_gui->gui.methods=(void *)GUI_BEGIN_GUI_methods;
-  main_gui->gui.item_ll.data_mfree=(void (*)(void *))mfree_adr();
-  CreateGUI(main_gui);
-  //DirectRedrawGUI();
-  //return (0);
-}
+

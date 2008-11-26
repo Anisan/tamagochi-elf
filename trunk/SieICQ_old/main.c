@@ -11,6 +11,7 @@
 #include "icq.h"
 #include "items.h"
 
+#include "gui.h"
 #include "gui_begin.h"
 
 #include "iconpack.h"
@@ -35,6 +36,7 @@ const char ipc_my_name[32]=IPC_SIEICQ_NAME;
 const char ipc_xtask_name[]=IPC_XTASK_NAME;
 IPC_REQ gipc;
 
+extern void SMART_REDRAW(void);
 
 char elf_path[256];
 int maincsm_id;
@@ -55,6 +57,8 @@ char CURSOR_COLOUR_FRING[4]={100,100,100,100};
 int FONT=11;
 char logmsg[256];
 int Font_H;
+
+int TYPE_DRAW;
 //==================
 // HOST
 GBSTMR reconnect_tmr;
@@ -566,6 +570,9 @@ typedef struct
 
 void method0(MAIN_GUI *data)
 {
+  //LockSched();
+  OnRedraw();
+  //UnlockSched(); 
 }
 
 void method1(MAIN_GUI *data,void *(*malloc_adr)(int))
@@ -608,27 +615,8 @@ void Create_Connect()
 
 int method5(MAIN_GUI *data,GUI_MSG *msg)
 {
+  OnKey(msg->gbsmsg->msg, msg->gbsmsg->submess);
   DirectRedrawGUI();
-  if (msg->gbsmsg->msg==KEY_DOWN)
-  {
-    switch(msg->gbsmsg->submess)
-    {
-    case LEFT_SOFT:
-      return(1); //Происходит вызов GeneralFunc для тек. GUI -> закрытие GUI
-    case RIGHT_SOFT:
-      //      if (cltop) remake_clmenu();
-//      if (cltop) create_contactlist_menu();
-      break;
-    case GREEN_BUTTON:
-      //disautorecconect=0;
- //     Create_Connect();
-      break;
-    case '0':
- //     SUBPROC((void*)end_socket);
- //     Create_Connect();
-      break;
-    }
-  }
   return(0);
 }
 
@@ -688,8 +676,8 @@ void maincsm_oncreate(CSM_RAM *data)
   
   LoadIcon();
   
-  RUN_GUI_BEGIN(0);
-  
+  DirectRedrawGUI();
+
 }
 
 void maincsm_onclose(CSM_RAM *csm)
@@ -814,6 +802,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
     {
       ShowMSG(1,(int)"SieICQ config updated!");
       InitConfig();
+      InitData();
     }
   }
   if (msg->msg==MSG_GUI_DESTROYED)
@@ -976,7 +965,9 @@ int main(char *filename)
   ScrW = ScreenW();
   ScrH = ScreenH();
   Font_H = GetFontYSIZE(FONT);
-  StartTimerSendGuiRedraw();
+  //StartTimerSendGuiRedraw();
+  TYPE_DRAW = Draw_Begin;
+  InitData();
     
   InitConfig();
   s=strrchr(filename,'\\');

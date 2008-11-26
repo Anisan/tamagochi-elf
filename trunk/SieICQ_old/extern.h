@@ -6,7 +6,8 @@ extern char CURSOR_COLOUR[4],CURSOR_COLOUR_FRING[4], hostname[128], logmsg[256];
 extern int FONT,
            Font_H,
            connect_state,
-           RXstate;
+           RXstate,
+           TYPE_DRAW;
 
 extern volatile int sendq_l;
 // Unsigned int:

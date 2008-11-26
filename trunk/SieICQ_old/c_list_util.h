@@ -17,7 +17,9 @@ typedef struct
 
 void CList_MoveCursorHome();
 void CList_MoveCursorEnd();
+void OnRedraw_C_List();
+int MoveCursor_C_List(int mode_key, int type_key);
+void Init_C_List();
 
-void RUN_GUI_C_LIST(int mode);
 
 #endif

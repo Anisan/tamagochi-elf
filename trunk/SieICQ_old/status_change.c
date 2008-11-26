@@ -13,9 +13,7 @@ HEADER_ITEM
 #define STATUS_CHANGE_NUMS 13
 
 static unsigned int 
-  Status_Change_Cursor = 0,
-  Exit_Enter = 1;
-
+  Status_Change_Cursor = 0;
 
 
 MENU_ITEM status_change_text[STATUS_CHANGE_NUMS]=
@@ -97,13 +95,11 @@ MENU_STRUCT status_change_struct=
   status_change_procs
 };
 
-void Draw_StatusChange()
+void OnRedraw_StatusChange()
 {
-  LockSched(); 
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
   DrawMenuList(&status_change_struct, &status_change_text[STATUS_CHANGE_NUMS], Status_Change_Cursor);
   DrawSoftButton(&status_change_soft);
-  UnlockSched(); 
 }
 
 int MoveCursor_StatusChange(int pressed_mode, int key_kode)
@@ -127,11 +123,12 @@ int MoveCursor_StatusChange(int pressed_mode, int key_kode)
       case LEFT_SOFT:
       case ENTER_BUTTON:
         ((void (*)(void))(status_change_procs[0]))();
-        if(!Exit_Enter) break; else 
-          return (1);
+        TYPE_DRAW = Draw_MainMenu;
+      break;
 
             
-      case RIGHT_SOFT: return 1;
+      case RIGHT_SOFT: TYPE_DRAW = Draw_MainMenu;
+      break;
       
       case '1': Status_Change_Cursor = 0; break;
       case '7': Status_Change_Cursor = STATUS_CHANGE_NUMS-1; break;

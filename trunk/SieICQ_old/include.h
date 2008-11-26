@@ -8,6 +8,7 @@
 #include "string_util.h"
 #include "visual_util.h"
 #include "extern.h"
+#include "define.h"
 #include <math.h>
 
 
