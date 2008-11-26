@@ -136,7 +136,7 @@ int MoveCursor_StatusChange(int pressed_mode, int key_kode)
     }
     break;
   }
-  DirectRedrawGUI();
+  //DirectRedrawGUI();
   return 0;
 }
 

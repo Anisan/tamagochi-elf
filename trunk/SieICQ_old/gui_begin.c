@@ -9,13 +9,14 @@ SOFT_BUTTON_STRUCT begin_soft={3, 3, " ", "Отмена", 1, 0};
 
 void SMART_REDRAW(void)
 {
+  if (TYPE_DRAW == Draw_Connect)
   DirectRedrawGUI();
 }
 
 static void EndLoad()
 {
   TYPE_DRAW = Draw_MainMenu;
-  SMART_REDRAW();
+  DirectRedrawGUI();
 }
 
 static void DrawBeginFon()
@@ -127,7 +128,7 @@ int MoveCursor_Begin(int pressed_mode, int key_kode)
       }
     }
   }
-  DirectRedrawGUI();
+  //DirectRedrawGUI();
   return 0;
 }
 

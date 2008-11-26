@@ -30,6 +30,7 @@ static void ToConnect(GUI *data)
 
 static void ContactList(GUI *data)
 {
+  Init_C_List();
   TYPE_DRAW = Draw_C_List;
 }
 
