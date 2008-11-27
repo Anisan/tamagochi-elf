@@ -68,6 +68,7 @@ MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 };
 
 
+
 const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
 {
   ToConnect,
@@ -89,6 +90,14 @@ MENU_STRUCT main_menu_struct=
   mainmenu_text,
   mainmenu_procs
 };
+
+char is_status[128]="";
+
+void RenameMainMenuItem(int id, char * two)
+{
+  //mainmenu_text[item]=(MENU_ITEM)two;
+  //main_menu_struct.items[id]=(int) two;
+}
 
 // *****************************************************************************
 
@@ -172,6 +181,8 @@ void OnRedraw_MainMenu()
 // Инициализация параметров меню
 void Init_MainMenu()
 {
+   //RenameMainMenuItem(0, "Сработало!");
+   
   // Пока отсюда ничего не надобно
   //InitSoftButton(&mainmemu_soft,3,3, "Выбор", "Выйти", 1, 0);
   //InitMenuList(&main_menu_struct, "Меню", 3, (char*)mainmenu_text);

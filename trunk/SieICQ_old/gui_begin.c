@@ -9,7 +9,7 @@ SOFT_BUTTON_STRUCT begin_soft={3, 3, " ", "Отмена", 1, 0};
 
 void SMART_REDRAW(void)
 {
-  if (TYPE_DRAW == Draw_Connect)
+  //if (TYPE_DRAW == Draw_Connect)
   DirectRedrawGUI();
 }
 
@@ -49,9 +49,14 @@ void NextStep(char * msg)
   SMART_REDRAW();
 }
 
+int DoneConnected = 0;
+
 void EndStep()
 {
   pl=pm;
+  DoneConnected = 1;
+  void Init_C_List();
+  TYPE_DRAW = Draw_C_List;
   SMART_REDRAW();
 }
 

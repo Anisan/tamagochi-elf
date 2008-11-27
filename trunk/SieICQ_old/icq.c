@@ -426,6 +426,7 @@ void parse_snac(char *data, int size) {
 void Disconnect() 
 {
 // отключаемся
+  DoneConnected = 0;
         Packet *new_packet = PackNew();
         send_packet(0x04, new_packet);
 
