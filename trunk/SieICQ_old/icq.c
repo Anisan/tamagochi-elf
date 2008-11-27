@@ -1218,6 +1218,9 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
 {       short int type, length=0;
         short int status=0;
         short int flags_status=0;
+        int enableTyping = 0;
+        int xstatus = 0;
+        int clientid = 0;
 	char uin_length;
         char *uin;
 	/* Pull off the length of the UIN string */
@@ -1249,14 +1252,19 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
             TLV.Type(0x19) - new-style capabilities list 
             TLV.Type(0x1D) - user icon id & hash 
            */
-              //case 0x0D:
+              case 0x0D:
+                {
+                char * cap = malloc((int)length);
+                PackGet(packet, (char*)cap, (int)length);   
                 // совместимость с Typing
-                
+                enableTyping = FindCapabilities(cap, length, &capTyping[0]);
                 // Xstatus
-                
+                xstatus = FindXStatus(cap, length);
                 // ID клиента
-                
-              //  break;
+                clientid= ClientID(cap, length);
+                mfree(cap);
+                }
+              break;
             
               //user status          
               case 0x06: 
@@ -1287,6 +1295,9 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
         if (Contact!=0)
         {
            Contact->Status=status;
+           Contact->enable_typing=enableTyping;
+           Contact->XStatus = xstatus;
+           Contact->client_id = clientid;
         }
         
 	mfree(uin);
