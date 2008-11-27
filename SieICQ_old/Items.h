@@ -24,7 +24,11 @@ typedef struct
                                                   //0x0001 - text typed
                                                   //0x0002 - typing begun
   unsigned short iscollapsed;
- 
+  unsigned short enable_typing;
+  unsigned short client_id;
+  
+  
+  
 }ITEM;
 
 

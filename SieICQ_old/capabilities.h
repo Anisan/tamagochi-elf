@@ -88,18 +88,97 @@ static const char capAimSendbuddylist[] = {0x09, 0x46, 0x00, 0x00, 0x4c, 0x7f, 0
 
 static const char capIMSecKey1[] = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // ZoneLabs
 static const char capIMSecKey2[] = {2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // ZoneLabs
-static const char capUnknown1[]  = {0x17, 0x8c, 0x2d,0x9b, 0xda, 0xa5, 0x45, 0xbb, 0x8d, 0xdb, 0xf3, 0xbd, 0xbd, 0x53, 0xa1,0x0a};
+
+
+typedef struct tagSTDCAPINFO
+{
+	const char *name;
+	int img;
+	const char *caps;
+	int capSize;
+} STDCAPINFO;
+
+//надо будет номера картинок расставить
+static STDCAPINFO clientDB[] = {
+	{"SieICQ",			        0, capSieICQ,	        6},
+	{"NatICQ",			        0, capNatICQ,	        9},
+	{"Miranda IM",			        0, capMirandaIm,	8},
+	{"Miranda IM Mobile",		        0, capMirandaMobile,	13},
+	{"Miranda IM Custom Pack",	        0, capMimPack,		4},
+	{"Miranda ICQJ eternity/PlusPlus++",    0, capIcqJen,           4},
+	{"Miranda ICQJ S7&SSS OLD",	        0, capIcqJs7old,	16},
+	{"Miranda ICQJ S7&SSS + SecureIM",      0, capIcqJs7s,		16},
+	{"Miranda ICQJ S7&SSS",		        0, capIcqJs7,		4},
+	{"Miranda ICQJ Plus",			0, capIcqJp,		4},
+	{"Miranda ICQJ S!N",			0, capIcqJSin,		4},
+	{"AIM Oscar",				0, capAimOscar,		8},
+	{"IMadering Client",			0, capIMadering,        0x10},
+	{"Trillian",				0, capTrillian,		16},
+	{"Trillian Crypt",			0, capTrilCrypt,	16},
+	{"SIM",					0, capSim,		0xC},
+	{"SIM (old)",				0, capSimOld,		0xF},
+	{"Licq",				0, capLicq,		0xC},
+	{"Kopete",				0, capKopete,		0xC},
+	{"mICQ",				0, capmIcq,		0xC},
+	{"&RQ",					0, capAndRQ,		9},
+	{"R&Q",					0, capRAndQ,		9},
+	{"mChat",				0, capmChat,		0xA},
+	{"Jimm",				0, capJimm,		5},
+	{"Yapp",				0, capYapp,		4},
+	{"Naim",				0, capNaim,		8},
+	{"Anastacia",				0, capAnastasia,	16},
+	{"JICQ",				0, capPalmJicq,		16},
+	{"Inlux Messenger",			0, capInluxMsgr,	16},
+	{"MIP Client",				0, capMipClient,	0xC},
+	{"QIP 2005a",				0, capQip,		16},
+	{"QIP Infium",				0, capQipInfium,	16},
+	{"QIP Infium Plugins",			0, capQipPlugins,       16},
+	{"QIP PDA",				0, capQipPDA,		16},
+	{"QIP Mobile (Java)",			0, capQipMobile,	16},
+	{"QIP Mobile (Symbian)",		0, capQipSymbian,	16},
+	{"VmICQ (Symbian)",			0, capVmICQ,		6},
+	{"QIP ProtectMsg",			0, capQip_1,		16},
+	{"IM2",					0, capIm2,		16},
+	{"ICQ for Mac",				0, capMacIcq,		16},
+	{"ICQ 2001",				0, capIs2001,		16},
+	{"ICQ 2002",				0, capIs2002,		16},
+	{"Comm20012",				0, capComm20012,	16},
+	{"StrICQ",				0, capStrIcq,		16},
+	{"ICQ Lite",				0, capIcqLite,		16},
+	{"AIM Chat",				0, capAimChat,		16},
+	{"UIM",					0, capUim,		16},
+	{"Rambler ICQ",				0, capRambler,		16},
+	{"ABV ICQ",				0, capAbv,		16},
+	{"Netvigator ICQ",			0, capNetvigator,	16},
+	{"tZers",				0, captZers,		16}, // CAP_TZERS
+	{"ICQ 6 (HTML Messages)",		0, capHtmlMsgs,		16}, // icq6
+	{"Live Video",				0, capLiveVideo,	16},
+	{"Simp Lite",				0, capSimpLite,		16},
+	{"Simp Pro",				0, capSimpPro,		16},
+	{"IMsecure (ZoneLabs)",			0, capIMsecure,		16}, // ZoneLabs
+	{"Messages Type 2 support",		0, capMsgType2,		16},
+	{"Aim Voice Chat",			0, capAimVoice,		16},
+	{"Live Audio (new VoiceChat)",		0, capAimAudio,		16},
+	{"climm Client",			0, capClimm,		0xC},
+	{"IM+ Client",				0, capIMPlus,		16},
+	{"mChct Client",                        0, capmChat,            0xA},
+	{"SmapeR Client",			0, capSmapeR,		0x07},
+	{"CORE Pager Client",			0, capCorePager,	0xA},
+	{"Zone Alarm IMsecure Key 1",		0, capIMSecKey1,	5},
+	{"Zone Alarm IMsecure Key 2",		0, capIMSecKey2,	5}
+};
+
 
 
 // capabilites
 // основные
-const char capSrvRelay[]  = {0x09, 0x46, 0x13, 0x49, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
-const char capUTF[]       = {0x09, 0x46, 0x13, 0x4e, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
-const char capRTF[]       = {0x97, 0xb1, 0x27, 0x51, 0x24, 0x3c, 0x43, 0x34, 0xad, 0x22, 0xd6, 0xab, 0xf7, 0x3f, 0x14, 0x92};
-const char capICQDirect[] = {0x09, 0x46, 0x13, 0x44, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
-const char capTyping[]    = {0x56, 0x3f, 0xc8, 0x09, 0x0b, 0x6f, 0x41, 0xbd, 0x9f, 0x79, 0x42, 0x26, 0x09, 0xdf, 0xa2, 0xf3};
-const char capXtraz[]     = {0x1A, 0x09, 0x3C, 0x6C, 0xD7, 0xFD, 0x4E, 0xC5, 0x9D, 0x51, 0xA6, 0x47, 0x4E, 0x34, 0xF5, 0xA0};
-const char capOscarFile[] = {0x09, 0x46, 0x13, 0x43, 0x4C, 0x7F, 0x11, 0xD1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
+static const char capSrvRelay[]  = {0x09, 0x46, 0x13, 0x49, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
+static const char capUTF[]       = {0x09, 0x46, 0x13, 0x4e, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
+static const char capRTF[]       = {0x97, 0xb1, 0x27, 0x51, 0x24, 0x3c, 0x43, 0x34, 0xad, 0x22, 0xd6, 0xab, 0xf7, 0x3f, 0x14, 0x92};
+static const char capICQDirect[] = {0x09, 0x46, 0x13, 0x44, 0x4c, 0x7f, 0x11, 0xd1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
+static const char capTyping[]    = {0x56, 0x3f, 0xc8, 0x09, 0x0b, 0x6f, 0x41, 0xbd, 0x9f, 0x79, 0x42, 0x26, 0x09, 0xdf, 0xa2, 0xf3};
+static const char capXtraz[]     = {0x1A, 0x09, 0x3C, 0x6C, 0xD7, 0xFD, 0x4E, 0xC5, 0x9D, 0x51, 0xA6, 0x47, 0x4E, 0x34, 0xF5, 0xA0};
+static const char capOscarFile[] = {0x09, 0x46, 0x13, 0x43, 0x4C, 0x7F, 0x11, 0xD1, 0x82, 0x22, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00};
 
 // на это забьем пока
 /*
@@ -204,6 +283,13 @@ static const char* nameXStatus[XSTATUS_COUNT] = {
   //RnQ
   "Sex",
   "Smoking"};
+
+
+
+int FindCapabilities(char * buf, int len, char const * cap);
+int FindXStatus(char * buf, int len);
+
+int ClientID(char * buf, int len);
 
 
 #endif /* __CAPABILITIES_H */

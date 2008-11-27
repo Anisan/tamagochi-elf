@@ -19,6 +19,9 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
  bmk->XStatus=0;
  bmk->StatusText=NULL;
  bmk->XStatusText=NULL;
+ 
+ bmk->enable_typing=0;
+ bmk->client_id=0;
              
  if(!Itemtop)
  {
