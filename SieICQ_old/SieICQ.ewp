@@ -4160,6 +4160,9 @@
   <group>
     <name>ICQ</name>
     <file>
+      <name>$PROJ_DIR$\capabilities.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\capabilities.h</name>
     </file>
     <file>

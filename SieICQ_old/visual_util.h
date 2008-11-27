@@ -33,7 +33,7 @@ typedef struct
 
 typedef struct
 {
-  int lgp_id;
+  int item_id;
   //int img_id;
 }MENU_ITEM;
 
