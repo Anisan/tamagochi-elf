@@ -12,7 +12,7 @@
           
           
           
-        <Column0>282</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>272</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
     <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>748</ColumnWidth1><ColumnWidth2>199</ColumnWidth2><ColumnWidth3>49</ColumnWidth3></Build><Find-in-Files><ColumnWidth0>382</ColumnWidth0><ColumnWidth1>54</ColumnWidth1><ColumnWidth2>655</ColumnWidth2></Find-in-Files></Static>
     <Windows>
@@ -25,7 +25,7 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>SieICQ</ExpandedNode><ExpandedNode>SieICQ/GUI</ExpandedNode><ExpandedNode>SieICQ/ICQ</ExpandedNode><ExpandedNode>SieICQ/Inc</ExpandedNode><ExpandedNode>SieICQ/Modules</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>SieICQ</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
@@ -35,14 +35,14 @@
       
       
       
-    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\visual_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\visual_util.c</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>2659</SelStart><SelEnd>2882</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\c_list_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\c_list_util.c</Filename><XPos>0</XPos><YPos>238</YPos><SelStart>5933</SelStart><SelEnd>5933</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\iconpack.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>269</SelStart><SelEnd>281</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\iconpack.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>363</SelStart><SelEnd>363</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\capabilities.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\Items.h</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>1518</SelStart><SelEnd>1518</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\Items.c</Filename><XPos>0</XPos><YPos>192</YPos><SelStart>3466</SelStart><SelEnd>3494</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\mainmenu.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\icq.h</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\main.c</Filename><XPos>0</XPos><YPos>660</YPos><SelStart>14434</SelStart><SelEnd>14434</SelEnd></Tab><ActiveTab>12</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-0036fd40><key>iaridepm.enu1</key></Toolbar-0036fd40></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>602</Bottom><Right>373</Right><x>-2</x><y>-2</y><xscreen>211</xscreen><yscreen>208</yscreen><sizeHorzCX>189238</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>336323</sizeVertCX><sizeVertCY>708920</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>206</Bottom><Right>1117</Right><x>-2</x><y>-2</y><xscreen>1119</xscreen><yscreen>208</yscreen><sizeHorzCX>1003587</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>189238</sizeVertCX><sizeVertCY>244131</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0036fc78><key>iaridepm.enu1</key></Toolbar-0036fc78></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>602</Bottom><Right>346</Right><x>-2</x><y>-2</y><xscreen>211</xscreen><yscreen>208</yscreen><sizeHorzCX>189238</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>312108</sizeVertCX><sizeVertCY>708920</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>206</Bottom><Right>1117</Right><x>-2</x><y>-2</y><xscreen>1119</xscreen><yscreen>208</yscreen><sizeHorzCX>1003587</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>189238</sizeVertCX><sizeVertCY>244131</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

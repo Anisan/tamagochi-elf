@@ -17,6 +17,8 @@ enum ICON_ID
   IMG_WORK,	
   IMG_LUNCH,
   IMG_OFFLINE,
+  IMG_GROUP_ON,
+  IMG_GROUP_OFF,
   
   // MainMenu ; Start = 13
   IMG_TOCONNECT,

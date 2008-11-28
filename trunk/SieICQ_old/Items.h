@@ -24,6 +24,7 @@ typedef struct
                                                   //0x0001 - text typed
                                                   //0x0002 - typing begun
   unsigned short iscollapsed;
+  unsigned short visible;
   unsigned short enable_typing;
   unsigned short client_id;
   
@@ -42,6 +43,14 @@ ITEM *GetItemByID(int ID); // возвращает контакт по ID
 ITEM *GetGroupByGroupID(int GroupID); // группу по GroupID
 ITEM *GetItemByUIN(int UIN); // контакт по его UIN(число)
 ITEM *GetItemByUINstr(char *UIN); // контакт по его Uin строке
+
+
+
+void GroupCollapsed(int GroupID); // свернуть развернуть группу
+void GroupVisible(int visible); // скрыть группы
+void OfflineVisible(int visible); // скрыть контакты не в сети
+int CountVisibleItem(); // количество видимых итемов
+
 
 int GetContactInGroup(int GroupID);
 int TotalItems();

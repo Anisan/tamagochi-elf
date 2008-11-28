@@ -20,6 +20,10 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
  bmk->StatusText=NULL;
  bmk->XStatusText=NULL;
  
+ bmk->iscollapsed=0;
+ bmk->visible=0;
+
+ 
  bmk->enable_typing=0;
  bmk->client_id=0;
              
@@ -162,6 +166,70 @@ int GetContactInGroup(int GroupID)
   }
   return i;
 }
+
+// свернуть развернуть группу
+void GroupCollapsed(int GroupID)
+{
+  if(!Itemtop) return;
+  ITEM *bmk;
+  bmk=Itemtop;
+  int i=1; 
+  int collapse=0;
+  while(bmk) 
+  {
+    if ((bmk->ID==0)&&(bmk->GroupID==GroupID))
+    {
+      if(bmk->iscollapsed) bmk->iscollapsed=0;
+      else bmk->iscollapsed=1;
+      collapse=bmk->iscollapsed;
+    }
+    if ((bmk->ID!=0)&&(bmk->GroupID==GroupID))
+      bmk->visible=collapse;
+    bmk=bmk->next;
+  } 
+}
+
+// скрыть группы
+void GroupVisible(int visible)
+{
+  if(!Itemtop) return;
+  ITEM *bmk;
+  bmk=Itemtop;
+  while(bmk) 
+  {
+    if (bmk->ID==0)
+      bmk->visible=visible;
+    bmk=bmk->next;
+  } 
+}
+
+// скрыть контакты не в сети
+void OfflineVisible(int visible)
+{
+  if(!Itemtop) return;
+  ITEM *bmk;
+  bmk=Itemtop;
+  while(bmk) 
+  {
+    if ((bmk->ID!=0)&&(bmk->Status==0xffff))
+      bmk->visible=visible;
+    bmk=bmk->next;
+  } 
+}
+
+// количество видимых итемов
+int CountVisibleItem()
+{
+  if(!Itemtop) return 0;
+  ITEM *bmk;
+  bmk=Itemtop;
+  int i=0; 
+  if (bmk->visible)i++;
+  while(bmk=bmk->next) if (bmk->visible) i++;
+  return i;
+}
+
+
 
 int TotalContact()
 {
