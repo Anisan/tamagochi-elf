@@ -681,6 +681,8 @@ void maincsm_oncreate(CSM_RAM *data)
   sprintf(path,"%s\\%d.cl",TEMPLATES_PATH,UIN);
   LoadCL(path);
   mfree(path);
+  // делаем видимыми группы, тк при загрузке у всех итемов visible=0
+  GroupVisible(1);
   
   LoadIcon();
   
