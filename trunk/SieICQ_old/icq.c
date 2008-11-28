@@ -859,10 +859,10 @@ void SetXStatus(int _xStatus)
 
 void contact_incoming_msg(char * source, char* msg)
 {
-  
+// запись в файл
   char file[512];
   sprintf(file,"%s\\%s.log",HIST_PATH,source);
-  _WriteLog(file);
+
   send_msg(source,msg);
   int flog=-1;
   unsigned int err;
@@ -879,6 +879,22 @@ void contact_incoming_msg(char * source, char* msg)
 		fwrite(flog,_msg,strlen(_msg),&err);
 	}
   fclose(flog,&err);     
+// ищем контакт
+        ITEM *Contact=GetItemByUINstr(source);
+        if (Contact!=0)
+        {
+          // есть непрочитанные
+           Contact->isunread = 1;
+          // запись сообщения в структуру
+         
+          ///
+        }
+        else
+        {
+          //ненайден, добавляем
+         
+          
+        }
   
 }
 
@@ -1127,7 +1143,6 @@ void snac_typing_msg(short int flags, int request_id, Packet *packet) {
 
 void snac_contactlist(short int flags, int request_id, Packet *packet) {
 
-
   FreeItemsList();
 //разбираем контакт лист        
 //Version number of SSI protocol (currently 0x00)
@@ -1285,11 +1300,9 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
           }
         }
 	
-        //short int status=0;
-        //status=user_status & 0x1111;
-        char tmp[128];
-        sprintf(tmp,"status %s - %02d", uin, status);
-        _WriteLog(tmp);
+        //char tmp[128];
+        //sprintf(tmp,"status %s - %02d", uin, status);
+        //_WriteLog(tmp);
         
         // тут найти контакт uin и сменить его статус на user_status
         ITEM *Contact=GetItemByUINstr(uin);
@@ -1315,15 +1328,13 @@ void snac_offline_notify(short int flags, int request_id, Packet *packet)
 	PackGet(packet, (char*)uin, (int)uin_length); 
         uin[(int)uin_length]=0;
         
-        _WriteLog(uin);
-        _WriteLog("offline");
-	
         // тут найти контакт uin и сменить его статус на OFFLINE
         ITEM *Contact=GetItemByUINstr(uin);
         if (Contact!=0)
         {
-         _WriteLog("find"); 
-        Contact->Status=ICQ_STATUS_OFFLINE;
+         Contact->Status=ICQ_STATUS_OFFLINE;
+         Contact->enable_typing=0;
+         Contact->XStatus =0;
         }
         
 	mfree(uin);

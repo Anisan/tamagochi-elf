@@ -194,21 +194,24 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
     case ICQ_STATUS_LUNCH    : img=IMG_LUNCH;break;
     }
     DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
-    
+
+    int offset=16;
     /////// так для проверки
-    char name[128];
     if (it->XStatus>0)
-      sprintf(name,"%s (%s)",newname,nameXStatus[it->XStatus-1]);
-    else
-      sprintf(name,"%s",newname);
+    {
+      DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_XStatus0+it->XStatus]);
+      offset+=16+1;
+    }
+
+    
     char fullname[128];
     if (it->client_id>0)
-      sprintf(fullname,"%s (%s)",name,clientDB[it->client_id-1]);  
+      sprintf(fullname,"%s (%s)",newname,clientDB[it->client_id-1]);  
    else
-      sprintf(fullname,"%s",name);
+      sprintf(fullname,"%s",newname);
     
     wsprintf(item_data, percent_t, fullname);
-    DrawString(item_data, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
+    DrawString(item_data, offset, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
     }
     
   }

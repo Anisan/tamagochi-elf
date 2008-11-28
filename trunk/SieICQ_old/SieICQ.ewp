@@ -4156,6 +4156,12 @@
     <file>
       <name>$PROJ_DIR$\visual_util.h</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\xstatus_change.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\xstatus_change.h</name>
+    </file>
   </group>
   <group>
     <name>ICQ</name>
@@ -5122,6 +5128,9 @@
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\main.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\revision.h</name>
