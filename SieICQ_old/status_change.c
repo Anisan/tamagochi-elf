@@ -121,7 +121,7 @@ void OnRedraw_StatusChange()
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
   DrawMenuList(&status_change_struct, 
                &status_change_text[STATUS_CHANGE_NUMS], 
-               0,
+               IMG_ONLINE,
                Status_Change_Cursor);
   DrawSoftButton(&status_change_soft);
 }

@@ -101,7 +101,7 @@ typedef struct tagSTDCAPINFO
 //надо будет номера картинок расставить
 static STDCAPINFO clientDB[] = {
 	{"SieICQ",			        0, capSieICQ,	        6},
-	{"NatICQ",			        0, capNatICQ,	        9},
+	{"NatICQ",			        0, capNatICQ,	        6},
 	{"Miranda IM",			        0, capMirandaIm,	8},
 	{"Miranda IM Mobile",		        0, capMirandaMobile,	13},
 	{"Miranda IM Custom Pack",	        0, capMimPack,		4},

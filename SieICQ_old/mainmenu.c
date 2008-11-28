@@ -14,7 +14,7 @@
 #define ALL_MENU_NUM 3 
 
 //Количество пунктов главного меню
-#define MAIN_MENU_NUMS 6 
+#define MAIN_MENU_NUMS 7 
 
 #define MAIN_MENU_Y_DISP 3
 #define MAIN_MENU_X_DISP 2
@@ -40,6 +40,11 @@ static void ChangeStatus(GUI *data)
   TYPE_DRAW = Draw_StatusChange;
 }
 
+static void ChangeXStatus(GUI *data)
+{
+  TYPE_DRAW = Draw_XStatusChange;
+}
+
 static void EditConfig(GUI *data)
 {
   OpenSettings();
@@ -61,6 +66,7 @@ MENU_ITEM mainmenu_text[MAIN_MENU_NUMS]=
 {
   (int)"Подключиться",
   (int)"Сменить статус",
+  (int)"Сменить X статус",
   (int)"Список контактов",
   (int)"Настройки",
   (int)"О программе",
@@ -73,6 +79,7 @@ const MENU_PROCS mainmenu_procs[MAIN_MENU_NUMS]=
 {
   ToConnect,
   ChangeStatus,
+  ChangeXStatus,
   ContactList,
   EditConfig,
   AboutSieICQ,
@@ -168,7 +175,7 @@ unsigned int GUI_MAINMENU_ID = 0,
 void OnRedraw_MainMenu()
 {
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
-  DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], 13, menu_cursors[IS_MAIN_MENU]);
+  DrawMenuList(&main_menu_struct, &mainmenu_text[MAIN_MENU_NUMS], IMG_TOCONNECT, menu_cursors[IS_MAIN_MENU]);
   DrawSoftButton(&mainmemu_soft);
 }
 

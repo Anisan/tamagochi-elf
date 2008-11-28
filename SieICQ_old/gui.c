@@ -3,6 +3,7 @@
 #include "gui.h"
 
 #include "status_change.h"
+#include "xstatus_change.h"
 #include "c_list_util.h"
 #include "mainmenu.h"
 #include "gui_begin.h"
@@ -21,6 +22,10 @@ void OnRedraw()
     
   case Draw_StatusChange:
     OnRedraw_StatusChange();
+    break;
+
+  case Draw_XStatusChange:
+    OnRedraw_XStatusChange();
     break;
     
   case Draw_MainMenu:
@@ -50,6 +55,10 @@ int OnKey(int pressed_mode, int key_kode)
   case Draw_StatusChange:
     MoveCursor_StatusChange(pm, kk);
     break;
+
+  case Draw_XStatusChange:
+    MoveCursor_XStatusChange(pm, kk);
+    break;
       
   case Draw_MainMenu:
     MoveCursor_MainMenu(pm, kk);
@@ -68,6 +77,7 @@ int OnKey(int pressed_mode, int key_kode)
 void InitData()
 {
   Init_Status_Change();
+  Init_XStatus_Change();
   Init_MainMenu();
   Init_C_List();
 }

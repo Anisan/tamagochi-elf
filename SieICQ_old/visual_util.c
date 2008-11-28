@@ -82,10 +82,30 @@ void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, /*const MENU_ITEM **/
   WSHDR *ws_head_text = AllocWS(128);
   wsprintf(ws_head_text, percent_t, data->header_text);
   DrawString(ws_head_text, 0,Y_DISP , ScrW, Font_H + Y_DISP, FONT, 32 + 2, COLOUR, COLOUR_FRING);
-  int start;
-  for(start=0; start <(data-> max_num); start++)
+  
+  // здесь надо что-то хитрое чтобы курсор был видим
+  // более менее работает, но надо подправить
+  // здесь надо точнее вычислить
+  int max_show= ((ScrH - Font_H - Font_H)/ Font_H); // максимальное количество видимых
+  int b_item=0; // начальный элемент для отрисовки
+  int e_item=data-> max_num; // конечный элемент
+  if (max_show < data-> max_num)
   {
-    int NEW_Y = 2*Y_DISP + Font_H + start*(Font_H+Y_DISP);
+     if (max_show/2 < cur_count) 
+        b_item = cur_count - max_show/2;
+      int e_item=max_show+b_item;
+      if (e_item>data-> max_num)
+      {
+        e_item=data-> max_num;
+        b_item=data-> max_num-max_show;
+      }
+  }
+  
+  /////////////
+  int start;
+  for(start=b_item; start < e_item; start++)
+  {
+    int NEW_Y = 2*Y_DISP + Font_H + (start-b_item)*(Font_H+Y_DISP);
     
     if(cur_count==start) 
       DrawRoundedFrame(0, NEW_Y + Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
