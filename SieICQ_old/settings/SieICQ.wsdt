@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>SieICQ/Release_ELKA</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>SieICQ/Release</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,12 +12,12 @@
           
           
           
-        <Column0>272</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>137</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
     <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>748</ColumnWidth1><ColumnWidth2>199</ColumnWidth2><ColumnWidth3>49</ColumnWidth3></Build><Find-in-Files><ColumnWidth0>382</ColumnWidth0><ColumnWidth1>54</ColumnWidth1><ColumnWidth2>655</ColumnWidth2></Find-in-Files></Static>
     <Windows>
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-25188-1950</Identity>
@@ -25,24 +25,24 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>SieICQ</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>SieICQ</ExpandedNode><ExpandedNode>SieICQ/GUI</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-17116-2306</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-19817-31682</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-17116-2306</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-19817-31682</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\visual_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\visual_util.c</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>2659</SelStart><SelEnd>2882</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\c_list_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\c_list_util.c</Filename><XPos>0</XPos><YPos>238</YPos><SelStart>5933</SelStart><SelEnd>5933</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\iconpack.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>269</SelStart><SelEnd>281</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\iconpack.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>363</SelStart><SelEnd>363</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\capabilities.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\Items.h</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>1518</SelStart><SelEnd>1518</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\Items.c</Filename><XPos>0</XPos><YPos>192</YPos><SelStart>3466</SelStart><SelEnd>3494</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\mainmenu.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\icq.h</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\main.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\cd\e71\Develop\Eraser\SieICQ_old\main.c</Filename><XPos>0</XPos><YPos>660</YPos><SelStart>14434</SelStart><SelEnd>14434</SelEnd></Tab><ActiveTab>12</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\gui_begin.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\main.c</Filename><XPos>0</XPos><YPos>170</YPos><SelStart>4352</SelStart><SelEnd>4352</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\iconpack.h</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\iconpack.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\langpack.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\xstatus_change.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\capabilities.h</Filename><XPos>0</XPos><YPos>278</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\c_list_util.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\capabilities.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\gui.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\chat.c</Filename><XPos>0</XPos><YPos>127</YPos><SelStart>2198</SelStart><SelEnd>2198</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\chat.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>49</SelStart><SelEnd>63</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\c_list_util.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>144</SelStart><SelEnd>144</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\Items.c</Filename><XPos>0</XPos><YPos>158</YPos><SelStart>2724</SelStart><SelEnd>2724</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\gui.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>50</SelStart><SelEnd>50</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\visual_util.h</Filename><XPos>22</XPos><YPos>60</YPos><SelStart>1771</SelStart><SelEnd>1771</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\visual_util.c</Filename><XPos>18</XPos><YPos>60</YPos><SelStart>1996</SelStart><SelEnd>1996</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\xstatus_change.c</Filename><XPos>0</XPos><YPos>37</YPos><SelStart>1186</SelStart><SelEnd>1186</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\status_change.c</Filename><XPos>0</XPos><YPos>105</YPos><SelStart>2042</SelStart><SelEnd>2042</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\mainmenu.c</Filename><XPos>0</XPos><YPos>160</YPos><SelStart>3228</SelStart><SelEnd>3228</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\ARM_WORK\SieICQ_2\TODO.txt</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>1359</SelStart><SelEnd>1381</SelEnd></Tab><ActiveTab>20</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-0036fc78><key>iaridepm.enu1</key></Toolbar-0036fc78></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>602</Bottom><Right>346</Right><x>-2</x><y>-2</y><xscreen>211</xscreen><yscreen>208</yscreen><sizeHorzCX>189238</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>312108</sizeVertCX><sizeVertCY>708920</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>206</Bottom><Right>1117</Right><x>-2</x><y>-2</y><xscreen>1119</xscreen><yscreen>208</yscreen><sizeHorzCX>1003587</sizeHorzCX><sizeHorzCY>244131</sizeHorzCY><sizeVertCX>189238</sizeVertCX><sizeVertCY>244131</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0087e850><key>iaridepm.enu1</key></Toolbar-0087e850></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>607</Bottom><Right>230</Right><x>-2</x><y>-2</y><xscreen>242</xscreen><yscreen>231</yscreen><sizeHorzCX>304403</sizeHorzCX><sizeHorzCY>262500</sizeHorzCY><sizeVertCX>291824</sizeVertCX><sizeVertCY>692045</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>229</Bottom><Right>797</Right><x>-2</x><y>-2</y><xscreen>799</xscreen><yscreen>231</yscreen><sizeHorzCX>1005031</sizeHorzCX><sizeHorzCY>262500</sizeHorzCY><sizeVertCX>304403</sizeVertCX><sizeVertCY>262500</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

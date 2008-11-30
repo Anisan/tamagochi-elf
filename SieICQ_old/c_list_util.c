@@ -4,6 +4,7 @@
 #include "iconpack.h"
 #include "icq.h"
 #include "capabilities.h"
+#include "chat.h"
 
 // Переменные - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -80,6 +81,8 @@ int MoveCursor_C_List(int mode_key, int type_key)
             {
               GroupCollapsed(bmk->GroupID);
             }
+            else
+              CreateEditChat();
         }
       break;
       

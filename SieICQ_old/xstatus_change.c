@@ -61,7 +61,6 @@ void OnRedraw_XStatusChange()
 {
   DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
   DrawMenuList(&xstatus_change_struct, 
-               &xstatus_change_text[XSTATUS_CHANGE_NUMS], 
                IMG_XStatus0,
                XStatus_Change_Cursor);
   DrawSoftButton(&xstatus_change_soft);
