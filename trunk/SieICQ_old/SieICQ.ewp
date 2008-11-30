@@ -4127,6 +4127,12 @@
       <name>$PROJ_DIR$\c_list_util.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\chat.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\chat.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\gui.c</name>
     </file>
     <file>

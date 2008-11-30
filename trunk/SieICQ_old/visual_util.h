@@ -82,7 +82,7 @@ int Get_HeaderText_Height(HEADER_ITEM *data);
 
 // Главное меню ----------------------------------------------------------------
 void InitMenuList(MENU_STRUCT *data, char *head, int y_dsp);
-void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr,/*const MENU_ITEM **/int images, int cur_count);
+void DrawMenuList(MENU_STRUCT *data, int images, int cur_count);
 
 // Дата и время ----------------------------------------------------------------
 void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2);

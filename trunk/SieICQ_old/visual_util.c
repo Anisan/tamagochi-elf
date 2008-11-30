@@ -74,7 +74,7 @@ void InitDataTime(DATA_TIME *data, int y, int dt_font, char * c1, char * c2)
   memcpy(&(data->fring_colour),c2,4);
 }
                    
-void DrawMenuList(MENU_STRUCT *data, const MENU_ITEM *hdr, /*const MENU_ITEM **/int images, int cur_count)
+void DrawMenuList(MENU_STRUCT *data, int images, int cur_count)
 {
   
   int Y_DISP = data->y_disp;
