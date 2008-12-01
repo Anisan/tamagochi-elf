@@ -546,7 +546,7 @@ void Create_Connect()
 {
   if ((connect_state==0)&&(sock==-1))
   {
-    CreateICQ();
+   
     GBS_DelTimer(&reconnect_tmr);
     DNR_TRIES=3;
     SUBPROC((void *)create_connect);
@@ -602,13 +602,15 @@ void maincsm_oncreate(CSM_RAM *data)
 
   sprintf((char *)ipc_my_name+6,percent_d,UIN);
   
-
+  CreateICQ();
+  
 //// для проверки запущенной копии
   
   gipc.name_to=ipc_my_name;
   gipc.name_from=ipc_my_name;
   gipc.data=(void *)-1;
   GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&gipc);
+  
   
   char *path=malloc(256);
   sprintf(path,"%s\\%d.cl",TEMPLATES_PATH,UIN);
@@ -788,6 +790,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
                         NextStep("Sending cookie");
                         connect_state=3;
                         send_cookie();
+                        Keep_alive();
                       } 
                       else 
                       {
