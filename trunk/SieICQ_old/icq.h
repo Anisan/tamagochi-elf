@@ -91,8 +91,8 @@ extern       short int icq_seqno;
 
 extern int login_bos;
    
-extern  char * Host;
-extern  unsigned int Port;
+extern  char * HostBoss;
+extern  unsigned int PortBoss;
 extern  short int ICQStatus;
 extern  short int XStatus;
 extern  short int flags_status;

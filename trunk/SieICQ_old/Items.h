@@ -6,6 +6,26 @@ enum TypeItem {GROUP, // группа
                BUDDY  // контакт
               };
 
+enum TypeHist {
+                IN_MESS, // входящие
+                OUT_MESS, // исходящие
+                STATUS,   // сообщение Status
+                XSTATUS,   // сообщение XStatus
+                AUTREQ,// Authorization request message
+	        AUTDEN,// Authorization denied message
+	        AUTGIV,// Authorization given message
+	        YOUADD// "You-were-added" message
+              };
+
+typedef struct
+{
+  void *next;
+  TDate date;
+  TTime time;
+  int type;
+  char *text;
+}HIST;
+
 typedef struct
 {
   void *next;
@@ -28,14 +48,14 @@ typedef struct
   unsigned short enable_typing;
   unsigned short client_id;
   
-  
+  HIST *history;
   
 }ITEM;
 
 
 extern ITEM *Itemtop;
 
-void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned short Type,  char* Nick);
+ITEM *AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned short Type,  char* Nick);
 void DeleteItem(int curitem);
 
 ITEM *GetItem(int curitem);
@@ -43,6 +63,7 @@ ITEM *GetItemByID(int ID); // возвращает контакт по ID
 ITEM *GetGroupByGroupID(int GroupID); // группу по GroupID
 ITEM *GetItemByUIN(int UIN); // контакт по его UIN(число)
 ITEM *GetItemByUINstr(char *UIN); // контакт по его Uin строке
+ITEM *GetItemByName(char *name); // по имени
 
 
 
@@ -57,6 +78,15 @@ int TotalItems();
 int TotalContact();
 int TotalGroup();
 
+//// history
+void AddHistory(ITEM* item, TDate date, TTime time, int type, char * text);
+void DelHistory(ITEM* item);
+
+
+
+
+
+//// file CL
 void LoadCL(char *pathfile);
 void SaveCL(char *pathfile);
 

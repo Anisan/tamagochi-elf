@@ -19,6 +19,8 @@ enum ICON_ID
   IMG_OFFLINE,
   IMG_GROUP_ON,
   IMG_GROUP_OFF,
+  IMG_MESSAGE,
+  IMG_TYPING,
   
   // MainMenu ; Start = 13
   IMG_TOCONNECT,

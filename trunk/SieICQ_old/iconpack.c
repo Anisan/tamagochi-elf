@@ -20,6 +20,8 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "offline.png",
   "groupon.png",
   "groupoff.png",
+  "message.png",
+  "typing.png",
     
   // MainMenu ; Start = 13
   "toconnect.png",
