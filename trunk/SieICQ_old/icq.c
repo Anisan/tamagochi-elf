@@ -9,6 +9,8 @@
 
 #include "gui_begin.h"
 
+#define TMR_SECOND 216
+#define time_keep 30
 
 
 /* This was borrowed from libfaim */
@@ -78,8 +80,6 @@ void CreateICQ()
  
   flags_status =0x0101;// INVISIBLE IP
  // flags_status =0x0000; // VISIBLE IP
- // Socket = new SocketAbstract();
- // Socket->Create();
   auth_cookie=NULL;
   curr_reqid = 0;
   flap_seqno=0;
@@ -1272,12 +1272,16 @@ void snac_contactlist(short int flags, int request_id, Packet *packet) {
         }
 }
 
-
+GBSTMR tmr_active;
 
 void Keep_alive()
 {
+  if (connect_state==3)
+  {
   Packet* pack=PackNew();
   send_packet( 0x05, pack);
+  }
+  GBS_StartTimerProc(&tmr_active,TMR_SECOND*time_keep,Keep_alive);
 }
 
 
