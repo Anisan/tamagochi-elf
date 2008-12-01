@@ -32,7 +32,7 @@ char *icq_encode_password(char *password) {
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
-//  return;
+  return;
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\icq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -65,8 +65,8 @@ void _WriteLogICQ(char *buf, int size, int in_out)
    
    int login_bos;
    
-   char * Host;
-   unsigned int Port;
+   char * HostBoss;
+   unsigned int PortBoss;
    short int ICQStatus = STATUS_OFFLINE;
    short int XStatus=0;
    short int flags_status;
@@ -196,8 +196,7 @@ extern void SMART_REDRAW(void);
 void parse_auth(char *data, int size) {
 	
 	short int type, length=0;
-	char *uin, *host;
-	int port;
+	char *uin;
 	
 	Packet *packet = PackNew();
         packet->data=data;
@@ -263,16 +262,16 @@ void parse_auth(char *data, int size) {
           }
           case 0x05:
           /* Get new host */
-            host = (char*)malloc(length + 1);
-            PackGet(packet, (char*)host, length);
-            host[length] = 0;
+            HostBoss = (char*)malloc(length + 1);
+            PackGet(packet, (char*)HostBoss, length);
+            HostBoss[length] = 0;
          
             int fl=0;
             int cs=0;
             char strport[5];
             for (int j=0;j<length;j++)
             {
-              if (host[j]==':')
+              if (HostBoss[j]==':')
               {
                 fl=1;
                 cs=0;
@@ -280,15 +279,15 @@ void parse_auth(char *data, int size) {
               else
               {
               if (fl)
-                strport[cs++]=host[j]; 
+                strport[cs++]=HostBoss[j]; 
               }
             }
             strport[cs]=0;
             
-            port = str2int(strport);
-            host=(char*)realloc(host, length-cs);
-            host[length-cs-1]=0;
-            _WriteLog(host);
+            PortBoss = str2int(strport);
+            HostBoss=(char*)realloc(HostBoss, length-cs);
+            HostBoss[length-cs-1]=0;
+            _WriteLog(HostBoss);
           break;
           
           case 0x06:
@@ -311,13 +310,12 @@ void parse_auth(char *data, int size) {
         }
         mfree(tmp_msg);
         
-	Disconnect();
+	//Disconnect();
         
-        if (auth_cookie)
-        icq_connect(host, port);
+        //if (auth_cookie)
+        //icq_connect(host, port);
 
         mfree(uin);
-        mfree(host);
         
 }
 
@@ -859,11 +857,42 @@ void SetXStatus(int _xStatus)
 
 void contact_incoming_msg(char * source, char* msg)
 {
-// запись в файл
+TTime t;
+TDate d;
+GetDateTime(&d,&t);
+
+// ищем контакт
+        ITEM *Contact=GetItemByUINstr(source);
+        if (Contact!=0)
+        {
+           send_msg(source,msg);
+          // есть непрочитанные
+           Contact->isunread = 1;
+          // запись сообщения в структуру
+           AddHistory(Contact,d,t,IN_MESS,msg);
+          ///
+          
+        }
+        else
+        {
+          //ненайден, добавляем
+          ITEM *Group = GetItemByName("Not in list");
+          if (Group==0)
+              Group = AddItem(0,  333, 0, GROUP, source);
+          Group->visible=1;
+          int uin = str2int(source);
+          Contact = AddItem(1,  Group->GroupID, uin, BUDDY, source);
+          Contact->isunread = 1;
+          // здеся можно будет еще антиспам прикрутить
+          AddHistory(Contact,d,t,IN_MESS,msg);
+          
+        }
+        
+   // запись в файл
   char file[512];
   sprintf(file,"%s\\%s.log",HIST_PATH,source);
 
-  send_msg(source,msg);
+  
   int flog=-1;
   unsigned int err;
   flog = fopen(file,A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -871,27 +900,62 @@ void contact_incoming_msg(char * source, char* msg)
 	{
 		char _msg[1024];
 
-		TTime t;
-		TDate d;
-		GetDateTime(&d,&t);
+		sprintf(_msg, "%02d:%02d:%02d %s\n", t.hour,t.min,t.sec,msg);
+		//  sprintf(msg, "%s\n", buf);
+		fwrite(flog,_msg,strlen(_msg),&err);
+	}
+  fclose(flog,&err);   
+}
+
+void contact_action(char * source, int type, char* msg)
+{
+TTime t;
+TDate d;
+GetDateTime(&d,&t);
+
+  // запись в файл
+  char file[512];
+  sprintf(file,"%s\\%s.log",HIST_PATH,source);
+
+
+  int flog=-1;
+  unsigned int err;
+  flog = fopen(file,A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
+        if (flog!=-1)
+	{
+		char _msg[1024];
+
 		sprintf(_msg, "%02d:%02d:%02d %s\n", t.hour,t.min,t.sec,msg);
 		//  sprintf(msg, "%s\n", buf);
 		fwrite(flog,_msg,strlen(_msg),&err);
 	}
   fclose(flog,&err);     
-// ищем контакт
+  
+       // ищем контакт
         ITEM *Contact=GetItemByUINstr(source);
         if (Contact!=0)
         {
           // есть непрочитанные
            Contact->isunread = 1;
           // запись сообщения в структуру
-         
+           AddHistory(Contact,d,t,type,msg);
           ///
+          
         }
         else
         {
           //ненайден, добавляем
+          // здеся можно будет еще антиспам прикрутить
+          ITEM *Group = GetItemByName("Not in list");
+          if (Group==0)
+              Group = AddItem(0,  333, 0, GROUP, source);
+          Group->visible=1;
+          int uin = str2int(source);
+          Contact = AddItem(1,  Group->GroupID, uin, BUDDY, source);
+          Contact->isunread = 1;
+          // здеся можно будет еще антиспам прикрутить
+          AddHistory(Contact,d,t,type,msg);
+          
          
           
         }
@@ -965,13 +1029,13 @@ void handle_advanced_message(char *source, short int num_tlvs, Packet *packet) {
 	
 	if (flag1 != 0x0000 || flag2 != 0x000a) {
 		_WriteLog("Unknown advanced message type:");
-		return;
+		//return;
 	}
 	
 	PackGet16(packet, &msg_type);
 	if (msg_type == 0x0005) {
 		_WriteLog("Looks to be a file transfer:");
-		return;
+		//return;
 	}
 	
 	/* Some unknown that rejetto didn't see as necessary */
@@ -1041,19 +1105,19 @@ void handle_special_message(char *source,short int num_tlvs, Packet *packet) {
 	  }
 		
 	  case 0x06: // Authorization request message
-//		contact_action(CONTACT(contact), "has requested authorization to add you to their list.");
+		contact_action(source, AUTREQ,msg);
 		break;
 		
 	  case 0x07: // Authorization denied message
-		//contact_action(CONTACT(contact), "has denied your request for authorization:");
+		contact_action(source, AUTDEN,msg);
 		break;
 		
 	  case 0x08: // Authorization given message
-		//contact_action(CONTACT(contact), "has authorized you.");
+		contact_action(source, AUTGIV, msg);
 		break;
 		
 	  case 0x0C: // "You-were-added" message
-		//contact_action(CONTACT(contact), "has added you to their list.");
+		contact_action(source, YOUADD, msg);
 		break;
 		
 	  case 0x13: //Contact list message
@@ -1361,6 +1425,18 @@ void new_message_packet(Packet *packet, char* dUIN, short int channel) {
 }
 
 void send_msg(char* dUIN, char *msg) {
+
+TTime t;
+TDate d;
+GetDateTime(&d,&t);
+ITEM *Contact=GetItemByUINstr(dUIN);
+        if (Contact!=0)
+        {
+          // запись сообщения в структуру
+           AddHistory(Contact,d,t,OUT_MESS,msg);
+        }
+
+  
 	Packet *packet = PackNew();
         new_message_packet(packet, dUIN, 0x0001);
 	short int size = strlen(msg);

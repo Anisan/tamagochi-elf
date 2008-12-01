@@ -4,7 +4,7 @@
 
 ITEM *Itemtop;
 
-void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned short Type,  char* Nick)
+ITEM *AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned short Type,  char* Nick)
 {
 
  ITEM *bmk=malloc(sizeof(ITEM));
@@ -20,8 +20,13 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
  bmk->StatusText=NULL;
  bmk->XStatusText=NULL;
  
+ bmk->istyping=0;
+ bmk->isunread=0;
+ 
  bmk->iscollapsed=0;
  bmk->visible=0;
+ 
+ bmk->history=NULL;
 
  
  bmk->enable_typing=0;
@@ -39,6 +44,7 @@ void AddItem(unsigned int ID,  unsigned int GroupID, unsigned int UIN, unsigned 
    Item->next=bmk;   
    bmk->prev=Item;
  } 
+ return bmk;
 }
 
 void FreeItemsList()
@@ -74,6 +80,9 @@ void DeleteItem(int curitem)
        mfree(bmk->StatusText);
      if (bmk->XStatusText)
        mfree(bmk->XStatusText);
+     
+     DelHistory(bmk);
+       
       mfree(bmk);
   }
   
@@ -152,6 +161,20 @@ ITEM *GetItemByUINstr(char* UIN)
   return 0;
 }
 
+ITEM *GetItemByName(char* name)
+{
+  ITEM *bmk;
+  bmk=Itemtop;
+  while(bmk)
+  {
+    if(strcmp(bmk->Nick,name)==0)
+      return bmk;
+    if(bmk->next) bmk=bmk->next;  
+    else return 0;
+  }
+  return 0;
+}
+
 
 int GetContactInGroup(int GroupID)
 {
@@ -173,7 +196,7 @@ void GroupCollapsed(int GroupID)
   if(!Itemtop) return;
   ITEM *bmk;
   bmk=Itemtop;
-  int i=1; 
+//  int i=1; 
   int collapse=0;
   while(bmk) 
   {
@@ -263,8 +286,54 @@ int TotalItems()
   while(bmk=bmk->next) i++;
   return i;
 }
+////////////////////////////////////////////////////////
+//////// history ///////////////////////////////////////
+////////////////////////////////////////////////////////
+
+
+void AddHistory(ITEM* item, TDate date, TTime time, int type, char * text)
+{
+ HIST *bmk=malloc(sizeof(HIST));
+ bmk->next=NULL;
+ bmk->date=date;
+ bmk->time=time;
+ bmk->type=type;
+ bmk->text = malloc(strlen(text));
+ sprintf(bmk->text,text);
+ 
+ if(!item->history)
+ {
+   item->history=bmk; 
+ }
+ else
+ {
+   HIST *HItem=item->history;
+   while(HItem->next)
+       HItem=HItem->next;
+   HItem->next=bmk;   
+ } 
+}
+
+void DelHistory(ITEM* item)
+{
+  LockSched();
+  HIST *bmk=(HIST *)item->history;
+  item->history=NULL;
+  UnlockSched();
+  while(bmk)
+  {
+    HIST *bmk_prev=bmk;
+    bmk=bmk->next;
+    mfree(bmk_prev->text);
+    
+    mfree(bmk_prev);
+  }
+  
+}
+
 
 //////////////////////////////////////////////////////
+///////// file contact list //////////////////////////
 //////////////////////////////////////////////////////
 
   typedef struct

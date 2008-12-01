@@ -204,13 +204,24 @@ NextStep("Connecting");
   DNR_ID=0;
   *socklasterr()=0;
 
+  if (auth_cookie) 
+  {
+    sprintf(hostbuf,HostBoss);
+    hostport = PortBoss;
+    NextStep("Connecting BOSS");
+    sprintf(hostname, "BOSS: %s:%d", hostbuf, hostport);
+    SMART_REDRAW();
+  }
+    else
+  {
   if(host_counter > GetHostsCount(SieICQ_HOST)-1) host_counter = 0;
   GetHost(host_counter, SieICQ_HOST, hostbuf);
   hostport = GetPort(host_counter, SieICQ_HOST);
   host_counter++;
 
   sprintf(hostname, "%s:%d", hostbuf, hostport);
-
+  }
+  
   SMART_REDRAW();
 
   ip=str2ip(hostbuf);
@@ -269,7 +280,7 @@ NextStep("Connecting");
 	  closesocket(sock);
 	  sock=-1;
 	  LockSched();
-	  ShowMSG(1,(int)"LG_MSGCANTCONN");
+	  //ShowMSG(1,(int)"LG_MSGCANTCONN");
 	  UnlockSched();
 	  GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
 	}
@@ -280,7 +291,7 @@ NextStep("Connecting");
 	ShowMSG(1,(int)"LG_MSGCANTCRSC");
 	UnlockSched();
 	//Не осилили создания сокета, закрываем GPRS-сессию
-	GPRS_OnOff(0,1);
+	//GPRS_OnOff(0,1);
       }
     }
   }
@@ -310,58 +321,7 @@ void end_socket(void)
 }
 
 
-void icq_connect(char *host, int port) {
 
-  NextStep("Connecting BOSS");
-  
-  end_socket();
-  connect_state = 0;
-  sprintf(hostname, "BOSS: %s:%d", host, port);
-  SMART_REDRAW();
-
-  unsigned int ip;
-  SOCK_ADDR sa;
-  
-  ip=str2ip(host);
-  if (ip!=0xFFFFFFFF)
-  {
-    sa.ip=ip;
-    strcpy(logmsg,"\nConnect by IP!");
-    SMART_REDRAW();
-    sock=socket(1,1,0);
-      if (sock!=-1)
-      {
-	sa.family=1;
-	sa.port=htons(port);
-	//    sa.ip=htonl(IP_ADDR(82,207,89,182));
-	if (connect(sock,&sa,sizeof(sa))!=-1)
-	{
-	  connect_state=1;
-	  TOTALRECEIVED=0;
-	  TOTALSENDED=0;
-	  SMART_REDRAW();
-	}
-	else
-	{
-	  closesocket(sock);
-	  sock=-1;
-	  LockSched();
-	  ShowMSG(1,(int)"LG_MSGCANTCONN");
-	  UnlockSched();
-	  GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME,do_reconnect);
-	}  
-        }
-      else
-      {
-	LockSched();
-	ShowMSG(1,(int)"LG_MSGCANTCRSC");
-	UnlockSched();
-	//Не осилили создания сокета, закрываем GPRS-сессию
-	GPRS_OnOff(0,1);
-      }
-  }
-  RXstate=-(int)sizeof(FLAP_HEAD);
-}
 
 #ifdef SEND_TIMER
 static void resend(void)
@@ -448,7 +408,7 @@ void Send(char * data, int size)
 
 
 void get_answer(void)
-{
+{ void *p;
   int i=RXstate;
   int j;
   int n;
@@ -500,36 +460,9 @@ void get_answer(void)
 	ALLTOTALRECEIVED+=(i+8);			//by BoBa 10.07
 	//Пакет удачно принят, можно разбирать...
 	RXbuf.data[i]=0; //Конец строки
-	switch(RXbuf.flap.channel) {
-                case 0x01:
-                      if (auth_cookie) 
-                      {
-                        NextStep("Sending cookie");
-                        connect_state=3;
-                        send_cookie();
-                      } 
-                      else 
-                      {
-                        NextStep("Send login/pass");
-                        connect_state=2;
-                        send_login();
-                      }
-                      
-                      break;
-                      
-                case 0x02:
-                       parse_snac(RXbuf.data,RXbuf.flap.data_size);
-                      break;
-                      
-                case 0x04:
-                      if (!auth_cookie)
-                       parse_auth(RXbuf.data,RXbuf.flap.data_size);
-                      break;
-                      
-                default:
-                  ;
-              };
-        
+	   p=malloc(i+sizeof(FLAP_HEAD)+1);
+           memcpy(p,&RXbuf,n);
+           GBS_SendMessage(MMI_CEPID,MSG_HELPER_TRANSLATOR,0,p,sock);
 	i=-(int)sizeof(FLAP_HEAD); //А может еще есть данные
       }
     }
@@ -847,15 +780,47 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
       if ((((unsigned int)msg->data0)>>28)==0xA)
       {
 	//Принят пакет
-	//ProcessPacket((Packet *)msg->data0);
-        _WriteLog("Packet (((unsigned int)msg->data0)>>28)==0xA");
+        TPKT *buf =(TPKT *)msg->data0; 
+	switch(buf->flap.channel) {
+                case 0x01:
+                      if (auth_cookie) 
+                      {
+                        NextStep("Sending cookie");
+                        connect_state=3;
+                        send_cookie();
+                      } 
+                      else 
+                      {
+                        NextStep("Send login/pass");
+                        connect_state=2;
+                        send_login();
+                      }
+                      
+                      break;
+                      
+                case 0x02:
+                       parse_snac(buf->data,buf->flap.data_size);
+                      break;
+                      
+                case 0x04:
+                      if (!auth_cookie)
+                      {
+                       parse_auth(RXbuf.data,RXbuf.flap.data_size);
+                       end_socket();
+                       create_connect();
+                      }
+                      break;
+                      
+                default:
+                  ;
+              };
 	return(0);
       }
       
       switch((int)msg->data0)
       {
       case ENIP_SOCK_CONNECTED:
-	if (connect_state==1)
+	if ((connect_state==1)||(connect_state==3))
 	{
 	  //Соединение установленно
 	  strcpy(logmsg, "Connected");
