@@ -318,6 +318,11 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
             DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
         
             int offset=16;
+            if (bmk->istyping!=0)
+            {
+              DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_TYPING]);
+              offset+=16;
+            }
             if (bmk->isunread!=0) 
             {
               DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_MESSAGE]);

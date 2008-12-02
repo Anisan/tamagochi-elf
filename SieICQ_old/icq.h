@@ -6,16 +6,19 @@
 #include "icq_packet.h"
 //#include "icq_snac.h"
 
-#define ICQ_CLIENT_STRING "ICQ Inc. - Product of ICQ (TM).2000b.4.63.1.3279.85"
+#define ICQ_CLIENT_STRING "ICQ Client"
 
-#define ICQ_CLIENT_MAJOR 0x0004
-#define ICQ_CLIENT_MINOR 0x0034
+#define ICQ_CLIENT_MAJOR 0x0006
+#define ICQ_CLIENT_MINOR 0x0000
 #define ICQ_CLIENT_BUILD1 0x0000
-#define ICQ_CLIENT_BUILD2 0x0c18
-#define ICQ_CLIENT_BUILD3 0x0000043d
+#define ICQ_CLIENT_BUILD2 0x1797
+#define ICQ_CLIENT_BUILD3 0x00007535
 
 #define ICQ_REQUEST_EMPTY (0x3c00)
 #define ICQ_REQUEST_VALUE (0xd007)
+
+#define Language_Code "en"
+#define Country_Code "en"
 
 typedef struct
 {
@@ -28,7 +31,7 @@ typedef struct
 typedef struct
 {
   FLAP_HEAD flap;
-  char data[16384];
+  char data[64000];
 }TPKT;
 
 typedef struct
@@ -41,22 +44,8 @@ typedef struct
 
 //enum (OFFLINE,ONLINE)
 
-// статусы для установки
-#define STATUS_OFFLINE    0xffff
-#define STATUS_ONLINE     0x0000 //  Status is online 
-#define STATUS_AWAY       0x0001 //  Status is away 
-#define STATUS_DND        0x0002 //  Status is no not disturb (DND) 
-#define STATUS_NA         0x0004 //  Status is not available (N/A) 
-#define STATUS_OCCUPIED   0x0010 //  Status is occupied (BISY) 
-#define STATUS_FREE4CHAT  0x0020 //  Status is free for chat 
-#define STATUS_INVISIBLE  0x0100 //  Status is invisible 
-#define STATUS_EVIL       0x3000
-#define STATUS_DEPRESSION 0x4000
-#define STATUS_HOME       0x5000
-#define STATUS_WORK       0x6000
-#define STATUS_LUNCH      0x2001
 
-// статусы для определения
+// статусы
 #define ICQ_STATUS_OFFLINE          0xffff
 #define ICQ_STATUS_ONLINE           0x0000
 #define ICQ_STATUS_AWAY             0x0001

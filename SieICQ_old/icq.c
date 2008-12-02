@@ -12,6 +12,8 @@
 #define TMR_SECOND 216
 #define time_keep 30
 
+#define NOT_IN_LIST "Not In List"
+
 
 /* This was borrowed from libfaim */
 char *icq_encode_password(char *password) {
@@ -34,7 +36,7 @@ char *icq_encode_password(char *password) {
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
-  return;
+ // return;
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\icq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -69,7 +71,7 @@ void _WriteLogICQ(char *buf, int size, int in_out)
    
    char * HostBoss;
    unsigned int PortBoss;
-   short int ICQStatus = STATUS_OFFLINE;
+   short int ICQStatus = ICQ_STATUS_OFFLINE;
    short int XStatus=0;
    short int flags_status;
   
@@ -182,8 +184,8 @@ void send_login()
 	PackAddTLV32(packet, 0x0014, ICQ_CLIENT_BUILD3);
 	
 	/* Language and Country code */
-	PackAddTLVStr(packet, 0x000f, "en");
-	PackAddTLVStr(packet, 0x000e, "us");
+	PackAddTLVStr(packet, 0x000f, Language_Code);
+	PackAddTLVStr(packet, 0x000e, Country_Code);
 
 	send_packet(0x01, packet);
 }
@@ -257,7 +259,7 @@ void parse_auth(char *data, int size) {
 
             EndStep();
             SMART_REDRAW();
-            //Disconnect();
+            Disconnect();
             return;
           }
           case 0x05:
@@ -329,6 +331,7 @@ void send_cookie()
 	/* Auth cookie */
 	PackAddTLVRAW(packet, 0x0006, auth_length, 
 				      auth_cookie);
+        
 	send_packet( 0x01, packet);
 }
 
@@ -470,7 +473,7 @@ void message_new(Packet* packet, short int type, short int *seqno) {
 void message_parse(Packet *packet) {  
 	
   //ICQMessageHandler *handler = message_handlers;
-	short int length, seqno, type, subtype = 0;
+	short int length, seqno, type = 0;
 	int uin;
 	
 	PackGet16LE(packet, &length);
@@ -689,7 +692,7 @@ void snac_bos_rights(short int flags, int request_id, Packet *packet) {
   // устанавливаем статус
   NextStep("Set status");
   
-    SetStatus(STATUS_ONLINE);
+    SetStatus(ICQ_STATUS_ONLINE);
   
     Packet *new_packet = PackNew();
 
@@ -727,7 +730,8 @@ void snac_bos_rights(short int flags, int request_id, Packet *packet) {
         message_new(new_packet, 0x3c00, NULL);
 	send_message(new_packet);
         
-        
+         Keep_alive();
+         
 	//send_key_data("<key>DataFilesIP</key>");
 	//send_key_data("<key>BannersIP</key>");
 	//send_key_data("<key>ChannelsIP</key>");
@@ -876,9 +880,9 @@ GetDateTime(&d,&t);
         else
         {
           //ненайден, добавляем
-          ITEM *Group = GetItemByName("Not in list");
+          ITEM *Group = GetItemByName(NOT_IN_LIST);
           if (Group==0)
-              Group = AddItem(0,  333, 0, GROUP, source);
+              Group = AddItem(0,  333, 0, GROUP, NOT_IN_LIST );
           Group->visible=1;
           int uin = str2int(source);
           Contact = AddItem(1,  Group->GroupID, uin, BUDDY, source);
@@ -946,9 +950,9 @@ GetDateTime(&d,&t);
         {
           //ненайден, добавляем
           // здеся можно будет еще антиспам прикрутить
-          ITEM *Group = GetItemByName("Not in list");
+          ITEM *Group = GetItemByName(NOT_IN_LIST);
           if (Group==0)
-              Group = AddItem(0,  333, 0, GROUP, source);
+              Group = AddItem(0,  333, 0, GROUP, NOT_IN_LIST);
           Group->visible=1;
           int uin = str2int(source);
           Contact = AddItem(1,  Group->GroupID, uin, BUDDY, source);
@@ -1178,7 +1182,7 @@ void snac_incoming_msg(short int flags, int request_id, Packet *packet) {
 void snac_typing_msg(short int flags, int request_id, Packet *packet) {
 	long cookie;
         char source_len;
-	short int channel, typing;
+	short int channel, typing=0;
 	char *source;
 	/* IM Cookie */
 	PackGet(packet, &cookie, 8);
@@ -1245,9 +1249,7 @@ void snac_contactlist(short int flags, int request_id, Packet *packet) {
                 uin_name[(int)length]=0;
                 break;
               default:
-                { 
-                  packet->offset+=length;
-                }
+                PackSkip(packet,length);
               }
             }
           if ((ItemID!=0)||(GroupID!=0)) //  ItemID=0 GroupID=0 корневой (Master group) элемент
@@ -1270,6 +1272,7 @@ void snac_contactlist(short int flags, int request_id, Packet *packet) {
           mfree(uin_name);
           
         }
+         GroupVisible(1);
 }
 
 GBSTMR tmr_active;
@@ -1354,8 +1357,8 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
               case 0x06: 
                 if (length>=4)
                 {
-                PackGet16(packet,&flags_status); 
-                PackGet16(packet,&status); 
+                  PackGet16(packet,&flags_status); 
+                  PackGet16(packet,&status); 
                 }
                 else
                 {
@@ -1381,7 +1384,7 @@ void snac_online_notify(short int flags, int request_id, Packet *packet)
            Contact->XStatus = xstatus;
            Contact->client_id = clientid;
         }
-        
+       
 	mfree(uin);
 }
 
@@ -1414,8 +1417,8 @@ void new_message_packet(Packet *packet, char* dUIN, short int channel) {
         
         for (int n = 0; n < 6; n++)
 		cookie[n] = rand();
+        cookie[6]=0;
         cookie[7]=0;
-        cookie[8]=0;
         
 	snac_new(packet,0x0004, 0x0006, NULL, NULL);
 	

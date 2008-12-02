@@ -460,8 +460,10 @@ void get_answer(void)
 	ALLTOTALRECEIVED+=(i+8);			//by BoBa 10.07
 	//Пакет удачно принят, можно разбирать...
 	RXbuf.data[i]=0; //Конец строки
-	   p=malloc(i+sizeof(FLAP_HEAD)+1);
-           memcpy(p,&RXbuf,n);
+        
+           int pl=RXbuf.flap.data_size+sizeof(FLAP_HEAD)+1;
+	   p=malloc(pl);
+           memcpy(p,&RXbuf,pl);
            GBS_SendMessage(MMI_CEPID,MSG_HELPER_TRANSLATOR,0,p,sock);
 	i=-(int)sizeof(FLAP_HEAD); //А может еще есть данные
       }
@@ -628,8 +630,10 @@ void maincsm_oncreate(CSM_RAM *data)
 void maincsm_onclose(CSM_RAM *csm)
 {
   
-//  GBS_DelTimer(&tmr_dorecv);
-//  GBS_DelTimer(&tmr_active);
+  extern GBSTMR tmr_active;
+  GBS_DelTimer(&tmr_active);
+
+  //  GBS_DelTimer(&tmr_dorecv);
 //  GBS_DelTimer(&tmr_ping);
 //  FreeSmiles();
 
@@ -790,7 +794,6 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
                         NextStep("Sending cookie");
                         connect_state=3;
                         send_cookie();
-                        Keep_alive();
                       } 
                       else 
                       {
@@ -808,7 +811,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
                 case 0x04:
                       if (!auth_cookie)
                       {
-                       parse_auth(RXbuf.data,RXbuf.flap.data_size);
+                       parse_auth(buf->data,buf->flap.data_size);
                        end_socket();
                        create_connect();
                       }
@@ -817,6 +820,7 @@ int maincsm_onmessage(CSM_RAM *data,GBS_MSG *msg)
                 default:
                   ;
               };
+        mfree (buf);
 	return(0);
       }
       

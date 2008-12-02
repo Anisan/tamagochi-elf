@@ -59,43 +59,43 @@ static void ChangeStatus(GUI *data)
   switch(Status_Change_Cursor)
   {
   case 0:
-    SetStatus(STATUS_ONLINE);
+    SetStatus(ICQ_STATUS_ONLINE);
     break;
   case 1:
-    SetStatus(STATUS_FREE4CHAT);
+    SetStatus(ICQ_STATUS_FREE4CHAT);
     break;
   case 2:
-    SetStatus(STATUS_AWAY);
+    SetStatus(ICQ_STATUS_AWAY);
     break;
   case 3:
-    SetStatus(STATUS_DND);
+    SetStatus(ICQ_STATUS_DND);
     break;
   case 4:
-    SetStatus(STATUS_OCCUPIED);
+    SetStatus(ICQ_STATUS_OCCUPIED);
     break;
   case 5:
-    SetStatus(STATUS_NA);
+    SetStatus(ICQ_STATUS_NA);
     break;
   case 6:
-    SetStatus(STATUS_INVISIBLE);
+    SetStatus(ICQ_STATUS_INVISIBLE);
     break;
   case 7:
-    SetStatus(STATUS_EVIL);
+    SetStatus(ICQ_STATUS_EVIL);
     break;
   case 8:
-    SetStatus(STATUS_DEPRESSION);
+    SetStatus(ICQ_STATUS_DEPRESSION);
     break;
   case 9:
-    SetStatus(STATUS_HOME);
+    SetStatus(ICQ_STATUS_HOME);
     break;
   case 10:
-    SetStatus(STATUS_WORK);
+    SetStatus(ICQ_STATUS_WORK);
     break;
   case 11:
-    SetStatus(STATUS_LUNCH);
+    SetStatus(ICQ_STATUS_LUNCH);
     break;
   case 12:
-    SetStatus(STATUS_OFFLINE);
+    SetStatus(ICQ_STATUS_OFFLINE);
     break;
   }
 }
