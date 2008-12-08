@@ -336,7 +336,11 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
             }
             char fullname[128];
             if (bmk->client_id>0)
-              sprintf(fullname,"%s (%s)",newname,clientDB[bmk->client_id-1]);  
+            {
+              sprintf(fullname,"%s (%s)",newname,clientDB[bmk->client_id-1].name);  
+              img=clientDB[bmk->client_id-1].img;
+              DrawImg(ScrW-17, NEW_Y + Y_DISP, IconPack[img]);
+            }
            else
               sprintf(fullname,"%s",newname);
             
