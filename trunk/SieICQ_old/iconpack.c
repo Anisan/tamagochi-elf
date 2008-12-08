@@ -30,7 +30,17 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "clist.png",
   "settings.png",
   "about.png",
-  "exit.png"
+  "exit.png",
+   
+  //// клиенты  
+  "cl_UNKNOW.png",
+  "cl_SIEICQ.png",
+  "cl_NATICQ.png",
+  "cl_MIRANDA.png",
+  "cl_JIMM.png",
+  "cl_QIP.png",
+  "cl_QIP_INFINUM.png",
+  "cl_ICQ.png"
 };
 
 int IconPack[TOTAL_ICONS_NUM + XIMGCount];

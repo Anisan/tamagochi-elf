@@ -32,6 +32,14 @@ enum ICON_ID
   IMG_EXIT,
   
   // img client
+  IMG_UNKNOW,
+  IMG_SIEICQ,
+  IMG_NATICQ,
+  IMG_MIRANDA,
+  IMG_JIMM,
+  IMG_QIP,
+  IMG_QIP_INFINUM,
+  IMG_ICQ,
   
   
   TOTAL_ICONS_NUM, //
