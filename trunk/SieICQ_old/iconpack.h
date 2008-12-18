@@ -3,7 +3,7 @@
 
 enum ICON_ID
 {
-  // Status ; Start = 0
+  // Status ;
   IMG_ONLINE,
   IMG_FFC,
   IMG_AWAY,
@@ -22,7 +22,7 @@ enum ICON_ID
   IMG_MESSAGE,
   IMG_TYPING,
   
-  // MainMenu ; Start = 13
+  // MainMenu ; 
   IMG_TOCONNECT,
   IMG_CHANGE_S,
   IMG_CHANGE_XS,
@@ -30,6 +30,10 @@ enum ICON_ID
   IMG_SETTINGS,
   IMG_ABOUT,
   IMG_EXIT,
+  
+  // Interface
+  IMG_LOGO,
+  IMG_BG,
   
   // img client
   IMG_UNKNOW,
@@ -40,9 +44,13 @@ enum ICON_ID
   IMG_QIP,
   IMG_QIP_INFINUM,
   IMG_ICQ,
+  IMG_RAMBLER_ICQ,
+  IMG_TRILLIAN,
+  IMG_SIM,
+  IMG_KOPETE,
   
   
-  TOTAL_ICONS_NUM, //
+  TOTAL_ICONS_NUM //
     
   // XStatus их много поэтому грузим по-другому
 

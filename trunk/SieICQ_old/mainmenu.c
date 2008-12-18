@@ -174,7 +174,8 @@ unsigned int GUI_MAINMENU_ID = 0,
 
 void OnRedraw_MainMenu()
 {
-  DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+ // DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+  DrawImg(0,0,IconPack[IMG_BG]);
   DrawMenuList(&main_menu_struct, IMG_TOCONNECT, menu_cursors[IS_MAIN_MENU]);
   DrawSoftButton(&mainmemu_soft);
 }

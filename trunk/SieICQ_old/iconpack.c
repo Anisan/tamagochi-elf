@@ -3,8 +3,7 @@
   
 static const char * const img_names[TOTAL_ICONS_NUM]=
 {
-  // Status ; Start = 0
-  
+  // Status 
   "online.png",
   "ffc.png",
   "away.png",
@@ -23,7 +22,7 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "message.png",
   "typing.png",
     
-  // MainMenu ; Start = 13
+  // MainMenu 
   "toconnect.png",
   "changes.png",
   "changesX.png",
@@ -31,6 +30,10 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "settings.png",
   "about.png",
   "exit.png",
+   
+   /// interface
+  "logo.png",
+  "bg.png", 
    
   //// клиенты  
   "cl_UNKNOW.png",
@@ -40,7 +43,11 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "cl_JIMM.png",
   "cl_QIP.png",
   "cl_QIP_INFINUM.png",
-  "cl_ICQ.png"
+  "cl_ICQ.png",
+  "cl_RAMBLER_ICQ.png",
+  "cl_TRILLIAN.png",
+  "cl_SIM.png",
+  "cl_Kopete.png"
 };
 
 int IconPack[TOTAL_ICONS_NUM + XIMGCount];

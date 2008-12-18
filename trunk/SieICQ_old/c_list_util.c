@@ -116,7 +116,8 @@ void CLIST_SetItemsFont(CONTACT_LIST_DESC * data, int sets_font, int sets_font_t
 
 static void DrawCListFon()
 {
-    DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+//    DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+    DrawImg(0,0,IconPack[IMG_BG]);
 }
 
 
@@ -124,7 +125,7 @@ void GetShowsNumContacts(CONTACT_LIST_DESC * data, int head_h, int soft_h)
 {
   data->y_disp = 2;
   c_list_max_contacts = data->max_nums = TotalContact();
-  c_list_max_show_n = (ScrH - head_h - soft_h)/ (2*( data->y_disp) + Font_H);
+  c_list_max_show_n = (ScrH - head_h - soft_h)/ (2*( data->y_disp) + GetImgHeight(IconPack[IMG_ONLINE]));
 }
 
 
@@ -257,6 +258,8 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
   int Y_DISP = data->y_disp;
   WSHDR *item_data = AllocWS(128);
   
+  int itemH = 2*( data->y_disp) + GetImgHeight(IconPack[IMG_ONLINE]);
+  
   int b_item=0;
   int e_item=c_list_max_show_n;
   int alt_b_item=0;
@@ -282,11 +285,11 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
       if ((b_item>=0)&&(b_item<=e_item))
       {
 
-        int NEW_Y =  header_height + (2*Y_DISP + Font_H) * (b_item);
+        int NEW_Y =  header_height + (itemH) * (b_item);
         
         if(alt_b_item+b_item==c_list_cursor_pos)
         {
-        DrawRoundedFrame(0, NEW_Y+Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
+        DrawRoundedFrame(0, NEW_Y+Y_DISP, ScrW, NEW_Y + itemH, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
         c_list_cursor_item=c;
         }
     
@@ -315,31 +318,31 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
             if (bmk->istyping!=0) img=IMG_TYPING;
             
             
-            DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
+            DrawImg(Y_DISP, NEW_Y + Y_DISP, IconPack[img]);
         
-            int offset=16;
+            int offset=Y_DISP+itemH;
             if (bmk->istyping!=0)
             {
               DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_TYPING]);
-              offset+=16;
+              offset+=itemH;
             }
             if (bmk->isunread!=0) 
             {
               DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_MESSAGE]);
-              offset+=16;
+              offset+=itemH;
             }
             /////// так для проверки
             if (bmk->XStatus>0)
             {
               DrawImg(offset, NEW_Y + Y_DISP, IconPack[IMG_XStatus0+bmk->XStatus]);
-              offset+=16+1;
+              offset+=itemH;
             }
             char fullname[128];
             if (bmk->client_id>0)
             {
               sprintf(fullname,"%s (%s)",newname,clientDB[bmk->client_id-1].name);  
               img=clientDB[bmk->client_id-1].img;
-              DrawImg(ScrW-17, NEW_Y + Y_DISP, IconPack[img]);
+              DrawImg(ScrW-itemH, NEW_Y + Y_DISP, IconPack[img]);
             }
            else
               sprintf(fullname,"%s",newname);
@@ -355,9 +358,9 @@ static void DrawContactList(CONTACT_LIST_DESC *data)
                 img = IMG_GROUP_ON;
               else
                 img = IMG_GROUP_OFF;
-              DrawImg(0, NEW_Y + Y_DISP, IconPack[img]);
+              DrawImg(Y_DISP, NEW_Y + Y_DISP, IconPack[img]);
               wsprintf(item_data, percent_t, newname);
-              DrawString(item_data, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
+              DrawString(item_data, itemH, NEW_Y + Y_DISP, ScrW, NEW_Y + itemH, FONT, 32 , COLOUR, COLOUR_FRING);
             }
         
       }

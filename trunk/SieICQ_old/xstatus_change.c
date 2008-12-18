@@ -59,7 +59,8 @@ MENU_STRUCT xstatus_change_struct=
 
 void OnRedraw_XStatusChange()
 {
-  DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+//  DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+  DrawImg(0,0,IconPack[IMG_BG]);
   DrawMenuList(&xstatus_change_struct, 
                IMG_XStatus0,
                XStatus_Change_Cursor);
