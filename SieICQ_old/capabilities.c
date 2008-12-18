@@ -35,6 +35,94 @@ int FindXStatus(char * buf, int len)
   return 0;
 }
 
+/*
+*	 WildCompare
+*	 Compare 'name' string with 'mask' strings.
+*	 Masks can contain '*' or '?' wild symbols
+*	 Asterics '*' symbol covers 'empty' symbol too e.g WildCompare("Tst","T*st*"), returns TRUE
+*	 In order to handle situation 'at least one any sybol' use "?*" combination:
+*	 e.g WildCompare("Tst","T?*st*"), returns FALSE, but both WildCompare("Test","T?*st*") and
+*	 WildCompare("Teeest","T?*st*") return TRUE.
+*
+*	 Function is case sensitive! so convert input or modify func to use _qtoupper()
+*
+*	 Mask can contain several submasks. In this case each submask (including first)
+*	 should start from '|' e.g: "|first*submask|second*mask".
+*
+*   Dec 25, 2006 by FYR:
+*   Added Exception to masks: the mask "|^mask3|mask2|mask1" means:
+*   if NOT according to mask 3 AND (mask1 OR mask2)
+*   EXCEPTION should be BEFORE main mask:
+*     IF Exception match - the comparing stops as FALSE
+*     IF Exception does not match - comparing continue
+*     IF Mask match - comparing stops as TRUE
+*     IF Mask does not not match comparing continue
+*/
+/*
+BOOL FASTCALL WildCompare(char * name, char * mask)
+{
+
+	if (*mask!='|') return WildCompareProc(name,mask);
+
+	{
+		int s=1,e=1;
+//        static char temp[100];  //lets made temp static local var - should be faster than dynamic
+// STATIC VAR IS NOT THREAD SAFE! // by Bio
+// STATIC VAR IS NOT FASTER THAN ALLOCA // by Bio
+		char *temp = _alloca(strlen(mask));
+		int bExcept;
+
+		while (mask[e]!='\0')
+		{
+			s=e;
+			while(mask[e]!='\0' && mask[e]!='|') e++;
+
+			// exception mask
+			bExcept= (*(mask+s)=='^');
+			if (bExcept) s++;
+
+			memcpy(temp,mask+s,e-s);
+			temp[e-s]='\0';
+
+			if (WildCompareProc(name,temp))
+               return !bExcept;
+
+			if (mask[e]!='\0')
+				e++;
+			else
+				return FALSE;
+		}
+		return FALSE;
+	}
+}
+
+//#define _qtoupper(_c) (((_c)>='a' && (_c)<='z')?((_c)-'a'+'A'):(_c))
+//#define _qtoupper(_c) (((_c)>='a' && (_c)<='z')?((_c)&0x5F):(_c))
+
+BOOL __inline WildCompareProc(char * name, char * mask)
+{
+	char * last='\0';
+	for(;; mask++, name++)
+	{
+		if(*mask != '?' && *mask != *name) break;
+		if(*name == '\0') return ((BOOL)!*mask);
+	}
+	if(*mask != '*') return FALSE;
+	for(;; mask++, name++)
+	{
+		while(*mask == '*')
+		{
+			last = mask++;
+			if(*mask == '\0') return ((BOOL)!*mask);	 // true 
+		}
+		if(*name == '\0') return ((BOOL)!*mask);	// *mask == EOS 
+		if(*mask != '?' && *mask != *name) name -= (size_t)(mask - last) - 1, mask = last;
+	}
+}
+*/
+/////////////////////////////////////////////////////////////////
+
+
 int ClientID(char * buf, int len)
 {
   int count= len/0x10;

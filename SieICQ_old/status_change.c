@@ -118,7 +118,8 @@ MENU_STRUCT status_change_struct=
 
 void OnRedraw_StatusChange()
 {
-  DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+//  DrawRoundedFrame(0, 0, ScrW, ScrH ,0, 0, 0, GetPaletteAdrByColorIndex(1),GetPaletteAdrByColorIndex(1));
+   DrawImg(0,0,IconPack[IMG_BG]);
   DrawMenuList(&status_change_struct, 
                IMG_ONLINE,
                Status_Change_Cursor);

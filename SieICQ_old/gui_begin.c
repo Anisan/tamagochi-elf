@@ -2,6 +2,7 @@
 
 #include "gui_mainmenu.h"
 #include "icq.h"
+#include "iconpack.h"
 
 
 DATA_TIME begin_data_time;
@@ -23,12 +24,10 @@ static void DrawBeginFon()
 {
   if(TYPE_DRAW==Draw_Begin)EndLoad();
   
-  DrawRectangle(0,YDISP,ScrW-1,ScrH-1,0,
-		   GetPaletteAdrByColorIndex(1),
-		   GetPaletteAdrByColorIndex(1));
-  DrawImg(0,0,(int)"4:\\Zbin\\SieICQ\\img\\logo.png");
-  
-  
+//  DrawRectangle(0,YDISP,ScrW-1,ScrH-1,0,
+//		   GetPaletteAdrByColorIndex(1),
+//		   GetPaletteAdrByColorIndex(1));
+  DrawImg(0,0,IconPack[IMG_LOGO]);
 }
 
 ///////// progressbar /////////////

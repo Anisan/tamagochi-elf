@@ -83,38 +83,40 @@ void DrawMenuList(MENU_STRUCT *data, int images, int cur_count)
   wsprintf(ws_head_text, percent_t, data->header_text);
   DrawString(ws_head_text, 0,Y_DISP , ScrW, Font_H + Y_DISP, FONT, 32 + 2, COLOUR, COLOUR_FRING);
   
+  int ItemH = GetImgHeight(IconPack[images])+2*Y_DISP; // высота итема
+  // if (imgW>GetImgHeight(images)) imgW=GetImgHeight(images);
   // здесь надо что-то хитрое чтобы курсор был видим
   // более менее работает, но надо подправить
-  // здесь надо точнее вычислить
-  int max_show= ((ScrH - Font_H - Font_H)/ Font_H); // максимальное количество видимых
+  // здесь надо точнее вычислить !!! для EL вроде нормально
+  int max_show= (ScrH - (Font_H + 2*Y_DISP)-(Font_H + 2*Y_DISP))/ItemH - 1; // максимальное количество видимых
   int b_item=0; // начальный элемент для отрисовки
-  int e_item=data-> max_num; // конечный элемент
+  int e_item=max_show; // конечный элемент
+  
   if (max_show < data-> max_num)
   {
      if (max_show/2 < cur_count) 
-        b_item = cur_count - max_show/2;
-      int e_item=max_show+b_item;
-      if (e_item>data-> max_num)
-      {
-        e_item=data-> max_num;
-        b_item=data-> max_num-max_show;
-      }
+        b_item = max_show/2 - cur_count;
+     if (data-> max_num+b_item < max_show)
+        b_item=max_show - data-> max_num+1;
   }
   
   /////////////
   int start;
-  for(start=b_item; start < e_item; start++)
+  for(start=0; start < data-> max_num; start++)
   {
-    int NEW_Y = 2*Y_DISP + Font_H + (start-b_item)*(Font_H+Y_DISP);
-    
-    if(cur_count==start) 
-      DrawRoundedFrame(0, NEW_Y + Y_DISP, ScrW, NEW_Y + Font_H+2*Y_DISP, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
-    
-    DrawImg(0, NEW_Y + Y_DISP, IconPack[images+start]);
-    
-    wsprintf(ws_head_text, percent_t, (data->items)[start]);
-    DrawString(ws_head_text, 16, NEW_Y + Y_DISP, ScrW, NEW_Y + Y_DISP + Font_H, FONT, 32 , COLOUR, COLOUR_FRING);
-    
+    if ((b_item>=0)&&(b_item<=e_item))
+    {
+      int NEW_Y = Font_H + 2*Y_DISP + (b_item)*(ItemH);
+      
+      if(cur_count==start) 
+        DrawRoundedFrame(0, NEW_Y, ScrW, NEW_Y + ItemH, 0, 0, 0 ,CURSOR_COLOUR, CURSOR_COLOUR_FRING);
+      
+      DrawImg(data->x_disp, NEW_Y+Y_DISP, IconPack[images+start]);
+      
+      wsprintf(ws_head_text, percent_t, (data->items)[start]);
+      DrawString(ws_head_text, ItemH , NEW_Y+Y_DISP, ScrW, NEW_Y + ItemH-Y_DISP, FONT, 32 , COLOUR, COLOUR_FRING);
+    }
+    ++b_item;
   }
   FreeWS(ws_head_text);
 };
