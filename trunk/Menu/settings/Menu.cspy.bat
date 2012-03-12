@@ -22,8 +22,8 @@
 @REM but they are listed at the end of this file for reference.
 
 
-"E:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\common\bin\cspybat" "E:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\armproc.dll" "E:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\armsim.dll"  %1 --plugin "E:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\<libsupport_plugin>" --backend -B "--endian" "little" "--cpu" "ARM926EJ-S" "--fpu" "None" "--proc_driver" "sim" 
+"D:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\common\bin\cspybat" "D:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\armproc.dll" "D:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\armsim.dll"  %1 --plugin "D:\cd\e71\Develop\Embedded Workbench 4.0 Evaluation\ARM\bin\<libsupport_plugin>" --backend -B "--endian" "little" "--cpu" "ARM926EJ-S" "--fpu" "None" "--proc_driver" "sim" 
 
 
-@REM loaded plugins:
+@REM Loaded plugins:
 @REM    armlibsupport.dll

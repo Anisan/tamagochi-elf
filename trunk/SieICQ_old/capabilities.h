@@ -7,8 +7,15 @@
 
 // client - для определения клиентов
 // надо наверное поменьше сделать
-static const char capSieICQ[]   = {'S', 'i', 'e', 'I', 'C', 'Q', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-static const char capNatICQ[]   = {'N', 'a', 't', 'I', 'C', 'Q', 'S', 'i', 'e', 0, 0, 0, 0, 0, 0, 0};
+static const char capSieICQ[]    = {'S', 'i', 'e', 'I', 'C', 'Q', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static const char capNatICQ[]    = {'N', 'a', 't', 'I', 'C', 'Q', 'S', 'i', 'e', 0, 0, 0, 0, 0, 0, 0};
+
+static const char capQutIM[]     = {'q', 'u', 't', 'i', 'm', 0x00, 0x00,  0x00,  0x00,  0x00,  0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+static const char capPidgin[]    = {'P', 'i', 'd', 'g', 'i', 'n', '/', 'A', 'd', 'i', 'u', 'm', 'X', 0,0,0};
+static const char capSim[]       = {'S', 'I', 'M', ' ', 'c', 'l', 'i', 'e', 'n', 't', ' ', ' ', 0, 0, 0, 0};
+static const char capSimOld[]    = {0x97, 0xb1, 0x27, 0x51, 0x24, 0x3c, 0x43, 0x34, 0xad, 0x22, 0xd6, 0xab, 0xf7, 0x3f, 0x14, 0x00};
+static const char capLicq[]      = {'L', 'i', 'c', 'q', ' ', 'c', 'l', 'i', 'e', 'n', 't', ' ', 0, 0, 0, 0};
+static const char capKopete[]    = {'K', 'o', 'p', 'e', 't', 'e', ' ', 'I', 'C', 'Q', ' ', ' ', 0, 0, 0, 0};
 
 static const char capMirandaIm[]      = {'M', 'i', 'r', 'a', 'n', 'd', 'a', 'M', 0, 0, 0, 0, 0, 0, 0, 0};
 static const char capMirandaMobile[]  = {'M', 'i', 'r', 'a', 'n', 'd', 'a', 'M', 'o', 'b', 'i', 'l', 'e', 0, 0, 0}; //port by Nullbie
@@ -23,10 +30,6 @@ static const char capIcqJSin[]	 = {'s', 'i', 'n', 'j',  0, 0, 0, 0, 0, 0, 0, 0, 
 static const char capAimOscar[]  = {'M', 'i', 'r', 'a', 'n', 'd', 'a', 'A', 0, 0, 0, 0, 0, 0, 0, 0};
 static const char capTrillian[]  = {0x97, 0xb1, 0x27, 0x51, 0x24, 0x3c, 0x43, 0x34, 0xad, 0x22, 0xd6, 0xab, 0xf7, 0x3f, 0x14, 0x09};
 static const char capTrilCrypt[] = {0xf2, 0xe7, 0xc7, 0xf4, 0xfe, 0xad, 0x4d, 0xfb, 0xb2, 0x35, 0x36, 0x79, 0x8b, 0xdf, 0x00, 0x00};
-static const char capSim[]       = {'S', 'I', 'M', ' ', 'c', 'l', 'i', 'e', 'n', 't', ' ', ' ', 0, 0, 0, 0};
-static const char capSimOld[]    = {0x97, 0xb1, 0x27, 0x51, 0x24, 0x3c, 0x43, 0x34, 0xad, 0x22, 0xd6, 0xab, 0xf7, 0x3f, 0x14, 0x00};
-static const char capLicq[]      = {'L', 'i', 'c', 'q', ' ', 'c', 'l', 'i', 'e', 'n', 't', ' ', 0, 0, 0, 0};
-static const char capKopete[]    = {'K', 'o', 'p', 'e', 't', 'e', ' ', 'I', 'C', 'Q', ' ', ' ', 0, 0, 0, 0};
 static const char capmIcq[]      = {'m', 'I', 'C', 'Q', ' ', 0xA9, ' ', 'R', '.', 'K', '.', ' ', 0, 0, 0, 0};
 static const char capClimm[]     = {'c', 'l', 'i', 'm', 'm', 0xA9, ' ', 'R', '.', 'K', '.', ' ', 0, 0, 0, 0};
 static const char capAndRQ[]     = {'&', 'R', 'Q', 'i', 'n', 's', 'i', 'd', 'e', 0, 0, 0, 0, 0, 0, 0};
@@ -104,6 +107,8 @@ typedef struct tagSTDCAPINFO
 static STDCAPINFO clientDB[] = {
 	{"SieICQ",			        IMG_SIEICQ,	capSieICQ,	        6},
 	{"NatICQ",			        IMG_NATICQ,	capNatICQ,	        6},
+	{"QuitIm",			        IMG_QUTIM,	capQutIM,	        5},
+	{"Pidgin",			        IMG_PIDGIN,	capPidgin,	        13},
 	{"Miranda IM",			        IMG_MIRANDA,	capMirandaIm,		8},
 	{"Miranda IM Mobile",		        IMG_MIRANDA,	capMirandaMobile,	13},
 	{"Miranda IM Custom Pack",	        IMG_MIRANDA,	capMimPack,		4},
@@ -170,6 +175,7 @@ static STDCAPINFO clientDB[] = {
 };
 
 /*
+может сделать так - определять клиента по маске
 {// IconName                Mask                	Icon caption          	NULL  ICON_RESOURCE_ID
 
 {"client_AgileMessenger",  	"Agile Messenger*",     "Agile Messenger",      NULL, IDI_CLIENTAGILE,0xFF,4},
