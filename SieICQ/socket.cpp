@@ -5,37 +5,10 @@
 #include "include.h"
 #include "socket.h"
 #include "log.h"
-#include "icq.h"
 
 #ifdef SOCK_SEND_TIMER
   Socket * Socket::Top = NULL;
 #endif
-
-/////////////////////////////////////////////
-void _WriteLogSoc(char *buf, int size, int in_out)
-{
-  int flog=-1;
-  unsigned int err;
-  flog = fopen("4:\\ZBin\\sieicq\\logs\\soc.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
-        if (flog!=-1)
-	{
-		char msg[512];
-
-		TTime t;
-		TDate d;
-		GetDateTime(&d,&t);
-                if (in_out)
-		sprintf(msg, " ->%02d:%02d:%02d ", t.hour,t.min,t.sec);
-                else
-		sprintf(msg, " <-%02d:%02d:%02d ", t.hour,t.min,t.sec);
-		//  sprintf(msg, "%s\n", buf);
-		fwrite(flog,msg,strlen(msg),&err);
-		fwrite(flog,buf,size,&err);
-	}
-  fclose(flog,&err);      
-}
-//////////////////////////////////////////
-
 
 int Socket::GlobalTx = 0;
 int Socket::GlobalRx = 0;
@@ -47,7 +20,6 @@ inline int CheckCepId()
   return 0;
 }
 
-extern void _WriteLog(char *buf);
 //---------------------------------------------------
 
 //Соединить сокет по ip и порту
@@ -77,14 +49,11 @@ void Socket::Connect(int ip, short port)
 }
 
 
-
 #ifdef SOCK_SEND_TIMER
-
 void sock_resend(Socket * sock)
 {
   sock->Send(NULL, NULL);
 }
-
 
 static void _resend(void)
 {
@@ -100,7 +69,6 @@ void Socket::Send(const char * data, int size)
   if (CheckCepId())
   {
     onError(SOCK_ERROR_INVALID_CEPID);
-    _WriteLog("SOCK_ERROR_INVALID_CEPID");
     return;
   }
   if (data)
@@ -119,15 +87,8 @@ void Socket::Send(const char * data, int size)
   }
   while((send_size = send_q_size) != 0)
   {
-    FLAP_HEAD *flap = new FLAP_HEAD;
-    memcpy(flap, send_q, sizeof(FLAP_HEAD));
-    flap->data_size = htons(flap->data_size);
-    send_size= sizeof(FLAP_HEAD)+flap->data_size;
-    delete flap;
-    
-//    if (send_size > 0x400)
-//      send_size = 0x400;
-    
+    if (send_size > 0x400)
+      send_size = 0x400;
     int send_res = send(socket_id, send_q, send_size, 0);
     if (send_res < 0)
     {
@@ -139,23 +100,20 @@ void Socket::Send(const char * data, int size)
       else
       {
         onError(SOCK_ERROR_SENDING);
-        _WriteLog("SOCK_ERROR_SENDING");
 	return;
       }
     }
     GlobalTx += send_res;
     Tx += send_res;
-    
     send_q_size -= send_res;
-    
 
     memcpy(send_q, send_q + send_res, send_q_size); //Удалили переданное
-    if (send_q_size>0)
+    if (send_res < send_size)
     {
-      //Передали не всю очередь
+      //Передали меньше чем заказывали
 #ifdef SOCK_SEND_TIMER
       Top = this;
-      GBS_StartTimerProc(&send_tmr, _tmr_second(10), _resend);
+      GBS_StartTimerProc(&send_tmr, _tmr_second(5), _resend);
 #endif
       return; //Ждем сообщения ENIP_BUFFER_FREE1
     }
@@ -205,7 +163,6 @@ void Socket::Create()
     onError(SOCK_ERROR_INVALID_CEPID);
     return;
   }
-  
   socket_id = socket(1,1,0);
   if(socket_id<0)
   {

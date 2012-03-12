@@ -39,6 +39,8 @@ static const char * const img_names[TOTAL_ICONS_NUM]=
   "cl_UNKNOW.png",
   "cl_SIEICQ.png",
   "cl_NATICQ.png",
+  "cl_QutIm.png",
+  "cl_Pidgin.png",
   "cl_MIRANDA.png",
   "cl_JIMM.png",
   "cl_QIP.png",

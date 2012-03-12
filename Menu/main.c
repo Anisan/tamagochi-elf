@@ -164,11 +164,11 @@ void MOnCreate(CSM_RAM *data)
 
 int MOnMsg(CSM_RAM *data, GBS_MSG *msg)
 {
-  MAIN_CSM *csm=(MAIN_CSM*)data;
-  if ((msg->msg==MSG_GUI_DESTROYED)&&((int)msg->data0==csm->gui_id))
-  {
-    csm->csm.state=-3;
-  }
+  //MAIN_CSM *csm=(MAIN_CSM*)data;
+  //if ((msg->msg==MSG_GUI_DESTROYED)&&((int)msg->data0==csm->gui_id))
+  //{
+  //  csm->csm.state=-3;
+  // }
   
   if (msg->msg==MSG_RECONFIGURE_REQ)
   {

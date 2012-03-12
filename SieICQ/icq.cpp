@@ -61,6 +61,7 @@ void process_recv_timer(void)
 /////////////////////////////////////////////
 void _WriteLogICQ(char *buf, int size, int in_out)
 {
+  return;
   int flog=-1;
   unsigned int err;
   flog = fopen("4:\\ZBin\\sieicq\\logs\\icq.log",A_ReadWrite + A_Create + A_Append + A_BIN,P_READ+P_WRITE,&err);
@@ -142,7 +143,7 @@ void ICQClient::Login()
    Socket->Start(Host,Port);
   }
   
-  flap_seqno = rand() % 65063;
+  flap_seqno = 0;
   curr_reqid = 0;
   icq_seqno = 2;
 }
@@ -184,7 +185,7 @@ void ICQClient::onDataRead()
          memcpy(flap, tmp_buf+offset, sizeof(FLAP_HEAD));
          
          flap->data_size = htons(flap->data_size);
-         flap_seqno=htons(flap->seq_number);
+         //flap_seqno=htons(flap->seq_number);
 
          //char *tmp_msg=new char[64];
          //sprintf(tmp_msg, percent_d, flap->data_size);
@@ -526,9 +527,9 @@ void ICQClient::parse_snac(char *data, int size) {
           switch (snac->subtype_id)
             {
             case 0x0003:snac_server_ready(snac->flags, snac->request_id,packet);break;
-            case 0x0007:snac_rate_response(snac->flags, snac->request_id,packet);break;
+//          case 0x0007:snac_rate_response(snac->flags, snac->request_id,packet);break;
             case 0x000f:snac_user_info(snac->flags, snac->request_id,packet);break;
-//            case 0x0013: icq_snac_motd;break;
+            case 0x0013: snac_motd(snac->flags, snac->request_id,packet);break;
             case 0x0018: snac_host_versions(snac->flags, snac->request_id,packet);break;
 //            case 0x001f: icq_snac_mem_request;break;
             }
@@ -684,26 +685,32 @@ void ICQClient::snac_server_ready(short int flags, int request_id, Packet *packe
 	
 	/* Send some versions packet */
 
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0003);
-	PackAdd16(new_packet, 0x0002);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0003);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0015);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0004);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0006);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x0009);
-	PackAdd16(new_packet, 0x0001);
-	PackAdd16(new_packet, 0x000a);
-	PackAdd16(new_packet, 0x0001);
-        
+	PackAdd32(new_packet, 0x00010004);
+	PackAdd32(new_packet, 0x00130004);
+	PackAdd32(new_packet, 0x00020001);
+	PackAdd32(new_packet, 0x00030001);
+	PackAdd32(new_packet, 0x00150001);
+	PackAdd32(new_packet, 0x00040001);
+	PackAdd32(new_packet, 0x00060001);
+	PackAdd32(new_packet, 0x00090001);
+	PackAdd32(new_packet, 0x000a0001);
+	PackAdd32(new_packet, 0x000b0001);
+       
        	
 	send_packet(0x02, new_packet);
 }
+
+
+void ICQClient::snac_motd(short int flags, int request_id, Packet *packet) 
+{
+  Packet *new_packet = PackNew();
+	snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
+	PackAdd16(new_packet, 0x0000);
+	PackAdd16(new_packet, 0x0000);
+	PackAdd16(new_packet, 0x0000);
+	send_packet(0x02, new_packet);
+}
+
 
 void ICQClient::snac_host_versions(short int flags, int request_id, Packet *packet) {
 	Packet *new_packet = PackNew(); 
@@ -716,6 +723,7 @@ void ICQClient::snac_host_versions(short int flags, int request_id, Packet *pack
 	send_packet(0x02, new_packet);
         
 }
+
 
 void ICQClient::snac_rate_response(short int flags, int request_id, Packet *packet) {
 	
@@ -783,6 +791,9 @@ void ICQClient::snac_list_rights(short int flags, int request_id, Packet *packet
 
 void ICQClient::snac_im_rights(short int flags, int request_id, Packet *packet) {
 
+     LogWidget::Active->Status="Sending initial IM stuff";
+   LogWidget::Active->Redraw();
+   
   Packet *new_packet = PackNew(); 
         snac_new(new_packet, 0x0004, 0x0002, NULL, NULL);
 	
@@ -798,11 +809,11 @@ void ICQClient::snac_im_rights(short int flags, int request_id, Packet *packet) 
 	
 	send_packet(0x02, new_packet);
         
-        new_packet = PackNew(); 
-        snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
-        PackAdd32(new_packet,0);
-        PackAdd16(new_packet,0);
-	send_packet(0x02, new_packet);
+//        new_packet = PackNew(); 
+//      snac_new(new_packet, 0x0013, 0x0005, NULL, NULL);
+//        PackAdd32(new_packet,0);
+//        PackAdd16(new_packet,0);
+//	send_packet(0x02, new_packet);
   
 }
 
@@ -812,12 +823,8 @@ void ICQClient::snac_bos_rights(short int flags, int request_id, Packet *packet)
   SetStatus(STATUS_ONLINE);
   
     Packet *new_packet = PackNew();
-          // запрос контакт листа
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
-        send_packet( 0x02, new_packet);
-   
-  new_packet = PackNew();
+
+    new_packet = PackNew();
         snac_new(new_packet, 0x0001, 0x0002, NULL, NULL);
 	
 	/* Send "Client Ready" */
@@ -850,9 +857,9 @@ void ICQClient::snac_bos_rights(short int flags, int request_id, Packet *packet)
         
 	
         // запрос контакт листа
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
-        send_packet( 0x02, new_packet);
+      //  new_packet = PackNew();
+      //  snac_new(new_packet, 0x0013, 0x0004, NULL, NULL);
+      //  send_packet( 0x02, new_packet);
         
         // запрос оффлайн сообщений
         new_packet = PackNew();
@@ -860,11 +867,11 @@ void ICQClient::snac_bos_rights(short int flags, int request_id, Packet *packet)
 	send_message(new_packet);
         
         
-	send_key_data("<key>DataFilesIP</key>");
-	send_key_data("<key>BannersIP</key>");
-	send_key_data("<key>ChannelsIP</key>");
+	//send_key_data("<key>DataFilesIP</key>");
+	//send_key_data("<key>BannersIP</key>");
+	//send_key_data("<key>ChannelsIP</key>");
         
-        process_active_timer();
+       // process_active_timer();
        // process_recv_timer();
 }
 
@@ -1015,20 +1022,25 @@ void ICQClient::snac_contactlist(short int flags, int request_id, Packet *packet
         message_new(new_packet, 0x3c00, NULL);
 	send_message(new_packet);
         
-        new_packet = PackNew();
-        snac_new(new_packet, 0x0013, 0x0007, NULL, NULL);
-        send_packet( 0x02, new_packet);
+
        
         // устанавливаем статус
         new_packet = PackNew();
         snac_new(new_packet, 0x0001, 0x001e, NULL, NULL);
         PackAddTLV32(new_packet, 0x0006, 0x00000001);
 	send_packet(0x02, new_packet);
+   */   
+snac_im_rights(0, 0,NULL);
+
+
+        Packet *new_packet = PackNew();
+        snac_new(new_packet, 0x0013, 0x0007, NULL, NULL);
+        send_packet( 0x02, new_packet);
         
-        snac_bos_rights(0, 0,NULL);
-  */      
+snac_bos_rights(0, 0,NULL);
+        
   
-        return;
+        
 //Version number of SSI protocol (currently 0x00)
 	char vnum;
 	PackGet8(packet, &vnum);

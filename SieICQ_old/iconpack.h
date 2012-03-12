@@ -38,6 +38,8 @@ enum ICON_ID
   // img client
   IMG_UNKNOW,
   IMG_SIEICQ,
+  IMG_QUTIM,
+  IMG_PIDGIN,
   IMG_NATICQ,
   IMG_MIRANDA,
   IMG_JIMM,
